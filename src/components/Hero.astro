@@ -1,0 +1,37 @@
+---
+const {imagenUrl} = Astro.props
+console.log(imagenUrl);
+
+---
+
+<!-- Hero -->
+<div class={`hero w-full [background-image:url('${imagenUrl}')]`}>
+    <section class="text-5xl text-white grid grid-cols-2">
+        <div class="hero-content bg-gradient-to-r from-zinc-900 to-zinc-900/0 w-full font-Rubik flex flex-col justify-center p-8">
+            <h2 class="uppercase">Inicio</h2>
+            <p class="text-base font-Noto-Sans my-2 text-zinc-200">Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti incidunt, at libero fugiat, sit eaque mollitia quos quod modi nobis tenetur. Perferendis ratione praesentium iure dolorem quibusdam. Itaque, rem quis?</p>
+        </div>
+    </section>
+    <div class="dark"></div>
+</div>
+
+<style>
+	.hero {
+        position: relative;
+		background-position: center;
+		background-size: cover;
+		height: calc(100vh - 96px);
+        z-index: 10;
+	}
+    .hero-content {
+        height: calc(100vh - 96px);
+    }
+    .dark {
+        position: absolute;
+        top: 0;
+        height: calc(100vh - 96px);
+        width: 100%;
+        background: #0008;
+        z-index: -10;
+    }
+</style>
