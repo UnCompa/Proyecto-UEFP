@@ -3,7 +3,7 @@ import Layout from "../layouts/Layout.astro";
 import Header from "../components/Header.astro";
 import Hero from "../components/Hero.astro";
 
-const imagenUrl = '/public/imgs/pexels-kobe-1516440.jpg'
+const imagenUrl = 'https://okdiario.com/img/2021/12/15/ivan-aleksic-pdrfeednick-unsplash11.jpg'
 
 ---
 
@@ -11,5 +11,6 @@ const imagenUrl = '/public/imgs/pexels-kobe-1516440.jpg'
   <Header/>
   <main>
     <Hero imagenUrl={imagenUrl}/>
+    <img src={imagenUrl} alt="">
   </main>
 </Layout>
