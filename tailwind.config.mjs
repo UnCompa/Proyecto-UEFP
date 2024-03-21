@@ -4,7 +4,7 @@ export default {
 	theme: {
 		extend: {
 			colors: {
-				"dark": "#3C486B",
+				"dark": "#121212",
 				"clarity": "#F0F0F0",
 				"acent-1": "#F9D949",
 				"acent-2": "#F45050",
