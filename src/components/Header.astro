@@ -1,18 +1,14 @@
 ---
-import NavBar from "../components/NavBar.astro"
-import HeaderSearch from '../components/HeaderSearch.astro'
+import Hero from "./Hero.astro";
+import NavBar from "./NavBar.jsx";
 ---
-<header class="bg-clarity h-24 w-full flex flex-col lg:flex-row items-center justify-around">
-    <div class="flex items-center">
-      <div class="bg-zinc-500 h-20 w-20">
-        <img class="w-full h-full" src="/imgs/logo.jpeg" alt="" />
-      </div>
-      <div class="px-2">
-        <h1 class="text-bold text-2xl font-Kanit text-start">
-          Unidad Educativa Fiscal <br /> Pichincha
-        </h1>
-      </div>
-    </div>
-    <NavBar />
-    <HeaderSearch/>
-  </header>
+
+<header
+  class="w-full"
+>
+
+  <NavBar client:load/>
+  <section class="h-screen">
+    <Hero/>
+  </section>
+</header>
