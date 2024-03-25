@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import NavLink, { Icon } from "./NavLink.jsx";
+import { useState } from "react";
+import NavLink from "./NavLink.jsx";
 import {Bars, X} from "../icons/Icons.jsx";
 function NavBar() {
   const [openMenu, setOpenMenu] = useState(false);

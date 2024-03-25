@@ -1,16 +1,9 @@
 ---
+interface Props {
+  img: string
+}
 const {img} = Astro.props
 ---
 <div class="flex items-center justify-center">
   <img src={img} alt="" class="reveal rounded h-max w-2/3" />
 </div>
-<script>
-  import ScrollReveal from 'scrollreveal'
-  ScrollReveal().reveal(".reveal", {
-    opacity: 0,
-    origin: "right",
-    distance: "150px",
-    reset: true,
-    duration: 1000,
-  })
-</script>
