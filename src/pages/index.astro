@@ -2,7 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import Header from "../components/Header.astro";
 import CardInfo from "../components/CardInfo.astro";
-import {VideoPlayer} from "../components/VideoPlayer.jsx";
+import VideoPlayer from "../components/VideoPlayer";
 //Falta agregar un reproductor de audio :D
 ---
 
@@ -13,6 +13,9 @@ import {VideoPlayer} from "../components/VideoPlayer.jsx";
       <CardInfo img="/imgs/programacion.jpeg" title="Mision" text="It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English."/>
     <CardInfo img="/imgs/programacion.jpeg" title="Vision" text="It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English."/>
     </section>
-    <VideoPlayer client:load/>
+      <section class="h-screen w-full grid place-content-center container mx-auto">
+        <h2 class="text-5xl text-center border--2 font-Rubik text-white font-bold">Presentacion</h2>
+      <VideoPlayer height={"90vh"} width={"95vw"} videoSource={"/public/videos/video.mp4"} client:load/>
+    </section>
   </main>
 </Layout>
