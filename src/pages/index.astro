@@ -2,20 +2,17 @@
 import Layout from "../layouts/Layout.astro";
 import Header from "../components/Header.astro";
 import CardInfo from "../components/CardInfo.astro";
+import {VideoPlayer} from "../components/VideoPlayer.jsx";
 //Falta agregar un reproductor de audio :D
 ---
 
 <Layout title="Unidad Educativa Fiscal Pichincha | Web Oficial" icon="/logo.svg">
   <Header/>
-  <main class="h-screen w-full bg-zinc-800 grid place-content-center gap-y-4">
-    <CardInfo img="/imgs/programacion.jpeg" title="Mision" text="It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English."/>
+  <main class="h-full w-full bg-zinc-800 grid place-content-center gap-y-4">
+    <section class="bg-transparent w-full h-full">
+      <CardInfo img="/imgs/programacion.jpeg" title="Mision" text="It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English."/>
     <CardInfo img="/imgs/programacion.jpeg" title="Vision" text="It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English."/>
-    <section class="w-full h-screen bg-zinc-800 container mx-auto">
-      <div>
-        <video controls>
-
-        </video>
-      </div>
     </section>
+    <VideoPlayer client:load/>
   </main>
 </Layout>
