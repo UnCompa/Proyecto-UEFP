@@ -17,15 +17,20 @@
     "@types/react": "^18.2.55",
     "@types/react-dom": "^18.2.19",
     "astro": "^4.3.5",
+    "loadjs": "4.3.0-rc1",
+    "rangetouch": "^2.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-player": "^2.15.1",
+    "sass": "1.72.0",
     "scrollreveal": "4.0.9",
     "tailwindcss": "^3.4.1",
     "typescript": "^5.3.3"
   },
   "devDependencies": {
     "@types/scrollreveal": "^0.0.11",
-    "tailwindcss-animated": "^1.0.1"
+    "sas": "^3.0.4",
+    "tailwindcss-animated": "^1.0.1",
+    "video.js": "^8.10.0"
   }
 }
