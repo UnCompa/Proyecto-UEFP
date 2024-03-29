@@ -11,14 +11,17 @@ const embedUrl = `https://www.youtube.com/embed/${parceUrl}`;
 ---
 
 <div
-  class="plyr__video-embed h-max w-[90vw] md:w-[50vw] p-2 bg-zinc-900 shadow-xl"
+  class="aspect-video h-max w-[90vw] md:w-[50vw] p-2 bg-zinc-900 shadow-xl relative"
   id="player"
 >
   <iframe
     src={`${embedUrl}?origin=https://plyr.io&iv_load_policy=3&modestbranding=1&playsinline=1&showinfo=0&rel=0&enablejsapi=1`}
     allowfullscreen
     allowtransparency
-    allow="autoplay"></iframe>
+    allow="autoplay"
+    height="100%"
+    width="100%"
+    ></iframe>
 </div>
 <script is:inline>
   import Plyr from "plyr/src/js/plyr";
