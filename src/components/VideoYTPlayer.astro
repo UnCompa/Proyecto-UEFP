@@ -4,13 +4,10 @@ interface Props {
   url: string;
 }
 const { url } = Astro.props;
-console.log(url);
 const fragmentUrl = url?.split("?");
 const initUrl = fragmentUrl[0];
 const parceUrl = initUrl.slice(17);
-console.log(parceUrl);
 const embedUrl = `https://www.youtube.com/embed/${parceUrl}`;
-console.log(embedUrl);
 ---
 
 <div
@@ -26,7 +23,5 @@ console.log(embedUrl);
 <script is:inline>
   import Plyr from "plyr/src/js/plyr";
   const player = new Plyr("#player");
+  player.volume = 1
 </script>
-
-<!-- https://youtu.be/rNZ17DDx0Jg?list=RDrNZ17DDx0Jg -->
-<!-- https://www.youtube.com/embed/rNZ17DDx0Jg?list=RDrNZ17DDx0Jg" -->
