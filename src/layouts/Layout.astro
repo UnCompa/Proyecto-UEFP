@@ -27,8 +27,24 @@ const { title, icon } = Astro.props;
   </body>
 </html>
 <style is:global>
+  :root {
+    --bkg-white: #fff;
+    --bkg-black: #27272a;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bkg-dark: red;
+      --bkg-white: red;
+    }
+    html {
+      color-scheme: light dark;
+      scrollbar-width: thin;
+      scrollbar-color: #27272a white;
+    }
+  }
   html {
-    scrollbar-width: 5px;
-    scrollbar-color: white black;
+    color-scheme: light dark;
+    scrollbar-width: thin;
+    scrollbar-color: white #27272a;
   }
 </style>
