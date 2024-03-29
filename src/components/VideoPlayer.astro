@@ -1,0 +1,19 @@
+---
+import "plyr/src/sass/plyr.scss";
+interface Props {
+  url: string;
+}
+const { url } = Astro.props;
+console.log(url);
+---
+
+<div class="w-full md:w-[50vw] h-full">
+  <h2 class="text-white text-center text-5xl py-4">Video</h2>
+  <div class="p-4 bg-zinc-900 shadow-xl max-w-full grid place-content-center">
+    <video src={url} controls class="aspect-[16/9]"></video>
+  </div>
+</div>
+<script is:inline>
+  import Plyr from "plyr/src/js/plyr";
+  const player = new Plyr("video");
+</script>

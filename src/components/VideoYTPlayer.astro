@@ -1,0 +1,32 @@
+---
+import "plyr/src/sass/plyr.scss";
+interface Props {
+  url: string;
+}
+const { url } = Astro.props;
+console.log(url);
+const fragmentUrl = url?.split("?");
+const initUrl = fragmentUrl[0];
+const parceUrl = initUrl.slice(17);
+console.log(parceUrl);
+const embedUrl = `https://www.youtube.com/embed/${parceUrl}`;
+console.log(embedUrl);
+---
+
+<div
+  class="plyr__video-embed h-max w-[90vw] md:w-[50vw] p-2 bg-zinc-900 shadow-xl"
+  id="player"
+>
+  <iframe
+    src={`${embedUrl}?origin=https://plyr.io&iv_load_policy=3&modestbranding=1&playsinline=1&showinfo=0&rel=0&enablejsapi=1`}
+    allowfullscreen
+    allowtransparency
+    allow="autoplay"></iframe>
+</div>
+<script is:inline>
+  import Plyr from "plyr/src/js/plyr";
+  const player = new Plyr("#player");
+</script>
+
+<!-- https://youtu.be/rNZ17DDx0Jg?list=RDrNZ17DDx0Jg -->
+<!-- https://www.youtube.com/embed/rNZ17DDx0Jg?list=RDrNZ17DDx0Jg" -->
