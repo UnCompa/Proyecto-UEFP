@@ -29,6 +29,8 @@
   },
   "devDependencies": {
     "@types/scrollreveal": "^0.0.11",
-    "tailwindcss-animated": "^1.0.1"
+    "sas": "^3.0.4",
+    "tailwindcss-animated": "^1.0.1",
+    "video.js": "^8.10.0"
   }
 }
