@@ -1,4 +1,3 @@
-import React from 'react';
 import { languages } from "../i18n/ui";
 import { useTranslatedPath } from "../i18n/utils";
 
