@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Sun, Moon } from "../icons/Icons";
 
 export default function ThemeToggleButton() {
   const [darkMode, setDarkMode] = useState(false);
@@ -15,13 +16,12 @@ export default function ThemeToggleButton() {
       document.documentElement.classList.remove("dark");
     }
   };
-
   return (
     <button
-      className="rounded-full p-2 bg-gray-200 dark:bg-gray-800 text-white"
+      className="rounded-2xl p-2 bg-zinc-300 dark:bg-zinc-950 shadow-xl hover:ring-2 hover:ring-zinc-400 text-dark fill-black dark:text-white transition-all"
       onClick={toggleTheme}
     >
-      {darkMode ? "Modo oscuro" : "Modo Claro"}
+      {!darkMode ? <Sun height={"24px"}/> : <Moon height={"24px"}/>}
     </button>
   );
 }

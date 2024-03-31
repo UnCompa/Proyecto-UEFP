@@ -5,27 +5,21 @@ console.log(lang);
 const t = useTranslations(lang)
 
 ---
-<div class="gradient-container">
+<div class="gradient-container bg-radial-gradient-light dark:bg-radial-gradient-dark">
   <div
     class="hero h-full w-full flex flex-col items-center justify-center"
   >
-    <h1 class="text-white dark:text-white font-Rubik font-bold text-4xl md:text-6xl text-center animate-slide-in-bottom animate-delay-150 animate-duration-300">
+    <h1 class="text-black dark:text-white font-Rubik font-bold text-4xl md:text-6xl text-center animate-slide-in-bottom animate-delay-150 animate-duration-300">
       UNIDAD EDUCATIVA FISCAL <br />
       <span class="bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-yellow-500">PICHINCHA</span>
     </h1>
-    <p class="font-Kanit text-white dark:text-white text-xl py-2 animate-fade-in animate-delay-300">{t('hero-phrase')}</p>
+    <p class="font-Kanit text-black dark:text-white text-xl py-2 animate-fade-in animate-delay-300">{t('hero-frase')}</p>
   </div>
 </div>
 <style>
   .gradient-container {
     height: calc(100vh - 7em);
     width: 100%;
-    background-image: radial-gradient(
-      circle closest-corner at 50% 100%,
-      #FFC700,
-      #FF000077,
-      #000000 100%
-    );
     background-repeat: no-repeat;
     animation: bg 2s ease forwards;
   }
