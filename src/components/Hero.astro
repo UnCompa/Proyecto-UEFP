@@ -1,3 +1,10 @@
+---
+import {getLangFromUrl,useTranslations} from './../i18n/utils'
+const lang = getLangFromUrl(Astro.url)
+console.log(lang);
+const t = useTranslations(lang)
+
+---
 <div class="gradient-container">
   <div
     class="hero h-full w-full flex flex-col items-center justify-center"
@@ -6,7 +13,7 @@
       UNIDAD EDUCATIVA FISCAL <br />
       <span class="bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-yellow-500">PICHINCHA</span>
     </h1>
-    <p class="font-Kanit text-white dark:text-white text-xl py-2 animate-fade-in animate-delay-300">Educando en Libertad</p>
+    <p class="font-Kanit text-white dark:text-white text-xl py-2 animate-fade-in animate-delay-300">{t('hero-phrase')}</p>
   </div>
 </div>
 <style>

@@ -1,11 +1,15 @@
 import { useState } from "react";
 import NavLink from "./NavLink.jsx";
 import { Bars, X } from "../icons/Icons.jsx";
-function NavBar() {
+import ChangeLanguaje from "./ChangeLanguaje.jsx";
+import { getLangFromUrl } from "../i18n/utils.ts";
+import Button from './ChangeButtonTheme.jsx'
+function NavBar({ url }) {
   const [openMenu, setOpenMenu] = useState(false);
   const handleMenu = () => {
     setOpenMenu(!openMenu);
   };
+  const lang = getLangFromUrl(url);
   return (
     <nav
       className={`h-28 box-border bg-cover shadow-xl text-white bg-black/90 flex justify-between items-center sticky top-0 px-12 z-10`}
@@ -40,6 +44,10 @@ function NavBar() {
         <li>
           <NavLink to="/c" text={"Contacto"} />
         </li>
+          <ChangeLanguaje lang={lang} />
+          <li>
+            <Button/>
+          </li>
       </ul>
       <button
         onClick={handleMenu}

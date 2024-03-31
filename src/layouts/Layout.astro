@@ -1,4 +1,7 @@
 ---
+import { getLangFromUrl } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
 interface Props {
   title: string;
   icon: string;
@@ -7,7 +10,7 @@ const { title, icon } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={lang} class="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="description" content="Astro description" />
@@ -27,21 +30,6 @@ const { title, icon } = Astro.props;
   </body>
 </html>
 <style is:global>
-  :root {
-    --bkg-white: #fff;
-    --bkg-black: #27272a;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --bkg-dark: red;
-      --bkg-white: red;
-    }
-    html {
-      color-scheme: light dark;
-      scrollbar-width: thin;
-      scrollbar-color: #27272a white;
-    }
-  }
   html {
     color-scheme: light dark;
     scrollbar-width: thin;
