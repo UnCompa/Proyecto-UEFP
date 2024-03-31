@@ -6,9 +6,9 @@ export default function ChangeLanguage({ lang }) {
   const oppositeLang = lang === 'es' ? 'en' : 'es'; // Determina el idioma opuesto
   const translatePath = useTranslatedPath(oppositeLang); // Usa el idioma opuesto para traducir el enlace
   if(oppositeLang === "es") {
-    srcImg = "/public/imgs/spain.png"
+    srcImg = "/imgs/spain.png"
   } else {
-    srcImg = "/public/imgs/english.png"
+    srcImg = "/imgs/english.png"
   }
   
   return (
