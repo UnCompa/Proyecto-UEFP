@@ -1,17 +1,27 @@
 import { defineConfig } from 'astro/config';
 import tailwind from "@astrojs/tailwind";
-
 import react from "@astrojs/react";
+
+import sitemap from "@astrojs/sitemap";
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [tailwind(), react()],
+  integrations: [tailwind(), react(), sitemap({
+    i18n: {
+      defaultLocale: 'es', // Todas las URL que no contengan `es` o `fr` después de `https://stargazers.club/` se tratarán como el idioma predeterminado, es decir, `en`
+      locales: {
+        en: 'en-US', // El valor de `defaultLocale` debe estar presente en las claves de `locales`
+        es: 'es-ES',
+      },
+    },
+  })
+],
   site: "https://unidad-educativa-fiscal-pichincha.vercel.app",
   i18n: {
     defaultLocale: "es",
-    locales: ["es","en"],
+    locales: ["es", "en"],
     routing: {
-      prefixDefaultLocale: true,
+      prefixDefaultLocale: true
     }
-  },
+  }
 });
