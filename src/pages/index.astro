@@ -27,16 +27,4 @@ const t = useTranslations(lang)
     </section>
   </main>
 <Footer/>
-  <script>
-    const prefersDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-console.log(prefersDarkMode)
-if (prefersDarkMode) {
-    // El sistema operativo prefiere el modo oscuro
-    console.log("El sistema operativo prefiere el modo oscuro");
-} else {
-    // El sistema operativo prefiere el modo claro
-    console.log("El sistema operativo prefiere el modo claro");
-}
-  
-  </script>
 </Layout>

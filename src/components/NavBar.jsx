@@ -4,29 +4,47 @@ import { Bars, X } from "../icons/Icons.jsx";
 import ChangeLanguaje from "./ChangeLanguaje.jsx";
 import { getLangFromUrl, useTranslations } from "../i18n/utils";
 import Button from "./ChangeButtonTheme.jsx";
+import { getRelativeLocaleUrl } from 'astro:i18n'
+
 function NavBar({ url }) {
   const [openMenu, setOpenMenu] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const lang = getLangFromUrl(url);
+  const t = useTranslations(lang);
+  const [urls, setUrls] = useState({});
+
   const handleMenu = () => {
     setOpenMenu(!openMenu);
   };
-  const lang = getLangFromUrl(url);
-  const t = useTranslations(lang);
+
   useEffect(() => {
-    const html = document.querySelector('html');
-    setIsDarkMode(html.classList.contains('dark')); // Verifica si la clase dark está presente en el html
+    // Obtenemos las traducciones de las URLs según el idioma actual
+    const translatedUrls = {
+      home: t("a-inicio"),
+      about: t("a-about"),
+      academics: t("a-academicos"),
+      news: t("a-noticias"),
+      contact: t("a-contactos"),
+    };
+    console.log(translatedUrls);
+    setUrls(translatedUrls);
+  }, [lang]); // Dependencia de la función useTranslations
+  useEffect(() => {
+    const html = document.querySelector('html')
+    setIsDarkMode(html?.classList.contains('dark'));
     const observer = new MutationObserver(mutationsList => {
       mutationsList.forEach(mutation => {
         if (mutation.attributeName === 'class') {
-          setIsDarkMode(html.classList.contains('dark')); // Actualiza el estado si hay cambios en la clase
+          setIsDarkMode(html.classList.contains('dark'));
         }
       });
     });
-    observer.observe(html, { attributes: true }); // Observa cambios en los atributos del elemento html
+    observer.observe(html, { attributes: true });
     return () => {
-      observer.disconnect(); // Desconecta el observador cuando el componente se desmonta
+      observer.disconnect();
     };
   }, []);
+
   return (
     <nav
       className={`h-28 box-border bg-cover text-black shadow-2xl dark:text-white bg-white/90 dark:bg-black flex justify-between items-center sticky top-0 px-12 z-10`}
@@ -34,6 +52,9 @@ function NavBar({ url }) {
       <a href="/">
         <img src={isDarkMode ? "/imgs/UEFPescudoblanco.png" : "/imgs/UEFPescudoblack.png"} className="h-24" />
       </a>
+      <h3 className="block lg:hidden">
+        Cambios aqui
+      </h3>
       <ul
         className={`bg-slate-300 dark:bg-black h-screen fixed w-1/2 top-0 right-0 p-4 flex flex-col gap-y-4 transition-all ${
           openMenu
@@ -50,16 +71,19 @@ function NavBar({ url }) {
           </button>
         </li>
         <li>
-          <NavLink to="/" text={t("nav-inicio")} />
+          <NavLink to={urls.home} text={t("nav-inicio")}></NavLink>
         </li>
         <li>
-          <NavLink to="/a" text={t("nav-academicos")} />
+          <NavLink to={urls.about} text={t("nav-sobrenosotros")}></NavLink>
         </li>
         <li>
-          <NavLink to="/b" text={t("nav-noticias")} />
+          <NavLink to={urls.academics} text={t("nav-academicos")}></NavLink>
         </li>
         <li>
-          <NavLink to="/c" text={t("nav-contacto")} />
+          <NavLink to={urls.news} text={t("nav-noticias")}></NavLink>
+        </li>
+        <li>
+          <NavLink to={urls.contact} text={t("nav-contacto")}></NavLink>
         </li>
         <ChangeLanguaje lang={lang} />
         <li>

@@ -5,7 +5,7 @@ export default {
 	theme: {
 		extend: {
 			backgroundImage: theme => ({
-				'radial-gradient-light': 'radial-gradient(circle closest-corner at 50% 100%, #00F0FF, #0500FF99, #FFFFFF 100%)',
+				'radial-gradient-light': 'radial-gradient(circle closest-corner at 50% 100%, #fcb045, #fd1d1d99, #FFFFFF 100%)',
 				'radial-gradient-dark': 'radial-gradient(circle closest-corner at 50% 100%, #FFC700, #FF000077, #000000 100%)',
 			  }),
 			colors: {
