@@ -64,3 +64,4 @@ const VideoPlayer = ({ videoSource, height, width }) => {
 };
 
 export default VideoPlayer;
+

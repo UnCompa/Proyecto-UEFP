@@ -1,4 +1,7 @@
 ---
+import { getLangFromUrl } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
 interface Props {
   title: string;
   icon: string;
@@ -7,12 +10,13 @@ const { title, icon } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={lang} class="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="description" content="Astro description" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href={icon} />
+    <link rel="sitemap" href="/sitemap-index.xml" />
     <meta name="generator" content={Astro.generator} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -29,7 +33,8 @@ const { title, icon } = Astro.props;
 </html>
 <style is:global>
   html {
-    scrollbar-width: 5px;
-    scrollbar-color: white black;
+    color-scheme: light dark;
+    scrollbar-width: thin;
+    scrollbar-color: white #27272a;
   }
 </style>

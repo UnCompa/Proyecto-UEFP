@@ -1,0 +1,19 @@
+---
+import "plyr/src/sass/plyr.scss";
+interface Props {
+  url: string;
+}
+const { url } = Astro.props;
+console.log(url);
+---
+
+<div class="aspect-video w-full md:w-[50vw] h-full">
+  <div class="p-2 bg-zinc-100 border-black border dark:bg-zinc-900 shadow-2xl max-w-full grid place-content-center">
+    <video src={url} controls class="aspect-[16/9]"></video>
+  </div>
+</div>
+<script is:inline>
+  import Plyr from "plyr/src/js/plyr";
+  const player = new Plyr("video");
+  player.volume = 1
+</script>
