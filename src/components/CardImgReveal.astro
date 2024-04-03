@@ -5,7 +5,7 @@ interface Props {
 const {img} = Astro.props
 ---
 <div class="flex items-center justify-center">
-  <img src={img} alt="" class="reveal rounded h-max w-2/3" />
+  <img src={img} alt="" class="reveal rounded h-max w-2/3 shadow-xl hover:shadow-sky-500/10 transition-all" />
 </div>
 <script>
   import ScrollReveal from 'scrollreveal'

@@ -5,17 +5,42 @@ interface Props {
   title: string;
   text: string;
   img: string;
+  invert?: boolean
 }
-const { title, text, img} = Astro.props;
+const { title, text, img, invert} = Astro.props;
 ---
 
     <div class="grid grid-cols-1 md:grid-cols-2 container mx-auto font-Rubik p-8">
-      <div class="text-black dark:text-white">
+      {
+        !invert ? (
+        <div class="text-black dark:text-white border-l-2 p-4 border-zinc-500 shadow">
         <div class="flex items-center justify-start gap-x-2 border-b-2 w-max pr-8 border-black dark:border-white">
-          <Diamond height={"16px"} width={"16px"} />
-          <h2 class="text-3xl font-light">{title}</h2>
+          <slot/>
+          <h2 class="text-3xl font-light title">{title}</h2>
         </div>
-        <p class="text-zinc-400 py-2">{text}</p>
+        <p class="text-zinc-400 py-2 font-Kanit">{text}</p>
       </div>
       <CardImgReveal img={img}/>
+        ) : (
+          <CardImgReveal img={img}/>
+        <div class="text-black dark:text-white border-l-2 p-4 border-zinc-500 shadow">
+        <div class="flex items-center justify-start gap-x-4 border-b-2 w-max pr-8 border-black dark:border-white">
+          <slot/>
+          <h2 class="text-3xl font-light title">{title}</h2>
+        </div>
+        <p class="text-zinc-400 py-2 font-Kanit">{text}</p>
+      </div>
+        )
+      }
     </div>
+    <script>
+      import ScrollReveal from 'scrollreveal'
+      ScrollReveal().reveal(".title", {
+        opacity: 0,
+        origin: "right",
+        distance: "30%",
+        reset: false,
+        duration: 500,
+      })
+    </script>
+    

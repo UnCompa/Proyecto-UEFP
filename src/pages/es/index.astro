@@ -6,8 +6,9 @@ import VideoPlayer from "../../components/VideoPlayer.astro";
 import VideoYTPlayer from "../../components/VideoYTPlayer.astro";
 import Footer from "../../components/Footer.astro";
 import { getLangFromUrl, useTranslations } from "../../i18n/utils";
-const lang = getLangFromUrl(Astro.url)
-const t = useTranslations(lang)
+import { Diamond } from "../../icons/Icons";
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
 <Layout
@@ -23,13 +24,17 @@ const t = useTranslations(lang)
         img="/imgs/programacion.jpeg"
         title={t("main-mision")}
         text={t("main-mision-text")}
-        />
-        <CardInfo
+      >
+        <Diamond height={"16px"} width={"16px"} />
+      </CardInfo>
+      <CardInfo
         img="/imgs/programacion.jpeg"
         title={t("main-vision")}
         title="Vision"
         text={t("main-vision-text")}
-      />
+      >
+        <Diamond height={"16px"} width={"16px"} /></CardInfo
+      >
     </section>
     <section class="container mx-auto grid place-content-center w-full">
       <h2

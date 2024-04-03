@@ -4,7 +4,6 @@ import { Bars, X } from "../icons/Icons.jsx";
 import ChangeLanguaje from "./ChangeLanguaje.jsx";
 import { getLangFromUrl, useTranslations } from "../i18n/utils";
 import Button from "./ChangeButtonTheme.jsx";
-import { getRelativeLocaleUrl } from 'astro:i18n'
 
 function NavBar({ url }) {
   const [openMenu, setOpenMenu] = useState(false);
@@ -12,6 +11,7 @@ function NavBar({ url }) {
   const lang = getLangFromUrl(url);
   const t = useTranslations(lang);
   const [urls, setUrls] = useState({});
+  const [titles, setTitles] = useState({});
 
   const handleMenu = () => {
     setOpenMenu(!openMenu);
@@ -28,7 +28,16 @@ function NavBar({ url }) {
     };
     console.log(translatedUrls);
     setUrls(translatedUrls);
-  }, [lang]); // Dependencia de la función useTranslations
+    const titlesNav = {
+      home: t("title-inicio"),
+      about: t("title-about"),
+      academics: t("title-academicos"),
+      news: t("title-noticias"),
+      contact: t("title-contactos"),
+    };
+    console.log(titlesNav);
+    setTitles(titlesNav);
+  }, [lang]);
   useEffect(() => {
     const html = document.querySelector('html')
     setIsDarkMode(html?.classList.contains('dark'));
@@ -52,8 +61,8 @@ function NavBar({ url }) {
       <a href="/">
         <img src={isDarkMode ? "/imgs/UEFPescudoblanco.png" : "/imgs/UEFPescudoblack.png"} className="h-24" />
       </a>
-      <h3 className="block lg:hidden">
-        Cambios aqui
+      <h3>
+        {(lang === "es") ? "Hola" : "XD"}
       </h3>
       <ul
         className={`bg-slate-300 dark:bg-black h-screen fixed w-1/2 top-0 right-0 p-4 flex flex-col gap-y-4 transition-all ${
