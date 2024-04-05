@@ -12,7 +12,12 @@ function NavBar({ url }) {
   const t = useTranslations(lang);
   const [urls, setUrls] = useState({});
   const [titles, setTitles] = useState({});
-
+  const urlString = url.toString()
+  let path;
+  if (lang === "es") {
+    path = urlString.includes("about")
+    console.log(path);
+  }
   const handleMenu = () => {
     setOpenMenu(!openMenu);
   };
@@ -62,7 +67,7 @@ function NavBar({ url }) {
         <img src={isDarkMode ? "/imgs/UEFPescudoblanco.png" : "/imgs/UEFPescudoblack.png"} className="h-24" />
       </a>
       <h3>
-        {(lang === "es") ? "Hola" : "XD"}
+        {(lang === "es") ? "Sobre Nosotros" : "About us"}
       </h3>
       <ul
         className={`bg-slate-300 dark:bg-black h-screen fixed w-1/2 top-0 right-0 p-4 flex flex-col gap-y-4 transition-all ${

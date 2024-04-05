@@ -1,3 +1,4 @@
+import { Divider } from "@nextui-org/react";
 import { Tabs, Tab, Card, CardBody,Image } from "@nextui-org/react";
 import { FaStar } from "react-icons/fa";
 
@@ -50,7 +51,7 @@ export default function App() {
             title={
               <div className="flex items-center justify-center gap-2">
                 <FaStar />
-                <span>{item.label}</span>
+                <span className="font-bold">{item.label}</span>
               </div>
             }
             color="danger"
@@ -62,6 +63,7 @@ export default function App() {
                   <div className="h-full w-max">
                     <Image width={500} height={600} src={item.image} />
                   </div>
+                  <Divider orientation="vertical"/>
                   <div>
                     <h2 className="text-xl font-bold">{item.label}</h2>
                     <p>{item.content}</p>
