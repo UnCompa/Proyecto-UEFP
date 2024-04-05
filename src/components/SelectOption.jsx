@@ -1,49 +1,77 @@
-import { useState } from 'react';
+import { Tabs, Tab, Card, CardBody,Image } from "@nextui-org/react";
+import { FaStar } from "react-icons/fa";
 
-function Tabs() {
-  const [activeTab, setActiveTab] = useState('tab3');
-
-  const handleTabClick = (tab) => {
-    setActiveTab(tab);
-  };
+export default function App() {
+  let tabs = [
+    {
+      id: "Respeto",
+      label: "Respeto",
+      content: "En nuestro colegio, promovemos el respeto mutuo entre todos los miembros de la comunidad escolar, reconociendo la diversidad de opiniones, culturas y experiencias.",
+      image: "/imgs/programacion.jpeg"
+    },
+    {
+      id: "Responsabilidad",
+      label: "Responsabilidad",
+      content: "Fomentamos la responsabilidad individual y colectiva, incentivando el cumplimiento de compromisos académicos, el cuidado del entorno escolar y el respeto por las normas establecidas.",
+      image: "/imgs/programacion.jpeg"
+    },
+    {
+      id: "Colaboración",
+      label: "Colaboración",
+      content: "Valoramos el trabajo en equipo y la colaboración entre estudiantes, docentes y personal administrativo, entendiendo que juntos podemos alcanzar metas más altas y fomentar un ambiente de apoyo mutuo.",
+      image: "/imgs/programacion.jpeg"
+    },
+    {
+      id: "Creatividad",
+      label: "Creatividad",
+      content: "Estimulamos la creatividad y la innovación, brindando espacios y recursos para que los estudiantes exploren nuevas ideas, desarrollen su imaginación y encuentren soluciones originales a los desafíos que se les presentan.",
+      image: "/imgs/programacion.jpeg"
+    },
+    {
+      id: "Inclusión",
+      label: "Inclusión",
+      content: "Nuestro colegio se compromete con la inclusión de todos los estudiantes, independientemente de su origen étnico, género, orientación sexual, religión o habilidades, promoviendo un ambiente seguro y acogedor para todos.",
+      image: "/imgs/programacion.jpeg"
+    }
+];
 
   return (
-    <div className="w-full max-w-md mx-auto">
-      <div className="rounded-md grid grid-cols-1 lg:grid-cols-2">
-        <div className="flex flex-col w-full h-max gap-2">
-          <button
-            className={`w-full py-2 px-2 text-sm font-semibold ${
-              activeTab === 'tab1' ? 'bg-blue-500 text-white' : 'text-gray-700 bg-zinc-900'
-            }`}
-            onClick={() => handleTabClick('tab1')}
+    <div className="flex w-full flex-col justify-center items-center">
+      <Tabs
+        aria-label="Dynamic tabs"
+        items={tabs}
+        color="danger"
+        variant="bordered"
+        fullWidth
+      >
+        {(item) => (
+          <Tab
+            key={item.id}
+            title={
+              <div className="flex items-center justify-center gap-2">
+                <FaStar />
+                <span>{item.label}</span>
+              </div>
+            }
+            color="danger"
+            variant="bordered"
           >
-            Tab 1
-          </button>
-          <button
-            className={`w-full flex-1 py-2 px-2 text-sm font-semibold ${
-              activeTab === 'tab2' ? 'bg-blue-500 text-white' : 'text-gray-700 bg-zinc-900'
-            }`}
-            onClick={() => handleTabClick('tab2')}
-          >
-            Tab 2
-          </button>
-          <button
-            className={`w-full flex-1 py-2 px-2 text-sm font-semibold ${
-              activeTab === 'tab3' ? 'bg-blue-500 text-white' : 'text-gray-700 bg-zinc-900'
-            }`}
-            onClick={() => handleTabClick('tab3')}
-          >
-            Tab 3
-          </button>
-        </div>
-        <div className="p-4">
-          {activeTab === 'tab1' && <p>Contenido de la pestaña 1</p>}
-          {activeTab === 'tab2' && <p>Contenido de la pestaña 2</p>}
-          {activeTab === 'tab3' && <p>Contenido de la pestaña 3</p>}
-        </div>
-      </div>
+            <Card isHoverable fullWidth className="font-Rubik" isBlurred>
+              <CardBody>
+                <div className="flex gap-x-4">
+                  <div className="h-full w-max">
+                    <Image width={500} height={600} src={item.image} />
+                  </div>
+                  <div>
+                    <h2 className="text-xl font-bold">{item.label}</h2>
+                    <p>{item.content}</p>
+                  </div>
+                </div>
+                </CardBody>
+            </Card>
+          </Tab>
+        )}
+      </Tabs>
     </div>
   );
 }
-
-export default Tabs;

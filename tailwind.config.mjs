@@ -1,7 +1,11 @@
 /** @type {import('tailwindcss').Config} */
 import animations from '@midudev/tailwind-animations'
+import { nextui } from "@nextui-org/react"
 export default {
-	content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
+	content: [
+		'./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}',
+		"./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}"
+	],
 	theme: {
 		extend: {
 			backgroundImage: theme => ({
@@ -22,5 +26,5 @@ export default {
 		},
 	},
 	darkMode: "class",
-	plugins: [animations],
+	plugins: [animations,nextui()],
 }
