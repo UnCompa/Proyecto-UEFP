@@ -2,6 +2,7 @@
 import ChangeLanguage from "./ChangeLanguaje";
 import FooterLink from "./FooterLink.astro";
 import { getLangFromUrl, useTranslations } from "../i18n/utils";
+import {FaFacebook,FaTiktok,FaHouse,FaUsers,FaGraduationCap,FaNewspaper,FaEnvelope, FaPhone, FaAt} from 'react-icons/fa6'
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
@@ -53,73 +54,64 @@ const t = useTranslations(lang);
     </div>
     <div class="p-4">
       <h3
-        class="text-3xl font-Rubik font-bold underline decoration-2 decoration-acent-2 text-center text-black dark:text-white"
+        class="text-3xl font-Rubik font-bold underline decoration-2 decoration-acent-2 text-start text-black dark:text-white"
       >
         {t("footer-redes")}
       </h3>
       <ul class="flex flex-col py-2 gap-y-2">
-        <li>
-          <FooterLink to="/" text="Inicio" />
+        <li class="flex items-center">
+          <FaFacebook className="font-bold text-xl"/>
+          <FooterLink to="/" text={t("footer-redes-facebook")} />
         </li>
-        <li>
-          <FooterLink to="/" text="Inicio" />
-        </li>
-        <li>
-          <FooterLink to="/" text="Inicio" />
-        </li>
-        <li>
-          <FooterLink to="/" text="Inicio" />
-        </li>
-        <li>
-          <FooterLink to="/" text="Inicio" />
+        <li class="flex items-center">
+          <FaTiktok className="font-bold text-xl"/>
+          <FooterLink to="/" text={t("footer-redes-tiktok")} />
         </li>
       </ul>
     </div>
     <div class="p-4">
       <h3
-        class="text-3xl font-Rubik font-bold underline decoration-2 decoration-acent-2 text-center text-black dark:text-white"
+        class="text-start text-3xl font-Rubik font-bold underline decoration-2 decoration-acent-2 text-black dark:text-white"
       >
         {t("footer-paginas")}
       </h3>
       <ul class="flex flex-col py-2 gap-y-2">
-        <li>
-          <FooterLink to="/" text="Inicio" />
+        <li class="flex items-center">
+          <FaHouse/>
+          <FooterLink to="/" text={t("footer-paginas-inicio")} />
         </li>
-        <li>
-          <FooterLink to="/" text="Inicio" />
+        <li class="flex items-center">
+          <FaUsers />
+          <FooterLink to="about" text={t("footer-paginas-sobrenosotros")} />
         </li>
-        <li>
-          <FooterLink to="/" text="Inicio" />
+        <li class="flex items-center">
+          <FaGraduationCap />
+          <FooterLink to="/" text={t("footer-paginas-academicos")} />
         </li>
-        <li>
-          <FooterLink to="/" text="Inicio" />
+        <li class="flex items-center">
+          <FaNewspaper />
+          <FooterLink to="/" text={t("footer-paginas-noticias")} />
         </li>
-        <li>
-          <FooterLink to="/" text="Inicio" />
+        <li class="flex items-center">
+          <FaEnvelope />
+          <FooterLink to="/" text={t("footer-paginas-contactos")} />
         </li>
       </ul>
     </div>
     <div class="p-4">
       <h3
-        class="text-3xl font-Rubik font-bold underline decoration-2 decoration-acent-2 text-center text-black dark:text-white"
+        class="text-3xl font-Rubik font-bold underline decoration-2 decoration-acent-2 text-start text-black dark:text-white"
       >
         {t("footer-contacto")}
       </h3>
       <ul class="flex flex-col py-2 gap-y-2">
-        <li>
-          <FooterLink to="/" text="Inicio" />
+        <li class="text-start font-bold flex gap-2 items-center">
+          <FaPhone />
+          <p>{t("footer-contacto-telefono")}</p>
         </li>
-        <li>
-          <FooterLink to="/" text="Inicio" />
-        </li>
-        <li>
-          <FooterLink to="/" text="Inicio" />
-        </li>
-        <li>
-          <FooterLink to="/" text="Inicio" />
-        </li>
-        <li>
-          <FooterLink to="/" text="Inicio" />
+        <li class="text-start font-bold flex gap-2 items-center">
+          <FaAt />
+          <p>{t("footer-contacto-email")}</p>
         </li>
       </ul>
     </div>
