@@ -43,7 +43,8 @@ export default function App() {
         items={tabs}
         color="danger"
         variant="bordered"
-        fullWidth
+        className="flex flex-col"
+
       >
         {(item) => (
           <Tab
@@ -51,22 +52,22 @@ export default function App() {
             title={
               <div className="flex items-center justify-center gap-2">
                 <FaStar />
-                <span className="font-bold">{item.label}</span>
+                <span className="font-bold hidden md:block">{item.label}</span>
               </div>
             }
             color="danger"
             variant="bordered"
           >
-            <Card isHoverable fullWidth className="font-Rubik" isBlurred>
+            <Card fullWidth className="font-Rubik w-full container mx-auto" isBlurred>
               <CardBody>
-                <div className="flex gap-x-4">
-                  <div className="h-full w-max">
-                    <Image width={500} height={600} src={item.image} />
+                <div className="flex flex-col md:flex-row gap-x-4 items-center">
+                  <div className="h-full w-max py-2">
+                    <Image height="100%" src={item.image} />
                   </div>
                   <Divider orientation="vertical"/>
                   <div>
-                    <h2 className="text-xl font-bold">{item.label}</h2>
-                    <p>{item.content}</p>
+                    <h2 className="text-xl font-bold text-center md:text-start">{item.label}</h2>
+                    <p className="text-center md:text-start text-zinc-800 dark:text-zinc-300">{item.content}</p>
                   </div>
                 </div>
                 </CardBody>
