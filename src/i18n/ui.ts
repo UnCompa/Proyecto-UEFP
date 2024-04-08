@@ -11,8 +11,6 @@ export const defaultLang = "es";
 
 // Mostrar idioma por defecto
 export const showDefaultLang = false;
-
-
 // Objeto ui
 export const ui = {
   en: TraduccionEn,

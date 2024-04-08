@@ -3,7 +3,7 @@ import NavLink from "./NavLink.jsx";
 import { Bars, X } from "../icons/Icons.jsx";
 import ChangeLanguaje from "./ChangeLanguaje.jsx";
 import { getLangFromUrl, useTranslations } from "../i18n/utils";
-import Button from "./ChangeButtonTheme.jsx";
+import ThemeToggleButton from "./ChangeButtonTheme.jsx";
 
 function NavBar({ url }) {
   const [openMenu, setOpenMenu] = useState(false);
@@ -13,7 +13,6 @@ function NavBar({ url }) {
   const [urls, setUrls] = useState({});
   const [titles, setTitles] = useState({});
   const urlString = url.toString()
-  console.log(urlString);
   let mensaje1;
   let mensaje2;
   if (lang === "es") {
@@ -45,7 +44,6 @@ function NavBar({ url }) {
       news: t("a-noticias"),
       contact: t("a-contactos"),
     };
-    console.log(translatedUrls);
     setUrls(translatedUrls);
     const titlesNav = {
       home: t("title-inicio"),
@@ -54,7 +52,6 @@ function NavBar({ url }) {
       news: t("title-noticias"),
       contact: t("title-contactos"),
     };
-    console.log(titlesNav);
     setTitles(titlesNav);
   }, [lang]);
   useEffect(() => {
@@ -115,7 +112,7 @@ function NavBar({ url }) {
         </li>
         <ChangeLanguaje lang={lang} />
         <li>
-          <Button />
+          <ThemeToggleButton client:only/>
         </li>
       </ul>
       <button

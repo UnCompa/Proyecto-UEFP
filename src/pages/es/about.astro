@@ -8,6 +8,9 @@ import PeopleCard from "../../components/sections/PeopleCard";
 import { FaPen, FaStar } from "react-icons/fa6";
 import Footer from "../../components/Footer.astro";
 import { Wave,IlustrationPerson } from "../../icons/Icons";
+import { getLangFromUrl, useTranslations } from "../../i18n/utils";
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
 <Layout title="Sobre nosotros" icon="/imgs/UEFPescudoblanco.png">
@@ -22,7 +25,7 @@ import { Wave,IlustrationPerson } from "../../icons/Icons";
       >
         <div class="flex flex-col p-4 gap-y-4 justify-center">
           <h2 class="text-5xl font-bold animate-blurred-fade-in">
-            Sobre Nosotros
+            {t("about-hero-title")}
           </h2>
           <p class="animate-fade-in-up">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore

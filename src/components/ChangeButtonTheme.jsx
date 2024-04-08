@@ -1,17 +1,29 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Sun, Moon } from "../icons/Icons";
 
-export default function ThemeToggleButton() {
-  const [darkMode, setDarkMode] = useState(false);
+function ThemeToggleButton() {
+  const [darkMode, setDarkMode] = useState(null);
+  useEffect(()=>{
+    window.localStorage.setItem("theme", !darkMode)
+    const theme = window.localStorage.getItem("theme")
+    console.log(theme);
+    if(theme === false) {
+      console.log(":D");
+      setDarkMode(theme)
+      //window.localStorage.setItem("theme", 7)
+    } else {
+      console.log("XD");
+      setDarkMode(!theme)
+      //window.localStorage.setItem("theme", true)
+    }
+  },[darkMode])
 
   const toggleTheme = () => {
     setDarkMode(!darkMode);
     if (darkMode) {
-      console.log("Hola");
       document.documentElement.classList.remove("light");
       document.documentElement.classList.add("dark");
     } else {
-      console.log("Hola 2");
       document.documentElement.classList.add("light");
       document.documentElement.classList.remove("dark");
     }
@@ -25,3 +37,4 @@ export default function ThemeToggleButton() {
     </button>
   );
 }
+export default ThemeToggleButton;
