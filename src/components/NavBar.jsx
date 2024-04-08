@@ -5,7 +5,7 @@ import ChangeLanguaje from "./ChangeLanguaje.jsx";
 import { getLangFromUrl, useTranslations } from "../i18n/utils";
 import ThemeToggleButton from "./ChangeButtonTheme.jsx";
 
-function NavBar({ url }) {
+function NavBar({ url,pathName,children }) {
   const [openMenu, setOpenMenu] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
   const lang = getLangFromUrl(url);
@@ -14,7 +14,6 @@ function NavBar({ url }) {
   const [titles, setTitles] = useState({});
   const urlString = url.toString()
   let mensaje1;
-  let mensaje2;
   if (lang === "es") {
     if(urlString.includes("about")) {
       mensaje1 = "Sobre Nosotros"
@@ -110,9 +109,9 @@ function NavBar({ url }) {
         <li>
           <NavLink to={urls.contact} text={t("nav-contacto")}></NavLink>
         </li>
-        <ChangeLanguaje lang={lang} />
+        <ChangeLanguaje lang={lang} url={pathName}/>
         <li>
-          <ThemeToggleButton client:only/>
+        {children}
         </li>
       </ul>
       <button

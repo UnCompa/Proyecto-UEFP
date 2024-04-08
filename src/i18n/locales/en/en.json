@@ -2,9 +2,9 @@
     "hero-frase": "Educating in Liberty",
     "a-inicio": "/en/",
     "a-about": "/en/about",
-    "a-academicos": "/",
-    "a-noticias": "/",
-    "a-contactos": "/",
+    "a-academicos": "/en/academics",
+    "a-noticias": "/en/news",
+    "a-contactos": "/en/contacts",
     "nav-inicio": "Home",
     "nav-sobrenosotros": "About us",
     "nav-academicos": "Academics",
@@ -26,8 +26,6 @@
     "footer-paginas-noticias": "News",
     "footer-paginas-contactos": "Contacts",
     "footer-contacto-telefono": "+593 980521452",
-    "footer-contacto-email": "uefp@gmail.com",
-    "about-hero-title": "About us",
-    "about-hero-text": ""
+    "footer-contacto-email": "uefp@gmail.com"
   }
   

@@ -1,6 +1,10 @@
-import TraduccionEs from './es.json'
-import TraduccionEn from './en.json'
+import InicioEs from './locales/es/es.json'
+import SobreNosotrosEs from './locales/es/about.json'
+import InicioEn from './locales/en/en.json'
+import SobreNosotrosEn from './locales/en/about.json'
 // Objeto de idiomas
+const TraduccionEs = {...InicioEs,...SobreNosotrosEs}
+const TraduccionEn = {...InicioEn,...SobreNosotrosEn}
 export const languages = {
   en: "English",
   es: "Español",

@@ -1,6 +1,6 @@
 ---
 import { getLangFromUrl } from '../i18n/utils';
-
+import { ViewTransitions } from "astro:transitions"
 const lang = getLangFromUrl(Astro.url);
 interface Props {
   title: string;
@@ -10,7 +10,7 @@ const { title, icon } = Astro.props;
 ---
 
 <!doctype html>
-<html lang={lang} class="dark">
+<html lang={lang} class="">
   <head>
     <meta charset="UTF-8" />
     <meta name="description" content="Astro description" />
@@ -25,6 +25,7 @@ const { title, icon } = Astro.props;
       rel="stylesheet"
     />
     <title>{title}</title>
+    <ViewTransitions/>
   </head>
   <body class="bg-white dark:bg-black">
     <slot />

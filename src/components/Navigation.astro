@@ -1,10 +1,12 @@
 ---
 import NavBar from "./NavBar.jsx";
-const url = Astro.url
+import ThemeIcon from "./ThemeIcon.astro";
+const url = Astro.url;
+const pathName = Astro.url.pathname;
 ---
 
-<header
-  class="w-full h-max"
->
-  <NavBar url={url} client:load/>
+<header class="w-full h-max">
+  <NavBar url={url} pathName={pathName} client:load>
+    <ThemeIcon/>
+  </NavBar>
 </header>
