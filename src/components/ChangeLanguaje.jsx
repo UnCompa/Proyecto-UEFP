@@ -1,7 +1,7 @@
 import { languages } from "../i18n/ui";
 import { useTranslatedPath } from "../i18n/utils";
 
-export default function ChangeLanguage({ lang,url }) {
+export default function ChangeLanguage({ lang }) {
   let srcImg = "";
   const oppositeLang = lang === 'es' ? 'en' : 'es'; // Determina el idioma opuesto
   const translatePath = useTranslatedPath(oppositeLang); // Usa el idioma opuesto para traducir el enlace

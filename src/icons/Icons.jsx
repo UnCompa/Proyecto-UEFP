@@ -44,10 +44,11 @@ export function Diamond({ height, width }) {
     </svg>
   );
 }
-export function Moon({ height, width }) {
+export function Moon({ height = "", width = "", className}) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
+      className={className}
       class="icon icon-tabler icon-tabler-moon-filled"
       width={width}
       height={height}
@@ -67,11 +68,11 @@ export function Moon({ height, width }) {
     </svg>
   );
 }
-export function Sun({ height, width }) {
+export function Sun({ height, width,className }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      className="icon icon-tabler icon-tabler-sun-filled"
+      className={`icon icon-tabler icon-tabler-sun-filled ${className}`}
       width={width}
       height={height}
       viewBox="0 0 24 24"
