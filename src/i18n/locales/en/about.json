@@ -1,4 +1,12 @@
 {
-    "about-hero-title": "About us",
-    "about-hero-text": ""
+  "about-hero-title": "About Us",
+  "about-hero-text": "",
+  "nuestra-historia-title": "Our History",
+  "nuestra-historia-content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit...",
+  "valores-title": "Values",
+  "valores-content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit...",
+  "objectivos-title": "Objectives",
+  "objectivos-content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit...",
+  "nuestro-equipo-title": "Our Team",
+  "nuestro-equipo-content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit..."
 }

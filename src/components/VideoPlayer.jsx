@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import { useRef, useEffect } from 'react';
 import Plyr from 'plyr';
 import 'plyr/dist/plyr.css'; // Importa los estilos CSS de Plyr
 

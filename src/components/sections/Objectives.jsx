@@ -1,5 +1,4 @@
 import { Card, CardBody, CardHeader, Divider } from "@nextui-org/react";
-import { FaPen, FaStar } from "react-icons/fa";
 
 export default function Objectives({title,text,children,color}) {
   return (

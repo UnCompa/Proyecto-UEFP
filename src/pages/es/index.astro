@@ -3,7 +3,6 @@ import Layout from "../../layouts/Layout.astro";
 import Header from "../../components/Header.astro";
 import CardInfo from "../../components/CardInfo.astro";
 import VideoPlayer from "../../components/VideoPlayer.astro";
-import VideoYTPlayer from "../../components/VideoYTPlayer.astro";
 import Footer from "../../components/Footer.astro";
 import { getLangFromUrl, useTranslations } from "../../i18n/utils";
 import { Diamond } from "../../icons/Icons";
@@ -45,7 +44,7 @@ const t = useTranslations(lang);
       <VideoPlayer url="/videos/test.mp4" />
     </section>
     <section class="container mx-auto grid place-content-center h-full w-full">
-      <VideoYTPlayer url="https://youtu.be/wL8DVHuWI7Y?list=RDrNZ17DDx0Jg" />
+      <!-- <VideoYTPlayer url="https://youtu.be/wL8DVHuWI7Y?list=RDrNZ17DDx0Jg" /> -->
     </section>
   </main>
   <Footer />

@@ -1,0 +1,63 @@
+{
+	"version": 3,
+	"routes": [
+		{
+			"src": "^/_astro/(.*)$",
+			"headers": {
+				"cache-control": "public, max-age=31536000, immutable"
+			},
+			"continue": true
+		},
+		{
+			"handle": "filesystem"
+		},
+		{
+			"src": "^\\/_image$",
+			"dest": "_render"
+		},
+		{
+			"src": "^\\/en\\/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^\\/en\\/about\\/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^\\/en\\/academics\\/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^\\/en\\/contacts\\/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^\\/en\\/news\\/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^\\/$",
+			"dest": "_render"
+		},
+		{
+			"src": "^\\/es\\/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^\\/es\\/about\\/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^\\/es\\/academics\\/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^\\/es\\/contacts\\/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^\\/es\\/news\\/?$",
+			"dest": "_render"
+		}
+	]
+}
