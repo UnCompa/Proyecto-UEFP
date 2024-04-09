@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://unidad-educativa-fiscal-pichincha.vercel.app/sitemap-index.xml
