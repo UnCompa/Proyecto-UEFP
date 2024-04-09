@@ -3,6 +3,7 @@ import ChangeLanguage from "./ChangeLanguaje";
 import FooterLink from "./FooterLink.astro";
 import { getLangFromUrl, useTranslations } from "../i18n/utils";
 import {FaFacebook,FaTiktok,FaHouse,FaUsers,FaGraduationCap,FaNewspaper,FaEnvelope, FaPhone, FaAt} from 'react-icons/fa6'
+import ThemeIcon from "./ThemeIcon.astro";
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
@@ -39,7 +40,7 @@ const t = useTranslations(lang);
 </script>
 <footer class="bg-zinc-200 dark:bg-zinc-900 h-max w-full py-4">
   <div
-    class="grid grid-col-1 md:grid-cols-2 lg:grid-cols-4 place-content-center"
+    class=" container mx-auto grid grid-col-1 md:grid-cols-2 lg:grid-cols-4 place-content-center"
   >
     <div class="h-full w-full flex flex-col items-center justify-center">
       <a href="/">
@@ -59,11 +60,11 @@ const t = useTranslations(lang);
       <ul class="flex flex-col py-2 gap-y-2">
         <li class="flex items-center">
           <FaFacebook className="font-bold text-xl"/>
-          <FooterLink to="/" text={t("footer-redes-facebook")} />
+          <FooterLink target to="https://www.facebook.com/unidadeducativafiscal.pichincha" text={t("footer-redes-facebook")} />
         </li>
         <li class="flex items-center">
           <FaTiktok className="font-bold text-xl"/>
-          <FooterLink to="/" text={t("footer-redes-tiktok")} />
+          <FooterLink target to="https://www.tiktok.com/@uef.pichincha" text={t("footer-redes-tiktok")} />
         </li>
       </ul>
     </div>
@@ -84,15 +85,15 @@ const t = useTranslations(lang);
         </li>
         <li class="flex items-center">
           <FaGraduationCap />
-          <FooterLink to="/" text={t("footer-paginas-academicos")} />
+          <FooterLink to="academics" text={t("footer-paginas-academicos")} />
         </li>
         <li class="flex items-center">
           <FaNewspaper />
-          <FooterLink to="/" text={t("footer-paginas-noticias")} />
+          <FooterLink to="news" text={t("footer-paginas-noticias")} />
         </li>
         <li class="flex items-center">
           <FaEnvelope />
-          <FooterLink to="/" text={t("footer-paginas-contactos")} />
+          <FooterLink to="contacts" text={t("footer-paginas-contactos")} />
         </li>
       </ul>
     </div>

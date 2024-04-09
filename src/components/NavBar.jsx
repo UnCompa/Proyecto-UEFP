@@ -74,9 +74,9 @@ function NavBar({ url,pathName,children }) {
       className={`h-28 box-border bg-cover text-black shadow-2xl dark:text-white bg-white/90 dark:bg-black flex justify-between items-center sticky top-0 px-12 z-10`}
     >
       <a href="/">
-        <img src={isDarkMode ? "/imgs/UEFPescudoblanco.png" : "/imgs/UEFPescudoblack.png"} className="h-24" />
+        <img src={isDarkMode ? "/imgs/UEFPescudoblanco.png" : "/imgs/UEFPescudoblack.png"} className="h-16 lg:h-24" />
       </a>
-      <h3 className="block text-2xl font-Rubik uppercase font-bold lg:hidden">
+      <h3 className="block text-center text-xl font-Rubik uppercase font-bold lg:hidden">
         {mensaje1}
       </h3>
       <ul
