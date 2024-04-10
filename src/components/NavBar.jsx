@@ -80,7 +80,7 @@ function NavBar({ url,pathName,children }) {
         {mensaje1}
       </h3>
       <ul
-        className={`bg-slate-300 dark:bg-black h-screen fixed w-1/2 top-0 right-0 p-4 flex flex-col gap-y-4 transition-all ${
+        className={`bg-slate-300 dark:bg-black h-screen fixed w-1/2 top-0 right-0 p-4 flex flex-col gap-y-4 ${
           openMenu
             ? "translate-x-0 lg:translate-x-0"
             : " translate-x-full lg:translate-x-0"
