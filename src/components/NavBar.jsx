@@ -103,9 +103,9 @@ function NavBar({ url,pathName,children }) {
         <li>
           <NavLink to={urls.academics} text={t("nav-academicos")}></NavLink>
         </li>
-        <li>
+        {/* <li>
           <NavLink to={urls.news} text={t("nav-noticias")}></NavLink>
-        </li>
+        </li> */}
         <li>
           <NavLink to={urls.contact} text={t("nav-contacto")}></NavLink>
         </li>

@@ -3,12 +3,11 @@ import ChangeLanguage from "./ChangeLanguaje";
 import FooterLink from "./FooterLink.astro";
 import { getLangFromUrl, useTranslations } from "../i18n/utils";
 import {FaFacebook,FaTiktok,FaHouse,FaUsers,FaGraduationCap,FaNewspaper,FaEnvelope, FaPhone, FaAt} from 'react-icons/fa6'
-import ThemeIcon from "./ThemeIcon.astro";
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
 
-<script>
+<script async>
   // Función para manejar el cambio de clase
   function handleClassChange() {
     const img = document.getElementById("img-logo");
