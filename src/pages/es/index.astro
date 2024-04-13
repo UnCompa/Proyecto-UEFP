@@ -3,7 +3,7 @@ import Layout from "../../layouts/Layout.astro";
 import Header from "../../components/Header.astro";
 import CardInfo from "../../components/CardInfo.astro";
 import VideoPlayer from "../../components/VideoPlayer.astro";
-import IndexMeta from './../../meta/IndexMeta.astro'
+import IndexMeta from "./../../meta/IndexMeta.astro";
 import Footer from "../../components/Footer.astro";
 import { getLangFromUrl, useTranslations } from "../../i18n/utils";
 import { Diamond } from "../../icons/Icons";
@@ -12,12 +12,12 @@ const t = useTranslations(lang);
 ---
 
 <Layout
-title="Unidad Educativa Fiscal Pichincha | Web Oficial"
-icon="/public/imgs/UEFPescudoblanco.png"
-keywords="unidad educativa fiscal pichincha, unidad educativa fiscal pichincha pagina oficial, unidad educativa fiscal pichincha pagina, uefp"
+  title="Unidad Educativa Fiscal Pichincha | Web Oficial"
+  icon="/public/imgs/UEFPescudoblanco.png"
+  keywords="unidad educativa fiscal pichincha, página oficial, educación, UEFP"
 >
-<Header />
-<IndexMeta slot="opengraph"/>
+  <Header />
+  <IndexMeta slot="opengraph" />
   <main
     class="h-full w-full bg-zinc-50 dark:bg-zinc-800 grid place-content-center gap-y-4"
   >
