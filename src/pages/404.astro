@@ -1,0 +1,22 @@
+---
+import ThemeIcon from "../components/ThemeIcon.astro";
+import Layout from "../layouts/Layout.astro";
+const url = Astro.url
+---
+
+<Layout title="Error 404" icon="">
+  <main class="bg-zinc-100 dark:bg-zinc-900 h-screen grid place-content-center">
+    <h1 class="text-5xl font-bold font-Kanit flex flex-col text-center">
+      Error
+      <span class="bg-clip-text text-transparent bg-gradient-to-tr from-purple-500 via-red-500 to-yellow-400 my-2">404</span>
+    </h1>
+    <div class="text-center flex flex-col gap-y-2">
+        <strong class="py-1 px-1 dark:bg-zinc-800 w-full h-full rounded">No se encontro</strong>
+        <p class="font-light font-Rubik underline  decoration-2 decoration-orange-500">{url}</p>
+        <a href="/" class="text-center text-blue-500 dark:text-blue-500">Regresar</a>
+    </div>
+    <div class="hidden">
+      <ThemeIcon />
+    </div>
+  </main>
+</Layout>

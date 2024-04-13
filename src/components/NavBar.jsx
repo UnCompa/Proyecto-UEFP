@@ -80,11 +80,11 @@ function NavBar({ url,pathName,children }) {
         {mensaje1}
       </h3>
       <ul
-        className={`bg-slate-300 dark:bg-black h-screen fixed w-1/2 top-0 right-0 p-4 flex flex-col gap-y-4 ${
+        className={`bg-slate-300 dark:bg-black h-screen fixed w-1/2 top-0 right-0 p-4 flex flex-col gap-y-4 transition-all ${
           openMenu
             ? "translate-x-0 lg:translate-x-0"
             : " translate-x-full lg:translate-x-0"
-        } lg:h-full lg:relative lg:top-0 lg:flex lg:flex-row lg:items-center lg:justify-center lg:w-max lg:bg-transparent lg:gap-x-4`}
+        } lg:h-full lg:relative lg:top-0 lg:flex lg:flex-row lg:items-center lg:justify-center lg:w-max lg:bg-transparent lg:gap-x-2 lg:transition-none`}
       >
         <li className="flex justify-end">
           <button
@@ -112,6 +112,9 @@ function NavBar({ url,pathName,children }) {
         <ChangeLanguaje lang={lang} url={pathName}/>
         <li>
         {children}
+        </li>
+        <li>
+          <a href={`/${lang}/signin`} className="py-2 px-4 border border-black dark:border-white rounded-full">Iniciar Sesion</a>
         </li>
       </ul>
       <button

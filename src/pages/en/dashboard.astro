@@ -1,4 +1,6 @@
 ---
+import ThemeIcon from "../../components/ThemeIcon.astro";
+import DashBoardBase from "../../layouts/DashBoardBase.astro";
 import Layout from "../../layouts/Layout.astro";
 import { supabase } from "../../lib/supabase";
 
@@ -29,10 +31,11 @@ if (error) {
 
 const email = data?.user?.email;
 ---
-<Layout title="panel de control" icon="">
+<DashBoardBase title="panel de control" icon="">
   <h1>Bienvenido {email}</h1>
   <p>Estamos felices de verte aquí</p>
+  <ThemeIcon/>
   <form action="/api/auth/signout">
     <button type="submit">Cerrar sesión</button>
   </form>
-</Layout>
+</DashBoardBase>
