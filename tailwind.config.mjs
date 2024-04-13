@@ -8,10 +8,10 @@ export default {
 	],
 	theme: {
 		extend: {
-			backgroundImage: theme => ({
+			backgroundImage:{
 				'radial-gradient-light': 'radial-gradient(circle closest-corner at 50% 100%, #fcb045, #fd1d1d99, #FFFFFF 100%)',
 				'radial-gradient-dark': 'radial-gradient(circle closest-corner at 50% 100%, #FFC700, #FF000077, #000000 100%)',
-			  }),
+			  },
 			colors: {
 				"dark": "(--bkg-dark)",
 				"clarity": "(--bkg-white)",

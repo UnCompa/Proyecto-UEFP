@@ -1,0 +1,31 @@
+---
+import { Button, Input, Textarea } from "@nextui-org/react";
+import Navigation from "../../components/Navigation.astro";
+import Layout from "../../layouts/Layout.astro";
+import Footer from "../../components/Footer.astro";
+const url = Astro.url
+const urlStr = url.toString()
+---
+
+<Layout title="Contactos" icon="/imgs/UEFPescudoblanco.png">
+    <Navigation/>
+    <main class="bg-zinc-100 dark:bg-zinc-950 h-full w-full">
+        <section class="bg-zinc-200 dark:bg-zinc-900 container mx-auto my-8 grid grid-cols-1 md:grid-cols-2 place-content-center">
+            <div class="w-full h-max p-4">
+                <img src="/imgs/persona.jpg" alt="" class="border-2 border-cyan-500 w-full h-max rounded object-cover">
+            </div>
+            <div class="p-4 h-max bg-zinc-200 dark:bg-zinc-900">
+                <form action="https://formsubmit.co/0f38cc3d1265906cf3e0e788faa9eb82" method="POST" class="flex flex-col gap-y-2">
+                    <Input color="default" label="Email" labelPlacement="outside" isRequired placeholder="Ingrese su email" type="email" name="Email"/>
+                    <Input color="default" label="Asunto" labelPlacement="outside" isRequired placeholder="Ingrese el asunto" name="Asunto"/>
+                    <Textarea color="default" label="Mensaje" isRequired  labelPlacement="outside" placeholder="Ingrese su mensaje" name="Contenido"/>
+                    <Button type="submit">Enviar</Button>
+                    <input type="hidden" name="_next" value={urlStr}>
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_template" value="table">
+                </form>
+            </div>
+        </section>
+    </main>
+    <Footer/>
+</Layout>

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Sun, Moon } from "../icons/Icons";
 
 function ThemeToggleButton() {

@@ -1,0 +1,54 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Header from "../../components/Header.astro";
+import CardInfo from "../../components/CardInfo.astro";
+import VideoPlayer from "../../components/VideoPlayer.astro";
+import IndexMeta from "./../../meta/IndexMeta.astro";
+import Footer from "../../components/Footer.astro";
+import { getLangFromUrl, useTranslations } from "../../i18n/utils";
+import { Diamond } from "../../icons/Icons";
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<Layout
+  title="Unidad Educativa Fiscal Pichincha | Web Oficial"
+  icon="/public/imgs/UEFPescudoblanco.png"
+  keywords="unidad educativa fiscal pichincha, página oficial, educación, UEFP"
+>
+  <Header />
+  <IndexMeta slot="opengraph" />
+  <main
+    class="h-full w-full bg-zinc-50 dark:bg-zinc-800 grid place-content-center gap-y-4"
+  >
+    <section class="bg-transparent w-full h-full">
+      <CardInfo
+        img="/imgs/programacion.jpeg"
+        title={t("main-mision")}
+        text={t("main-mision-text")}
+      >
+        <Diamond height={"16px"} width={"16px"} />
+      </CardInfo>
+      <CardInfo
+        img="/imgs/programacion.jpeg"
+        title={t("main-vision")}
+        title="Vision"
+        text={t("main-vision-text")}
+      >
+        <Diamond height={"16px"} width={"16px"} /></CardInfo
+      >
+    </section>
+    <section class="container mx-auto grid place-content-center w-full">
+      <h2
+        class="text-black dark:text-zinc-100 text-center text-5xl py-4 font-Rubik"
+      >
+        {t("main-presentacion")}
+      </h2>
+      <VideoPlayer url="/videos/test.mp4" />
+    </section>
+    <section class="container mx-auto grid place-content-center h-full w-full">
+      <!-- <VideoYTPlayer url="https://youtu.be/wL8DVHuWI7Y?list=RDrNZ17DDx0Jg" /> -->
+    </section>
+  </main>
+  <Footer />
+</Layout>

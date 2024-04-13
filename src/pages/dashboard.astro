@@ -1,5 +1,6 @@
 ---
-import Layout from "../layouts/Layout.astro";
+import ThemeIcon from "../components/ThemeIcon.astro";
+import DashBoardBase from "../layouts/DashBoardBase.astro";
 import { supabase } from "../lib/supabase";
 
 const { cookies, redirect } = Astro;
@@ -29,10 +30,38 @@ if (error) {
 
 const email = data?.user?.email;
 ---
-<Layout title="panel de control" icon="">
-  <h1>Bienvenido {email}</h1>
-  <p>Estamos felices de verte aquí</p>
-  <form action="/api/auth/signout">
-    <button type="submit">Cerrar sesión</button>
-  </form>
-</Layout>
+
+<!-- <ThemeIcon/> -->
+<DashBoardBase title="panel de control" icon="">
+  <main class="dashboard">
+    <div
+      class="bg-zinc-100 dark:bg-zinc-900 h-full w-full [grid-area:aside] boxshadow"
+    >
+    <div class="flex p-4 items-center justify-around">
+      <img class="h-12 w-12" src="/imgs/UEFPescudoblanco.png" alt="Logotipo">
+      <h2 class="font-bold text-3xl font-Rubik text-center">UEFP</h2>
+    </div>
+      <ThemeIcon />
+      <form action="/api/auth/signout">
+        <button class="text-red-400" type="submit">Cerrar sesión</button>
+      </form>
+    </div>
+    <div
+      class="p-4 bg-zinc-50 dark:bg-zinc-800 w-full h-full [grid-area:main] font-Kanit"
+    >
+      <h1 class="font-bold text-3xl">👋 Bienvenido, {email}</h1>
+      <p>Estamos felices de verte aquí</p>
+    </div>
+  </main>
+</DashBoardBase>
+<style>
+  .dashboard {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    grid-template-rows: 100vh;
+    grid-template-areas: "aside main";
+  }
+  .boxshadow {
+    box-shadow: 0px -20px 10px black;
+  }
+</style>

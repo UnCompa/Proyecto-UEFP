@@ -8,14 +8,12 @@ export const POST: APIRoute = async ({ request, redirect }) => {
   const password = formData.get("password")?.toString();
   const url = new URL(request.url);
   const lang = getLangFromUrl(url);
-  console.log(lang);
   if (!email || !password) {
     console.log("Here");
     return new Response("Correo electrónico y contraseña obligatorios", {
       status: 400,
     });
   }
-  console.log(email, password);
 
   const { error } = await supabase.auth.signUp({
     email,

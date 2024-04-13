@@ -1,6 +1,5 @@
 import type { APIRoute } from "astro";
 import { supabase } from "../../../lib/supabase";
-import { getRelativeLocaleUrl } from "astro:i18n";
 import { getLangFromUrl } from "../../../i18n/utils";
 
 export const POST: APIRoute = async ({ request, cookies, redirect }) => {
