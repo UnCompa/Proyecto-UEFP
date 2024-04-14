@@ -124,9 +124,9 @@ function NavBar({ url,pathName,children }) {
         <li>
         {children}
         </li>
-       {/*  <li>
+        <li>
           <a href={`/${lang}/signin`} className="py-2 px-4 border border-black dark:border-white rounded-full">Iniciar Sesion</a>
-        </li> */}
+        </li>
       </ul>
       <button
         onClick={handleMenu}

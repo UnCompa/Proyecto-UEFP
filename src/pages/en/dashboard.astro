@@ -1,6 +1,6 @@
 ---
 import ThemeIcon from "../../components/ThemeIcon.astro";
-import NavDashboard from "../../components/sections/NavDashboard";
+import NavDashboard from "../../components/dashboard/NavDashboard";
 import DashBoardBase from "../../layouts/DashBoardBase.astro";
 import { supabase } from "../../lib/supabase";
 
@@ -38,7 +38,9 @@ const email = data?.user?.email;
     <div
       class="bg-zinc-100 dark:bg-zinc-900 h-full w-full [grid-area:aside] boxshadow"
     >
-    <NavDashboard client:load/>
+    <NavDashboard client:load>
+      <ThemeIcon/>
+    </NavDashboard>
     <div class="flex p-4 items-center justify-around">
       <img class="h-12 w-12" src="/imgs/UEFPescudoblanco.png" alt="Logotipo">
       <h2 class="font-bold text-3xl font-Rubik text-center">UEFP</h2>

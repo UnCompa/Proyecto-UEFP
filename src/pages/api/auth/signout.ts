@@ -6,6 +6,5 @@ export const GET: APIRoute = async ({request, cookies, redirect }) => {
   cookies.delete("sb-refresh-token", { path: "/" });
   const url = new URL(request.url)
   const lang = getLangFromUrl(url)
-  console.log(lang);
   return redirect(`/${lang}/`);
 };

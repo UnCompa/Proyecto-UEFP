@@ -8,7 +8,6 @@ export const POST: APIRoute = async ({ request, cookies, redirect }) => {
   const password = formData.get("password")?.toString();
   const url = new URL(request.url);
   const lang = getLangFromUrl(url);
-  console.log(lang);
 
   if (!email || !password) {
     return new Response("Correo electrónico y contraseña obligatorios", {

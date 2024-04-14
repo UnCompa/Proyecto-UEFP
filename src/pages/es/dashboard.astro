@@ -1,6 +1,6 @@
 ---
 import ThemeIcon from "../../components/ThemeIcon.astro";
-import NavDashboard from "../../components/sections/NavDashboard";
+import NavDashboard from "../../components/dashboard/NavDashboard";
 import MainDashboard from "../../components/dashboard/MainDashboard";
 import DashBoardBase from "../../layouts/DashBoardBase.astro";
 import { supabase } from "../../lib/supabase";
@@ -12,7 +12,10 @@ const refreshToken = cookies.get("sb-refresh-token");
 if (!accessToken || !refreshToken) {
   return redirect("/es/signin");
 }
-
+const { data: datanew, error: errornew } = await supabase
+.from("pages")
+.select("*");
+console.log(datanew,errornew)
 const { data, error } = await supabase.auth.setSession({
   refresh_token: refreshToken.value,
   access_token: accessToken.value,
@@ -24,14 +27,10 @@ if (error) {
   cookies.delete("sb-refresh-token", {
     path: "/",
   });
-
+  
   return redirect("/es/signin");
 }
 const email = data?.user?.email;
-
-const { data: indexpage, error: otherError } = await supabase.from('indexpage').select()
-
-console.log(indexpage,otherError);
 ---
 
 <!-- <ThemeIcon/> -->
@@ -40,14 +39,14 @@ console.log(indexpage,otherError);
     <div
       class="bg-zinc-200 dark:bg-zinc-900 h-full w-full [grid-area:aside] boxshadow"
     >
-      <NavDashboard client:load>
-        <ThemeIcon />
+      <NavDashboard client:load={true}>
+        <ThemeIcon/>
       </NavDashboard>
     </div>
     <div
-      class="p-4 bg-zinc-50 dark:bg-zinc-800 w-full h-screen [grid-area:main] font-Kanit"
+      class="p-4 bg-zinc-50 overflow-y-auto dark:bg-zinc-800 w-full h-full [grid-area:main] font-Kanit"
     >
-      <MainDashboard email={email} client:load/>
+      <MainDashboard email={email} client:load />
     </div>
   </main>
 </DashBoardBase>
