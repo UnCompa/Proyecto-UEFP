@@ -14,7 +14,13 @@ function NavBar({ url,pathName,children }) {
   const urlString = url.toString()
   let mensaje1;
   if (lang === "es") {
-    if(urlString.includes("about")) {
+    if(urlString.includes("contacts")) {
+      mensaje1 = "Contacto"
+    }
+    else if(urlString.includes("academics")) {
+      mensaje1 = "Academicos"
+    }
+    else if(urlString.includes("about")) {
       mensaje1 = "Sobre Nosotros"
     }
     else if(urlString.includes("/es")) {
@@ -22,7 +28,13 @@ function NavBar({ url,pathName,children }) {
     }
   }
   if (lang === "en") {
-    if(urlString.includes("about")) {
+    if(urlString.includes("contacts")) {
+      mensaje1 = "Contacts"
+    }
+    else if(urlString.includes("academics")) {
+      mensaje1 = "Academics"
+    }
+    else if(urlString.includes("about")) {
       mensaje1 = "About us"
     }
     else if(urlString.includes("/en")) {
@@ -79,7 +91,7 @@ function NavBar({ url,pathName,children }) {
         {mensaje1}
       </h3>
       <ul
-        className={`bg-slate-300 dark:bg-black h-screen fixed w-1/2 top-0 right-0 p-4 flex flex-col gap-y-4 transition-all ${
+        className={`bg-slate-300 dark:bg-black h-screen fixed w-1/2 top-0 z-30 right-0 p-4 flex flex-col gap-y-4 transition-all ${
           openMenu
             ? "translate-x-0 lg:translate-x-0"
             : "translate-x-full lg:translate-x-0"
@@ -112,9 +124,9 @@ function NavBar({ url,pathName,children }) {
         <li>
         {children}
         </li>
-        <li>
+       {/*  <li>
           <a href={`/${lang}/signin`} className="py-2 px-4 border border-black dark:border-white rounded-full">Iniciar Sesion</a>
-        </li>
+        </li> */}
       </ul>
       <button
         onClick={handleMenu}
