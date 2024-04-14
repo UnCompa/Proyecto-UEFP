@@ -1,8 +1,9 @@
 ---
 import ThemeIcon from "../../components/ThemeIcon.astro";
+import NavDashboard from "../../components/sections/NavDashboard";
+import MainDashboard from "../../components/dashboard/MainDashboard";
 import DashBoardBase from "../../layouts/DashBoardBase.astro";
 import { supabase } from "../../lib/supabase";
-
 const { cookies, redirect } = Astro;
 
 const accessToken = cookies.get("sb-access-token");
@@ -16,7 +17,6 @@ const { data, error } = await supabase.auth.setSession({
   refresh_token: refreshToken.value,
   access_token: accessToken.value,
 });
-
 if (error) {
   cookies.delete("sb-access-token", {
     path: "/",
@@ -27,30 +27,27 @@ if (error) {
 
   return redirect("/es/signin");
 }
-
 const email = data?.user?.email;
+
+const { data: indexpage, error: otherError } = await supabase.from('indexpage').select()
+
+console.log(indexpage,otherError);
 ---
 
 <!-- <ThemeIcon/> -->
-<DashBoardBase title="panel de control" icon="">
+<DashBoardBase title="Dashboard | Panel de control" icon="">
   <main class="dashboard">
     <div
-      class="bg-zinc-100 dark:bg-zinc-900 h-full w-full [grid-area:aside] boxshadow"
+      class="bg-zinc-200 dark:bg-zinc-900 h-full w-full [grid-area:aside] boxshadow"
     >
-    <div class="flex p-4 items-center justify-around">
-      <img class="h-12 w-12" src="/imgs/UEFPescudoblanco.png" alt="Logotipo">
-      <h2 class="font-bold text-3xl font-Rubik text-center">UEFP</h2>
-    </div>
-      <ThemeIcon />
-      <form action="/api/auth/signout">
-        <button class="text-red-400" type="submit">Cerrar sesión</button>
-      </form>
+      <NavDashboard client:load>
+        <ThemeIcon />
+      </NavDashboard>
     </div>
     <div
-      class="p-4 bg-zinc-50 dark:bg-zinc-800 w-full h-full [grid-area:main] font-Kanit"
+      class="p-4 bg-zinc-50 dark:bg-zinc-800 w-full h-screen [grid-area:main] font-Kanit"
     >
-      <h1 class="font-bold text-3xl">👋 Bienvenido, {email}</h1>
-      <p>Estamos felices de verte aquí</p>
+      <MainDashboard email={email} client:load/>
     </div>
   </main>
 </DashBoardBase>
@@ -60,6 +57,16 @@ const email = data?.user?.email;
     grid-template-columns: 200px 1fr;
     grid-template-rows: 100vh;
     grid-template-areas: "aside main";
+  }
+  @media (max-width: 1024px) {
+    .dashboard {
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-rows: 96px 1fr;
+      grid-template-areas:
+        "aside"
+        "main";
+    }
   }
   .boxshadow {
     box-shadow: 0px -20px 10px black;

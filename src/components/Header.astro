@@ -7,7 +7,9 @@ const pathName = Astro.url.pathname;
 ---
 
 <header class="w-full h-max">
-  <NavBar url={url} pathName={pathName} client:load> <ThemeIcon /></NavBar>
+  <NavBar url={url} pathName={pathName} client:load>
+     <ThemeIcon />
+  </NavBar>
   <section>
     <Hero />
   </section>

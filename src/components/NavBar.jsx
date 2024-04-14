@@ -3,7 +3,6 @@ import NavLink from "./NavLink.jsx";
 import { Bars, X } from "../icons/Icons.jsx";
 import ChangeLanguaje from "./ChangeLanguaje.jsx";
 import { getLangFromUrl, useTranslations } from "../i18n/utils";
-import ThemeToggleButton from "./ChangeButtonTheme.jsx";
 
 function NavBar({ url,pathName,children }) {
   const [openMenu, setOpenMenu] = useState(false);
@@ -83,7 +82,7 @@ function NavBar({ url,pathName,children }) {
         className={`bg-slate-300 dark:bg-black h-screen fixed w-1/2 top-0 right-0 p-4 flex flex-col gap-y-4 transition-all ${
           openMenu
             ? "translate-x-0 lg:translate-x-0"
-            : " translate-x-full lg:translate-x-0"
+            : "translate-x-full lg:translate-x-0"
         } lg:h-full lg:relative lg:top-0 lg:flex lg:flex-row lg:items-center lg:justify-center lg:w-max lg:bg-transparent lg:gap-x-2 lg:transition-none`}
       >
         <li className="flex justify-end">

@@ -21,8 +21,8 @@ export const POST: APIRoute = async ({ request, cookies, redirect }) => {
     password,
   });
 
-  if (error) {
-    return new Response(error.message, { status: 500 });
+  if (error) {  
+    return redirect(`/${lang}/`)
   }
 
   const { access_token, refresh_token } = data.session;
