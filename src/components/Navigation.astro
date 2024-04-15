@@ -3,10 +3,14 @@ import NavBar from "./NavBar.jsx";
 import ThemeIcon from "./ThemeIcon.astro";
 const url = Astro.url;
 const pathName = Astro.url.pathname;
+const { cookies } = Astro;
+
+const accessToken = cookies.get("sb-access-token");
+const refreshToken = cookies.get("sb-refresh-token");
 ---
 
 <header class="w-full h-max">
-  <NavBar url={url} pathName={pathName} client:load>
+  <NavBar url={url} pathName={pathName} accessToken={accessToken} refreshToken={refreshToken} client:load>
     <ThemeIcon/>
   </NavBar>
 </header>

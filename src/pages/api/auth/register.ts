@@ -26,5 +26,5 @@ export const POST: APIRoute = async ({ request, redirect }) => {
   }
 
   console.log("Here");
-  return redirect(`/${lang}/`);
+  return redirect(`/${lang}/verification`);
 };

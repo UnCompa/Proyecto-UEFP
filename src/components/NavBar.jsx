@@ -3,42 +3,52 @@ import NavLink from "./NavLink.jsx";
 import { Bars, X } from "../icons/Icons.jsx";
 import ChangeLanguaje from "./ChangeLanguaje.jsx";
 import { getLangFromUrl, useTranslations } from "../i18n/utils";
+import { supabase } from "../lib/supabase.ts";
 
-function NavBar({ url,pathName,children }) {
+function NavBar({ url, pathName, children, refreshToken, accessToken }) {
   const [openMenu, setOpenMenu] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isUser, setIsUser] = useState(true);
   const lang = getLangFromUrl(url);
   const t = useTranslations(lang);
   const [urls, setUrls] = useState({});
   const [titles, setTitles] = useState({});
-  const urlString = url.toString()
+  const urlString = url.toString();
+  useEffect(() => {
+    const fetchData = async () => {
+      if (!accessToken || !refreshToken) {
+        setIsUser(false)
+      }
+      const { data, error } = await supabase.auth.setSession({
+        refresh_token: refreshToken.value,
+        access_token: accessToken.value,
+      });
+      setIsUser(true)
+      console.log(data, error);
+    };
+    fetchData();
+  }, []);
   let mensaje1;
   if (lang === "es") {
-    if(urlString.includes("contacts")) {
-      mensaje1 = "Contacto"
-    }
-    else if(urlString.includes("academics")) {
-      mensaje1 = "Academicos"
-    }
-    else if(urlString.includes("about")) {
-      mensaje1 = "Sobre Nosotros"
-    }
-    else if(urlString.includes("/es")) {
-      mensaje1 = "Inicio"
+    if (urlString.includes("contacts")) {
+      mensaje1 = "Contacto";
+    } else if (urlString.includes("academics")) {
+      mensaje1 = "Academicos";
+    } else if (urlString.includes("about")) {
+      mensaje1 = "Sobre Nosotros";
+    } else if (urlString.includes("/es")) {
+      mensaje1 = "Inicio";
     }
   }
   if (lang === "en") {
-    if(urlString.includes("contacts")) {
-      mensaje1 = "Contacts"
-    }
-    else if(urlString.includes("academics")) {
-      mensaje1 = "Academics"
-    }
-    else if(urlString.includes("about")) {
-      mensaje1 = "About us"
-    }
-    else if(urlString.includes("/en")) {
-      mensaje1 = "Home"
+    if (urlString.includes("contacts")) {
+      mensaje1 = "Contacts";
+    } else if (urlString.includes("academics")) {
+      mensaje1 = "Academics";
+    } else if (urlString.includes("about")) {
+      mensaje1 = "About us";
+    } else if (urlString.includes("/en")) {
+      mensaje1 = "Home";
     }
   }
   const handleMenu = () => {
@@ -65,12 +75,12 @@ function NavBar({ url,pathName,children }) {
     setTitles(titlesNav);
   }, [lang]);
   useEffect(() => {
-    const html = document.querySelector('html')
-    setIsDarkMode(html?.classList.contains('dark'));
-    const observer = new MutationObserver(mutationsList => {
-      mutationsList.forEach(mutation => {
-        if (mutation.attributeName === 'class') {
-          setIsDarkMode(html.classList.contains('dark'));
+    const html = document.querySelector("html");
+    setIsDarkMode(html?.classList.contains("dark"));
+    const observer = new MutationObserver((mutationsList) => {
+      mutationsList.forEach((mutation) => {
+        if (mutation.attributeName === "class") {
+          setIsDarkMode(html.classList.contains("dark"));
         }
       });
     });
@@ -79,13 +89,19 @@ function NavBar({ url,pathName,children }) {
       observer.disconnect();
     };
   }, []);
-
   return (
     <nav
       className={`h-28 box-border bg-cover text-black shadow-2xl dark:text-white bg-white/90 dark:bg-black flex justify-between items-center sticky top-0 px-12 z-10`}
     >
       <a href="/">
-        <img src={isDarkMode ? "/imgs/UEFPescudoblanco.png" : "/imgs/UEFPescudoblack.png"} className="h-16 lg:h-24" />
+        <img
+          src={
+            isDarkMode
+              ? "/imgs/UEFPescudoblanco.png"
+              : "/imgs/UEFPescudoblack.png"
+          }
+          className="h-16 lg:h-24"
+        />
       </a>
       <h3 className="block text-center text-xl font-Rubik uppercase font-bold lg:hidden">
         {mensaje1}
@@ -120,13 +136,28 @@ function NavBar({ url,pathName,children }) {
         <li>
           <NavLink to={urls.contact} text={t("nav-contacto")}></NavLink>
         </li>
-        <ChangeLanguaje lang={lang} url={pathName}/>
+        <ChangeLanguaje lang={lang} url={pathName} />
+        <li>{children}</li>
         <li>
-        {children}
+          {
+            isUser ? (
+              <a
+            href={`/${lang}/dashboard`}
+            className="py-2 px-4 border border-black dark:border-white rounded-full"
+          >
+            Dashboard
+          </a>
+            ) : (
+              <a
+            href={`/${lang}/signin`}
+            className="py-2 px-4 border border-black dark:border-white rounded-full"
+          >
+            Iniciar sesion
+          </a>
+            )
+          }
         </li>
-        <li>
-          <a href={`/${lang}/signin`} className="py-2 px-4 border border-black dark:border-white rounded-full">Iniciar Sesion</a>
-        </li>
+        <li></li>
       </ul>
       <button
         onClick={handleMenu}
