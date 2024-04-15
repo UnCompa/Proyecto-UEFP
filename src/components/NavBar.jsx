@@ -6,7 +6,7 @@ import { getLangFromUrl, useTranslations } from "../i18n/utils";
 import { supabase } from "../lib/supabase.ts";
 
 function NavBar({ url, pathName, children, refreshToken, accessToken }) {
-  const [openMenu, setOpenMenu] = useState(false);
+  const [openMenu, setOpenMenu] = useState(true);
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [isUser, setIsUser] = useState(true);
   const lang = getLangFromUrl(url);
@@ -143,14 +143,14 @@ function NavBar({ url, pathName, children, refreshToken, accessToken }) {
             isUser ? (
               <a
             href={`/${lang}/dashboard`}
-            className="py-2 px-4 border border-black dark:border-white rounded-full"
+            className="py-2 px-4 ring-2 ring-black dark:ring-zinc-100 hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-all rounded-full"
           >
             Dashboard
           </a>
             ) : (
               <a
             href={`/${lang}/signin`}
-            className="py-2 px-4 border border-black dark:border-white rounded-full"
+            className="py-2 px-4 ring-2 ring-black dark:ring-zinc-100 hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-all rounded-full"
           >
             Iniciar sesion
           </a>
