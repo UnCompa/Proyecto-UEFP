@@ -1,9 +1,9 @@
 ---
-import ThemeIcon from "../../components/ThemeIcon.astro";
-import NavDashboard from "../../components/dashboard/NavDashboard";
-import MainDashboard from "../../components/dashboard/MainDashboard";
-import DashBoardBase from "../../layouts/DashBoardBase.astro";
-import { supabase } from "../../lib/supabase";
+import ThemeIcon from "../../../components/ThemeIcon.astro";
+import NavDashboard from "../../../components/dashboard/NavDashboard";
+import MainDashboard from "../../../components/dashboard/MainDashboard";
+import DashBoardBase from "../../../layouts/DashBoardBase.astro";
+import { supabase } from "../../../lib/supabase";
 const { cookies, redirect } = Astro;
 
 const accessToken = cookies.get("sb-access-token");
@@ -30,7 +30,6 @@ if (error) {
   
   return redirect("/es/signin");
 }
-const email = data?.user?.email;
 ---
 
 <!-- <ThemeIcon/> -->
@@ -46,7 +45,6 @@ const email = data?.user?.email;
     <div
       class="p-4 bg-zinc-50 overflow-y-auto dark:bg-zinc-800 w-full h-full [grid-area:main] font-Kanit"
     >
-      <MainDashboard email={email} client:load />
     </div>
   </main>
 </DashBoardBase>
