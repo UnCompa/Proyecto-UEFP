@@ -12,7 +12,7 @@ const { title, text, img, invert} = Astro.props;
     <div class="grid grid-cols-1 md:grid-cols-2 container mx-auto font-Rubik p-8">
       {
         !invert ? (
-        <div class="text-black dark:text-white border-l-2 p-4 border-zinc-500 shadow">
+        <div class="text-black dark:text-white border-l-2 p-4 border-zinc-800 dark:border-zinc-100">
         <div class="flex items-center justify-start gap-x-2 border-b-2 w-max pr-8 border-black dark:border-white">
           <slot/>
           <h2 class="text-3xl font-light title">{title}</h2>

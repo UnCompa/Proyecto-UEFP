@@ -38,16 +38,14 @@ const t = useTranslations(lang);
         <Diamond height={"16px"} width={"16px"} /></CardInfo
       >
     </section>
-    <section class="container mx-auto grid place-content-center w-full">
+    <section class="container mx-auto grid place-content-center w-full my-4">
       <h2
-        class="text-black dark:text-zinc-100 text-center text-5xl py-4 font-Rubik"
+        class="text-black dark:text-zinc-100 text-center text-5xl py-2 font-Rubik"
       >
         {t("main-presentacion")}
       </h2>
+      <div class="h-1 w-full bg-gradient-to-l from-red-500 via-orange-500 to-yellow-500 mb-4"></div>
       <VideoPlayer url="/videos/test.mp4" />
-    </section>
-    <section class="container mx-auto grid place-content-center h-full w-full">
-      <!-- <VideoYTPlayer url="https://youtu.be/wL8DVHuWI7Y?list=RDrNZ17DDx0Jg" /> -->
     </section>
   </main>
   <Footer />
