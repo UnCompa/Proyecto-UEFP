@@ -3,14 +3,31 @@ const {title = "Titulo",img,content = "Aqui va contenido",color} = Astro.props
 ---
 
 <div class="p-4">
-    <h2 class="text-3xl font-Kanit">{title }</h2>
-    <div class={`h-1 rounded-full my-2 ${color}`}></div>
+    <h2 class="title text-3xl font-Kanit">{title }</h2>
+    <div class={`h-1 rounded-full w-1/2 my-2 ${color}`}></div>
     <div class="grid grid-col-1 md:grid-cols-2">
-        <div class="p-4 h-full w-full">
-            <img src={img} alt="" class="h-full max-h-96 w-full object-cover aspect-square border shadow-xl bg-zinc-900">
+        <div class="p-4 h-full w-full grid place-content-center">
+            <img src={img} alt="" class="h-full max-h-96 w-full object-cover aspect-video border shadow-xl bg-zinc-900 animate-slide-out-left">
         </div>
         <div class="p-4 flex flex-col items-center justify-center">
-            <p class="font-Kanit text-xl md:text-2xl">{content}</p>
+            <p class="text font-Kanit text-xl md:text-2xl">{content}</p>
         </div>
     </div>
 </div>
+<script>
+    import ScrollReveal from 'scrollreveal'
+    ScrollReveal().reveal(".title", {
+        opacity: 0,
+        origin: "bottom",
+        distance: "100px",
+        reset: true,
+        duration: 500,
+      })
+    ScrollReveal().reveal(".text", {
+        opacity: 0,
+        origin: "left",
+        distance: "200px",
+        reset: false,
+        duration: 1000,
+      })
+</script>

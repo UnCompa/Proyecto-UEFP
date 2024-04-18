@@ -1,11 +1,12 @@
 import InicioEs from "./locales/es/es.json";
 import SobreNosotrosEs from "./locales/es/about.json";
+import AcademicsEs from "./locales/es/academics.json";
 import InicioEn from "./locales/en/en.json";
 import SobreNosotrosEn from "./locales/en/about.json";
-import { supabase } from "../lib/supabase";
+import AcademicsEn from "./locales/en/academics.json";
 // Objeto de idiomas
-const TraduccionEs = { ...InicioEs, ...SobreNosotrosEs };
-const TraduccionEn = { ...InicioEn, ...SobreNosotrosEn };
+const TraduccionEs = { ...InicioEs, ...SobreNosotrosEs,...AcademicsEs };
+const TraduccionEn = { ...InicioEn, ...SobreNosotrosEn, ...AcademicsEn };
 export const languages = {
   en: "English",
   es: "Español",
