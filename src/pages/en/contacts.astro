@@ -1,8 +1,68 @@
 ---
+import { Button, Input, Textarea } from "@nextui-org/react";
 import Navigation from "../../components/Navigation.astro";
 import Layout from "../../layouts/Layout.astro";
+import Footer from "../../components/Footer.astro";
+import { ContactIlustration } from "../../icons/Icons";
+const url = Astro.url;
+const urlStr = url.toString();
 ---
 
-<Layout title="Contacts" icon="/imgs/UEFPescudoblanco.png">
-    <Navigation/>
+<Layout title="Contactos" icon="/imgs/UEFPescudoblanco.png">
+  <Navigation />
+  <main class="bg-zinc-100 contact dark:bg-black h-full w-full">
+    <h1 class="text-4xl font-bold font-Rubik text-center py-4">Contact us!</h1>
+    <section
+      class="container mx-auto grid-cols-1 md:grid-cols-2 grid place-content-center p-4"
+    >
+      <div
+        class="text-black dark:text-white rounded p-4 h-max w-full bg-zinc-100/50 dark:bg-zinc-900/10 backdrop-blur-xl"
+      >
+        <form
+          action="https://formsubmit.co/0f38cc3d1265906cf3e0e788faa9eb82"
+          method="POST"
+          class="flex flex-col gap-y-2 font-Rubik w-full"
+        >
+          <label for="Email"> Email </label>
+          <Input
+            type="email"
+            variant="underlined"
+            color="default"
+            isRequired
+            placeholder="youremail@gmail.com"
+            name="Email"
+          />
+          <label for="Asunto"> Issue </label>
+          <Input
+            type="text"
+            variant="underlined"
+            color="default"
+            isRequired
+            placeholder="Ej: I'm need information"
+            name="Asunto"
+          />
+          <label for="Contenido"> Message </label>
+          <Textarea
+            color="default"
+            variant="underlined"
+            isRequired
+            placeholder="Ej: Good morning..."
+            name="Contenido"
+          />
+          <Button variant="ghost" type="submit" color="primary">Send</Button>
+          <input type="hidden" name="_next" value={urlStr} />
+          <input type="hidden" name="_captcha" value="false" />
+          <input type="hidden" name="_template" value="table" />
+        </form>
+      </div>
+      <div class="grid place-content-center h-max w-full">
+        <img
+          src="/imgs/Email.png"
+          alt=""
+          class="h-72 w-full object-cover aspect-auto animate-pulse animate-iteration-count-infinite"
+        />
+      </div>
+    </section>
+  </main>
+  <Footer />
 </Layout>
