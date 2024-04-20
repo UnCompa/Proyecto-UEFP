@@ -4,8 +4,6 @@ import { Bars, X } from "../icons/Icons.jsx";
 import ChangeLanguaje from "./ChangeLanguaje.jsx";
 import { getLangFromUrl, useTranslations } from "../i18n/utils";
 import { supabase } from "../lib/supabase.ts";
-import { FaPerson } from "react-icons/fa6";
-import { FaHome, FaRegUser } from "react-icons/fa";
 import { MdDashboard } from "react-icons/md";
 
 function NavBar({ url, pathName, children, refreshToken, accessToken }) {
@@ -15,7 +13,7 @@ function NavBar({ url, pathName, children, refreshToken, accessToken }) {
   const lang = getLangFromUrl(url);
   const t = useTranslations(lang);
   const [urls, setUrls] = useState({});
-  const [titles, setTitles] = useState({});
+  const [, setTitles] = useState({});
   const urlString = url.toString();
   useEffect(() => {
     const fetchData = async () => {

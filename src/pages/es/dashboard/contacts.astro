@@ -5,7 +5,7 @@ import MainDashboard from "../../../components/dashboard/MainDashboard";
 import DashBoardBase from "../../../layouts/DashBoardBase.astro";
 import { supabase } from "../../../lib/supabase";
 const { cookies, redirect } = Astro;
-
+const url = Astro.url
 const accessToken = cookies.get("sb-access-token");
 const refreshToken = cookies.get("sb-refresh-token");
 
@@ -38,7 +38,7 @@ if (error) {
     <div
       class="bg-zinc-200 dark:bg-zinc-900 h-full w-full [grid-area:aside] boxshadow"
     >
-      <NavDashboard client:load={true}>
+      <NavDashboard url={url} client:load={true}>
         <ThemeIcon/>
       </NavDashboard>
     </div>
