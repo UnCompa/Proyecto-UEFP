@@ -1,6 +1,7 @@
 ---
-import { getLangFromUrl } from '../i18n/utils';
-import { ViewTransitions } from "astro:transitions"
+import { getLangFromUrl } from "../i18n/utils";
+import { ViewTransitions } from "astro:transitions";
+import SpeedInsights from "@vercel/speed-insights/astro";
 const lang = getLangFromUrl(Astro.url);
 interface Props {
   title: string;
@@ -8,7 +9,12 @@ interface Props {
   keywords?: string;
   description?: string;
 }
-const { title, icon, keywords,description = "Bienvenidos a UEFP" } = Astro.props;
+const {
+  title,
+  icon,
+  keywords,
+  description = "Bienvenidos a UEFP",
+} = Astro.props;
 ---
 
 <!doctype html>
@@ -19,9 +25,12 @@ const { title, icon, keywords,description = "Bienvenidos a UEFP" } = Astro.props
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href={icon} />
     <link rel="sitemap" href="/sitemap-index.xml" />
-    <link rel="canonical" href="https://unidad-educativa-fiscal-pichincha.vercel.app">
-    <meta name="keywords" content={keywords}>
-    <slot name="opengraph"/>
+    <link
+      rel="canonical"
+      href="https://unidad-educativa-fiscal-pichincha.vercel.app"
+    />
+    <meta name="keywords" content={keywords} />
+    <slot name="opengraph" />
     <meta name="generator" content={Astro.generator} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -30,29 +39,29 @@ const { title, icon, keywords,description = "Bienvenidos a UEFP" } = Astro.props
       rel="stylesheet"
     />
     <title>{title}</title>
-    <ViewTransitions/>
+    <ViewTransitions />
+    <SpeedInsights />
   </head>
   <body class="bg-white dark:bg-black">
     <slot />
-  </body>
-  <script src="./../schemas/indexSchema.json" type="application/ld+json"></script>
+    <script src="./../schemas/indexSchema.json" type="application/ld+json"
+    ></script>
+  </body><style is:global>
+    *::selection {
+      background-color: #aa0000;
+      color: #fafafa;
+    }
+    html {
+      color-scheme: light dark;
+      scrollbar-width: thin;
+      scrollbar-color: #27272a white;
+    }
+    html.dark {
+      scrollbar-width: thin;
+      scrollbar-color: white #27272a;
+    }
+    input {
+      border: none;
+    }
+  </style>
 </html>
-<style is:global>
-  *::selection {
-    background-color: #aa0000;
-    color: #fafafa;
-  }
-  html {
-    color-scheme: light dark;
-    scrollbar-width: thin;
-    scrollbar-color: #27272a white;
-  }
-  html.dark {
-    scrollbar-width: thin;
-    scrollbar-color: white #27272a;
-  }
-  input {
-    border: none;
-    
-  }
-</style>
