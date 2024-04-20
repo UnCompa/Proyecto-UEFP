@@ -8,7 +8,10 @@ import {
   FaUsers,
 } from "react-icons/fa";
 import Link from "./Link";
-export default function NavDashboard({ children }) {
+import { getLangFromUrl } from "../../i18n/utils";
+import { MdDashboard } from "react-icons/md";
+export default function NavDashboard({ children,url }) {
+  const lang = getLangFromUrl(url)
   const [openMenu, setOpenMenu] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
   const handleMenu = () => {
@@ -68,7 +71,12 @@ export default function NavDashboard({ children }) {
             <h2 className="font-bold py-4">Paginas</h2>
             <ul className="flex flex-col gap-y-4">
               <li>
-                <Link to={""} text={"Inicio"}>
+                <Link to={`/${lang}/dashboard`} text={"Dashboard"}>
+                  <MdDashboard />
+                </Link>
+              </li>
+              <li>
+                <Link to={`/${lang}/dashboard/home`} text={"Inicio"}>
                   <FaHome />
                 </Link>
               </li>
@@ -90,17 +98,17 @@ export default function NavDashboard({ children }) {
             </ul>
           </li>
           <li>
-            <h2 className="font-bold py-2">Opciones</h2>
-            <ul className="flex items-center gap-x-4">
-              <li>{children}</li>
-              <li>
-                <form action="/api/auth/signout">
-                  <button className="text-red-400" type="submit">
-                    Cerrar sesión
-                  </button>
-                </form>
-              </li>
-            </ul>
+          <h2 className="font-bold py-2">Opciones</h2>
+          <ul className="flex h-full items-center gap-x-4">
+            <li>{children}</li>
+            <li>
+              <form action="/api/auth/signout">
+                <button className="text-red-400" type="submit">
+                  Cerrar sesión
+                </button>
+              </form>
+            </li>
+          </ul>
           </li>
         </ul>
       </nav>

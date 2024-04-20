@@ -1,9 +1,11 @@
 import { useEffect } from "react";
 import { supabase } from "../../lib/supabase";
-import { FaAddressBook, FaEnvelope, FaGraduationCap, FaHome, FaUsers } from "react-icons/fa";
+import { FaAddressBook, FaHome, FaUsers } from "react-icons/fa";
 import { MdOutlineAlternateEmail } from "react-icons/md";
+import { getLangFromUrl } from "../../i18n/utils";
 
-export default function MainDashboard({ email }) {
+export default function MainDashboard({ email,url }) {
+  const lang = getLangFromUrl(url);
   useEffect(() => {
     const fetchData = async () => {
       const result = await supabase.from("pages").select();
@@ -46,7 +48,7 @@ export default function MainDashboard({ email }) {
                 Edita la pagina principal ya sea el lema, la mision y vision de
                 la institucion, entre otras cosas
               </p>
-              <a href="">
+              <a href={`/${lang}/dashboard/home`}>
                 <button className="my-2 px-4 py-1 rounded hover:bg-zinc-100 dark:hover:bg-zinc-950 dark:bg-zinc-900 border border-green-500 transition-all">Ver Mas</button>
               </a>
             </div>

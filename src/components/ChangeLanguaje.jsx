@@ -14,10 +14,10 @@ export default function ChangeLanguage({ lang }) {
   
   return (
     <>
-      <li className="bg-zinc-300 dark:bg-zinc-950 w-max shadow-lg rounded-md hover:ring-2 hover:ring-zinc-500 transition-all">
+      <li className="bg-zinc-200 dark:bg-zinc-900 w-max shadow-2xl rounded-xl hover:bg-red-500 dark:hover:bg-red-200 hover:text-white dark:hover:text-black transition-all">
         <a className="flex items-center justify-center p-2 gap-x-2" href={translatePath("/", oppositeLang)}>
-          <img className="h-8" src={srcImg} alt="" />
-          <span>
+          <img className="h-6 drop-shadow-2xl shadow-xl" src={srcImg} alt=""/>
+          <span className="hidden md:block">
             {languages[oppositeLang]}
           </span>
         </a>

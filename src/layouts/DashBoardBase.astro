@@ -1,6 +1,6 @@
 ---
-import { getLangFromUrl } from '../i18n/utils';
-import { ViewTransitions } from "astro:transitions"
+import { getLangFromUrl } from "../i18n/utils";
+import { ViewTransitions } from "astro:transitions";
 const lang = getLangFromUrl(Astro.url);
 interface Props {
   title: string;
@@ -18,9 +18,12 @@ const { title, icon, keywords } = Astro.props;
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href={icon} />
     <link rel="sitemap" href="/sitemap-index.xml" />
-    <link rel="canonical" href="https://unidad-educativa-fiscal-pichincha.vercel.app">
-    <meta name="keywords" content={keywords}>
-    <slot name="opengraph"/>
+    <link
+      rel="canonical"
+      href="https://unidad-educativa-fiscal-pichincha.vercel.app"
+    />
+    <meta name="keywords" content={keywords} />
+    <slot name="opengraph" />
     <meta name="generator" content={Astro.generator} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -29,17 +32,21 @@ const { title, icon, keywords } = Astro.props;
       rel="stylesheet"
     />
     <title>{title}</title>
-    <ViewTransitions/>
+    <ViewTransitions />
   </head>
   <body class="bg-white dark:bg-black">
     <slot />
-  </body>
-  <script src="https://cdn.plyr.io/3.7.8/plyr.js"></script>
+    <script src="https://cdn.plyr.io/3.7.8/plyr.js"></script>
+  </body><style is:global>
+    * {
+      scrollbar-width: thin;
+    }
+    html {
+      color-scheme: light dark;
+      scrollbar-color: #27272a white;
+    }
+    html.dark {
+      scrollbar-color: white #27272a;
+    }
+  </style>
 </html>
-<style is:global>
-  html {
-    color-scheme: light dark;
-    scrollbar-width: thin;
-    scrollbar-color: white #27272a;
-  }
-</style>

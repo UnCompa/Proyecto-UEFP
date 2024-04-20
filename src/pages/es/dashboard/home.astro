@@ -1,0 +1,147 @@
+---
+import ThemeIcon from "../../../components/ThemeIcon.astro";
+import NavDashboard from "../../../components/dashboard/NavDashboard";
+import MainDashboard from "../../../components/dashboard/MainDashboard";
+import DashBoardBase from "../../../layouts/DashBoardBase.astro";
+import { supabase } from "../../../lib/supabase";
+const { cookies, redirect } = Astro;
+const url = Astro.url;
+const accessToken = cookies.get("sb-access-token");
+const refreshToken = cookies.get("sb-refresh-token");
+
+if (!accessToken || !refreshToken) {
+  return redirect("/es/signin");
+}
+const { data: datanew, error: errornew } = await supabase
+  .from("pages")
+  .select("*");
+console.log(datanew, errornew);
+const { data, error } = await supabase.auth.setSession({
+  refresh_token: refreshToken.value,
+  access_token: accessToken.value,
+});
+if (error) {
+  cookies.delete("sb-access-token", {
+    path: "/",
+  });
+  cookies.delete("sb-refresh-token", {
+    path: "/",
+  });
+
+  return redirect("/es/signin");
+}
+const newdata = "Educando en libertad";
+
+const { data: translation, error: translationError } = await supabase
+  .from("indexpage")
+  .select("translates")
+  .single();
+
+// Verificar si hubo un error al obtener la traducción
+if (translationError) {
+  console.error("Error al obtener la traducción:", translationError.message);
+  return; // Salir de la función si hay un error
+}
+
+// Extraer las traducciones existentes y clonarlas para evitar mutar el objeto original
+const existingTranslations = { ...translation.translates };
+
+// Actualizar la traducción con la nueva data
+existingTranslations["hero-frase"] = newdata;
+console.log(existingTranslations);
+
+try {
+  // Realizar la actualización en la base de datos
+  const { data: dataUpdate, error: errorUpdate } = await supabase
+    .from("indexpage")
+    .update({ "translates": existingTranslations })
+    .eq("id", "1")
+    .select();
+
+  // Verificar si hubo un error al realizar la actualización
+  if (errorUpdate) {
+    throw errorUpdate;
+  } else {
+    console.log("Traducción actualizada exitosamente:", dataUpdate);
+  }
+} catch (error) {
+  console.error("Error al actualizar la traducción:", error);
+}
+
+---
+
+<!-- <ThemeIcon/> -->
+<DashBoardBase title="Dashboard | Panel de control" icon="">
+  <main class="dashboard">
+    <div
+      class="bg-zinc-200 dark:bg-zinc-900 h-full w-full [grid-area:aside] boxshadow"
+    >
+      <NavDashboard url={url} client:load={true}>
+        <ThemeIcon />
+      </NavDashboard>
+    </div>
+    <div
+      class="p-4 bg-zinc-50 overflow-y-auto dark:bg-zinc-800 w-full h-full [grid-area:main] font-Kanit"
+    >
+      <section class="grid grid-cols-1 sm:grid-cols-2 place-content-center">
+        <div class="flex flex-col items-center p-4">
+          <h2
+            class="text-3xl lg:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-green-500 to-emerald-500"
+          >
+            Modifica la pagina inicial!
+          </h2>
+          <p class="text-light font-Rubik text-zinc-300 p-4">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente
+            delectus quisquam, ut animi velit placeat doloremque iste error quo
+            necessitatibus reprehenderit vitae fugit debitis magni laboriosam
+            dignissimos ea consectetur ad.
+          </p>
+        </div>
+        <div class="grid place-content-center">
+          <img class="h-96" src="/svg/calendar-55.svg" alt="" />
+        </div>
+      </section>
+      <section class="container mx-auto">
+        <article class="container mx-auto">
+          <h2 class="text-2xl underline decoration-2 decoration-green-500">
+            Modifica el lema
+          </h2>
+          <div class="flex items-center justify-start gap-x-4 py-4">
+            <div class="flex flex-col">
+              <label for="">Actual:</label>
+              <input disabled value="Educando en libertad" type="text" class="bg-zinc-900 my-4 p-2 rounded-2xl border-2 border-green-500 focus:outline-none focus:border-emerald-300 disabled:text-zinc-500 disabled:bg-zinc-950"/>
+            </div>
+            <div class="flex flex-col">
+              <label for="">Modificado:</label>
+              <div class="flex items-center gap-x-4">
+                <input type="text" class="bg-zinc-900 my-4 p-2 rounded-2xl border-2 border-green-500 focus:outline-none focus:border-emerald-300"/>
+              <button class="bg-green-500 h-max px-4 py-2 rounded-lg shadow-xl">Cambiar</button>
+              </div>
+            </div>
+          </div>
+        </article>
+      </section>
+    </div>
+  </main>
+</DashBoardBase>
+<style>
+  .dashboard {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    grid-template-rows: 100vh;
+    grid-template-areas: "aside main";
+  }
+  @media (max-width: 1024px) {
+    .dashboard {
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-rows: 96px 1fr;
+      grid-template-areas:
+        "aside"
+        "main";
+    }
+  }
+  .boxshadow {
+    box-shadow: 0px -20px 10px black;
+  }
+</style>

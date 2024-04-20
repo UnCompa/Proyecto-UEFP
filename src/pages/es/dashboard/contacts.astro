@@ -5,7 +5,7 @@ import MainDashboard from "../../../components/dashboard/MainDashboard";
 import DashBoardBase from "../../../layouts/DashBoardBase.astro";
 import { supabase } from "../../../lib/supabase";
 const { cookies, redirect } = Astro;
-const url = Astro.url
+
 const accessToken = cookies.get("sb-access-token");
 const refreshToken = cookies.get("sb-refresh-token");
 
@@ -30,7 +30,6 @@ if (error) {
   
   return redirect("/es/signin");
 }
-const email = data?.user?.email;
 ---
 
 <!-- <ThemeIcon/> -->
@@ -39,14 +38,13 @@ const email = data?.user?.email;
     <div
       class="bg-zinc-200 dark:bg-zinc-900 h-full w-full [grid-area:aside] boxshadow"
     >
-      <NavDashboard url={url} client:load={true}>
+      <NavDashboard client:load={true}>
         <ThemeIcon/>
       </NavDashboard>
     </div>
     <div
       class="p-4 bg-zinc-50 overflow-y-auto dark:bg-zinc-800 w-full h-full [grid-area:main] font-Kanit"
     >
-      <MainDashboard email={email} url={url} client:load />
     </div>
   </main>
 </DashBoardBase>
