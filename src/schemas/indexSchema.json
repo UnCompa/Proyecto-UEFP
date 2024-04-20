@@ -1,0 +1,23 @@
+
+{
+  "@context": "https://schema.org",
+  "@type": "EducationalOrganization",
+  "name": "Unidad Educativa Fiscal Pichincha",
+  "url": "https://unidad-educativa-fiscal-pichincha.vercel.app",
+  "logo": "https://unidad-educativa-fiscal-pichincha.vercel.app/imgs/UEFPescudoblack.png",
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+593980521452",
+    "contactType": "customer service",
+    "areaServed": ["EC"],
+    "availableLanguage": ["Spanish","English"]
+  },
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Avenida Principal, Ciudad Pichincha",
+    "addressLocality": "Pichincha",
+    "addressRegion": "Pichincha",
+    "postalCode": "12345",
+    "addressCountry": "EC"
+  }
+}

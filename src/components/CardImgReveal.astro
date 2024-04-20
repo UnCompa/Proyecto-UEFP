@@ -1,11 +1,12 @@
 ---
 interface Props {
-  img: string
+  img: string;
+  alt: string;
 }
-const {img} = Astro.props
+const {img,alt} = Astro.props
 ---
 <div class="flex items-center justify-center">
-  <img src={img} alt="" class="reveal rounded h-max w-2/3 shadow-xl hover:shadow-sky-500/10 transition-all" />
+  <img src={img} alt={alt} class="reveal rounded h-max w-2/3 shadow-xl hover:shadow-sky-500/10 transition-all" />
 </div>
 <script>
   import ScrollReveal from 'scrollreveal'

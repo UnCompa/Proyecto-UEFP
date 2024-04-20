@@ -110,6 +110,7 @@ function NavBar({ url, pathName, children, refreshToken, accessToken }) {
               : "/imgs/UEFPescudoblack.png"
           }
           className="h-16 lg:h-24"
+          alt="Escudo UEFP"
         />
       </a>
       <h3 className="block text-center text-xl font-Rubik uppercase font-bold lg:hidden">

@@ -4,9 +4,10 @@ interface Props {
   title: string;
   text: string;
   img: string;
-  invert?: boolean
+  alt: string;
+  invert?: boolean;
 }
-const { title, text, img, invert} = Astro.props;
+const { title, text, img, invert, alt} = Astro.props;
 ---
 
     <div class="grid grid-cols-1 md:grid-cols-2 container mx-auto font-Rubik p-8">
@@ -19,9 +20,9 @@ const { title, text, img, invert} = Astro.props;
         </div>
         <p class="text-zinc-400 py-2 font-Kanit">{text}</p>
       </div>
-      <CardImgReveal img={img}/>
+      <CardImgReveal img={img} alt={alt}/>
         ) : (
-          <CardImgReveal img={img}/>
+          <CardImgReveal img={img} alt={alt}/>
         <div class="text-black dark:text-white border-l-2 p-4 border-zinc-500 shadow">
         <div class="flex items-center justify-start gap-x-4 border-b-2 w-max pr-8 border-black dark:border-white">
           <slot/>
