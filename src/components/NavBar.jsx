@@ -5,9 +5,10 @@ import ChangeLanguaje from "./ChangeLanguaje.jsx";
 import { getLangFromUrl, useTranslations } from "../i18n/utils";
 import { supabase } from "../lib/supabase.ts";
 import { MdDashboard } from "react-icons/md";
+import { FaRegUser } from "react-icons/fa6";
 
 function NavBar({ url, pathName, children, refreshToken, accessToken }) {
-  const [openMenu, setOpenMenu] = useState(true);
+  const [openMenu, setOpenMenu] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [isUser, setIsUser] = useState(true);
   const lang = getLangFromUrl(url);
