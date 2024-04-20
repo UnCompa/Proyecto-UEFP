@@ -2,25 +2,25 @@
 import "plyr/dist/plyr.css";
 interface Props {
   url: string;
-  type: "normal" | "embed";
+  type?: "normal" | "embed";
 }
 let embedUrl;
 const { url, type } = Astro.props;
-if (type === "embed") {
-  const fragmentUrl = url?.split("?");
-  console.log(fragmentUrl);
-  const initUrl = fragmentUrl[0];
-  console.log(initUrl);
-  const parceUrl = initUrl.slice(17);
-  console.log(parceUrl);
-  embedUrl = `https://www.youtube.com/embed/${parceUrl}`;
-}
 if (type === "normal") {
   const fragmentUrl = url?.split("?");
   console.log(fragmentUrl);
   const initUrl = fragmentUrl[1];
   console.log(initUrl);
   const parceUrl = initUrl.slice(2)
+  console.log(parceUrl);
+  embedUrl = `https://www.youtube.com/embed/${parceUrl}`;
+}
+else if (type === "embed") {
+  const fragmentUrl = url?.split("?");
+  console.log(fragmentUrl);
+  const initUrl = fragmentUrl[0];
+  console.log(initUrl);
+  const parceUrl = initUrl.slice(17);
   console.log(parceUrl);
   embedUrl = `https://www.youtube.com/embed/${parceUrl}`;
 }
