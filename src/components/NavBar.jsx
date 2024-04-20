@@ -13,7 +13,13 @@ function NavBar({ url, pathName, children, refreshToken, accessToken }) {
   const [isUser, setIsUser] = useState(true);
   const lang = getLangFromUrl(url);
   const t = useTranslations(lang);
-  const [urls, setUrls] = useState({});
+  const [urls, setUrls] = useState({
+      home: t("a-inicio"),
+      about: t("a-about"),
+      academics: t("a-academicos"),
+      news: t("a-noticias"),
+      contact: t("a-contactos"),
+    });
   const [, setTitles] = useState({});
   const urlString = url.toString();
   useEffect(() => {
@@ -67,6 +73,7 @@ function NavBar({ url, pathName, children, refreshToken, accessToken }) {
       contact: t("a-contactos"),
     };
     setUrls(translatedUrls);
+
     const titlesNav = {
       home: t("title-inicio"),
       about: t("title-about"),

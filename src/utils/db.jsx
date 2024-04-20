@@ -10,7 +10,18 @@ export const selecwithTableDB = async (db,table) => {
 };
 export const selectOnlyDataDB = async (db,table) => {
   let jsonData = {};
-  const {data} = await supabase.from(db).select(table)
+    const {data} = await supabase.from(db).select(table)
+  console.log(data);
+  data?.forEach(text => {
+    jsonData = text.translates
+  })
+  return jsonData
+};
+export const selectOnlyDataContiditionDB = async (db,table,condicion) => {
+  let jsonData = {};
+  const column = condicion[0]
+  const row = condicion[1]
+  const {data} = await supabase.from(db).select(table).eq(column,row)
   data?.forEach(text => {
     jsonData = text.translates
   })

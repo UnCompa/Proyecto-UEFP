@@ -1,30 +1,61 @@
 ---
-import "plyr/src/sass/plyr.scss";
+import "plyr/dist/plyr.css";
 interface Props {
   url: string;
+  type: "normal" | "embed";
 }
-const { url } = Astro.props;
-const fragmentUrl = url?.split("?");
-const initUrl = fragmentUrl[0];
-const parceUrl = initUrl.slice(17);
-const embedUrl = `https://www.youtube.com/embed/${parceUrl}`;
+let embedUrl;
+const { url, type } = Astro.props;
+if (type === "embed") {
+  const fragmentUrl = url?.split("?");
+  console.log(fragmentUrl);
+  const initUrl = fragmentUrl[0];
+  console.log(initUrl);
+  const parceUrl = initUrl.slice(17);
+  console.log(parceUrl);
+  embedUrl = `https://www.youtube.com/embed/${parceUrl}`;
+}
+if (type === "normal") {
+  const fragmentUrl = url?.split("?");
+  console.log(fragmentUrl);
+  const initUrl = fragmentUrl[1];
+  console.log(initUrl);
+  const parceUrl = initUrl.slice(2)
+  console.log(parceUrl);
+  embedUrl = `https://www.youtube.com/embed/${parceUrl}`;
+}
 ---
 
 <div
   class="aspect-video h-max w-[90vw] md:w-[50vw] p-2 border border-black bg-zinc-100 dark:bg-zinc-900 shadow-xl relative my-4"
-  id="player"
 >
-  <iframe
-    src={`${embedUrl}?origin=https://plyr.io&iv_load_policy=3&modestbranding=1&playsinline=1&showinfo=0&rel=0&enablejsapi=1`}
-    allowfullscreen
-    allowtransparency
-    allow="autoplay"
-    height="100%"
-    width="100%"
-    ></iframe>
+  <div
+    class="plyr__video-embed"
+    id="player"
+    style="--plyr-color-main: #ff0000;"
+  >
+    <iframe
+      src={`${embedUrl}?origin=https://plyr.io&iv_load_policy=3&modestbranding=1&playsinline=1&showinfo=0&rel=0&enablejsapi=1`}
+      allowfullscreen
+      allowtransparency
+      allow="autoplay"
+      height="100%"
+      width="100%"></iframe>
+  </div>
 </div>
-<script is:inline>
-  import Plyr from "plyr/src/js/plyr";
-  const player = new Plyr("#player");
-  player.volume = 1
+<script>
+  import Plyr from "plyr";
+
+  const player = new Plyr("#player", {
+    controls: [
+      "play",
+      "progress",
+      "current-time",
+      "mute",
+      "volume",
+      "settings",
+      "fullscreen",
+    ],
+    keyboard: { global: true },
+  });
 </script>

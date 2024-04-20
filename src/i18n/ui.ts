@@ -1,9 +1,4 @@
-import AcademicsEs from "./locales/es/academics.json";
-import InicioEn from "./locales/en/en.json";
-import SobreNosotrosEn from "./locales/en/about.json";
-import AcademicsEn from "./locales/en/academics.json";
-// Objeto de idiomas
-import { selectOnlyDataDB } from "../utils/db";
+import { selectOnlyDataContiditionDB } from "../utils/db";
 export type Translates = {
   [key: string]: string | { [key: string]: string };
 };
@@ -12,8 +7,36 @@ const allTranslations = async (): Promise<{
   TraduccionEs: Translates;
   TraduccionEn: Translates;
 }> => {
-  const InicioEs = await selectOnlyDataDB("indexpage", "translates");
-  const SobreNosotrosEs = await selectOnlyDataDB("aboutpage", "translates");
+  const InicioEs = await selectOnlyDataContiditionDB(
+    "traduccionesEs",
+    "translates",
+    ["type", "inicio"]
+  );
+  const SobreNosotrosEs = await selectOnlyDataContiditionDB(
+    "traduccionesEs",
+    "translates",
+    ["type", "about"]
+  );
+  const AcademicsEs = await selectOnlyDataContiditionDB(
+    "traduccionesEs",
+    "translates",
+    ["type", "academics"]
+  );
+  const InicioEn = await selectOnlyDataContiditionDB(
+    "traduccionesEn",
+    "translates",
+    ["type", "inicio"]
+  );
+  const SobreNosotrosEn = await selectOnlyDataContiditionDB(
+    "traduccionesEn",
+    "translates",
+    ["type", "about"]
+  );
+  const AcademicsEn = await selectOnlyDataContiditionDB(
+    "traduccionesEn",
+    "translates",
+    ["type", "academics"]
+  );
   const TraduccionEs = { ...InicioEs, ...SobreNosotrosEs, ...AcademicsEs };
   const TraduccionEn = { ...InicioEn, ...SobreNosotrosEn, ...AcademicsEn };
   return { TraduccionEs, TraduccionEn };

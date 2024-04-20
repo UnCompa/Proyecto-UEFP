@@ -9,7 +9,8 @@ const {to , text, target} = Astro.props
 <a
   href={`${to}`}
   target={target ? "_blank" : "_self"}
-  class="px-2 w-max  text-start py-1 flex justify-center gap-x-2 font-Rubik font-bold text-zinc-900 dark:text-zinc-200 hover:text-zinc-900 dark:hover:text-zinc-500 hover:font-normal transition-all duration-200 ease-out"
+  class="w-max text-start py-1 flex justify-center gap-x-2 font-Rubik font-bold text-zinc-900 dark:text-zinc-200 hover:text-zinc-900 dark:hover:text-zinc-500 hover:font-normal transition-all duration-200 ease-out"
 >
+  <slot/>
   {text}
 </a>
