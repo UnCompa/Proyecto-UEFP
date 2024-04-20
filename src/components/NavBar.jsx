@@ -116,7 +116,7 @@ function NavBar({ url, pathName, children, refreshToken, accessToken }) {
         {mensaje1}
       </h3>
       <ul
-        className={`bg-slate-50 dark:bg-black h-screen fixed w-1/2 top-0 z-30 right-0 px-4 py-8 flex flex-1 flex-col gap-y-4 transition-all ${
+        className={`bg-slate-50 dark:bg-black h-[100dvh] fixed w-1/2 top-0 z-30 right-0 px-4 py-8 flex flex-1 flex-col gap-y-4 transition-all ${
           openMenu
             ? "translate-x-0 lg:translate-x-0"
             : "translate-x-full lg:translate-x-0"
