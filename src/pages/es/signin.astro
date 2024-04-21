@@ -34,7 +34,7 @@ if (accessToken && refreshToken) {
             class="underline text-cyan-500">Registrate</a
           >
         </p>
-        <SignForm/>
+        <SignForm lang={lang} navigate={redirect} client:load/>
       </div>
     </section>
   </main>
