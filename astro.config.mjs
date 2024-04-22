@@ -2,8 +2,9 @@ import { defineConfig } from 'astro/config';
 import tailwind from "@astrojs/tailwind";
 import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
-
 import vercel from "@astrojs/vercel/serverless";
+
+import mdx from "@astrojs/mdx";
 
 // https://astro.build/config
 export default defineConfig({
@@ -17,7 +18,7 @@ export default defineConfig({
         es: 'es-ES'
       }
     }
-  })],
+  }), mdx()],
   site: "https://unidad-educativa-fiscal-pichincha.vercel.app",
   i18n: {
     defaultLocale: "es",
@@ -27,5 +28,5 @@ export default defineConfig({
     }
   },
   output: "server",
-  adapter: vercel(),
+  adapter: vercel()
 });
