@@ -18,7 +18,7 @@ export const selectOnlyDataDB = async (db,table) => {
   return jsonData
 };
 export const selectOnlyDataContiditionDB = async (db,table,condicion) => {
-  let jsonData = {};
+  let jsonData = {}
   const column = condicion[0]
   const row = condicion[1]
   const {data} = await supabase.from(db).select(table).eq(column,row)

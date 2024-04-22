@@ -4,23 +4,18 @@ import Navigation from "../../components/Navigation.astro";
 import Layout from "../../layouts/Layout.astro";
 import Footer from "../../components/Footer.astro";
 import { getLangFromUrl } from "../../i18n/utils";
-const lang = getLangFromUrl(Astro.url);
-import { Toaster } from "sonner";
-import SignGoogle from "../../components/buttons/SignGoogle";
+const lang = getLangFromUrl(Astro.url)
+import { Toaster } from 'sonner'
 ---
-
 <Layout title="Registrarse" icon="">
   <Navigation />
-  <Toaster />
+  <Toaster/>
   <main class="w-full h-full bg-zinc-100 dark:bg-zinc-800 py-4">
     <section
       class="grid grid-cols-1 lg:grid-cols-2 bg-zinc-200 dark:bg-zinc-900 p-8 container mx-auto shadow-xl"
     >
       <div class="relative flex flex-col justify-center font-Rubik gap-y-4">
-        <div
-          class="h-24 w-72 bg-yellow-500/20 absolute rounded-full blur-xl -top-5 z-10"
-        >
-        </div>
+        <div class="h-24 w-72 bg-yellow-500/20 absolute rounded-full blur-xl -top-5 z-10"></div>
         <h1 class="text-5xl font-bold">Registrarse</h1>
         <div
           class="h-1 my-2 w-1/2 bg-gradient-to-r from-red-500 via-orange-500 to-yellow-400 rounded-full"
@@ -32,25 +27,7 @@ import SignGoogle from "../../components/buttons/SignGoogle";
             class="underline text-cyan-500">Iniciar sesión</a
           >
         </p>
-        <form
-          id="form"
-          action="/api/auth/register"
-          method="post"
-          class="flex flex-col"
-        >
-          <label for="email" class="font-bold">Nombre de usuario</label>
-          <div
-            class="h-1 my-2 w-1/3 bg-gradient-to-r from-red-500 via-orange-500 to-yellow-400 rounded-full"
-          >
-          </div>
-          <Input
-            isRequired
-            type="text"
-            name="name"
-            id="name"
-            placeholder="Juan Perez"
-            className="my-2"
-          />
+        <form id="form" action="/api/auth/register" method="post" class="flex flex-col">
           <label for="email" class="font-bold">Correo electrónico</label>
           <div
             class="h-1 my-2 w-1/3 bg-gradient-to-r from-red-500 via-orange-500 to-yellow-400 rounded-full"
@@ -77,22 +54,21 @@ import SignGoogle from "../../components/buttons/SignGoogle";
             placeholder="***********"
             className="my-2"
           />
-          <button
-            type="submit"
-            class="bg-gradient-to-l from-red-500 via-orange-500 to-yellow-500 py-2 my-2 rounded-full text-white font-bold hover:shadow-lg hover:shadow-orange-500/70 transition-all"
-            >Iniciar sesión</button
-          >
+          <button type="submit" class="bg-gradient-to-l from-red-500 via-orange-500 to-yellow-500 py-2 my-2 rounded-full text-white font-bold hover:shadow-lg hover:shadow-orange-500/70 transition-all">Iniciar sesión</button>
         </form>
-        <SignGoogle client:load/>
       </div>
       <div class="flex items-center justify-center py-8">
-        <img
-          class="h-96"
-          src="/public/svg/undraw_online_test_re_kyfx(1).svg"
-          alt=""
-        />
+        <img class="h-96" src="/public/svg/undraw_online_test_re_kyfx(1).svg" alt=""/>
       </div>
     </section>
   </main>
   <Footer />
 </Layout>
+<script type="module">
+  import {toast} from 'sonner'
+  const form = document.getElementById("form")
+  form?.addEventListener("submit", (e) => {
+    e.preventDefault()
+    toast("Email enviado, revisa para confirmar")
+  })
+</script>

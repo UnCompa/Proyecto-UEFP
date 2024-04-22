@@ -1,7 +1,7 @@
 ---
 import ThemeIcon from "../../../components/ThemeIcon.astro";
 import NavDashboard from "../../../components/dashboard/NavDashboard";
-import MainDashboard from "../../../components/dashboard/MainDashboard";
+import ChangeForm from "../../../components/dashboard/ChangeForm";
 import DashBoardBase from "../../../layouts/DashBoardBase.astro";
 import { supabase } from "../../../lib/supabase";
 const { cookies, redirect } = Astro;
@@ -12,10 +12,6 @@ const refreshToken = cookies.get("sb-refresh-token");
 if (!accessToken || !refreshToken) {
   return redirect("/es/signin");
 }
-const { data: datanew, error: errornew } = await supabase
-  .from("pages")
-  .select("*");
-console.log(datanew, errornew);
 const { data, error } = await supabase.auth.setSession({
   refresh_token: refreshToken.value,
   access_token: accessToken.value,
@@ -30,44 +26,6 @@ if (error) {
 
   return redirect("/es/signin");
 }
-const newdata = "Educando en libertad";
-
-const { data: translation, error: translationError } = await supabase
-  .from("indexpage")
-  .select("translates")
-  .single();
-
-// Verificar si hubo un error al obtener la traducción
-if (translationError) {
-  console.error("Error al obtener la traducción:", translationError.message);
-  return; // Salir de la función si hay un error
-}
-
-// Extraer las traducciones existentes y clonarlas para evitar mutar el objeto original
-const existingTranslations = { ...translation.translates };
-
-// Actualizar la traducción con la nueva data
-existingTranslations["hero-frase"] = newdata;
-console.log(existingTranslations);
-
-try {
-  // Realizar la actualización en la base de datos
-  const { data: dataUpdate, error: errorUpdate } = await supabase
-    .from("indexpage")
-    .update({ "translates": existingTranslations })
-    .eq("id", "1")
-    .select();
-
-  // Verificar si hubo un error al realizar la actualización
-  if (errorUpdate) {
-    throw errorUpdate;
-  } else {
-    console.log("Traducción actualizada exitosamente:", dataUpdate);
-  }
-} catch (error) {
-  console.error("Error al actualizar la traducción:", error);
-}
-
 ---
 
 <!-- <ThemeIcon/> -->
@@ -102,24 +60,7 @@ try {
         </div>
       </section>
       <section class="container mx-auto">
-        <article class="container mx-auto">
-          <h2 class="text-2xl underline decoration-2 decoration-green-500">
-            Modifica el lema
-          </h2>
-          <div class="flex items-center justify-start gap-x-4 py-4">
-            <div class="flex flex-col">
-              <label for="">Actual:</label>
-              <input disabled value="Educando en libertad" type="text" class="bg-zinc-900 my-4 p-2 rounded-2xl border-2 border-green-500 focus:outline-none focus:border-emerald-300 disabled:text-zinc-500 disabled:bg-zinc-950"/>
-            </div>
-            <div class="flex flex-col">
-              <label for="">Modificado:</label>
-              <div class="flex items-center gap-x-4">
-                <input type="text" class="bg-zinc-900 my-4 p-2 rounded-2xl border-2 border-green-500 focus:outline-none focus:border-emerald-300"/>
-              <button class="bg-green-500 h-max px-4 py-2 rounded-lg shadow-xl">Cambiar</button>
-              </div>
-            </div>
-          </div>
-        </article>
+        <ChangeForm client:load/>
       </section>
     </div>
   </main>

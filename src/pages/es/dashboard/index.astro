@@ -20,8 +20,6 @@ const { data, error } = await supabase.auth.setSession({
   refresh_token: refreshToken.value,
   access_token: accessToken.value,
 });
-console.log(data);
-
 if (error) {
   cookies.delete("sb-access-token", {
     path: "/",
@@ -32,8 +30,6 @@ if (error) {
   
   return redirect("/es/signin");
 }
-console.log(data);
-
 const email = data?.user?.email;
 ---
 

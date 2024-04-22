@@ -48,7 +48,7 @@ export default function MainDashboard({ email,url }) {
                 Edita la pagina principal ya sea el lema, la mision y vision de
                 la institucion, entre otras cosas
               </p>
-              <a href={`/${lang}/dashboard/home`}>
+              <a href={`/${lang}/dashboard/homepage`}>
                 <button className="my-2 px-4 py-1 rounded hover:bg-zinc-100 dark:hover:bg-zinc-950 dark:bg-zinc-900 border border-green-500 transition-all">Ver Mas</button>
               </a>
             </div>

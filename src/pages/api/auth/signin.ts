@@ -4,7 +4,6 @@ import { getLangFromUrl } from "../../../i18n/utils";
 
 export const POST: APIRoute = async ({ request, cookies, redirect }) => {
   const formData = await request.formData();
-  console.log(formData);
   const email = formData.get("email")?.toString();
   const password = formData.get("password")?.toString();
   const url = new URL(request.url);
@@ -20,22 +19,6 @@ export const POST: APIRoute = async ({ request, cookies, redirect }) => {
     email,
     password,
   });
-  console.log(data);
-  
-  if (data) {
-    const userData = await supabase.auth.getSession();
-    const user = userData.data.session?.user
-    const newData = {
-      id: user?.id,
-      full_name: "Hola"
-    }
-    try {
-      await supabase.from("profiles").upsert(newData)
-    }catch(error) {
-      console.log(error);
-      
-    }
-   }
   if (error) {  
     return redirect(`/${lang}/`)
   }

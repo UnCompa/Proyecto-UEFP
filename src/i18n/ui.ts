@@ -1,3 +1,8 @@
+import HomeEs from './locales/es/es.json'
+import AboutEs from './locales/es/about.json'
+import AcademicsEs from './locales/es/academics.json'
+
+import { object } from "astro/zod";
 import { selectOnlyDataContiditionDB } from "../utils/db";
 export type Translates = {
   [key: string]: string | { [key: string]: string };
@@ -17,7 +22,7 @@ const allTranslations = async (): Promise<{
     "translates",
     ["type", "about"]
   );
-  const AcademicsEs = await selectOnlyDataContiditionDB(
+  const AcademicosEs = await selectOnlyDataContiditionDB(
     "traduccionesEs",
     "translates",
     ["type", "academics"]
@@ -37,8 +42,18 @@ const allTranslations = async (): Promise<{
     "translates",
     ["type", "academics"]
   );
-  const TraduccionEs = { ...InicioEs, ...SobreNosotrosEs, ...AcademicsEs };
-  const TraduccionEn = { ...InicioEn, ...SobreNosotrosEn, ...AcademicsEn };
+  let TraduccionEn;
+  let TraduccionEs;
+  if (InicioEs === object) {
+    console.log("Hola");
+    TraduccionEs = { ...HomeEs, ...AboutEs, ...AcademicsEs };
+  } else {
+    console.log("Hola 2");
+    TraduccionEs = { ...InicioEs, ...SobreNosotrosEs, ...AcademicosEs };
+  }
+  console.log(TraduccionEs);
+  
+  TraduccionEn = { ...InicioEn, ...SobreNosotrosEn, ...AcademicsEn };
   return { TraduccionEs, TraduccionEn };
 };
 export const languages = {
