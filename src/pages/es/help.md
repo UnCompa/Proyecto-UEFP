@@ -31,5 +31,3 @@ En esta seccion veras una pequena guia de uso para la web
 Visita la [Pagina de desarrollador](/public/videos/test.mp4) si eres parte del **equipo** de `Desarrollo`
 
 Para mas visita `/es/help/develop`
-
-![](/public/videos/test.mp4)
