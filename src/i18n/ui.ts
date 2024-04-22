@@ -2,7 +2,6 @@ import HomeEs from './locales/es/es.json'
 import AboutEs from './locales/es/about.json'
 import AcademicsEs from './locales/es/academics.json'
 
-import { object } from "astro/zod";
 import { selectOnlyDataContiditionDB } from "../utils/db";
 export type Translates = {
   [key: string]: string | { [key: string]: string };
@@ -44,7 +43,7 @@ const allTranslations = async (): Promise<{
   );
   let TraduccionEn;
   let TraduccionEs;
-  if (InicioEs === object) {
+  if (InicioEs === Object) {
     console.log("Hola");
     TraduccionEs = { ...HomeEs, ...AboutEs, ...AcademicsEs };
   } else {
