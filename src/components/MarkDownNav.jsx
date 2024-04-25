@@ -2,13 +2,13 @@ import { useState } from "react";
 import { Bars, X } from "../icons/Icons.jsx";
 
 function NavBar() {
-  const [openMenu, setOpenMenu] = useState(true);
+  const [openMenu, setOpenMenu] = useState(false);
   const handleMenu = () => {
     setOpenMenu(!openMenu);
   };
   return (
     <header
-      className={`h-28 box-border bg-cover text-black shadow-2xl dark:text-white bg-white/90 dark:bg-zinc-900 flex justify-between lg:justify-around items-center sticky top-0 px-12 z-10`}
+      className={`h-28 box-border bg-cover text-black shadow-2xl dark:text-white bg-white/90 dark:bg-zinc-900 flex justify-between lg:justify-around items-center sticky top-0 px-12 z-10 shadow-sky-500/20`}
     >
       <a href="/">
         <img

@@ -1,0 +1,128 @@
+---
+layout: ../../layouts/MarkDown.astro
+titulo: Un guia de como usar la web UEFP
+descripcion: Ayuda para los principiantes
+---
+
+# Guia para desarroladores
+
+Para los futuros desarrolladores se dara una explicacion general de como esta funcionando el Proyecto.
+
+Si deseas mas información visita el repositorio de [GitHub](https://github.com/UnCompa/Proyecto-UEFP)
+
+## Explicación general
+
+La pagina esta hecha con **Astro JS** un framework de la web el cual permite crear paginas rapidas, estas para mostrar contenido como es en este caso.
+
+![Astro Logo](https://cdn.buttercms.com/xrVbfdR5TBy4iTaY4xl7)
+
+Si deseas saber mas visita la pagina oficial de [Astro JS](https://astro.build/)
+
+### Requerimientos necesarios
+
+Para continuar, mantener y mejorar la web se necesita tener los siguientes requerimientos.
+
+- Uso de HTML, CSS Y JavaScript
+- Saber sobre React
+- Tener conocimiento del uso de Astro
+- Saber sobre el control de versiones **Git**
+- Manejo de la Terminal
+
+Con estos requisitos se podrá mantener y continuar este proyecto.
+
+## Como iniciar
+
+Para empezar se necesita clonar el repositorio actual, se lo hace con el siguiente comando en la terminal (Se necesita de Git)
+
+```bs
+git clone git@github.com:UnCompa/Proyecto-UEFP.git
+```
+
+Con esto se clonara el repositorio para empezar a trabar en ella.
+
+### Estructura del proyecto
+
+La estructura **actual** del proyecto es el siguiente
+
+```txt
+Proyecto-UEFP/
+│
+├── public/
+│   ├── covers
+│   ├── imgs
+│   └── videos
+│   └── svg
+│
+├── src/
+│   ├── components/
+│   ├── i18n/
+│   ├── icons/
+│   ├── layouts/
+│   ├── lib/
+│   ├── meta/
+│   ├── pages/
+│   ├── schema/
+│   ├── store/
+│   └── utils
+│
+└── .gitignore
+└── README.md
+└── tailwind.config.mjs
+└── package.json
+└── package-lock.json
+└── astro.config.mjs
+└── tsconfig.json
+```
+
+#### Carpeta public
+
+##### Covers
+
+Contiene las imagenes para el OpenGragh
+
+##### Imgs
+
+Aqui estan las imagenes que se usan de primeras para la web
+
+##### Videos
+
+Carpeta con videos que se usan para la web
+
+##### Svg
+
+Se guarda imagenes de tipo **svg** que se usan para la web
+
+#### Carpeta src
+
+Es esta hay varias carpetas y se explicará su proposito
+
+##### Components
+
+En esta carpeta se crean componentes reutilizables, se empleo otras carpetas para diferentes SpeechRecognitionResult, como el Footer, etc
+
+##### i18n
+
+Aqui estan las traducciones para español e ingles de la pagina, se usa **Supabase** una base de datos donde esta guardada toda las traducciones, la carpeta existe debido a que si la base tiene algun fallo la web siga funcionando con normalidad
+
+##### Icons
+
+Se encuentra un componente de **React** donde se exporta los iconos en svg que se desea usar
+
+##### Layouts
+
+En esta carpeta se encuentra las platillas para diferentes casos de uso ideal para tener una base lista para que sea reutilizable
+
+##### Lib
+
+Aqui se encuentran librerias, actualmente se encuentra la libreria para usar Supabase
+
+##### Meta
+
+Habra componentes con la informacion necesaria para que la web se indexada
+
+##### Pages
+
+La mas importante, aqui se encuentra las rutas a las diferentes paginas de la web
+##### Schema
+##### Store
+##### Utils
