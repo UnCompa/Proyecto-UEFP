@@ -5,6 +5,7 @@ import CardInfo from "../../components/CardInfo.astro";
 import VideoPlayer from "../../components/VideoPlayer.astro";
 import VideoYTPlayer from "../../components/VideoYTPlayer.astro";
 import Footer from "../../components/Footer.astro";
+import IndexMeta from "./../../meta/IndexMetaEn.astro";
 import { getLangFromUrl, useTranslations } from "../../i18n/utils";
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -17,6 +18,7 @@ const t = useTranslations(lang);
   description="Welcome to the homepage of Fiscal Pichincha Educational Unit"
 >
   <Header />
+  <IndexMeta slot="opengraph" />
   <main
     class="h-full w-full bg-zinc-50 dark:bg-zinc-800 grid place-content-center gap-y-4"
   >
