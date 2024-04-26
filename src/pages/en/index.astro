@@ -6,13 +6,15 @@ import VideoPlayer from "../../components/VideoPlayer.astro";
 import VideoYTPlayer from "../../components/VideoYTPlayer.astro";
 import Footer from "../../components/Footer.astro";
 import { getLangFromUrl, useTranslations } from "../../i18n/utils";
-const lang = getLangFromUrl(Astro.url)
-const t = useTranslations(lang)
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
 <Layout
-  title="Unidad Educativa Fiscal Pichincha | Web Oficial"
+  title="Official Website of Fiscal Pichincha Educational Unit | UEFP"
   icon="/public/imgs/UEFPescudoblanco.png"
+  keywords="Fiscal Pichincha Educational Unit, Official Website, education, UEFP"
+  description="Welcome to the homepage of Fiscal Pichincha Educational Unit"
 >
   <Header />
   <main
@@ -24,8 +26,8 @@ const t = useTranslations(lang)
         title={t("main-mision")}
         text={t("main-mision-text")}
         alt="Mission img"
-        />
-        <CardInfo
+      />
+      <CardInfo
         img="/imgs/programacion.jpeg"
         title={t("main-vision")}
         text={t("main-vision-text")}
@@ -41,7 +43,10 @@ const t = useTranslations(lang)
       <VideoPlayer url="/videos/test.mp4" />
     </section>
     <section class="container mx-auto grid place-content-center h-full w-full">
-      <VideoYTPlayer url="https://www.youtube.com/watch?v=xU8goD51VYM" type="normal"/>
+      <VideoYTPlayer
+        url="https://www.youtube.com/watch?v=xU8goD51VYM"
+        type="normal"
+      />
     </section>
   </main>
   <Footer />

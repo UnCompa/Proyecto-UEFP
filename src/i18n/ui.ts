@@ -1,6 +1,9 @@
 import HomeEs from './locales/es/es.json'
 import AboutEs from './locales/es/about.json'
 import AcademicsEs from './locales/es/academics.json'
+import HomeEn from './locales/en/en.json'
+import AboutEn from './locales/en/about.json'
+import AcademicsEn from './locales/en/academics.json'
 
 import { selectOnlyDataContiditionDB } from "../utils/db";
 export type Translates = {
@@ -43,16 +46,14 @@ const allTranslations = async (): Promise<{
   );
   let TraduccionEn;
   let TraduccionEs;
-  if (InicioEs === Object) {
-    console.log("Hola");
-    TraduccionEs = { ...HomeEs, ...AboutEs, ...AcademicsEs };
-  } else {
-    console.log("Hola 2");
-    TraduccionEs = { ...InicioEs, ...SobreNosotrosEs, ...AcademicosEs };
-  }
-  console.log(TraduccionEs);
   
-  TraduccionEn = { ...InicioEn, ...SobreNosotrosEn, ...AcademicsEn };
+  if (typeof InicioEs === "object" && InicioEs !== null || typeof InicioEn === "object" && InicioEn !== null) {
+    TraduccionEs = { ...HomeEs, ...AboutEs, ...AcademicsEs };
+    TraduccionEn = { ...HomeEn, ...AboutEn, ...AcademicsEn };
+  } else {
+    TraduccionEs = { ...InicioEs, ...SobreNosotrosEs, ...AcademicosEs };
+    TraduccionEn = { ...InicioEn, ...SobreNosotrosEn, ...AcademicsEn };
+  }  
   return { TraduccionEs, TraduccionEn };
 };
 export const languages = {

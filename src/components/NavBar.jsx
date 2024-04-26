@@ -14,25 +14,26 @@ function NavBar({ url, pathName, children, refreshToken, accessToken }) {
   const lang = getLangFromUrl(url);
   const t = useTranslations(lang);
   const [urls, setUrls] = useState({
-      home: t("a-inicio"),
-      about: t("a-about"),
-      academics: t("a-academicos"),
-      news: t("a-noticias"),
-      contact: t("a-contactos"),
-    });
+    home: t("a-inicio"),
+    about: t("a-about"),
+    academics: t("a-academicos"),
+    news: t("a-noticias"),
+    contact: t("a-contactos"),
+  });
   const [, setTitles] = useState({});
   const urlString = url.toString();
   useEffect(() => {
     const fetchData = async () => {
       if (!accessToken || !refreshToken) {
-        setIsUser(false)
+        setIsUser(false);
+        return;
       }
       const { data, error } = await supabase.auth.setSession({
         refresh_token: refreshToken.value,
         access_token: accessToken.value,
       });
-      setIsUser(true)
-      console.log(data, error);
+      setIsUser(true);
+      console.log(error);
     };
     fetchData();
   }, []);
@@ -147,29 +148,19 @@ function NavBar({ url, pathName, children, refreshToken, accessToken }) {
           <NavLink to={urls.contact} text={t("nav-contacto")}></NavLink>
         </li>
         <ul className="flex items-end gap-x-4 p-4 h-full lg:items-center">
-        <li>
-          {
-            isUser ? (
-          <a
-          href={`/${lang}/dashboard`}
-          className="h-full w-full"
-        >
-          <MdDashboard className="h-max w-max shadow-2xl text-2xl p-2 bg-zinc-200 hover:bg-red-600 hover:text-white dark:bg-zinc-900 dark:hover:bg-red-200 dark:hover:text-black transition-all rounded-xl"/>
-        </a>
+          <li>
+            {isUser ? (
+              <a href={`/${lang}/dashboard`} className="h-full w-full">
+                <MdDashboard className="h-max w-max shadow-2xl text-2xl p-2 bg-zinc-200 hover:bg-red-600 hover:text-white dark:bg-zinc-900 dark:hover:bg-red-200 dark:hover:text-black transition-all rounded-xl" />
+              </a>
             ) : (
-              <a
-            href={`/${lang}/signin`}
-            className="h-full w-full"
-          >
-            <FaRegUser className="h-max w-max shadow-2xl text-2xl p-2 bg-zinc-200 hover:bg-red-600 hover:text-white dark:bg-zinc-900 dark:hover:bg-red-200 dark:hover:text-black transition-all rounded-xl"/>
-          </a>
-            )
-          }
-        </li>
-        <li>{children}</li>
-        <li>
+              <a href={`/${lang}/signin`} className="h-full w-full">
+                <FaRegUser className="h-max w-max shadow-2xl text-2xl p-2 bg-zinc-200 hover:bg-red-600 hover:text-white dark:bg-zinc-900 dark:hover:bg-red-200 dark:hover:text-black transition-all rounded-xl" />
+              </a>
+            )}
+          </li>
+          <li>{children}</li>
           <ChangeLanguaje lang={lang} url={pathName} />
-        </li>
         </ul>
       </ul>
       <button
