@@ -1,54 +1,54 @@
 ---
 layout: ../../layouts/MarkDown.astro
-titulo: Un guia de como usar la web UEFP
-descripcion: Ayuda para los principiantes
+titulo: Guía para desarrolladores de la web UEFP
+descripcion: Recursos para desarrolladores
 ---
 
-# Guia para desarroladores
+# Guía para desarrolladores
 
-Para los futuros desarrolladores se dara una explicacion general de como esta funcionando el Proyecto.
+¡Bienvenido al equipo de desarrollo de la Unidad Educativa Fiscal Pichincha (UEFP)! Esta guía te proporcionará una visión general del proyecto y los recursos necesarios para contribuir al desarrollo y mantenimiento de nuestra página web.
 
-Si deseas mas información visita el repositorio de [GitHub](https://github.com/UnCompa/Proyecto-UEFP)
+Para obtener más detalles y colaborar en el proyecto, visita nuestro repositorio en [GitHub](https://github.com/UnCompa/Proyecto-UEFP).
 
-## Explicación general
+## Visión general del proyecto
 
-La pagina esta hecha con **Astro JS** un framework de la web el cual permite crear paginas rapidas, estas para mostrar contenido como es en este caso.
+Nuestra página web está construida con **Astro JS**, un framework web que permite crear páginas rápidas y eficientes para mostrar contenido de manera dinámica.
 
 ![Astro Logo](https://cdn.buttercms.com/xrVbfdR5TBy4iTaY4xl7)
 
-Si deseas saber mas visita la pagina oficial de [Astro JS](https://astro.build/)
+Para obtener más información sobre Astro JS, visita la página oficial de [Astro JS](https://astro.build/).
 
 ### Requerimientos necesarios
 
-Para continuar, mantener y mejorar la web se necesita tener los siguientes requerimientos.
+Para contribuir al proyecto y mantener la calidad de la página, es importante contar con los siguientes conocimientos y herramientas:
 
-- Uso de HTML, CSS Y JavaScript
-- Saber sobre React
-- Tener conocimiento del uso de Astro
-- Saber sobre el control de versiones **Git**
-- Manejo de la Terminal
+- Dominio de HTML, CSS y JavaScript
+- Familiaridad con React
+- Conocimiento de Astro JS
+- Experiencia en el uso de control de versiones con **Git**
+- Competencia en el uso de la terminal
 
-Con estos requisitos se podrá mantener y continuar este proyecto.
+Con estos requisitos, podrás participar activamente en el desarrollo y la mejora continua de nuestro proyecto.
 
-## Como iniciar
+## Cómo empezar
 
-Para empezar se necesita clonar el repositorio actual, se lo hace con el siguiente comando en la terminal (Se necesita de Git)
+Para comenzar a contribuir, primero necesitarás clonar el repositorio del proyecto. Puedes hacerlo ejecutando el siguiente comando en la terminal (se requiere tener Git instalado):
 
-```bs
+```bash
 git clone git@github.com:UnCompa/Proyecto-UEFP.git
+
 ```
 
 Con esto se clonara el repositorio para empezar a trabar en ella.
 
 ### Estructura del proyecto
 
-La estructura **actual** del proyecto es el siguiente
+La estructura actual del proyecto es el siguiente:
 
 ```txt
 Proyecto-UEFP/
 │
 ├── public/
-│   ├── covers
 │   ├── imgs
 │   └── videos
 │   └── svg
@@ -76,53 +76,56 @@ Proyecto-UEFP/
 
 #### Carpeta public
 
-##### Covers
-
-Contiene las imagenes para el OpenGragh
+Esta carpeta contiene recursos estáticos utilizados en la página web, como imágenes y videos.
 
 ##### Imgs
 
-Aqui estan las imagenes que se usan de primeras para la web
+Almacena imágenes principales utilizadas en la web.
 
 ##### Videos
 
-Carpeta con videos que se usan para la web
+Carpeta que almacena videos utilizados en la web.
 
 ##### Svg
 
-Se guarda imagenes de tipo **svg** que se usan para la web
+Se guardan imágenes de tipo SVG utilizadas en la web.
 
 #### Carpeta src
 
-Es esta hay varias carpetas y se explicará su proposito
+Esta carpeta contiene el código fuente de la aplicación, organizado en diferentes subdirectorios:
 
 ##### Components
-
-En esta carpeta se crean componentes reutilizables, se empleo otras carpetas para diferentes SpeechRecognitionResult, como el Footer, etc
+Contiene componentes reutilizables utilizados en diferentes partes de la página.
 
 ##### i18n
-
-Aqui estan las traducciones para español e ingles de la pagina, se usa **Supabase** una base de datos donde esta guardada toda las traducciones, la carpeta existe debido a que si la base tiene algun fallo la web siga funcionando con normalidad
+Almacena las traducciones para español e inglés de la página.
 
 ##### Icons
 
-Se encuentra un componente de **React** donde se exporta los iconos en svg que se desea usar
+Un componente de React que exporta iconos en formato SVG para su uso en la página.
 
 ##### Layouts
 
-En esta carpeta se encuentra las platillas para diferentes casos de uso ideal para tener una base lista para que sea reutilizable
+Aquí se encuentran las plantillas que proporcionan una base reutilizable para diferentes casos de uso.
 
 ##### Lib
 
-Aqui se encuentran librerias, actualmente se encuentra la libreria para usar Supabase
+Contiene bibliotecas útiles, como la biblioteca para utilizar Supabase
 
 ##### Meta
 
-Habra componentes con la informacion necesaria para que la web se indexada
+Contiene componentes con información necesaria para la indexación de la página.
 
 ##### Pages
-
-La mas importante, aqui se encuentra las rutas a las diferentes paginas de la web
+La carpeta más importante, que contiene las rutas a las diferentes páginas de la web.
 ##### Schema
+
+Carpeta para definir esquemas de datos.
+
 ##### Store
+
+Almacena archivos relacionados con el manejo del estado de la aplicación.
+
 ##### Utils
+
+Esta carpeta contiene utilidades varias utilizadas en el proyecto.
