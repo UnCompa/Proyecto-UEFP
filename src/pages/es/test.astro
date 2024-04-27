@@ -1,0 +1,47 @@
+<!-- ---
+import Layout from "../../layouts/Layout.astro";
+---
+
+<Layout title="Hola" icon="">
+  <section class="container mx-auto">
+    <h1>Hola</h1>
+    <div>
+      <input type="text" id="buscador" />
+      <ul id="Articulos">
+        <li id="articulo-manzana">Manzana</li>
+        <li id="articulo-platano">Plátano</li>
+        <li id="articulo-naranja">Naranja</li>
+        <li id="articulo-pera">Pera</li>
+        <li id="articulo-sandia">Sandía</li>
+        <li id="articulo-fresa">Fresa</li>
+      </ul>      
+    </div>
+  </section>
+</Layout>
+<script>
+  const frutas = [
+  { nombre: "Manzana" },
+  { nombre: "Platano" },
+  { nombre: "Naranja" },
+  { nombre: "Pera" },
+  { nombre: "Sandia" },
+  { nombre: "Fresa" }
+];
+
+document.addEventListener("keyup", (e) => {
+  if (e.target.matches("#buscador")) {
+    const searchTerm = e.target.value.toLowerCase();
+    frutas.forEach((fruta) => {
+      const nombre = fruta.nombre.toLowerCase();
+      console.log(fruta.nombre);
+      const frutaElement = document.querySelector(`#articulo-${nombre}`);
+      if (nombre.includes(searchTerm)) {
+        frutaElement.classList.remove("hidden");
+      } else {
+        frutaElement.classList.add("hidden");
+      }
+    });
+  }
+});
+
+</script> -->

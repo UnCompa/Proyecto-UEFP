@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Bars, X } from "../icons/Icons.jsx";
 
-function NavBar() {
+function NavBar({lang}) {
   const [openMenu, setOpenMenu] = useState(false);
   const handleMenu = () => {
     setOpenMenu(!openMenu);
@@ -34,13 +34,13 @@ function NavBar() {
             </button>
           </li>
           <li className="list-none">
-            <a href="" className="px-4 py-2 ">Inicio</a>
+            <a className="px-4" href={`/${lang}`}>Inicio</a>
           </li>
           <li className="list-none">
-            <a href="" className="px-4 py-2 ">Guia usuario</a>
+            <a className="px-4" href={`/${lang}/help`}>Para usuarios</a>
           </li>
           <li className="list-none">
-            <a href="" className="px-4 py-2 ">Guia desarrollador</a>
+            <a className="px-4" href={`/${lang}/dev`}>Para desarrolladores</a>
           </li>
         </ul>
       </nav>

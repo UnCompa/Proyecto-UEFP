@@ -6,7 +6,7 @@ const url = Astro.url;
 const lang = getLangFromUrl(url)
 const pathName = Astro.url.pathname;
 const {frontmatter} = Astro.props
-const {titulo,descripcion} = frontmatter
+const {titulo,descripcion,icon} = frontmatter
 ---
 
 <!doctype html>
@@ -14,7 +14,7 @@ const {titulo,descripcion} = frontmatter
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href={""} />
+    <link rel="icon" type="image/svg+xml" href={icon} />
     <link rel="sitemap" href="/sitemap-index.xml" />
     <link
       rel="canonical"
@@ -33,7 +33,7 @@ const {titulo,descripcion} = frontmatter
     <SpeedInsights />
   </head>
   <body class="bg-white dark:bg-zinc-950 h-full">
-    <MarkDownNav client:load/>
+    <MarkDownNav lang={lang} client:load/>
     <main class="p-4 container w-full h-full mx-auto lg:w-1/2">
       <slot />
     </main>
