@@ -21,6 +21,9 @@ export default function ContacsForm({ urlStr,url }) {
     const res = await fetch("https://formsubmit.co/1115e155c3f8b6719a8318cc356e33c6 ", {
       method: "POST",
       body: formData,
+      headers: {
+        "Access-Control-Allow-Origin": "https://unidad-educativa-fiscal-pichincha.vercel.app",
+      }
     })
     console.log(res);
   });
