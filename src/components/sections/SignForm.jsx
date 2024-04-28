@@ -1,4 +1,4 @@
-import { Input, spacer } from "@nextui-org/react";
+import { Input } from "@nextui-org/react";
 import { useForm } from "react-hook-form";
 export default function SignForm({lang,navigate}) {
   const {
@@ -11,12 +11,10 @@ export default function SignForm({lang,navigate}) {
     const formData = new FormData()
     formData.append("email", data.email)
     formData.append("password", data.password)
-    console.log(formData);
     const res = await fetch("/api/auth/signin", {
       method: "POST",
       body: formData
     })
-    console.log(res.redirected);
     res.redirected ? window.location.href = `/${lang}/dashboard` : window.location.href = `/${lang}/register`
   });
   return (

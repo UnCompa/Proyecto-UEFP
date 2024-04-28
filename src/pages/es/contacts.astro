@@ -4,6 +4,7 @@ import Navigation from "../../components/Navigation.astro";
 import Layout from "../../layouts/Layout.astro";
 import Footer from "../../components/Footer.astro";
 import { ContactIlustration } from "../../icons/Icons";
+import ContacsForm from "../../components/sections/ContacsForm";
 const url = Astro.url;
 const urlStr = url.toString();
 ---
@@ -18,42 +19,7 @@ const urlStr = url.toString();
       <div
         class="text-black dark:text-white rounded p-4 h-max w-full bg-zinc-100/50 dark:bg-zinc-900/10 backdrop-blur-xl"
       >
-        <form
-          action="https://formsubmit.co/0f38cc3d1265906cf3e0e788faa9eb82"
-          method="POST"
-          class="flex flex-col gap-y-2 font-Rubik w-full"
-        >
-          <label for="Email"> Correo Electronico </label>
-          <Input
-            type="email"
-            variant="underlined"
-            color="default"
-            isRequired
-            placeholder="tuemail@gmail.com"
-            name="Email"
-          />
-          <label for="Asunto"> Asunto </label>
-          <Input
-            type="text"
-            variant="underlined"
-            color="default"
-            isRequired
-            placeholder="Ej: Solicitud de informacion"
-            name="Asunto"
-          />
-          <label for="Contenido"> Mensaje </label>
-          <Textarea
-            color="default"
-            variant="underlined"
-            isRequired
-            placeholder="Ej: Buenas tardes deseo..."
-            name="Contenido"
-          />
-          <Button variant="ghost" type="submit" color="primary">Enviar</Button>
-          <input type="hidden" name="_next" value={urlStr} />
-          <input type="hidden" name="_captcha" value="false" />
-          <input type="hidden" name="_template" value="table" />
-        </form>
+        <ContacsForm url={url} urlStr={urlStr} client:load/>
       </div>
       <div class="grid place-content-center h-max w-full">
         <img
