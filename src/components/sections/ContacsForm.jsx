@@ -20,7 +20,10 @@ export default function ContacsForm({ urlStr,url }) {
     console.log(formData);
     const res = await fetch("https://formsubmit.co/brandonddxd@gmail.com", {
       method: "POST",
-      body: formData
+      body: formData,
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+      }
     })
     console.log(res);
   });
@@ -103,10 +106,10 @@ export default function ContacsForm({ urlStr,url }) {
           {errors.mensaje.message}
         </span>
       )}
-      <button type="submit">Enviar informacion</button>
       <input type="hidden" name="_next" value={urlStr} />
       <input type="hidden" name="_captcha" value="false" />
-      <input type="hidden" name="_template" value="table" />
+      <input type="hidden" name="_template" value="table"/>
+      <button type="submit">Enviar informacion</button>
     </form>
   );
 }
