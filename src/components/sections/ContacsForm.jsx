@@ -18,12 +18,9 @@ export default function ContacsForm({ urlStr,url }) {
     formData.append("asunto", data.asunto)
     formData.append("mensaje", data.mensaje)
     console.log(formData);
-    const res = await fetch("https://formsubmit.co/brandonddxd@gmail.com", {
+    const res = await fetch("https://formsubmit.co/1115e155c3f8b6719a8318cc356e33c6 ", {
       method: "POST",
       body: formData,
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-      }
     })
     console.log(res);
   });
