@@ -3,7 +3,9 @@ import AboutEs from './locales/es/about.json'
 import AcademicsEs from './locales/es/academics.json'
 import HomeEn from './locales/en/en.json'
 import AboutEn from './locales/en/about.json'
-import AcademicsEn from './locales/en/academics.json'
+import AcademicosEn from './locales/en/academics.json'
+import ContactsEs from './locales/es/contacts.json'
+import ContactsEn from './locales/en/contacts.json'
 
 import { selectOnlyDataContiditionDB } from "../utils/db";
 export type Translates = {
@@ -29,6 +31,11 @@ const allTranslations = async (): Promise<{
     "translates",
     ["type", "academics"]
   );
+  const ContactosEs = await selectOnlyDataContiditionDB(
+    "traduccionesEs",
+    "translates",
+    ["type", "contacts"]
+  );
   const InicioEn = await selectOnlyDataContiditionDB(
     "traduccionesEn",
     "translates",
@@ -44,15 +51,20 @@ const allTranslations = async (): Promise<{
     "translates",
     ["type", "academics"]
   );
+  const ContactosEn = await selectOnlyDataContiditionDB(
+    "traduccionesEn",
+    "translates",
+    ["type", "contacts"]
+  );
   let TraduccionEn;
   let TraduccionEs;
   
   if (typeof InicioEs === "object" && InicioEs !== null || typeof InicioEn === "object" && InicioEn !== null) {
-    TraduccionEs = { ...HomeEs, ...AboutEs, ...AcademicsEs };
-    TraduccionEn = { ...HomeEn, ...AboutEn, ...AcademicsEn };
+    TraduccionEs = { ...HomeEs, ...AboutEs, ...AcademicsEs, ...ContactsEs};
+    TraduccionEn = { ...HomeEn, ...AboutEn, ...AcademicosEn, ...ContactsEn };
   } else {
-    TraduccionEs = { ...InicioEs, ...SobreNosotrosEs, ...AcademicosEs };
-    TraduccionEn = { ...InicioEn, ...SobreNosotrosEn, ...AcademicsEn };
+    TraduccionEs = { ...InicioEs, ...SobreNosotrosEs, ...AcademicosEs, ...ContactosEs};
+    TraduccionEn = { ...InicioEn, ...SobreNosotrosEn, ...AcademicsEn,...ContactosEn };
   }  
   return { TraduccionEs, TraduccionEn };
 };

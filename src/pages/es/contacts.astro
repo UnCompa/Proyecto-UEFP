@@ -1,12 +1,13 @@
 ---
-import { Button, Input, Textarea } from "@nextui-org/react";
 import Navigation from "../../components/Navigation.astro";
 import Layout from "../../layouts/Layout.astro";
 import Footer from "../../components/Footer.astro";
-import { ContactIlustration } from "../../icons/Icons";
 import ContacsForm from "../../components/sections/ContacsForm";
+import { getLangFromUrl, useTranslations } from "../../i18n/utils";
 const url = Astro.url;
 const urlStr = url.toString();
+const lang = getLangFromUrl(url)
+const t = useTranslations(lang)
 ---
 <script>
   import ScrollReveal from "scrollreveal";
@@ -32,7 +33,7 @@ const urlStr = url.toString();
       <h2
         class="text-4xl lg:text-6xl font-bold text-center lg:text-start animate-slide-in-bottom"
       >
-        Encuentranos
+        {t("contacts-title-hero")}
       </h2>
       <div
         class="bg-gradient-to-r from-red-500 to-pink-500/30 h-0.5 w-full lg:w-1/2 my-2 rounded"
@@ -52,7 +53,7 @@ const urlStr = url.toString();
     <h2
       class="title text-4xl lg:text-5xl font-bold font-Rubik text-center pt-8"
     >
-      Contactanos!
+      Contacts!
     </h2>
     <div
       class="mx-auto bg-gradient-to-r from-red-500 to-pink-500/30 h-0.5 w-2/3 lg:w-1/2 my-2 rounded"

@@ -1,33 +1,27 @@
 import { Input, Textarea } from "@nextui-org/react";
 import { useForm } from "react-hook-form";
-import { getLangFromUrl } from "../../i18n/utils";
+import { getLangFromUrl, useTranslations } from "../../i18n/utils";
 import { RxCrossCircled } from "react-icons/rx";
 import { motion } from "framer-motion";
 export default function ContacsForm({ urlStr, url }) {
   const lang = getLangFromUrl(url);
+  const t = useTranslations(lang)
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
   const onSubmit = handleSubmit(async (data) => {
-    console.log("Hola");
-    console.log(data);
-    console.log(errors);
     const formData = new FormData();
     formData.append("email", data.email);
     formData.append("asunto", data.asunto);
     formData.append("mensaje", data.mensaje);
     console.log(formData);
     const res = await fetch(
-      "https://formsubmit.co/1115e155c3f8b6719a8318cc356e33c6 ",
+      "https://formsubmit.co/brandonowo26@gmail.com",
       {
         method: "POST",
-        body: formData,
-        headers: {
-          "Access-Control-Allow-Origin":
-            "https://unidad-educativa-fiscal-pichincha.vercel.app",
-        },
+        body: JSON.stringify(formData),
       }
     );
     console.log(res);
