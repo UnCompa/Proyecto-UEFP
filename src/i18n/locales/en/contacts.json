@@ -1,3 +1,12 @@
 {
-  "contacts-title-hero": "Find us"
+  "contacts-title-hero": "Find us",
+  "contacts-text-hero": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic tempore quod obcaecati perspiciatis iusto? Earum dicta perspiciatis dolorem nihil magni at! Ex consectetur eos suscipit maxime quaerat nisi hic debitis. ",
+  "contacts-title-form": "Contacts",
+  "contacts-form-email": "Email",
+  "contacts-form-asunto": "Issue",
+  "contacts-form-message": "Message",
+  "contacts-form-button": "Send",
+  "contacts-modal-title": "E-mail sent",
+  "contacts-modal-text": "Thank you for sending your email, it will be read and answered to resolve your questions",
+  "contacts-modal-button": "Ok"
 }

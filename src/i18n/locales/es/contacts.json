@@ -1,3 +1,12 @@
 {
-  "contacts-title-hero": "Encuentranos"
+  "contacts-title-hero": "Encuentranos",
+  "contacts-text-hero": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic tempore quod obcaecati perspiciatis iusto? Earum dicta perspiciatis dolorem nihil magni at! Ex consectetur eos suscipit maxime quaerat nisi hic debitis. ",
+  "contacts-title-form": "Contactos",
+  "contacts-form-email": "Correo",
+  "contacts-form-asunto": "Asunto",
+  "contacts-form-message": "Mensaje",
+  "contacts-form-button": "Enviar",
+  "contacts-modal-title": "Email enviado",
+  "contacts-modal-text": "Gracias por enviar tu correo, sera leido y contestado para resolver tus dudas",
+  "contacts-modal-button": "Aceptar"
 }

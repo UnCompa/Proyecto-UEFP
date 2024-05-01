@@ -1,3 +1,8 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import OpenModal from './../../components/OpenModal'
+---
+
 <!-- ---
 import Layout from "../../layouts/Layout.astro";
 ---
@@ -45,3 +50,7 @@ document.addEventListener("keyup", (e) => {
 });
 
 </script> -->
+
+<Layout title="Hola" icon="">
+  <OpenModal isOpen={true} client:load/>
+</Layout>
