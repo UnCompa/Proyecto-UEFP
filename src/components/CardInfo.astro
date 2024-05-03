@@ -10,28 +10,34 @@ interface Props {
 const { title, text, img, invert, alt } = Astro.props;
 ---
 
-<div class="grid grid-cols-1 md:grid-cols-2 container mx-auto font-Rubik p-8">
+<div class="grid grid-cols-1 md:grid-cols-2 container mx-auto font-Rubik p-4 md:p-12">
   {
     !invert ? (
       <>
-        <div class="text-black dark:text-white border-l-2 p-4 border-zinc-800 dark:border-zinc-100">
-          <div class="flex items-center justify-start gap-x-2 border-b-2 w-max pr-8 border-black dark:border-white">
+        <div class="text-black dark:text-white border-l-4 p-4 border-zinc-800 dark:border-red-500">
+          <div class="flex items-center justify-start gap-x-2 w-max pr-8 py-2">
             <slot />
-            <h2 class="text-3xl font-light title">{title}</h2>
+            <h2 class="text-4xl font-light title">{title}</h2>
           </div>
-          <p class="text-zinc-400 py-2 font-Kanit">{text}</p>
+          <div class="h-0.5 w-1/2 bg-gradient-to-r  from-zinc-950 from-10% to-transparent dark:from-red-500 dark:to-yellow-500 rounded" />
+          <p class="text-zinc-700 dark:text-zinc-400 py-2 lg:text-lg font-Rubik font-light">
+            {text}
+          </p>
         </div>
         <CardImgReveal img={img} alt={alt} />
       </>
     ) : (
       <>
         <CardImgReveal img={img} alt={alt} />
-        <div class="text-black dark:text-white border-l-2 p-4 border-zinc-500 shadow">
-          <div class="flex items-center justify-start gap-x-4 border-b-2 w-max pr-8 border-black dark:border-white">
+        <div class="text-black dark:text-white border-l-4 p-4 border-zinc-800 dark:border-red-500">
+          <div class="flex items-center justify-start gap-x-2 w-max pr-8 py-2">
             <slot />
-            <h2 class="text-3xl font-light title">{title}</h2>
+            <h2 class="text-4xl font-light title">{title}</h2>
           </div>
-          <p class="text-zinc-400 py-2 font-Kanit">{text}</p>
+          <div class="h-0.5 w-1/2 bg-gradient-to-r  from-zinc-950 from-10% to-transparent dark:from-red-500 dark:to-yellow-500 rounded" />
+          <p class="text-zinc-700 dark:text-zinc-400 py-2 lg:text-lg font-Rubik font-light">
+            {text}
+          </p>
         </div>
       </>
     )

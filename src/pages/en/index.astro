@@ -3,19 +3,19 @@ import Layout from "../../layouts/Layout.astro";
 import Header from "../../components/Header.astro";
 import CardInfo from "../../components/CardInfo.astro";
 import VideoPlayer from "../../components/VideoPlayer.astro";
-import VideoYTPlayer from "../../components/VideoYTPlayer.astro";
+import IndexMeta from "./../../meta/IndexMeta.astro";
 import Footer from "../../components/Footer.astro";
-import IndexMeta from "./../../meta/IndexMetaEn.astro";
 import { getLangFromUrl, useTranslations } from "../../i18n/utils";
+import { Diamond } from "../../icons/Icons";
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
 
 <Layout
-  title="Official Website of Fiscal Pichincha Educational Unit | UEFP"
+  title="Página Oficial de la Unidad Educativa Fiscal Pichincha"
   icon="/public/imgs/UEFPescudoblanco.png"
-  keywords="Fiscal Pichincha Educational Unit, Official Website, education, UEFP"
-  description="Welcome to the homepage of Fiscal Pichincha Educational Unit"
+  keywords="unidad educativa fiscal pichincha,Unidad Educativa Fiscal Pichincha, página oficial, educación, UEFP"
+  description="Pagina de inicio de la Unidad Educativa Fiscal Pichincha"
 >
   <Header />
   <IndexMeta slot="opengraph" />
@@ -24,31 +24,33 @@ const t = useTranslations(lang);
   >
     <section class="bg-transparent w-full h-full">
       <CardInfo
-        img="/imgs/programacion.jpeg"
+        img="/imgs/libroIndex1.jpg"
         title={t("main-mision")}
         text={t("main-mision-text")}
-        alt="Mission img"
-      />
+        alt="Imagen referente a la mision"
+      >
+        <Diamond height={"16px"} width={"16px"} />
+      </CardInfo>
       <CardInfo
-        img="/imgs/programacion.jpeg"
+        img="/imgs/personaIndex1.jpg"
         title={t("main-vision")}
         text={t("main-vision-text")}
-        alt="Vission img"
-      />
+        alt="Imagen referente a la vision"
+      >
+        <Diamond height={"16px"} width={"16px"} /></CardInfo
+      >
     </section>
-    <section class="container mx-auto grid place-content-center w-full">
+    <section class="container mx-auto grid place-content-center w-full my-4">
       <h2
-        class="text-black dark:text-zinc-100 text-center text-5xl py-4 font-Rubik"
+        class="text-black dark:text-zinc-100 text-center text-5xl py-2 font-Rubik"
       >
         {t("main-presentacion")}
       </h2>
+      <div
+        class="h-1 w-full bg-gradient-to-l from-red-500 via-orange-500 to-yellow-500 mb-4"
+      >
+      </div>
       <VideoPlayer url="/videos/test.mp4" />
-    </section>
-    <section class="container mx-auto grid place-content-center h-full w-full">
-      <VideoYTPlayer
-        url="https://www.youtube.com/watch?v=xU8goD51VYM"
-        type="normal"
-      />
     </section>
   </main>
   <Footer />
