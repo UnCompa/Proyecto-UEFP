@@ -13,6 +13,8 @@ import {
   FaPhone,
   FaAt,
 FaDochub,
+FaInstagram,
+FaYoutube,
 } from "react-icons/fa6";
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -86,6 +88,24 @@ const t = useTranslations(lang);
             text={t("footer-redes-tiktok")}
           >
             <FaTiktok className="font-bold text-xl" />
+          </FooterLink>
+        </li>
+        <li class="flex items-center">
+          <FooterLink
+            target
+            to="https://www.instagram.com/colegiouefp20"
+            text="Instagram"
+          >
+            <FaInstagram className="font-bold text-xl" />
+          </FooterLink>
+        </li>
+        <li class="flex items-center">
+          <FooterLink
+            target
+            to="https://www.youtube.com/channel/UCDTkTM8MCe6zgndWaNOQKQQ"
+            text="Youtube"
+          >
+            <FaYoutube className="font-bold text-xl" />
           </FooterLink>
         </li>
       </ul>
