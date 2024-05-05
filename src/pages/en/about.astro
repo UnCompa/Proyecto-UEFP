@@ -9,11 +9,17 @@ import { FaPen, FaStar } from "react-icons/fa6";
 import Footer from "../../components/Footer.astro";
 import { Wave, IlustrationPerson } from "../../icons/Icons";
 import { getLangFromUrl, useTranslations } from "../../i18n/utils";
+import InfoTeacher from "../../components/sections/InfoTeacher";
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
 
-<Layout title="Meet Our Staff | Important Information" description="Discover and learn about the qualified personnel dedicated to providing quality education" keywords="About us, Our Team, Student Preparation" icon="/imgs/UEFPescudoblanco.png">
+<Layout
+  title="Conoce nuestro personal | Informacion inportante"
+  description="Descubre y conoce al personal calificado dedicado a brindar educación de calidad"
+  keywords="Sobre nosotros, Nuestro Equipo, Preparar estudiantes"
+  icon="/imgs/UEFPescudoblanco.png"
+>
   <Navigation />
   <main class="h-full bg-zinc-400 dark:bg-zinc-900">
     <section class="h-screen">
@@ -24,7 +30,7 @@ const t = useTranslations(lang);
         class="grid lg:grid-cols-2 place-content-center font-Rubik h-full px-8"
       >
         <div class="flex flex-col p-4 gap-y-4 justify-center">
-          <h2 class="text-5xl font-bold animate-blurred-fade-in">
+          <h2 class="text-5xl font-bold animate-blurred-fade-in pt-4">
             {t("about-hero-title")}
           </h2>
           <p class="animate-fade-in-up">
@@ -49,17 +55,17 @@ const t = useTranslations(lang);
         </h3>
         <div class="h-full">
           <CardInfo
-            alt="History img 1"
             text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore voluptatem quibusdam cum quisquam repudiandae minus ea eligendi ratione distinctio eos, iste officia. Cum ut fugiat odit aspernatur doloribus. Ullam, quis! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi dolore doloribus error sunt sapiente illo, mollitia accusantium earum. Perferendis porro culpa vitae id nihil distinctio, incidunt eos atque est soluta."
             title="Desde los inicios"
             img="/public/imgs/pexels-designecologist-1779487.jpg"
+            alt="Imagen sobre la historia"
           />
           <CardInfo
-            alt="History img 2"
             invert
             text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore voluptatem quibusdam cum quisquam repudiandae minus ea eligendi ratione distinctio eos, iste officia. Cum ut fugiat odit aspernatur doloribus. Ullam, quis! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi dolore doloribus error sunt sapiente illo, mollitia accusantium earum. Perferendis porro culpa vitae id nihil distinctio, incidunt eos atque est soluta."
             title="Desde los inicios"
             img="/public/imgs/pexels-designecologist-1779487.jpg"
+            alt="Imagen sobre la historia 2"
           />
         </div>
       </div>
@@ -93,7 +99,7 @@ const t = useTranslations(lang);
           <Objectives
             title={"Ejercer estudiantes"}
             text={"Preparar estudiantes para que tenga las aptitudes adecuadas para el mundo laboral"}
-            color={"pink"}
+            color={"border-pink-500"}
             client:load
           >
             <FaPen />
@@ -101,7 +107,7 @@ const t = useTranslations(lang);
           <Objectives
             title={"Mejorar estudiantes"}
             text={"Preparar estudiantes para que tenga las aptitudes adecuadas para el mundo laboral"}
-            color={"green"}
+            color={"border-green-500"}
             client:load
           >
             <FaStar />
@@ -109,7 +115,7 @@ const t = useTranslations(lang);
           <Objectives
             title={"Estudios de calidad"}
             text={"Preparar estudiantes para que tenga las aptitudes adecuadas para el mundo laboral"}
-            color={"sky"}
+            color={"border-sky-500"}
             client:load
           >
             <FaPen />
@@ -122,27 +128,7 @@ const t = useTranslations(lang);
         </h3>
       </div>
       <div class="h-full py-8 bg-black/10 p-8">
-        <div
-          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 bg-zinc-100 dark:bg-zinc-900 p-4"
-        >
-          <PeopleCard
-            teacher={"Msc. Rober Villagomez"}
-            content={"Declaraciones aqui"}
-            work={"Rector de la institución"}
-          />
-          <PeopleCard
-            teacher={"Msc. Pablito"}
-            content={"Declaraciones aqui"}
-            work={"Prueba"}
-            img="/imgs/persona.jpg"
-          />
-          <PeopleCard
-            teacher={"Ing. Alisa Fuentes"}
-            content={"Declaraciones aqui"}
-            work={"Prueba"}
-            img="/imgs/programacion.jpeg"
-          />
-        </div>
+        <InfoTeacher lang={"En"} client:load />
       </div>
     </section>
   </main>
