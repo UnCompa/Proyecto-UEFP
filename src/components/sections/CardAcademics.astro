@@ -1,16 +1,16 @@
 ---
-const {title = "Titulo",img,content = "Aqui va contenido",color} = Astro.props
+const {title = "Titulo",img,content = "Aqui va contenido",color,id} = Astro.props
 ---
 
-<div class="p-4">
+<div class="p-4" id={id}>
     <h2 class="title text-3xl font-Kanit">{title }</h2>
     <div class={`h-1 rounded-full w-1/2 my-2 ${color}`}></div>
     <div class="grid grid-col-1 md:grid-cols-2">
-        <div class="p-4 h-full w-full grid place-content-center">
-            <img src={img} alt="" class="h-full max-h-96 w-full object-cover aspect-video border shadow-xl bg-zinc-900 animate-slide-out-left">
+        <div class="aspect-video p-4 h-full w-full grid place-content-center revealImg">
+            <img src={img} alt="" class="h-full max-h-96 w-full object-cover border shadow-xl bg-zinc-900 animate-slide-out-left">
         </div>
         <div class="p-4 flex flex-col items-center justify-center">
-            <p class="text font-Kanit text-xl md:text-2xl">{content}</p>
+            <p class="text font-Kanit text-lg md:text-xl">{content}</p>
         </div>
     </div>
 </div>
@@ -29,5 +29,13 @@ const {title = "Titulo",img,content = "Aqui va contenido",color} = Astro.props
         distance: "200px",
         reset: false,
         duration: 1000,
+      })
+    ScrollReveal().reveal(".revealImg", {
+        opacity: 0,
+        origin: "right",
+        distance: "200px",
+        reset: false,
+        duration: 500,
+        easing: 'ease-out',
       })
 </script>
