@@ -1,36 +1,123 @@
 ---
-import { Button } from "@nextui-org/react";
+import { Button, Tooltip } from "@nextui-org/react";
 import Navigation from "../../components/Navigation.astro";
 import Footer from "../../components/Footer.astro";
 import Layout from "../../layouts/Layout.astro";
-import CardAcademics from '../../components/sections/CardAcademics.astro'
+import CardAcademics from "../../components/sections/CardAcademics.astro";
+import AcademicsLink from "../../components/buttons/AcademicsLink";
 import { getLangFromUrl, useTranslations } from "../../i18n/utils";
-const lang = getLangFromUrl(Astro.url)
-const t = useTranslations(lang)
+import { FaBrain, FaGraduationCap, FaHand, FaPen } from "react-icons/fa6";
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const url = Astro.url;
+console.log(url);
+console.log(lang);
 ---
 
 <Layout title="Academicos" icon="/imgs/UEFPescudoblanco.png">
-    <Navigation/>
-    <main class="w-full h-full bg-zinc-100 dark:bg-zinc-800">
-        <section class={`hero h-[85vh] w-full flex items-center`}>
-            <div class="py-4 px-4 backdrop-blur flex flex-col sm:block container mx-auto dark:text-white text-white">
-                <h1 class="animate-sink z-20 text-6xl md:text-9xl text-center sm:text-start font-Rubit font-bold">{t("academics-title-hero")}</h1>
-                <p class="font-Kanit text-base md:text-xl py-4 w-full md:w-2/3 text-center sm:text-start">Busca la mejor oferta academica para estudiar en esta institución, para mas informacion visita cada sección sobre que promociona cada nivel</p>
-                <Button size="lg" color="primary">Mira estas ofertas</Button>
-            </div>
-        </section>
-        <section class="h-full bg-zinc-100 dark:bg-zinc-800 container mx-auto">
-           <CardAcademics title="Nivel Inicial" img="/imgs/estudiantes.jpeg" content="Hola que tal ash daij iasj idjas djisaj iajs djias" color="bg-cyan-500"/>
-        </section>
-    </main>
-    <Footer/>
+  <Navigation />
+  <main
+    class="grid-academics relative w-full h-full bg-zinc-50 dark:bg-zinc-950"
+  >
+    <aside
+      class="fixed lg:sticky bottom-0 lg:top-4 h-max m-2 p-3 font-Kanit bg-zinc-200 rounded-xl dark:bg-zinc-900 shadow-2xl shadow-red-300/50 dark:shadow-red-800/30 z-10"
+    >
+      <h2 class="text-xl lg:text-3xl font-bold py-1 lg:py-4">Niveles</h2>
+      <ul class="flex items-center lg:items-start lg:flex-col gap-4 flex-wrap">
+        <li>
+          <AcademicsLink url={`/${lang}/academics#1`} content={t("nivel-1-title")} text={t("nivel-1-title")} client:load>
+            <FaHand className="text-gray-900 dark:text-gray-100"/>
+          </AcademicsLink>
+        </li>
+        <li>
+          <AcademicsLink url={`/${lang}/academics#2`} content={t("nivel-2-title")} text={t("nivel-2-title")} client:load>
+            <FaBrain />
+          </AcademicsLink>
+        </li>
+        <li>
+          <AcademicsLink url={`/${lang}/academics#3`} content={t("nivel-3-title")} text={t("nivel-3-title")} client:load>
+            <FaPen />
+          </AcademicsLink>
+        </li>
+        <li>
+          <AcademicsLink url={`/${lang}/academics#4`} content={t("nivel-4-title")} text={t("nivel-4-title")} client:load>
+            <FaGraduationCap />
+          </AcademicsLink>
+        </li>
+      </ul>
+    </aside>
+    <div class="border-l-2 border-zinc-200/50 dark:border-zinc-950/50">
+      <section class={`hero h-[85vh] w-full flex items-center`}>
+        <div
+          class="py-4 px-12 backdrop-blur flex flex-col sm:block container mx-auto dark:text-white text-white"
+        >
+          <h1
+            class="animate-sink z-20 text-6xl md:text-9xl text-center lg:text-start font-Rubit font-bold"
+          >
+            {t("academics-title-hero")}
+          </h1>
+          <p
+            class="font-Kanit text-base md:text-xl py-4 w-full md:w-2/3 text-center md:text-start"
+          >
+            {t("academics-text-hero")}
+        </p>
+        </div>
+      </section>
+      <section class="h-max bg-zinc-100 dark:bg-zinc-800 container mx-auto">
+        <CardAcademics
+          id="1"
+          title={t("nivel-1-title")}
+          img="/imgs/estudiantes.jpeg"
+          content={t("nivel-1-text")}
+          color="bg-cyan-500"
+        />
+        <CardAcademics
+          id="2"
+          title={t("nivel-2-title")}
+          img="/imgs/estudiantes.jpeg"
+          content={t("nivel-2-text")}
+          color="bg-green-500"
+        />
+        <CardAcademics
+          id="3"
+          title={t("nivel-3-title")}
+          img="/imgs/estudiantes.jpeg"
+          content={t("nivel-3-text")}
+          color="bg-red-500"
+        />
+        <CardAcademics
+          id="4"
+          title={t("nivel-4-title")}
+          img="/imgs/estudiantes.jpeg"
+          content={t("nivel-4-text")}
+          color="bg-purple-500"
+        />
+      </section>
+    </div>
+  </main>
 </Layout>
+<Footer />
+
 <style>
-    .hero {
-        background: 
-            linear-gradient(45deg, rgba(0,0,0,100), rgba(29,29,32,0)),
-            url("/imgs/study.jpg");
-        background-repeat: no-repeat;
-        background-size: cover;
+  html {
+    scroll-behavior: smooth;
+  }
+  .hero {
+    background: linear-gradient(45deg, rgba(0, 0, 0, 100), rgba(29, 29, 32, 0)),
+      url("/imgs/study.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  .grid-academics {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    scrollbar-color: #555;
+    scrollbar-width: thin;
+  }
+  @media (max-width: 1024px) {
+    .grid-academics {
+      display: grid;
+      grid-template-columns: 1fr;
     }
+  }
 </style>
