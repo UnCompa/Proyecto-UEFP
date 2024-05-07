@@ -5,8 +5,7 @@ import ChangeLanguaje from "./ChangeLanguaje.jsx";
 import { getLangFromUrl, useTranslations } from "../i18n/utils";
 import { supabase } from "../lib/supabase.ts";
 import { MdDashboard } from "react-icons/md";
-import { FaRegUser } from "react-icons/fa6";
-
+import { HiMail, HiHome, HiUsers, HiAcademicCap } from "react-icons/hi";
 function NavBar({ url, pathName, children, refreshToken, accessToken }) {
   const [openMenu, setOpenMenu] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -133,22 +132,30 @@ function NavBar({ url, pathName, children, refreshToken, accessToken }) {
           </button>
         </li>
         <li>
-          <NavLink to={urls.home} text={t("nav-inicio")}></NavLink>
+          <NavLink to={urls.home} text={t("nav-inicio")}>
+            <HiHome />
+          </NavLink>
         </li>
         <li>
-          <NavLink to={urls.about} text={t("nav-sobrenosotros")}></NavLink>
+          <NavLink to={urls.about} text={t("nav-sobrenosotros")}>
+            <HiUsers/>
+          </NavLink>
         </li>
         <li>
-          <NavLink to={urls.academics} text={t("nav-academicos")}></NavLink>
+          <NavLink to={urls.academics} text={t("nav-academicos")}>
+            <HiAcademicCap />
+          </NavLink>
         </li>
         {/* <li>
           <NavLink to={urls.news} text={t("nav-noticias")}></NavLink>
         </li> */}
         <li>
-          <NavLink to={urls.contact} text={t("nav-contacto")}></NavLink>
+          <NavLink to={urls.contact} text={t("nav-contacto")}>
+            <HiMail />
+          </NavLink>
         </li>
         <ul className="flex items-end gap-x-4 p-4 h-full lg:items-center">
-          <li>
+          {/* <li>
             {isUser ? (
               <a href={`/${lang}/dashboard`} className="h-full w-full">
                 <MdDashboard className="h-max w-max shadow-2xl text-2xl p-2 bg-zinc-200 hover:bg-red-600 hover:text-white dark:bg-zinc-900 dark:hover:bg-red-200 dark:hover:text-black transition-all rounded-xl" />
@@ -158,7 +165,7 @@ function NavBar({ url, pathName, children, refreshToken, accessToken }) {
                 <FaRegUser className="h-max w-max shadow-2xl text-2xl p-2 bg-zinc-200 hover:bg-red-600 hover:text-white dark:bg-zinc-900 dark:hover:bg-red-200 dark:hover:text-black transition-all rounded-xl" />
               </a>
             )}
-          </li>
+          </li> */}
           <li>{children}</li>
           <ChangeLanguaje lang={lang} url={pathName} />
         </ul>
