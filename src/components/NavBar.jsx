@@ -6,6 +6,7 @@ import { getLangFromUrl, useTranslations } from "../i18n/utils";
 import { supabase } from "../lib/supabase.ts";
 import { MdDashboard } from "react-icons/md";
 import { HiMail, HiHome, HiUsers, HiAcademicCap } from "react-icons/hi";
+import { FaRegUser } from "react-icons/fa6";
 function NavBar({ url, pathName, children, refreshToken, accessToken }) {
   const [openMenu, setOpenMenu] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -21,13 +22,14 @@ function NavBar({ url, pathName, children, refreshToken, accessToken }) {
   });
   const [, setTitles] = useState({});
   const urlString = url.toString();
+
   useEffect(() => {
     const fetchData = async () => {
       if (!accessToken || !refreshToken) {
         setIsUser(false);
         return;
       }
-      const { data, error } = await supabase.auth.setSession({
+      const { error } = await supabase.auth.setSession({
         refresh_token: refreshToken.value,
         access_token: accessToken.value,
       });
@@ -155,17 +157,18 @@ function NavBar({ url, pathName, children, refreshToken, accessToken }) {
           </NavLink>
         </li>
         <ul className="flex items-end gap-x-4 p-4 h-full lg:items-center">
-          {/* <li>
-            {isUser ? (
+          <li>
+            {!isUser ? (
+              <a href={`/${lang}/signin`} className="h-full w-full">
+              <FaRegUser className="h-max w-max shadow-2xl text-2xl p-2 bg-zinc-200 hover:bg-red-600 hover:text-white dark:bg-zinc-900 dark:hover:bg-red-200 dark:hover:text-black transition-all rounded-xl" />
+            </a>
+              
+            ) : (
               <a href={`/${lang}/dashboard`} className="h-full w-full">
                 <MdDashboard className="h-max w-max shadow-2xl text-2xl p-2 bg-zinc-200 hover:bg-red-600 hover:text-white dark:bg-zinc-900 dark:hover:bg-red-200 dark:hover:text-black transition-all rounded-xl" />
               </a>
-            ) : (
-              <a href={`/${lang}/signin`} className="h-full w-full">
-                <FaRegUser className="h-max w-max shadow-2xl text-2xl p-2 bg-zinc-200 hover:bg-red-600 hover:text-white dark:bg-zinc-900 dark:hover:bg-red-200 dark:hover:text-black transition-all rounded-xl" />
-              </a>
             )}
-          </li> */}
+          </li>
           <li>{children}</li>
           <ChangeLanguaje lang={lang} url={pathName} />
         </ul>

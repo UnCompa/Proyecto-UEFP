@@ -5,7 +5,7 @@ interface Props {
 const { url } = Astro.props;
 import "plyr/dist/plyr.css";
 ---
-  <script is:inline async>
+  <script>
     import Plyr from "plyr";
     document.addEventListener("astro:page-load", ()=> {
     const player = new Plyr("video", {
