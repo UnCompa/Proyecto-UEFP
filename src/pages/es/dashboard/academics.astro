@@ -16,7 +16,7 @@ const { data: datanew, error: errornew } = await supabase
 .from("pages")
 .select("*");
 console.log(datanew,errornew)
-const { data, error } = await supabase.auth.setSession({
+const { error } = await supabase.auth.setSession({
   refresh_token: refreshToken.value,
   access_token: accessToken.value,
 });
