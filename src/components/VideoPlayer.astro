@@ -5,23 +5,24 @@ interface Props {
 const { url } = Astro.props;
 import "plyr/dist/plyr.css";
 ---
-  <script>
-    import Plyr from "plyr";
-    document.addEventListener("astro:page-load", ()=> {
-    const player = new Plyr("video", {
-      controls: [
-        "play",
-        "progress",
-        "current-time",
-        "mute",
-        "volume",
-        "settings",
-        "fullscreen",
-      ],
-      keyboard: {global: true}
-    });
-    })
-  </script>
+
+<script>
+  import Plyr from "plyr";
+  const player = new Plyr("video", {
+    controls: [
+      "play",
+      "progress",
+      "current-time",
+      "mute",
+      "volume",
+      "settings",
+      "play-large",
+      "airplay",
+      "fullscreen",
+    ],
+    keyboard: {focused: true}
+  });
+</script>
 
 <div class="aspect-video w-full md:w-[50vw] h-full">
   <div
@@ -32,4 +33,3 @@ import "plyr/dist/plyr.css";
     </video>
   </div>
 </div>
-

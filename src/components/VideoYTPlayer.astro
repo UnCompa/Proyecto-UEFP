@@ -28,7 +28,7 @@ else if (type === "embed") {
 console.log(embedUrl);
 ---
 
-<div class="bg-zinc-100 border border-black ark:bg-zinc-900 p-2 container mx-auto my-4"
+<div class="bg-zinc-100 dark:bg-zinc-900 border border-black ark:bg-zinc-900 p-2 container mx-auto my-4"
   <div
   class="aspect-video h-max w-[90vw] md:w-[50vw] p-2 border border-black bg-zinc-100 dark:bg-zinc-900 shadow-xl relative my-4"
 >
@@ -58,8 +58,10 @@ console.log(embedUrl);
       "mute",
       "volume",
       "settings",
+      "play-large",
+      "airplay",
       "fullscreen",
     ],
-    keyboard: { global: true },
+    keyboard: {focused: true}
   });
 </script>
