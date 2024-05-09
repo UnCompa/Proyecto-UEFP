@@ -1,5 +1,5 @@
 import Plyr from "plyr";
-const player = new Plyr("video", {
+const player = Plyr.setup("video", {
   controls: [
     "play",
     "progress",

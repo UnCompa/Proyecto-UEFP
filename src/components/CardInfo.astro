@@ -14,12 +14,12 @@ const { title, text, img, invert, alt } = Astro.props;
   {
     !invert ? (
       <>
-        <div class="text-black dark:text-white border-l-4 p-4 border-zinc-800 dark:border-red-500">
+        <div class="text-black dark:text-white border-l-4 p-4 border-red-300 dark:border-red-500">
           <div class="flex items-center justify-start gap-x-2 w-max pr-8 py-2">
             <slot />
             <h2 class="text-4xl font-light title">{title}</h2>
           </div>
-          <div class="h-0.5 w-1/2 bg-gradient-to-r  from-zinc-950 from-10% to-transparent dark:from-red-500 dark:to-yellow-500 rounded" />
+          <div class="h-0.5 w-1/2 bg-gradient-to-r  from-red-300 from-10% to-transparent dark:from-red-500 dark:to-yellow-500 rounded" />
           <p class="text-zinc-700 dark:text-zinc-400 py-2 lg:text-lg font-Rubik font-light">
             {text}
           </p>
@@ -29,12 +29,12 @@ const { title, text, img, invert, alt } = Astro.props;
     ) : (
       <>
         <CardImgReveal img={img} alt={alt} />
-        <div class="text-black dark:text-white border-l-4 p-4 border-zinc-800 dark:border-red-500">
+        <div class="text-black dark:text-white border-l-4 p-4 border-red-300 dark:border-red-500">
           <div class="flex items-center justify-start gap-x-2 w-max pr-8 py-2">
             <slot />
             <h2 class="text-4xl font-light title">{title}</h2>
           </div>
-          <div class="h-0.5 w-1/2 bg-gradient-to-r  from-zinc-950 from-10% to-transparent dark:from-red-500 dark:to-yellow-500 rounded" />
+          <div class="h-0.5 w-1/2 bg-gradient-to-r  from-red-300 from-10% to-transparent dark:from-red-500 dark:to-yellow-500 rounded" />
           <p class="text-zinc-700 dark:text-zinc-400 py-2 lg:text-lg font-Rubik font-light">
             {text}
           </p>

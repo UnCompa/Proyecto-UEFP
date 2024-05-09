@@ -111,8 +111,8 @@ function NavBar({ url, pathName, children, refreshToken, accessToken }) {
               ? "/imgs/UEFPescudoblanco.png"
               : "/imgs/UEFPescudoblack.png"
           }
-          className="h-16 lg:h-24"
-          alt="Escudo UEFP"
+          className="h-20 lg:h-24"
+          alt="Unidad Educativa Fiscal Pichincha | Escudo Logo"
         />
       </a>
       <h3 className="block text-center text-xl font-Rubik uppercase font-bold lg:hidden">
