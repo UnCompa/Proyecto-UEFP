@@ -24,91 +24,95 @@ const t = useTranslations(lang);
     basic: {
       title: "Unidad Educativa Fiscal Pichincha | Web Oficial",
       type: "website",
-      image: "https://i.postimg.cc/FkhJDcNx/Unidad-Educativa-Fiscal-Pichincha.png",
-      url: "https://unidad-educativa-fiscal-pichincha.vercel.app/es"
-    }
+      image:
+        "https://i.postimg.cc/FkhJDcNx/Unidad-Educativa-Fiscal-Pichincha.png",
+      url: "https://unidad-educativa-fiscal-pichincha.vercel.app/es",
+    },
   }}
 >
   <Header />
   <main
-    class="h-full w-full bg-zinc-50 dark:bg-zinc-800 grid place-content-center gap-y-4"
-  >
-    <section class="bg-transparent w-full h-full">
-      <h2
-        class="text-black font-bold mt-4 dark:text-zinc-100 text-center text-4xl md:text-5xl py-2 font-Rubik"
+  class="h-full w-full bg-zinc-50 dark:bg-zinc-800 grid place-content-center gap-y-4"
+>
+  <section class="bg-transparent w-full h-full">
+    <h2
+      class="text-black font-bold mt-4 dark:text-zinc-100 text-center text-4xl md:text-5xl py-2 font-Rubik"
+    >
+      {t("main-mision-vision")}
+    </h2>
+    <div
+      class="h-1 mx-auto w-full lg:w-2/3 bg-gradient-to-l from-red-500 via-orange-500 to-yellow-500 mb-4 shadow shadow-orange-500/50"
+    >
+    </div>
+    <CardInfo
+      img="/imgs/libroIndex1.jpg"
+      title={t("main-mision")}
+      text={t("main-mision-text")}
+      alt="Imagen referente a la mision"
+    >
+      <Diamond height={"16px"} width={"16px"} />
+    </CardInfo>
+    <CardInfo
+      img="/imgs/personaIndex1.jpg"
+      title={t("main-vision")}
+      text={t("main-vision-text")}
+      alt="Imagen referente a la vision"
+    >
+      <Diamond height={"16px"} width={"16px"} /></CardInfo
+    >
+  </section>
+  <section class="container mx-auto grid place-content-center w-full my-4">
+    <h2
+      class="text-black font-bold dark:text-zinc-100 text-center text-5xl py-2 font-Rubik"
+    >
+      {t("main-presentacion")}
+    </h2>
+    <div
+      class="h-1 w-full bg-gradient-to-l from-red-500 via-orange-500 to-yellow-500 mb-4"
+    >
+    </div>
+    <VideoPlayer url="/videos/test.mp4" />
+  </section>
+  <section class="h-full">
+    <h2
+      class="text-black font-bold mt-4 dark:text-zinc-100 text-center text-4xl md:text-5xl py-2 font-Rubik"
+    >
+      {t("main-others-seccions")}
+    </h2>
+    <div
+      class="h-1 mx-auto w-full lg:w-2/3 bg-gradient-to-l from-red-500 via-orange-500 to-yellow-500 mb-4 shadow shadow-orange-500/50"
+    >
+    </div>
+    <div class="flex flex-wrap p-4 gap-4 container mx-auto">
+      <CardWithLink
+        title={t("footer-paginas-sobrenosotros")}
+        to={t("a-about")}
+        content={`Lorem ipsum dolor sit, amet consectetur adipisicing elit. Velit aliquam
+        eveniet in nisi beatae. Suscipit ipsa nulla nemo debitis sint amet qui
+        at corporis? Obcaecati mollitia culpa fugiat! Labore, sed.`}
       >
-        Nuestro Compromiso: Misión y Visión
-      </h2>
-      <div
-        class="h-1 mx-auto w-full lg:w-2/3 bg-gradient-to-l from-red-500 via-orange-500 to-yellow-500 mb-4 shadow shadow-orange-500/50"
+        <FaGraduationCap /></CardWithLink
       >
-      </div>
-      <CardInfo
-        img="/imgs/libroIndex1.jpg"
-        title={t("main-mision")}
-        text={t("main-mision-text")}
-        alt="Imagen referente a la mision"
+      <CardWithLink
+        title={t("footer-paginas-academicos")}
+        to={t("a-academicos")}
+        content={`Lorem ipsum dolor sit, amet consectetur adipisicing elit. Velit aliquam
+        eveniet in nisi beatae. Suscipit ipsa nulla nemo debitis sint amet qui
+        at corporis? Obcaecati mollitia culpa fugiat! Labore, sed.`}
       >
-        <Diamond height={"16px"} width={"16px"} />
-      </CardInfo>
-      <CardInfo
-        img="/imgs/personaIndex1.jpg"
-        title={t("main-vision")}
-        text={t("main-vision-text")}
-        alt="Imagen referente a la vision"
+        <FaUser /></CardWithLink
       >
-        <Diamond height={"16px"} width={"16px"} /></CardInfo
+      <CardWithLink
+        title={t("footer-paginas-contactos")}
+        to={t("a-contactos")}
+        content={`Lorem ipsum dolor sit, amet consectetur adipisicing elit. Velit aliquam
+        eveniet in nisi beatae. Suscipit ipsa nulla nemo debitis sint amet qui
+        at corporis? Obcaecati mollitia culpa fugiat! Labore, sed.`}
       >
-    </section>
-    <section class="container mx-auto grid place-content-center w-full my-4">
-      <h2
-        class="text-black font-bold dark:text-zinc-100 text-center text-5xl py-2 font-Rubik"
+        <FaEnvelope /></CardWithLink
       >
-        {t("main-presentacion")}
-      </h2>
-      <div
-        class="h-1 w-full bg-gradient-to-l from-red-500 via-orange-500 to-yellow-500 mb-4"
-      >
-      </div>
-      <VideoPlayer url="/videos/test.mp4" />
-    </section>
-    <section class="h-full">
-      <h2
-        class="text-black font-bold mt-4 dark:text-zinc-100 text-center text-4xl md:text-5xl py-2 font-Rubik"
-      >
-        Explora otras secciones
-      </h2>
-      <div
-        class="h-1 mx-auto w-full lg:w-2/3 bg-gradient-to-l from-red-500 via-orange-500 to-yellow-500 mb-4 shadow shadow-orange-500/50"
-      >
-      </div>
-      <div class="flex flex-wrap  p-4 gap-4 container mx-auto">
-        <CardWithLink
-          title="Sobre nosotros"
-          content={`Lorem ipsum dolor sit, amet consectetur adipisicing elit. Velit aliquam
-          eveniet in nisi beatae. Suscipit ipsa nulla nemo debitis sint amet qui
-          at corporis? Obcaecati mollitia culpa fugiat! Labore, sed.`}
-        >
-          <FaGraduationCap /></CardWithLink
-        >
-        <CardWithLink
-          title="Academicos"
-          content={`Lorem ipsum dolor sit, amet consectetur adipisicing elit. Velit aliquam
-          eveniet in nisi beatae. Suscipit ipsa nulla nemo debitis sint amet qui
-          at corporis? Obcaecati mollitia culpa fugiat! Labore, sed.`}
-        >
-          <FaUser /></CardWithLink
-        >
-        <CardWithLink
-          title="Contacto"
-          content={`Lorem ipsum dolor sit, amet consectetur adipisicing elit. Velit aliquam
-          eveniet in nisi beatae. Suscipit ipsa nulla nemo debitis sint amet qui
-          at corporis? Obcaecati mollitia culpa fugiat! Labore, sed.`}
-        >
-          <FaEnvelope/></CardWithLink
-        >
-      </div>
-    </section>
-  </main>
+    </div>
+  </section>
+</main>
   <Footer />
 </Layout>

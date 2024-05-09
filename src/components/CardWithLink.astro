@@ -1,7 +1,7 @@
 ---
 import { FaChevronCircleRight } from "react-icons/fa";
 
-const {title,content} = Astro.props
+const {title,content,to} = Astro.props
 ---
 
 <div
@@ -23,7 +23,7 @@ const {title,content} = Astro.props
         {content}
       </p>
       <a
-        href="/"
+        href={to}
         class="px-8 py-2 rounded-full bg-zinc-400 dark:bg-zinc-950 hover:bg-zinc-400/50 dark:hover:bg-zinc-950/50 w-max group flex items-center gap-x-1 transition-all"
       >
         <span class="text-medium">Ver más</span>

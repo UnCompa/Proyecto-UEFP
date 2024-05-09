@@ -7,51 +7,102 @@ import IndexMeta from "./../../meta/IndexMeta.astro";
 import Footer from "../../components/Footer.astro";
 import { getLangFromUrl, useTranslations } from "../../i18n/utils";
 import { Diamond } from "../../icons/Icons";
+import CardWithLink from "../../components/CardWithLink.astro";
+import { FaEnvelope, FaGraduationCap, FaUser } from "react-icons/fa";
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
 
 <Layout
-  title="Página Oficial de la Unidad Educativa Fiscal Pichincha"
+  title="Official Page of Fiscal Pichincha Educational Unit"
+  keywords="fiscal pichincha educational unit, Fiscal Pichincha Educational Unit, official page, education, UEFP"
+  description="Homepage of Fiscal Pichincha Educational Unit"
   icon="/public/imgs/UEFPescudoblanco.png"
-  keywords="unidad educativa fiscal pichincha,Unidad Educativa Fiscal Pichincha, página oficial, educación, UEFP"
-  description="Pagina de inicio de la Unidad Educativa Fiscal Pichincha"
 >
   <Header />
   <IndexMeta slot="opengraph" />
   <main
-    class="h-full w-full bg-zinc-50 dark:bg-zinc-800 grid place-content-center gap-y-4"
-  >
-    <section class="bg-transparent w-full h-full">
-      <CardInfo
-        img="/imgs/libroIndex1.jpg"
-        title={t("main-mision")}
-        text={t("main-mision-text")}
-        alt="Imagen referente a la mision"
+  class="h-full w-full bg-zinc-50 dark:bg-zinc-800 grid place-content-center gap-y-4"
+>
+  <section class="bg-transparent w-full h-full">
+    <h2
+      class="text-black font-bold mt-4 dark:text-zinc-100 text-center text-4xl md:text-5xl py-2 font-Rubik"
+    >
+      {t("main-mision-vision")}
+    </h2>
+    <div
+      class="h-1 mx-auto w-full lg:w-2/3 bg-gradient-to-l from-red-500 via-orange-500 to-yellow-500 mb-4 shadow shadow-orange-500/50"
+    >
+    </div>
+    <CardInfo
+      img="/imgs/libroIndex1.jpg"
+      title={t("main-mision")}
+      text={t("main-mision-text")}
+      alt="Imagen referente a la mision"
+    >
+      <Diamond height={"16px"} width={"16px"} />
+    </CardInfo>
+    <CardInfo
+      img="/imgs/personaIndex1.jpg"
+      title={t("main-vision")}
+      text={t("main-vision-text")}
+      alt="Imagen referente a la vision"
+    >
+      <Diamond height={"16px"} width={"16px"} /></CardInfo
+    >
+  </section>
+  <section class="container mx-auto grid place-content-center w-full my-4">
+    <h2
+      class="text-black font-bold dark:text-zinc-100 text-center text-5xl py-2 font-Rubik"
+    >
+      {t("main-presentacion")}
+    </h2>
+    <div
+      class="h-1 w-full bg-gradient-to-l from-red-500 via-orange-500 to-yellow-500 mb-4"
+    >
+    </div>
+    <VideoPlayer url="/videos/test.mp4" />
+  </section>
+  <section class="h-full">
+    <h2
+      class="text-black font-bold mt-4 dark:text-zinc-100 text-center text-4xl md:text-5xl py-2 font-Rubik"
+    >
+      {t("main-others-seccions")}
+    </h2>
+    <div
+      class="h-1 mx-auto w-full lg:w-2/3 bg-gradient-to-l from-red-500 via-orange-500 to-yellow-500 mb-4 shadow shadow-orange-500/50"
+    >
+    </div>
+    <div class="flex flex-wrap p-4 gap-4 container mx-auto">
+      <CardWithLink
+        title={t("footer-paginas-sobrenosotros")}
+        to={t("a-about")}
+        content={`Lorem ipsum dolor sit, amet consectetur adipisicing elit. Velit aliquam
+        eveniet in nisi beatae. Suscipit ipsa nulla nemo debitis sint amet qui
+        at corporis? Obcaecati mollitia culpa fugiat! Labore, sed.`}
       >
-        <Diamond height={"16px"} width={"16px"} />
-      </CardInfo>
-      <CardInfo
-        img="/imgs/personaIndex1.jpg"
-        title={t("main-vision")}
-        text={t("main-vision-text")}
-        alt="Imagen referente a la vision"
+        <FaGraduationCap /></CardWithLink
       >
-        <Diamond height={"16px"} width={"16px"} /></CardInfo
+      <CardWithLink
+        title={t("footer-paginas-academicos")}
+        to={t("a-academicos")}
+        content={`Lorem ipsum dolor sit, amet consectetur adipisicing elit. Velit aliquam
+        eveniet in nisi beatae. Suscipit ipsa nulla nemo debitis sint amet qui
+        at corporis? Obcaecati mollitia culpa fugiat! Labore, sed.`}
       >
-    </section>
-    <section class="container mx-auto grid place-content-center w-full my-4">
-      <h2
-        class="text-black dark:text-zinc-100 text-center text-5xl py-2 font-Rubik"
+        <FaUser /></CardWithLink
       >
-        {t("main-presentacion")}
-      </h2>
-      <div
-        class="h-1 w-full bg-gradient-to-l from-red-500 via-orange-500 to-yellow-500 mb-4"
+      <CardWithLink
+        title={t("footer-paginas-contactos")}
+        to={t("a-contactos")}
+        content={`Lorem ipsum dolor sit, amet consectetur adipisicing elit. Velit aliquam
+        eveniet in nisi beatae. Suscipit ipsa nulla nemo debitis sint amet qui
+        at corporis? Obcaecati mollitia culpa fugiat! Labore, sed.`}
       >
-      </div>
-      <VideoPlayer url="/videos/test.mp4" />
-    </section>
-  </main>
+        <FaEnvelope /></CardWithLink
+      >
+    </div>
+  </section>
+</main>
   <Footer />
 </Layout>
