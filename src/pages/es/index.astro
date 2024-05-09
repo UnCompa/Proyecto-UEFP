@@ -24,6 +24,15 @@ const t = useTranslations(lang);
     class="h-full w-full bg-zinc-50 dark:bg-zinc-800 grid place-content-center gap-y-4"
   >
     <section class="bg-transparent w-full h-full">
+      <h2
+        class="text-black mt-4 dark:text-zinc-100 text-center text-4xl md:text-5xl py-2 font-Rubik"
+      >
+      Nuestro Compromiso: Misión y Visión
+      </h2>
+      <div
+        class="h-1 mx-auto w-full lg:w-2/3 bg-gradient-to-l from-red-500 via-orange-500 to-yellow-500 mb-4 shadow shadow-orange-500/50"
+      >
+      </div>
       <CardInfo
         img="/imgs/libroIndex1.jpg"
         title={t("main-mision")}
@@ -53,6 +62,18 @@ const t = useTranslations(lang);
       </div>
       <VideoPlayer url="/videos/test.mp4"/>
       <VideoYTPlayer type="normal" url="https://www.youtube.com/watch?v=ipii7KbbJLY"/>
+      <VideoPlayer vertical url="/videos/mine1.mp4"/>
+    </section>
+    <section>
+      <h2
+        class="text-black dark:text-zinc-100 text-center text-5xl py-2 font-Rubik"
+      >
+        {t("main-presentacion")}
+      </h2>
+      <div
+        class="h-1 w-full bg-gradient-to-l from-red-500 via-orange-500 to-yellow-500 mb-4"
+      >
+      </div>
     </section>
   </main>
   <Footer />

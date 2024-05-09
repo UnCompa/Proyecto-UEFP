@@ -1,5 +1,7 @@
 ---
+import { FaChevronDown } from 'react-icons/fa6'
 import {getLangFromUrl,useTranslations} from './../i18n/utils'
+import { FaChevronCircleDown } from 'react-icons/fa'
 const lang = getLangFromUrl(Astro.url)
 const t = useTranslations(lang)
 
@@ -12,7 +14,11 @@ const t = useTranslations(lang)
       UNIDAD EDUCATIVA FISCAL <br />
       <span class="bg-clip-text text-transparent bg-gradient-to-tr from-purple-500 via-red-500 to-yellow-400">PICHINCHA</span>
     </h1>
-    <p class="font-Kanit text-black dark:text-white text-xl py-2 animate-fade-in animate-delay-300">{t('hero-frase')}</p>
+    <div class="flex flex-col items-center gap-y-12">
+      <p class="font-Rubik font-bold text-black dark:text-white text-xl animate-fade-in animate-delay-300">{t('hero-frase')}</p>
+    <p class="font-Rubik font-bold italic text-sm md:text-base">"Creando oportunidades para los jovenes del futuro"</p>
+    <FaChevronCircleDown className='text-3xl text-black/50 dark:text-white/50 animate-jump animate-iteration-count-infinite animate-duration-[2s]'/>
+    </div>
   </div>
 </div>
 <style>
@@ -21,6 +27,7 @@ const t = useTranslations(lang)
     width: 100%;
     background-repeat: no-repeat;
     animation: bg 2s ease forwards;
+    transition: all 1s ease-out;
   }
   @keyframes bg {
     0%{
