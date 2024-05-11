@@ -1,11 +1,12 @@
 ---
 import { getCollection } from "astro:content";
-import BaseLayout from "../../layouts/DocsLayout.astro";
-import BlogPost from "../../components/docs/BlogPost.astro";
-
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+export const prerender = true
 export async function getStaticPaths() {
   const allPosts = await getCollection("dev");
-  const uniqueTags = [...new Set(allPosts.map((post) => post.data.tags).flat())];
+  const uniqueTags = [
+    ...new Set(allPosts.map((post) => post.data.tags).flat()),
+  ];
 
   return uniqueTags.map((tag) => {
     const filteredPosts = allPosts.filter((post) =>
@@ -25,6 +26,17 @@ const { posts } = Astro.props;
 <BaseLayout pageTitle={tag}>
   <p>Artículos con la etiqueta {tag}</p>
   <ul>
-    { posts.map((post) => <BlogPost url={`/posts/${post.slug}/`} title={post.data.title} />) }
+    {
+      posts.map((post) => (
+        <li>
+          <a
+            class="font-Kanit font-light no-underline"
+            href={`/es/tags/${post.slug}`}
+          >
+            {post.data.title}
+          </a>
+        </li>
+      ))
+    }
   </ul>
 </BaseLayout>
