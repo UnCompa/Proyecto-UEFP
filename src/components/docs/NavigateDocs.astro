@@ -1,0 +1,12 @@
+---
+import { getCollection } from "astro:content";
+import { getLangFromUrl } from "../../i18n/utils";
+const url = Astro.url
+const lang = getLangFromUrl(url)
+const allPosts = await getCollection("dev");
+---
+<nav>
+  <ul>
+    {allPosts.map((post) => <li><a href={`/${lang}/docs/${post.slug}`}>{post.data.title}</a></li>)}
+  </ul>
+</nav>

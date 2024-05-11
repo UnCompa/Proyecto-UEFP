@@ -1,0 +1,22 @@
+---
+import BaseLayout from "./DocsLayout.astro";
+const { frontmatter } = Astro.props;
+---
+
+<BaseLayout pageTitle={frontmatter.title}>
+  <h1>{frontmatter.title}</h1>
+  <img
+    class="shadow-lg shadow-red-500/50 mb-4"
+    src={frontmatter.image.url}
+    width="300"
+    alt={frontmatter.image.alt}
+  />
+  <div class="bg-zinc-900/50 my-2 p-2 rounded">
+    <p class="text-zinc-300">
+      Hecho: {frontmatter.pubDate.toString().slice(0, 10)}
+    </p>
+    <p class="font-bold">{frontmatter.description}</p>
+    <p>Escrito por: <span class="text-red-200">{frontmatter.author}</span></p>
+  </div>
+  <slot />
+</BaseLayout>

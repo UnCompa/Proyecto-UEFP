@@ -1,0 +1,114 @@
+*::selection {
+  background-color: #ef4444;
+  color: #fafafa;
+}
+html {
+  color-scheme: light dark;
+  scrollbar-width: thin;
+  scrollbar-color: #27272a white;
+  font-family: "Kanit", sans-serif;
+}
+html.dark {
+  scrollbar-width: thin;
+  scrollbar-color: white #27272a;
+  font-family: "Kanit", sans-serif;
+}
+.grid-layout {
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  grid-template-areas: 
+  "header header"
+  "aside main";
+}
+@media (max-width: 768px) {
+  .grid-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-areas: 
+    "header"
+    "main";
+  }
+}
+input {
+  border: none;
+}
+h1 {
+  text-align: center;
+  font-size: clamp(2em, 2vw + 1em, 3em);
+  font-weight: bold;
+  text-shadow: 0px 0px 10px #fff5;
+  text-decoration: underline;
+  padding: 0.2em 0em;
+  @apply decoration-2 decoration-red-500;
+}
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-align: start;
+
+  font-weight: bold;
+  text-shadow: 0px 0px 10px #fff5;
+  text-decoration: underline;
+  padding: 0.5em 0em;
+  @apply decoration-2 decoration-blue-500;
+}
+h2 {
+  font-size: clamp(1.8em, 2vw + 1em, 2em);
+}
+h3 {
+  font-size: clamp(1.4em, 2vw + 1em, 1.7em);
+  @apply decoration-2 decoration-red-500;
+}
+h4 {
+  font-size: clamp(1.3em, 2vw + 1em, 1.5em);
+  @apply decoration-2 decoration-green-500;
+}
+h5 {
+  font-size: clamp(1em, 2vw + 1em, 1.3em);
+  @apply decoration-2 decoration-yellow-500;
+}
+h6 {
+  font-size: clamp(0.8em, 2vw + 1em, 1em);
+}
+a {
+  color: #fafafa;
+  text-decoration: underline;
+  text-shadow: 0px 0px 10px #0af5;
+}
+li a {
+  text-decoration: none;
+  color: #fafafa;
+  @apply bg-zinc-800 p-1 rounded
+}
+strong {
+  text-shadow: 0px 0px 10px #fff5;
+}
+code {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #24292e;
+  padding: 0.3em 1em;
+  border-radius: 5px;
+}
+img {
+  background-color: #121212;
+  padding: 0.2em;
+  margin: 0.5em 0em;
+  width: 100%;
+  max-height: max-content;
+  object-fit: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0px 0px 30px #12121288;
+}
+ul {
+  list-style-type: none;
+  padding: 0em 1em;
+}
+pre {
+  margin: 0.5em 0em;
+}

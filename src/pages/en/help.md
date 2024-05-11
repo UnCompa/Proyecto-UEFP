@@ -6,7 +6,7 @@ descripcion: Ayuda para los principiantes
 
 # Guia para el usuario
 
-![Hola](/public/imgs/programacion.jpeg)
+![Hola](/imgs/programacion.jpeg)
 
 En esta seccion veras una pequena guia de uso para la web
 
@@ -28,6 +28,6 @@ En esta seccion veras una pequena guia de uso para la web
 
 ###### Para todos5
 
-Visita la [Pagina de desarrollador](/public/videos/test.mp4) si eres parte del **equipo** de `Desarrollo`
+Visita la [Pagina de desarrollador](/videos/test.mp4) si eres parte del **equipo** de `Desarrollo`
 
 Para mas visita `/es/help/develop`

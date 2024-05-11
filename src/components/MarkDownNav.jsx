@@ -8,7 +8,7 @@ function NavBar({lang}) {
   };
   return (
     <header
-      className={`h-28 box-border bg-cover text-black shadow-2xl dark:text-white bg-white/90 dark:bg-zinc-900 flex justify-between lg:justify-around items-center sticky top-0 px-12 z-10 shadow-sky-500/20`}
+      className={`h-28 [grid-area:header] box-border bg-cover text-black shadow-2xl dark:text-white bg-white/90 dark:bg-zinc-900 flex justify-between lg:justify-around items-center sticky top-0 px-12 z-10 shadow-sky-500/20`}
     >
       <a href="/">
         <img
@@ -34,13 +34,7 @@ function NavBar({lang}) {
             </button>
           </li>
           <li className="list-none">
-            <a className="px-4" href={`/${lang}`}>Inicio</a>
-          </li>
-          <li className="list-none">
-            <a className="px-4" href={`/${lang}/help`}>Para usuarios</a>
-          </li>
-          <li className="list-none">
-            <a className="px-4" href={`/${lang}/dev`}>Para desarrolladores</a>
+            <a className="px-4" href={`/${lang}/docs`}>Inicio</a>
           </li>
         </ul>
       </nav>

@@ -1,0 +1,53 @@
+---
+import MarkDownNav from "./../components/MarkDownNav";
+import { getLangFromUrl } from "../i18n/utils";
+import SpeedInsights from "@vercel/speed-insights/astro";
+import NavigateDocs from "../components/docs/NavigateDocs.astro";
+const url = Astro.url;
+const lang = getLangFromUrl(url);
+const { pageTitle } = Astro.props;
+import "./../styles/global.css";
+---
+
+<!doctype html>
+<html lang={lang} class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href={""} />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <link
+      rel="canonical"
+      href="https://unidad-educativa-fiscal-pichincha.vercel.app"
+    />
+    <slot name="opengraph" />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
+      rel="stylesheet"
+    />
+    <meta name="description" content={""} />
+    <title>{pageTitle}</title>
+    <SpeedInsights />
+  </head>
+  <body class="grid-layout bg-white dark:bg-zinc-950 h-full">
+    <MarkDownNav lang={lang} client:load />
+    <aside class="hidden md:block bg-zinc-900 p-4 sticky [grid-area:aside]">
+      <h2>Desarrollador</h2>
+      <NavigateDocs />
+    </aside>
+    <main
+      class="bg-zinc-950 overflow-y-auto w-3/5 mx-auto container [grid-area:main]"
+    >
+      <slot />
+    </main>
+  </body>
+</html>
+<style>
+  aside {
+    height: calc(100vh - 7rem);
+    top: 7em;
+  }
+</style>

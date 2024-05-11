@@ -5,5 +5,7 @@
     "jsxImportSource": "react",
     "noUnusedLocals": false,
     "noUnusedParameters": false,
+    "strictNullChecks": true,
+    "allowJs": true
   }
 }
