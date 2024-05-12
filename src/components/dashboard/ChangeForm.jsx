@@ -11,7 +11,7 @@ export default function ChangeForm() {
         .select("id")
         .eq("identificador", "hero-frase");
       const identificador = data[0];
-      const { data: value, error: valueError } = await supabase
+      const { data: value } = await supabase
         .from("inicioes")
         .select("texto")
         .eq("id", identificador.id);
