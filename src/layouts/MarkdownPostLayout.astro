@@ -1,15 +1,16 @@
 ---
-import BaseLayout from "./DocsLayout.astro";
-const { frontmatter } = Astro.props;
+import DocsLayout from "./DocsLayout.astro";
+const { frontmatter,id } = Astro.props;
 ---
 
-<BaseLayout pageTitle={frontmatter.title}>
-  <h1>{frontmatter.title}</h1>
+<DocsLayout pageTitle={frontmatter.title}>
+  <h1 transition:animate="fade" transition:name={`title ${id}`}>{frontmatter.title}</h1>
   <img
     class="shadow-lg shadow-red-500/50 mb-4"
     src={frontmatter.image.url}
     width="300"
     alt={frontmatter.image.alt}
+    transition:name={frontmatter.image.url}
   />
   <div class="bg-zinc-900/50 my-2 p-2 rounded">
     <p class="text-zinc-300">
@@ -19,4 +20,4 @@ const { frontmatter } = Astro.props;
     <p>Escrito por: <span class="text-red-200">{frontmatter.author}</span></p>
   </div>
   <slot />
-</BaseLayout>
+</DocsLayout>

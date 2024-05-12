@@ -1,5 +1,5 @@
 ---
-import MarkDownNav from "./../components/MarkDownNav";
+import MarkDownNav from "./../components/MarkDownNav.astro";
 import { getLangFromUrl } from "../i18n/utils";
 import SpeedInsights from "@vercel/speed-insights/astro";
 import NavigateDocs from "../components/docs/NavigateDocs.astro";
@@ -8,6 +8,7 @@ const lang = getLangFromUrl(url);
 const { pageTitle } = Astro.props;
 import "./../styles/global.css";
 import NavLinkDocs from "../components/docs/NavLinkDocs.astro";
+import { ViewTransitions } from "astro:transitions";
 ---
 
 <!doctype html>
@@ -32,9 +33,10 @@ import NavLinkDocs from "../components/docs/NavLinkDocs.astro";
     <meta name="description" content={""} />
     <title>{pageTitle}</title>
     <SpeedInsights />
+    <ViewTransitions/>
   </head>
   <body class="grid-layout bg-white dark:bg-zinc-950 h-full">
-    <MarkDownNav lang={lang} client:load />
+    <MarkDownNav lang={lang} />
     <aside class="hidden md:block bg-zinc-900 p-4 sticky [grid-area:aside]">
       <NavLinkDocs/>
     </aside>

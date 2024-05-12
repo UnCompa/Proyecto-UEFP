@@ -4,20 +4,27 @@ import { getLangFromUrl } from "../../i18n/utils";
 const url = Astro.url;
 const lang = getLangFromUrl(url);
 const allPosts = await getCollection("dev");
-const {path} = Astro.props
-console.log(allPosts);
+const { path } = Astro.props;
 const filterPost = allPosts.filter((post) => {
-  const id = post.id
-  return id.includes(path)
-})
+  const id = post.id;
+  return id.includes(path);
+});
 ---
 
 <nav>
-  <ul>
+  <ul class="flex flex-col gap-y-4 border-l border-red-200">
     {
       filterPost.map((post) => (
         <li>
-          <a class="font-Kanit font-light no-underline" href={`/${lang}/docs/${post.slug}`}>{post.data.title}</a>
+          <a
+            class="font-Kanit font-light no-underline hover:text-zinc-500 transition-colors"
+            href={`/${lang}/docs/${post.slug}`}
+            transition:animate="fade"
+            transition:name={`title ${post.id}`}
+          >
+            {" "}
+            <span>{post.data.title}</span>
+          </a>
         </li>
       ))
     }

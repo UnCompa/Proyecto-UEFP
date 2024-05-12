@@ -34,7 +34,6 @@ function NavBar({ url, pathName, children, refreshToken, accessToken }) {
         access_token: accessToken.value,
       });
       setIsUser(true);
-      console.log(error);
     };
     fetchData();
   }, []);

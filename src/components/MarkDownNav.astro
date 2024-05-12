@@ -10,20 +10,28 @@ import { FaX } from "react-icons/fa6";
   <div class="h-full w-full flex items-center gap-x-4 px-8">
     <a href="/">
       <img
-      class="h-14 w-14 md:h-20 md:w-20 object-cover"
-      src="/imgs/UEFPescudoblanco.png"
-      alt="Escudo de la unidad educativa fiscal pichincha"
-    />
+        class="h-14 w-14 md:h-20 md:w-20 object-cover"
+        src="/imgs/UEFPescudoblanco.png"
+        alt="Escudo de la unidad educativa fiscal pichincha"
+      />
     </a>
     <h2 class="no-underline text-sm md:text-2xl">Docs</h2>
     <div class="w-full">
       <nav>
         <ul class="flex items-center justify-center gap-x-4">
           <li>
-            <a href="/es/docs" class="bg-zinc-950 text-sm md:text-base px-2 md:px-4 py-1 no-underline rounded hover:shadow-xl hover:bg-zinc-900/50 border border-red-500">Inicio</a>
+            <a
+              href="/es/docs"
+              class="bg-zinc-950 text-sm md:text-base px-2 md:px-4 py-1 no-underline rounded hover:shadow-xl hover:bg-zinc-900/50 border border-red-500"
+              >Inicio</a
+            >
           </li>
           <li>
-            <a href="/es/tags" class="bg-zinc-950 text-sm md:text-base px-2 md:px-4 py-1 no-underline rounded hover:shadow-xl hover:bg-zinc-900/50 border border-red-500">Etiquetas</a>
+            <a
+              href="/es/tags"
+              class="bg-zinc-950 text-sm md:text-base px-2 md:px-4 py-1 no-underline rounded hover:shadow-xl hover:bg-zinc-900/50 border border-red-500"
+              >Etiquetas</a
+            >
           </li>
         </ul>
       </nav>
@@ -31,14 +39,14 @@ import { FaX } from "react-icons/fa6";
   </div>
   <div class="bg-zinc-950 p-1 mr-8">
     <button id="menu" class="block md:hidden">
-      <FaBars className="text-4xl"/>
+      <FaBars className="text-4xl" />
     </button>
   </div>
 </header>
 <div id="menu-bar" class="menu-bar transition-all">
   <div class="block md:hidden">
     <button id="menu-close">
-      <FaX/>
+      <FaX />
     </button>
     <NavLinkDocs />
   </div>
@@ -52,15 +60,18 @@ import { FaX } from "react-icons/fa6";
     @apply bg-zinc-950 fixed top-0 translate-x-full right-0 w-1/2 h-[100dvh] md:flex md:h-28 md:w-max md:items-center;
   }
 </style>
+
 <script>
-  const menu = document.getElementById("menu");
-  menu?.addEventListener("click", () => {
-    const menuBar = document.getElementById("menu-bar");
-    menuBar?.classList.add("isOpen");
-  });
-  const menuClose = document.getElementById("menu-close");
-  menuClose?.addEventListener("click", () => {
-    const menuBar = document.getElementById("menu-bar");
-    menuBar?.classList.remove("isOpen");
+  document.addEventListener("astro:page-load", () => {
+    const menu = document.getElementById("menu");
+    menu?.addEventListener("click", () => {
+      const menuBar = document.getElementById("menu-bar");
+      menuBar?.classList.toggle("isOpen");
+    });
+    const menuClose = document.getElementById("menu-close");
+    menuClose?.addEventListener("click", () => {
+      const menuBar = document.getElementById("menu-bar");
+      menuBar?.classList.toggle("isOpen");
+    });
   });
 </script>

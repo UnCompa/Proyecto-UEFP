@@ -13,7 +13,7 @@ import { FaCheck, FaEnvelope } from "react-icons/fa6";
 export default function OpenModal({ isOpen }) {
   const { onOpenChange, onOpen } = useDisclosure();
   const [isOpenMenu, setIsOpenMenu] = useState(false);
-  console.log(isOpenMenu);
+  (isOpenMenu);
   useEffect(() => {
     setIsOpenMenu(isOpen);
   }, []);

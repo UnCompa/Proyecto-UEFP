@@ -8,24 +8,17 @@ let embedUrl;
 const { url, type } = Astro.props;
 if (type === "normal") {
   const fragmentUrl = url?.split("?");
-  console.log(fragmentUrl);
   const initUrl = fragmentUrl[1];
-  console.log(initUrl);
   const parceUrl = initUrl.slice(2)
-  console.log(parceUrl);
   embedUrl = `https://www.youtube.com/embed/${parceUrl}`;
   
 }
 else if (type === "embed") {
   const fragmentUrl = url?.split("?");
-  console.log(fragmentUrl);
   const initUrl = fragmentUrl[0];
-  console.log(initUrl);
   const parceUrl = initUrl.slice(17);
-  console.log(parceUrl);
   embedUrl = `https://www.youtube.com/embed/${parceUrl}`;
 }
-console.log(embedUrl);
 ---
 
 <div class="bg-zinc-100 dark:bg-zinc-900 border border-black ark:bg-zinc-900 p-2 container mx-auto my-4"
