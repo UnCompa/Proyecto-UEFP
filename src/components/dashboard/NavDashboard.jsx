@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Bars, X } from "../../icons/Icons";
+import { X } from "../../icons/Icons";
 import {
   FaBars,
   FaEnvelope,
@@ -76,7 +76,7 @@ export default function NavDashboard({ children,url }) {
                 </Link>
               </li>
               <li>
-                <Link to={`/${lang}/dashboard/home`} text={"Inicio"}>
+                <Link to={`/${lang}/dashboard/homepage`} text={"Inicio"}>
                   <FaHome />
                 </Link>
               </li>

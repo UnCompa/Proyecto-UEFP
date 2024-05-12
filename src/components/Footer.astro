@@ -2,6 +2,7 @@
 import ChangeLanguage from "./ChangeLanguaje";
 import FooterLink from "./FooterLink.astro";
 import { getLangFromUrl, useTranslations } from "../i18n/utils";
+import pkg from "./../../package.json"
 import {
   FaFacebook,
   FaTiktok,
@@ -181,7 +182,7 @@ const t = useTranslations(lang);
       </span>
     </div>
     <span class="text-gray-500">
-      Version 1.0
+      Version {pkg.version}
     </span>
   </div>
 </footer>

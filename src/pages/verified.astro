@@ -1,0 +1,27 @@
+---
+import { FaEnvelope } from "react-icons/fa6";
+import ThemeIcon from "../components/ThemeIcon.astro";
+import Layout from "../layouts/Layout.astro";
+import { getLangFromUrl } from "../i18n/utils";
+const lang = getLangFromUrl(Astro.url)
+---
+
+<Layout title="Verificion | Revisa tu email" icon="/imgs/UEFPescudoblanco.png">
+  <main class="h-screen w-full dark:bg-zinc-900 grid place-content-center">
+    <section
+      class="dark:bg-zinc-800 p-8 container mx-auto h-full w-2/3 lg:w-1/2"
+    >
+      <div class="flex flex-col items-center justify-center">
+        <FaEnvelope className="text-5xl" />
+        <h1 class="text-xl text-zinc-300 font-Rubik font-bold text-center">
+          Correo confirmado ✔
+        </h1>
+        <p class="py-2 font-Rubik text-center">
+          Tu correo a sido verificado, continua al dashboard y explora que tenemos para ti
+        </p>
+        <a class="text-blue-500 dark:text-blue-500" href={`/${lang}/dashboard`}> <span class="text-blue-500 dark:text-blue-500">Regresar</span></a>
+      </div>
+    </section>
+  </main>
+  <div class="hidden"><ThemeIcon /></div>
+</Layout>

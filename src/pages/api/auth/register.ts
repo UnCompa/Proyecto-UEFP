@@ -15,34 +15,28 @@ export const POST: APIRoute = async ({ request, redirect }) => {
       status: 400,
     });
   }
-  console.log(name,email,password);
-  
-  const {data,error} = await supabase.auth.signUp({
-    email,
-    password,
-  });
-  console.log(data);
-  console.log(data !== null);
-  
+  console.log(name, email, password);
+
+  const { data, error } = await supabase.auth.signUp({
+    email: email,
+    password: password,
+    options: {
+      data: {
+        username: name
+      }
+    }
+  });  
   if (error) {
     console.log(error);
     return redirect(`/${lang}/`);
   }
-  if (data) {
-    const user = data.user
-    console.log(user);
-    const newData = {
-      id: user?.id,
-      username: name,
-    };
-    console.log(newData);
-    
-    const resultados = await supabase
-      .from("profiles")
-      .upsert(newData);
-    console.log(resultados);
-  }
 
-  console.log("Here");
+  const { data: updatedProfile, error: updateError } = await supabase
+  .from("profiles")
+  .update({ username: name })
+  .eq("id", data.user?.id)
+  .select("*");
+  console.log(updatedProfile);
+  
   return redirect(`/${lang}/verification`);
 };

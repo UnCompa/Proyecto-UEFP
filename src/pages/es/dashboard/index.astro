@@ -17,6 +17,8 @@ const { data, error } = await supabase.auth.setSession({
   refresh_token: refreshToken.value,
   access_token: accessToken.value,
 });
+console.log(data.user?.user_metadata);
+
 if (error) {
   cookies.delete("sb-access-token", {
     path: "/",
@@ -27,7 +29,8 @@ if (error) {
   
   return redirect("/es/signin");
 }
-const email = data?.user?.email;
+const userData = data?.user?.user_metadata;
+const email = userData?.username
 ---
 
 <!-- <ThemeIcon/> -->

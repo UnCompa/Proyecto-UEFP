@@ -3,8 +3,9 @@ import Navigation from "../../components/Navigation.astro";
 import Layout from "../../layouts/Layout.astro";
 import { getLangFromUrl } from "../../i18n/utils";
 import Footer from "../../components/Footer.astro";
-import SignForm from './../../components/sections/SignForm'
-const lang = getLangFromUrl(Astro.url)
+import SignForm from "../../components/sections/SignForm.jsx";
+import { FaGoogle } from "react-icons/fa";
+const lang = getLangFromUrl(Astro.url);
 const { cookies, redirect } = Astro;
 
 const accessToken = cookies.get("sb-access-token");
@@ -17,24 +18,36 @@ if (accessToken && refreshToken) {
 
 <Layout title="Inicia secion | Con tu correo" icon="">
   <Navigation />
-  <main class="w-full h-full bg-zinc-100 dark:bg-zinc-800 py-12">
+  <main
+    class="w-full h-full bg-zinc-100 dark:bg-zinc-800 px-4 py-12 grid grid-cols-2"
+  >
     <section
-      class="bg-zinc-200 dark:bg-zinc-950/40 backdrop-blur-2xl p-8 w-[90vw] lg:w-1/2 container mx-auto shadow-xl"
+      class="bg-zinc-200 dark:bg-zinc-950/40 backdrop-blur-2xl p-8 w-full container mx-auto shadow-xl"
     >
       <div class="relative flex flex-col justify-center font-Rubik gap-y-4">
-        <div class="h-24 w-72 bg-cyan-500/20 absolute rounded-full blur-xl -top-5 z-10 animate-pulse-fade-in animate-iteration-count-infinite animate-duration-1000 animate-direction-alternate-reverse"></div>
-        <h1 class="text-5xl font-bold">Inicia Sesion</h1>
         <div
-          class="h-1 my-2 w-1/2 bg-gradient-to-r from-blue-500 via-cyan-500 to-sky-400 rounded-full"
+          class="h-24 w-72 bg-red-500/20 absolute rounded-full blur-xl -top-5 z-10 animate-pulse-fade-in animate-iteration-count-infinite animate-duration-1000 animate-direction-alternate-reverse"
         >
         </div>
-        <p class="py-1">
-          ¿Aun no tienes una cuenta? <a
-            href=`/${lang}/register`
-            class="underline text-cyan-500">Registrate</a
-          >
-        </p>
-        <SignForm lang={lang} navigate={redirect} client:load/>
+        <h1 class="text-5xl font-bold animate-blurred-fade-in">
+          Inicia Sesion
+        </h1>
+        <div
+          class="h-1 my-2 w-1/2 bg-gradient-to-r from-purple-500 via-red-500 to-orange-400 rounded-full"
+        >
+        </div>
+        <p class="py-1">¿Aun no tienes una cuenta?</p>
+        <a
+          href=`/${lang}/register`
+          class="text-white-200 w-max px-4 py-1 rounded-full bg-transparent bg-gradient-to-br from-purple-500 via-red-500 to-orange-400"
+          >Registrate</a
+        >
+        <SignForm lang={lang} navigate={redirect} client:load />
+      </div>
+    </section>
+    <section class="grid place-content-center">
+      <div>
+        <img src="/svg/programer.svg" alt="Chica programadora SVG" />
       </div>
     </section>
   </main>
