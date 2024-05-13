@@ -12,7 +12,7 @@ const refreshToken = cookies.get("sb-refresh-token");
 if (!accessToken || !refreshToken) {
   return redirect("/es/signin");
 }
-const { error } = await supabase.auth.setSession({
+const { data, error } = await supabase.auth.setSession({
   refresh_token: refreshToken.value,
   access_token: accessToken.value,
 });
@@ -25,6 +25,17 @@ if (error) {
   });
 
   return redirect("/es/signin");
+}
+const { data: userData } = await supabase
+  .from("profiles")
+  .select("*")
+  .eq("id", data.user?.id);
+  const roles: string[] = (userData && userData[0]?.roles) || [];
+console.log(roles);
+
+if (!roles.includes("admin") && !roles.includes("dev")) {
+    // Si el usuario no tiene los roles "admin" ni "dev", redirige a /es/dashboard
+    return redirect("/es/dashboard")
 }
 ---
 
@@ -60,7 +71,7 @@ if (error) {
         </div>
       </section>
       <section class="container mx-auto">
-        <ChangeForm client:load/>
+        <ChangeForm client:load />
       </section>
     </div>
   </main>

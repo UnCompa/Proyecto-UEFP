@@ -19,7 +19,7 @@ if (accessToken && refreshToken) {
 <Layout title="Inicia secion | Con tu correo" icon="">
   <Navigation />
   <main
-    class="w-full h-full bg-zinc-100 dark:bg-zinc-800 px-4 py-12 grid grid-cols-2"
+    class="w-full h-full bg-zinc-100 dark:bg-zinc-800 px-4 py-12 grid grid-cols-1 lg:grid-cols-2"
   >
     <section
       class="bg-zinc-200 dark:bg-zinc-950/40 backdrop-blur-2xl p-8 w-full container mx-auto shadow-xl"
@@ -45,7 +45,7 @@ if (accessToken && refreshToken) {
         <SignForm lang={lang} navigate={redirect} client:load />
       </div>
     </section>
-    <section class="grid place-content-center">
+    <section class="hidden lg:grid lg:place-content-center">
       <div>
         <img src="/svg/programer.svg" alt="Chica programadora SVG" />
       </div>

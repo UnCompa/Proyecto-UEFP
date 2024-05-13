@@ -31,7 +31,7 @@ export const POST: APIRoute = async ({ request, redirect }) => {
     return redirect(`/${lang}/`);
   }
 
-  const { data: updatedProfile, error: updateError } = await supabase
+  const { data: updatedProfile } = await supabase
   .from("profiles")
   .update({ username: name })
   .eq("id", data.user?.id)
