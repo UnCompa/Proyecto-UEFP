@@ -1,0 +1,23 @@
+---
+import VideoPlayer from "../VideoPlayer.astro";
+import UploadFile from './UploadFile.astro'
+const { title } = Astro.props;
+---
+
+<article class="px-8 py-4">
+  {
+    title && (
+      <h2 class="text-2xl underline decoration-2 decoration-green-500">
+        {title}
+      </h2>
+    )
+  }
+  <div class="grid grid-cols-2 gap-8">
+    <div class="w-full">
+      <VideoPlayer url="/videos/test.mp4" />
+    </div>
+    <div class="w-full">
+      <UploadFile />
+    </div>
+  </div>
+</article>

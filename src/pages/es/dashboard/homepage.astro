@@ -4,6 +4,7 @@ import NavDashboard from "../../../components/dashboard/NavDashboard";
 import ChangeForm from "../../../components/dashboard/ChangeForm";
 import DashBoardBase from "../../../layouts/DashBoardBase.astro";
 import { supabase } from "../../../lib/supabase";
+import UploadFileForm from "../../../components/dashboard/UploadFileForm.astro";
 const { cookies, redirect } = Astro;
 const url = Astro.url;
 const accessToken = cookies.get("sb-access-token");
@@ -71,6 +72,7 @@ if (!roles.includes("admin") && !roles.includes("dev")) {
         <ChangeForm title="Lema intitucional" propiedad="hero-frase" lang="es" seccion="inicio" client:load />
         <ChangeForm title="Mision intitucional" propiedad="main-mision-text" lang="es" seccion="inicio" client:load />
         <ChangeForm title="Vision intitucional" propiedad="main-vision-text" lang="es" seccion="inicio" client:load />
+        <UploadFileForm title="Subir presentacion"/>
       </section>
     </div>
   </main>

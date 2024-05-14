@@ -11,7 +11,7 @@ import "plyr/dist/plyr.css";
 
 {
   !vertical ? (
-    <div class="aspect-video w-full lg:w-[50vw] h-full">
+    <div class="w-full h-full">
       <div class="p-2 bg-zinc-100 border-black border dark:bg-zinc-900 shadow-2xl max-w-full grid place-content-center">
         <video playsinline controls style="--plyr-color-main: #ff0000;">
           <source src={url} type="video/mp4" />
@@ -21,15 +21,15 @@ import "plyr/dist/plyr.css";
   ) : (
     <div class="w-full h-full">
       <div class="bg-zinc-100 border-black border dark:bg-zinc-900 mx-auto p-2 aspect-[9/16] max-h-[38em]">
-      <video
-      id="vertical"
-      playsinline
-      controls
-      style="--plyr-color-main: #ff0000;object-fit:contain;height:100%"
-    >
-      <source src={url} type="video/mp4" />
-    </video>
-    </div>
+        <video
+          id="vertical"
+          playsinline
+          controls
+          style="--plyr-color-main: #ff0000;object-fit:contain;height:100%"
+        >
+          <source src={url} type="video/mp4" />
+        </video>
+      </div>
     </div>
   )
 }
