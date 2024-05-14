@@ -6,12 +6,10 @@ export default function FormTest() {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        console.log(text);
         const result = await supabase.from("pages").insert({
           textEs: text,
           textEn: text,
         })
-        console.log(result);
     }
   return (
     <form onSubmit={handleSubmit} className="flex flex-col">

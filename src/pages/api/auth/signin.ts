@@ -21,8 +21,8 @@ export const POST: APIRoute = async ({ request, cookies, redirect }) => {
           redirectTo: "http://localhost:4321/api/auth/callback",
         },
       });
-      console.log(providerData);
-      console.log(providerError);
+      (providerData);
+      (providerError);
     if (providerError) {
       return new Response(providerError.message, { status: 500 });
     }

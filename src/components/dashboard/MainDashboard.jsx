@@ -9,7 +9,6 @@ export default function MainDashboard({ email,url }) {
   useEffect(() => {
     const fetchData = async () => {
       const result = await supabase.from("pages").select();
-      console.log(result);
     };
     fetchData();
   }, []);

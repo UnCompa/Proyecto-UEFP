@@ -24,11 +24,11 @@ export default function ContacsForm({ urlStr, url }) {
       })
       .then(
         () => {
-          console.log("SUCCESS!");
+          ("SUCCESS!");
           setIsSubmit(true)
         },
         (error) => {
-          console.log("FAILED...", error.text);
+          ("FAILED...", error.text);
         }
       );
   });

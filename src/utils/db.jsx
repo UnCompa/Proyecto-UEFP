@@ -11,7 +11,7 @@ export const selecwithTableDB = async (db, table) => {
 export const selectOnlyDataDB = async (db, table) => {
   let jsonData = {};
   const { data } = await supabase.from(db).select(table);
-  console.log(data);
+  (data);
   data?.forEach((text) => {
     jsonData = text.translates;
   });
@@ -77,7 +77,7 @@ export const updateDBWithJson = async (db, table, updateJson) => {
       throw errorUpdate;
     }
 
-    console.log("Datos actualizados exitosamente:", dataUpdate);
+    ("Datos actualizados exitosamente:", dataUpdate);
     return { data: dataUpdate, error: null };
   } catch (error) {
     console.error("Error al actualizar los datos:", error.message);

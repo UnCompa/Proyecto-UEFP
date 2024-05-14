@@ -32,7 +32,7 @@ const { data: userData } = await supabase
   .select("*")
   .eq("id", data.user?.id);
   const roles: string[] = (userData && userData[0]?.roles) || [];
-console.log(roles);
+(roles);
 
 if (!roles.includes("admin") && !roles.includes("dev")) {
     // Si el usuario no tiene los roles "admin" ni "dev", redirige a /es/dashboard

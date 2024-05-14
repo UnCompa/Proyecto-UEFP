@@ -7,7 +7,7 @@ export default function SignForm({ lang, navigate }) {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  console.log(lang);
+  (lang);
   const onSubmit = handleSubmit(async (data) => {
     const formData = new FormData();
     formData.append("email", data.email);
@@ -16,7 +16,7 @@ export default function SignForm({ lang, navigate }) {
       method: "POST",
       body: formData,
     });
-    console.log(res);
+    (res);
     if(res.status === 203) {
       toast.error("La contraseña o el correo son incorrectos")
     }

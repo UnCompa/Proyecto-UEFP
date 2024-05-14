@@ -9,7 +9,6 @@ export default function ChangeForm(props) {
   const { propiedad, lang, seccion, title } = props;
   const fetchData = async () => {
     const texto = await recuperarTexto(propiedad, lang, seccion);
-    console.log(texto);
     settexto1(texto);
   };
   useEffect(() => {

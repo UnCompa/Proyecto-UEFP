@@ -10,12 +10,12 @@ export const POST: APIRoute = async ({ request, redirect }) => {
   const url = new URL(request.url);
   const lang = getLangFromUrl(url);
   if (!email || !password) {
-    console.log("Here");
+    ("Here");
     return new Response("Correo electrónico y contraseña obligatorios", {
       status: 400,
     });
   }
-  console.log(name, email, password);
+  (name, email, password);
 
   const { data, error } = await supabase.auth.signUp({
     email: email,
@@ -27,7 +27,7 @@ export const POST: APIRoute = async ({ request, redirect }) => {
     }
   });  
   if (error) {
-    console.log(error);
+    (error);
     return redirect(`/${lang}/`);
   }
 
@@ -36,7 +36,7 @@ export const POST: APIRoute = async ({ request, redirect }) => {
   .update({ username: name })
   .eq("id", data.user?.id)
   .select("*");
-  console.log(updatedProfile);
+  (updatedProfile);
   
   return redirect(`/${lang}/verification`);
 };

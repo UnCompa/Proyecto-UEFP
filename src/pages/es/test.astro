@@ -38,7 +38,7 @@ document.addEventListener("keyup", (e) => {
     const searchTerm = e.target.value.toLowerCase();
     frutas.forEach((fruta) => {
       const nombre = fruta.nombre.toLowerCase();
-      console.log(fruta.nombre);
+      (fruta.nombre);
       const frutaElement = document.querySelector(`#articulo-${nombre}`);
       if (nombre.includes(searchTerm)) {
         frutaElement.classList.remove("hidden");

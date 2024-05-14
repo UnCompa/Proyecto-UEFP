@@ -15,7 +15,7 @@ En esta seccion veras una pequena guia de uso para la web
 - Hola
 
 ```js
-  console.log("Hola")
+  ("Hola")
 ```
 
 ## Para todos

@@ -11,7 +11,6 @@ export default function Link({ to, children, text, disable }) {
         .select("*")
         .eq("id", data.user?.id);
       const roles = (userData && userData[0]?.roles) || [];
-      console.log(roles);
 
       if (!roles.includes("admin") && !roles.includes("dev")) {
         // Si el usuario no tiene los roles "admin" ni "dev", redirige a /es/dashboard

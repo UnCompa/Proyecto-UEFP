@@ -6,7 +6,6 @@ export default function SignGoogle() {
     const result = await supabase.auth.signInWithOAuth({
       provider: "google"
     })
-    console.log(result);
   }
   return (
     <button onClick={handleGoogle} name="provider" className="bg-zinc-100 text-black py-2 rounded-full flex items-center justify-center gap-x-2">

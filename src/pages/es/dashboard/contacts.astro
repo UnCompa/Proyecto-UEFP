@@ -15,7 +15,7 @@ if (!accessToken || !refreshToken) {
 const { data: datanew, error: errornew } = await supabase
 .from("pages")
 .select("*");
-console.log(datanew,errornew)
+(datanew,errornew)
 const { error } = await supabase.auth.setSession({
   refresh_token: refreshToken.value,
   access_token: accessToken.value,

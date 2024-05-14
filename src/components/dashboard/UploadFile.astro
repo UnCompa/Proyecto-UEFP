@@ -6,17 +6,7 @@ import "dropzone/dist/dropzone.css"
 <div>
   <h2>Hola</h2>
   <form action="" id="upload-zone" class="dropzone">
-    <button>Enviar</button>
   </form>
 </div>
 
-<script>
-  import Dropzone from "dropzone";
-  let myDropzone = new Dropzone(".dropzone", {
-    url: "/"
-  })
-  myDropzone.on("addedfile", file => {
-    console.log(file);
-    console.log(file.name);
-  })
-</script>
+<script class="../../scripts/Dropzone.js"></script>

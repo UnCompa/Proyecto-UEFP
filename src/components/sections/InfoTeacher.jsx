@@ -7,9 +7,9 @@ export default function InfoTeacher({lang}) {
   useEffect(() => {
     const fetchDataEs = async () => {
       const tableLang = "teachers" + lang
-      console.log(tableLang);
+      (tableLang);
       const { data } = await supabase.from(tableLang).select("*");
-      console.log(data);
+      (data);
       setData(data);
     };
     fetchDataEs();
@@ -17,7 +17,7 @@ export default function InfoTeacher({lang}) {
   return (
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 bg-zinc-100  dark:bg-zinc-900 p-4">
       {data.map((teacher) => {
-        console.log(teacher);
+        (teacher);
         return (
           <PeopleCard
           key={teacher.id}
