@@ -41,7 +41,7 @@ export default function MainDashboard({ email,url }) {
         <section className="my-4 grid grid-cols-1 lg:grid-cols-2 gap-4">
           <article className="bg-zinc-200 dark:bg-zinc-900 rounded hover:ring-1 hover:ring-green-500 h-full w-full p-4 grid grid-cols-2 transition-all">
             <div className="h-full w-full">
-              <h3 className="text-center font-bold text-4xl py-2 bg-clip-text text-transparent bg-gradient-to-r from-green-700 to-green-300">
+              <h3 className="text-center font-bold text-2xl md:text-4xl py-2 bg-clip-text text-transparent bg-gradient-to-r from-green-700 to-green-300">
                 Inicio
               </h3>
               <p className="font-light dark:text-zinc-300 my-2">
@@ -59,7 +59,7 @@ export default function MainDashboard({ email,url }) {
           </article>
           <article className="bg-zinc-200 dark:bg-zinc-900 rounded hover:ring-1 hover:ring-purple-500 h-full w-full p-4 grid grid-cols-2 transition-all">
             <div className="h-full w-full">
-              <h3 className="text-center font-bold text-4xl py-2 bg-clip-text text-transparent bg-gradient-to-tl from-purple-700 to-purple-300">
+              <h3 className="text-center font-bold text-2xl md:text-4xl py-2 bg-clip-text text-transparent bg-gradient-to-tl from-purple-700 to-purple-300">
                 Sobre Nosotros
               </h3>
               <p className="font-light dark:text-zinc-300 my-2">
@@ -75,7 +75,7 @@ export default function MainDashboard({ email,url }) {
           </article>
           <article className="bg-zinc-200 dark:bg-zinc-900 rounded hover:ring-1 hover:ring-orange-500 h-full w-full p-4 grid grid-cols-2 transition-all">
             <div className="h-full w-full">
-              <h3 className="text-center font-bold text-4xl py-2 bg-clip-text text-transparent bg-gradient-to-r from-orange-700 to-orange-300">
+              <h3 className="text-center font-bold text-2xl md:text-4xl py-2 bg-clip-text text-transparent bg-gradient-to-r from-orange-700 to-orange-300">
                 Academicos
               </h3>
               <p className="font-light dark:text-zinc-300 my-2">
@@ -91,7 +91,7 @@ export default function MainDashboard({ email,url }) {
           </article>
           <article className="bg-zinc-200 dark:bg-zinc-900 rounded hover:ring-1 hover:ring-red-500 h-full w-full p-4 grid grid-cols-2 transition-all">
             <div className="h-full w-full">
-              <h3 className="text-center font-bold text-4xl py-2 bg-clip-text text-transparent bg-gradient-to-tl from-red-700 to-red-300">
+              <h3 className="text-center font-bold text-2xl md:text-4xl py-2 bg-clip-text text-transparent bg-gradient-to-tl from-red-700 to-red-300">
                 Contactos
               </h3>
               <p className="font-light dark:text-zinc-300 my-2">

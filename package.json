@@ -21,6 +21,7 @@
     "@emailjs/browser": "^4.3.3",
     "@midudev/tailwind-animations": "^0.0.7",
     "@nextui-org/react": "^2.2.10",
+    "@nextui-org/spinner": "^2.0.28",
     "@supabase/ssr": "^0.3.0",
     "@supabase/supabase-js": "2.42.3",
     "@types/react": "^18.2.71",

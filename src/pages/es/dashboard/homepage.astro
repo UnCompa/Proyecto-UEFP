@@ -57,13 +57,10 @@ if (!roles.includes("admin") && !roles.includes("dev")) {
           <h2
             class="text-3xl lg:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-green-500 to-emerald-500"
           >
-            Modifica la pagina inicial!
+            Página inicial
           </h2>
-          <p class="text-light font-Rubik text-zinc-300 p-4">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente
-            delectus quisquam, ut animi velit placeat doloremque iste error quo
-            necessitatibus reprehenderit vitae fugit debitis magni laboriosam
-            dignissimos ea consectetur ad.
+          <p class="text-light font-Rubik text-zinc-800 dark:text-zinc-300 p-4">
+            En esta sección se manera el cambio de los diferentes texto que se presentan en la web, com el lema, la mision y vision intitucional, entre otras cosas, modificarlas <strong>cuando sea necesario</strong> para mantener con información veridicá y de cadlidad.
           </p>
         </div>
         <div class="grid place-content-center">
@@ -71,7 +68,9 @@ if (!roles.includes("admin") && !roles.includes("dev")) {
         </div>
       </section>
       <section class="container mx-auto">
-        <ChangeForm client:load />
+        <ChangeForm title="Lema intitucional" propiedad="hero-frase" lang="es" seccion="inicio" client:load />
+        <ChangeForm title="Mision intitucional" propiedad="main-mision-text" lang="es" seccion="inicio" client:load />
+        <ChangeForm title="Vision intitucional" propiedad="main-vision-text" lang="es" seccion="inicio" client:load />
       </section>
     </div>
   </main>
