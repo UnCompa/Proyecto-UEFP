@@ -24,7 +24,6 @@ const allTranslations = async (): Promise<{
   const SobreNosotrosEn = await selectTranslate("about","en")
   const AcademicsEn =  await selectTranslate("academics","en")
   const ContactosEn = await selectTranslate("contacts","en")
-  console.log(InicioEn);
   let TraduccionEn;
   let TraduccionEs;
   

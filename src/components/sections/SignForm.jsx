@@ -1,6 +1,6 @@
 import { Input } from "@nextui-org/react";
 import { useForm } from "react-hook-form";
-import { FaGoogle } from "react-icons/fa6";
+import {Toaster,toast} from 'sonner'
 export default function SignForm({ lang, navigate }) {
   const {
     register,
@@ -16,12 +16,17 @@ export default function SignForm({ lang, navigate }) {
       method: "POST",
       body: formData,
     });
-    res.redirected
-      ? (window.location.href = `/${lang}/dashboard`)
-      : (window.location.href = `/${lang}/register`);
+    console.log(res);
+    if(res.status === 203) {
+      toast.error("La contraseña o el correo son incorrectos")
+    }
+    if(res.status === 200) {
+      window.location.href = `/${lang}/dashboard`
+    }
   });
   return (
     <>
+    <Toaster position="top-center" richColors/>
       <form
         action="/api/auth/signin"
         method="post"

@@ -39,7 +39,7 @@ export const POST: APIRoute = async ({ request, cookies, redirect }) => {
     password,
   });
   if (error) {
-    return redirect(`/${lang}/`);
+    return new Response("No pasa", {status: 203})
   }
 
   const { access_token, refresh_token } = data.session;
@@ -49,5 +49,5 @@ export const POST: APIRoute = async ({ request, cookies, redirect }) => {
   cookies.set("sb-refresh-token", refresh_token, {
     path: "/",
   });
-  return redirect(`/${lang}/dashboard`);
+  return new Response("Pasa", {status: 200});
 };
