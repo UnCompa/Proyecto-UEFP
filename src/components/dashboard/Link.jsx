@@ -1,25 +1,4 @@
-import { useEffect } from "react";
 export default function Link({ to, children, text, disable }) {
-  useEffect(() => {
-    const userDataRoles = async () => {
-      const { data } = await supabase.auth.setSession({
-        refresh_token: refreshToken.value,
-        access_token: accessToken.value,
-      });
-      const { data: userData } = await supabase
-        .from("profiles")
-        .select("*")
-        .eq("id", data.user?.id);
-      const roles = (userData && userData[0]?.roles) || [];
-
-      if (!roles.includes("admin") && !roles.includes("dev")) {
-        // Si el usuario no tiene los roles "admin" ni "dev", redirige a /es/dashboard
-        return redirect("/es/dashboard");
-      }
-    };
-    userDataRoles();
-  }, []);
-
   return (
     <>
       {disable ? (

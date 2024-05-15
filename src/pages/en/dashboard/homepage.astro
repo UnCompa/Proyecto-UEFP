@@ -1,0 +1,100 @@
+---
+import ThemeIcon from "../../../components/ThemeIcon.astro";
+import NavDashboard from "../../../components/dashboard/NavDashboard";
+import ChangeForm from "../../../components/dashboard/ChangeForm";
+import DashBoardBase from "../../../layouts/DashBoardBase.astro";
+import { supabase } from "../../../lib/supabase";
+import UploadFileForm from "../../../components/dashboard/UploadFileForm.astro";
+const { cookies, redirect } = Astro;
+const url = Astro.url;
+const accessToken = cookies.get("sb-access-token");
+const refreshToken = cookies.get("sb-refresh-token");
+
+if (!accessToken || !refreshToken) {
+  return redirect("/es/signin");
+}
+const { data, error } = await supabase.auth.setSession({
+  refresh_token: refreshToken.value,
+  access_token: accessToken.value,
+});
+if (error) {
+  cookies.delete("sb-access-token", {
+    path: "/",
+  });
+  cookies.delete("sb-refresh-token", {
+    path: "/",
+  });
+
+  return redirect("/es/signin");
+}
+const { data: userData } = await supabase
+  .from("profiles")
+  .select("*")
+  .eq("id", data.user?.id);
+  const roles: string[] = (userData && userData[0]?.roles) || [];
+(roles);
+
+if (!roles.includes("admin") && !roles.includes("dev")) {
+    // Si el usuario no tiene los roles "admin" ni "dev", redirige a /es/dashboard
+    return redirect("/es/dashboard")
+}
+---
+
+<!-- <ThemeIcon/> -->
+<DashBoardBase title="Dashboard | Panel de control" icon="">
+  <main class="dashboard">
+    <div
+      class="bg-zinc-200 dark:bg-zinc-900 h-full w-full [grid-area:aside] boxshadow"
+    >
+      <NavDashboard url={url} client:load={true}>
+        <ThemeIcon />
+      </NavDashboard>
+    </div>
+    <div
+      class="p-4 bg-zinc-50 overflow-y-auto dark:bg-zinc-800 w-full h-full [grid-area:main] font-Kanit"
+    >
+      <section class="grid grid-cols-1 sm:grid-cols-2 place-content-center">
+        <div class="flex flex-col items-center p-4">
+          <h2
+            class="text-3xl lg:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-green-500 to-emerald-500"
+          >
+            Página inicial
+          </h2>
+          <p class="text-light font-Rubik text-zinc-800 dark:text-zinc-300 p-4">
+            En esta sección se manera el cambio de los diferentes texto que se presentan en la web, com el lema, la mision y vision intitucional, entre otras cosas, modificarlas <strong>cuando sea necesario</strong> para mantener con información veridicá y de cadlidad.
+          </p>
+        </div>
+        <div class="grid place-content-center">
+          <img class="h-96" src="/svg/calendar-55.svg" alt="" />
+        </div>
+      </section>
+      <section class="container mx-auto">
+        <ChangeForm title="Lema intitucional" propiedad="hero-frase" lang="es" seccion="inicio" client:load />
+        <ChangeForm title="Mision intitucional" propiedad="main-mision-text" lang="es" seccion="inicio" client:load />
+        <ChangeForm title="Vision intitucional" propiedad="main-vision-text" lang="es" seccion="inicio" client:load />
+        <UploadFileForm title="Subir presentacion"/>
+      </section>
+    </div>
+  </main>
+</DashBoardBase>
+<style>
+  .dashboard {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    grid-template-rows: 100vh;
+    grid-template-areas: "aside main";
+  }
+  @media (max-width: 1024px) {
+    .dashboard {
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-rows: 96px 1fr;
+      grid-template-areas:
+        "aside"
+        "main";
+    }
+  }
+  .boxshadow {
+    box-shadow: 0px -20px 10px black;
+  }
+</style>

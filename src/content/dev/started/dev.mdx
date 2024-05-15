@@ -1,13 +1,16 @@
 ---
-title: 'Guía para desarrolladores'
+title: "Guía para desarrolladores"
 pubDate: "2024/04/21"
-description: 'Este es la primera publicación de mi nuevo blog de Astro.'
-author: 'Alumno de Astro'
+description: "Este es la primera publicación de mi nuevo blog de Astro."
+author: "Alumno de Astro"
 image:
-    url: 'https://cdn.buttercms.com/xrVbfdR5TBy4iTaY4xl7'
-    alt: 'El logotipo completo de Astro.'
-tags: ["astro", "bloguear", "aprender en público"]
+  url: "https://cdn.buttercms.com/xrVbfdR5TBy4iTaY4xl7"
+  alt: "El logotipo completo de Astro."
+tags: ["Desarrollador", "Iniciar", "Astro JS"]
 ---
+
+import LinksContainer from "../../../components/docs/LinksContainer.astro";
+import LinkCard from "../../../components/docs/LinkCard.astro";
 
 ¡Bienvenido al equipo de desarrollo de la Unidad Educativa Fiscal Pichincha (UEFP)! Esta guía te proporcionará una visión general del proyecto y los recursos necesarios para contribuir al desarrollo y mantenimiento de nuestra página web.
 
@@ -96,9 +99,11 @@ Se guardan imágenes de tipo SVG utilizadas en la web.
 Esta carpeta contiene el código fuente de la aplicación, organizado en diferentes subdirectorios:
 
 ##### Components
+
 Contiene componentes reutilizables utilizados en diferentes partes de la página.
 
 ##### i18n
+
 Almacena las traducciones para español e inglés de la página.
 
 ##### Icons
@@ -118,7 +123,9 @@ Contiene bibliotecas útiles, como la biblioteca para utilizar Supabase
 Contiene componentes con información necesaria para la indexación de la página.
 
 ##### Pages
+
 La carpeta más importante, que contiene las rutas a las diferentes páginas de la web.
+
 ##### Schema
 
 Carpeta para definir esquemas de datos.
@@ -130,3 +137,8 @@ Almacena archivos relacionados con el manejo del estado de la aplicación.
 ##### Utils
 
 Esta carpeta contiene utilidades varias utilizadas en el proyecto.
+
+<LinksContainer>
+  <LinkCard />
+  <LinkCard />
+</LinksContainer>

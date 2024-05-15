@@ -5,8 +5,8 @@ import { supabase } from "../../lib/supabase";
 export default function InfoTeacher({lang}) {
   const [data, setData] = useState([]);
   useEffect(() => {
+    const tableLang = "teachers" + lang
     const fetchDataEs = async () => {
-      const tableLang = "teachers" + lang
       (tableLang);
       const { data } = await supabase.from(tableLang).select("*");
       (data);

@@ -20,4 +20,5 @@ const postsCollection = defineCollection({
 // Exporta un solo objeto `collections` con las colecciones registradas
 export const collections = {
     dev: postsCollection,
+    en: postsCollection,
 }

@@ -32,14 +32,16 @@ const { posts } = Astro.props;
       posts.map((post) => {
         (post);
         return (
-          <div class="bg-zinc-900 p-2 h-72">
+          <div class="bg-zinc-900 p-2 h-max">
             
             <a
               class="font-Kanit font-light no-underline"
               href={`/es/docs/${post.slug}`}
             >
               <img src={post.data.image.url} class="object-cover h-56" transition:name={post.data.image.url}>
-              <p class="h-max">{post.data.title}</p>
+              <i class="text-xs text-zinc-500">{post.data.pubDate}</i>
+              <h6 class="h-max no-underline">{post.data.title}</h6>
+              <p class="text-sm">{post.data.description}</p>
             </a>
           </div>
         );
