@@ -1,8 +1,37 @@
 ---
-import BaseLayout from "../../../layouts/DocsLayout.astro";
+import DocsLayout from "../../../layouts/DocsLayout.astro";
+import LinksContainer from "../../../components/docs/LinksContainer.astro";
+import LinkCard from "../../../components/docs/LinkCard.astro";
 ---
 
-<BaseLayout>
-<h1>UEFP Docs</h1>
-<p>Bienvenidos a la documentacion sobre la unidad educativa fiscal pichincha</p>
-</BaseLayout>
+<DocsLayout pageTitle="Documentación | UEFP" icon="/imgs/UEFPescudoblanco.png">
+  <h1>Documentación</h1>
+  <p>
+    Bienvenidos a la documentacion sobre la unidad educativa fiscal pichincha,
+    aquí encontraras información de utilidad para entender como funciona la
+    página.
+  </p>
+  <h2>Para el usuario</h2>
+  <p>
+    Se a preparado una guia para el usuario de como manejar responsablemente la
+    web, para no causar problemas en su mantenimiento
+  </p>
+  <p>
+    Para mas información visita la seccion <strong>Sobre el usuario</strong> para
+    conocer mas información
+  </p>
+  <h2>Para los desarrolladores</h2>
+  <p>
+    A los desarolladores se les proporcionará información mas detallada ademas
+    de conceptos que se deben tener en cuenta para el mantenimiento de la web,
+    aportando con mejoras, correcciones, etc.
+  </p>
+  <p>
+    Visita las diferentes secciones para el desarrollador donde encontraras
+    informacion util
+  </p>
+  <LinksContainer>
+    <LinkCard title="Para el usuario" text="Como empezar" to=""/>
+    <LinkCard title="Para el usuario" text="Como empezar" to=""/>
+  </LinksContainer>
+</DocsLayout>

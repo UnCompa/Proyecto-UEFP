@@ -1,11 +1,15 @@
+* {
+  scrollbar-width: thin;
+  scrollbar-color: white #27272a ;
+}
 *::selection {
   background-color: #ef4444;
   color: #fafafa;
 }
 html {
   color-scheme: light dark;
-  scrollbar-width: thin;
   scrollbar-color: #27272a white;
+  scrollbar-width: thin;
   font-family: "Kanit", sans-serif;
 }
 html.dark {
@@ -75,6 +79,7 @@ h6 {
 a {
   color: #fafafa;
   text-decoration: underline;
+  text-decoration-color: #ef4444;
   text-shadow: 0px 0px 10px #0af5;
 }
 
@@ -102,7 +107,7 @@ img {
   box-shadow: 0px 0px 30px #12121288;
 }
 ul {
-  list-style-type: none;
+  list-style-type: disc;
   padding: 0em 1em;
 }
 pre {

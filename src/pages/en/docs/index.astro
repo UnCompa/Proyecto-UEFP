@@ -1,0 +1,36 @@
+---
+import LinkCard from "../../../components/docs/LinkCard.astro";
+import LinksContainer from "../../../components/docs/LinksContainer.astro";
+import BaseLayout from "../../../layouts/DocsLayout.astro";
+---
+
+<BaseLayout>
+  <h1>Documentation</h1>
+  <p>
+    Welcome to the documentation about the Pichincha public educational unit,
+    here you will find useful information to understand how the page works.
+  </p>
+  <h2>For the user</h2>
+  <p>
+    A guide has been prepared for the user on how to responsibly manage the
+    website, to avoid causing problems in its maintenance.
+  </p>
+  <p>
+    For more information, visit the <strong>About the user</strong> section to learn
+    more.
+  </p>
+  <h2>For developers</h2>
+  <p>
+    Developers will be provided with more detailed information as well as
+    concepts that must be taken into account for the maintenance of the website,
+    contributing with improvements, corrections, etc.
+  </p>
+  <p>
+    Visit the different developer sections where you will find useful
+    information.
+  </p>
+  <LinksContainer>
+    <LinkCard title="For the user" text="Getting Started" to="" />
+    <LinkCard title="For the user" text="Getting Started" to="" />
+  </LinksContainer>
+</BaseLayout>

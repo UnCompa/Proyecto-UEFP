@@ -1,0 +1,17 @@
+---
+interface Props {
+  title: string,
+  text: string,
+  to: string,
+}
+import { FaArrowRight } from "react-icons/fa";
+const { title = "Guia", text = "Enlace", to = "/"} = Astro.props
+---
+
+<a href={to} class="bg-zinc-900 hover:bg-zinc-800 rounded p-4 group no-underline transition-all">
+  <h3 class="text-sm decoration-none no-underline p-1">{title}</h3>
+  <div class="flex items-center gap-x-4 p-1">
+    <p class="no-underline">{text}</p>
+    <FaArrowRight className="group-hover:translate-x-2 transition-all"/>
+  </div>
+</a>
