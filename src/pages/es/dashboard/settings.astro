@@ -1,0 +1,100 @@
+---
+import ThemeIcon from "../../../components/ThemeIcon.astro";
+import InputUpdateSettings from "../../../components/dashboard/InputUpdateSettings";
+import CardUpdateSettings from "../../../components/dashboard/CardUpdateSettings.astro";
+import NavDashboard from "../../../components/dashboard/NavDashboard";
+import DashBoardBase from "../../../layouts/DashBoardBase.astro";
+import { supabase } from "../../../lib/supabase";
+const url = Astro.url;
+const { cookies, redirect } = Astro;
+const accessToken = cookies.get("sb-access-token");
+const refreshToken = cookies.get("sb-refresh-token");
+
+if (!accessToken || !refreshToken) {
+  return redirect("/es/signin");
+}
+const { data: dataUser, error } = await supabase.auth.setSession({
+  refresh_token: refreshToken.value,
+  access_token: accessToken.value,
+});
+if (error) {
+  cookies.delete("sb-access-token", {
+    path: "/",
+  });
+  cookies.delete("sb-refresh-token", {
+    path: "/",
+  });
+
+  return redirect("/es/signin");
+}
+const {user} = dataUser
+console.log(user);
+---
+
+<DashBoardBase
+  title="Configura tu perfil aqui | UEFP"
+  icon="/imgs/UEFPescudoblanco.png"
+>
+  <main class="dashboard bg-zinc-800">
+    <div
+      class="bg-zinc-200 dark:bg-zinc-900 h-full w-full [grid-area:aside] boxshadow"
+    >
+      <NavDashboard url={url} client:load={true}>
+        <ThemeIcon />
+      </NavDashboard>
+    </div>
+    <div>
+      <section class="grid grid-cols-1 sm:grid-cols-2 place-content-center">
+        <div class="flex flex-col items-center p-4">
+          <h2
+            class="text-3xl h-max lg:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-slate-500 to-zinc-500"
+          >
+            Configuración
+          </h2>
+          <p class="text-light font-Rubik text-zinc-800 dark:text-zinc-300 p-4">
+            En esta sección se manera el cambio de los diferentes texto que se
+            presentan en la web, com el lema, la mision y vision intitucional,
+            entre otras cosas, modificarlas <strong>cuando sea necesario</strong
+            > para mantener con información veridicá y de cadlidad.
+          </p>
+        </div>
+        <div class="grid place-content-center">
+          <img class="h-96" src="/svg/calendar-55.svg" alt="" />
+        </div>
+      </section>
+      <section class="grid grid-cols-2 p-4 font-Kanit">
+        <div class="border-r border-zinc-500 flex flex-col gap-y-4">
+          <CardUpdateSettings title="Cambia tu nombre de usuario" now={user?.user_metadata?.username}/>
+          <CardUpdateSettings title="Cambia tu nombre de usuario" now={user?.email}/>
+        </div>
+        <div class="p-4">
+          <form action="" class="flex flex-col gap-4">
+            <InputUpdateSettings idUser={user?.id} client:load />
+            <InputUpdateSettings idUser={user?.id} client:load />
+          </form>
+        </div>
+      </section>
+    </div>
+  </main>
+</DashBoardBase>
+<script>
+  const username = document.getElementById("");
+</script>
+<style>
+  .dashboard {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    grid-template-rows: 100vh;
+    grid-template-areas: "aside main";
+  }
+  @media (max-width: 1024px) {
+    .dashboard {
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-rows: 96px 1fr;
+      grid-template-areas:
+        "aside"
+        "main";
+    }
+  }
+</style>

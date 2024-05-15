@@ -10,6 +10,7 @@ import {
 import Link from "./Link";
 import { getLangFromUrl } from "../../i18n/utils";
 import { MdDashboard } from "react-icons/md";
+import { FaGear } from "react-icons/fa6";
 export default function NavDashboard({ children,url }) {
   const lang = getLangFromUrl(url)
   const [openMenu, setOpenMenu] = useState(false);
@@ -100,6 +101,11 @@ export default function NavDashboard({ children,url }) {
           <li>
           <h2 className="font-bold py-2">Opciones</h2>
           <ul className="flex h-full items-center gap-x-4">
+            <li className="w-max h-max rounded-xl p-2 bg-zinc-200 dark:bg-zinc-900 shadow-2xl dark:hover:bg-red-200 dark:hover:text-black text-dark fill-black hover:bg-red-500 hover:text-white dark:text-white transition-all">
+              <a href={`/${lang}/dashboard/settings`} className="">
+              <FaGear className="text-xl"/>
+              </a>
+            </li>
             <li>{children}</li>
             <li>
               <form action="/api/auth/signout">

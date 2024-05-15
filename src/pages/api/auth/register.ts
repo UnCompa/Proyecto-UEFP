@@ -15,7 +15,6 @@ export const POST: APIRoute = async ({ request, redirect }) => {
       status: 400,
     });
   }
-  (name, email, password);
 
   const { data, error } = await supabase.auth.signUp({
     email: email,
