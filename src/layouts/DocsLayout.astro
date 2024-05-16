@@ -5,7 +5,7 @@ import SpeedInsights from "@vercel/speed-insights/astro";
 import NavigateDocs from "../components/docs/NavigateDocs.astro";
 const url = Astro.url;
 const lang = getLangFromUrl(url);
-const { pageTitle, icon } = Astro.props;
+const { pageTitle, icon = "/imgs/docs.png"} = Astro.props;
 import "./../styles/global.css";
 import NavLinkDocs from "../components/docs/NavLinkDocs.astro";
 import { ViewTransitions } from "astro:transitions";
