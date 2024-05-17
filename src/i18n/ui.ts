@@ -1,54 +1,77 @@
-import HomeEs from './locales/es/es.json'
-import AboutEs from './locales/es/about.json'
-import AcademicsEs from './locales/es/academics.json'
-import HomeEn from './locales/en/en.json'
-import AboutEn from './locales/en/about.json'
-import AcademicosEn from './locales/en/academics.json'
-import ContactsEs from './locales/es/contacts.json'
-import ContactsEn from './locales/en/contacts.json'
+import HomeEs from './locales/es/es.json';
+import AboutEs from './locales/es/about.json';
+import AcademicsEs from './locales/es/academics.json';
+import HomeEn from './locales/en/en.json';
+import AboutEn from './locales/en/about.json';
+import AcademicosEn from './locales/en/academics.json';
+import ContactsEs from './locales/es/contacts.json';
+import ContactsEn from './locales/en/contacts.json';
 
-import { selectOnlyDataContiditionDB, selectTranslate } from "../utils/db";
+import { selectTranslate } from "../utils/db";
+
 export type Translates = {
   [key: string]: string | { [key: string]: string };
 };
 
-const allTranslations = async (): Promise<{
+const cache: { [key: string]: Translates | null } = {};
+
+const fetchTranslations = async (): Promise<{
   TraduccionEs: Translates;
   TraduccionEn: Translates;
 }> => {
-  const InicioEs = await selectTranslate("inicio","es")
-  const SobreNosotrosEs = await selectTranslate("about","es")
-  const AcademicosEs =  await selectTranslate("academics","es")
-  const ContactosEs = await selectTranslate("contacts","es")
-  const InicioEn = await selectTranslate("inicio","en")
-  const SobreNosotrosEn = await selectTranslate("about","en")
-  const AcademicsEn =  await selectTranslate("academics","en")
-  const ContactosEn = await selectTranslate("contacts","en")
-  let TraduccionEn;
-  let TraduccionEs;
-  
-  if (typeof InicioEs === "object" && InicioEs === null || typeof InicioEn === "object" && InicioEn === null) {    
-    TraduccionEs = { ...HomeEs, ...AboutEs, ...AcademicsEs, ...ContactsEs};
-    TraduccionEn = { ...HomeEn, ...AboutEn, ...AcademicosEn, ...ContactsEn };
-  } else {
-    TraduccionEs = { ...InicioEs, ...SobreNosotrosEs, ...AcademicosEs, ...ContactosEs};
-    TraduccionEn = { ...InicioEn, ...SobreNosotrosEn, ...AcademicsEn,...ContactosEn };
-  }  
-  return { TraduccionEs, TraduccionEn };
+  if (cache.TraduccionEs && cache.TraduccionEn) {
+    return {
+      TraduccionEs: cache.TraduccionEs,
+      TraduccionEn: cache.TraduccionEn,
+    };
+  }
+
+  const keys = ["inicio", "about", "academics", "contacts"];
+  const langs = ["es", "en"];
+
+  const promises = keys.flatMap((key) =>
+    langs.map((lang) => selectTranslate(key, lang))
+  );
+
+  const results = await Promise.all(promises);
+
+  const [
+    InicioEs, SobreNosotrosEs, AcademicosEs, ContactosEs,
+    InicioEn, SobreNosotrosEn, AcademicsEn, ContactosEn,
+  ] = results;
+
+  const TraduccionEs = {
+    ...InicioEs ?? {}, ...SobreNosotrosEs ?? {}, ...AcademicosEs ?? {}, ...ContactosEs ?? {},
+    ...HomeEs, ...AboutEs, ...AcademicsEs, ...ContactsEs,
+  };
+
+  const TraduccionEn = {
+    ...InicioEn ?? {}, ...SobreNosotrosEn ?? {}, ...AcademicsEn ?? {}, ...ContactosEn ?? {},
+    ...HomeEn, ...AboutEn, ...AcademicosEn, ...ContactsEn,
+  };
+
+  cache.TraduccionEs = TraduccionEs;
+  cache.TraduccionEn = TraduccionEn;
+
+  return {
+    TraduccionEs,
+    TraduccionEn,
+  };
 };
+
+const { TraduccionEs, TraduccionEn } = await fetchTranslations();
+
 export const languages = {
   en: "English",
   es: "Español",
 };
-const { TraduccionEs, TraduccionEn } = (await allTranslations()) as {
-  TraduccionEs: Translates;
-  TraduccionEn: Translates;
-};
+
 // Idioma por defecto
 export const defaultLang = "es";
 
 // Mostrar idioma por defecto
-export const showDefaultLang = false;
+export const showDefaultLang = "es";
+
 // Objeto ui
 export const ui = {
   en: TraduccionEn,

@@ -1,39 +1,31 @@
 ---
-import { FaChevronDown } from "react-icons/fa6";
 import { getLangFromUrl, useTranslations } from "./../i18n/utils";
 import { FaChevronCircleDown } from "react-icons/fa";
+
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
 
-<div
-  class="gradient-container bg-radial-gradient-light dark:bg-radial-gradient-dark"
->
+<div class="gradient-container bg-radial-gradient-light dark:bg-radial-gradient-dark font-Rubik">
   <div class="hero h-full w-full flex flex-col items-center justify-center">
-    <h1
-      class="text-black dark:text-white font-Rubik font-bold text-4xl md:text-6xl text-center animate-slide-in-bottom animate-delay-150 animate-duration-300"
-    >
+    <h1 class="text-black dark:text-white font-Rubik font-bold text-4xl md:text-6xl text-center animate-slide-in-bottom animate-delay-150 animate-duration-300">
       UNIDAD EDUCATIVA FISCAL <br />
-      <span
-        class="bg-clip-text text-transparent bg-gradient-to-tr from-purple-500 via-red-500 to-yellow-400"
-        >PICHINCHA</span
-      >
+      <span class="bg-clip-text text-transparent bg-gradient-to-tr from-purple-500 via-red-500 to-yellow-400">
+        PICHINCHA
+      </span>
     </h1>
     <div class="flex flex-col items-center gap-y-12">
-      <p
-        class="font-Rubik font-bold text-black dark:text-white text-xl animate-fade-in animate-delay-300"
-      >
+      <p class="font-Rubik font-bold text-black dark:text-white text-xl animate-fade-in animate-delay-300">
         {t("hero-frase")}
       </p>
-      <FaChevronCircleDown
-        className="text-3xl text-black/50 dark:text-white/50 animate-jump animate-iteration-count-infinite animate-duration-[2s]"
-      />
+      <FaChevronCircleDown className="text-3xl text-black/50 dark:text-white/50 animate-jump animate-iteration-count-infinite animate-duration-[2s]" />
     </div>
   </div>
 </div>
+
 <style>
   .gradient-container {
-    height: calc(100dvh - 7em);
+    height: calc(100vh - 7em);
     width: 100%;
     background-repeat: no-repeat;
     animation: bg 2s ease forwards;

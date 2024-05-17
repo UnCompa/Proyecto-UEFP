@@ -9,7 +9,7 @@ import { HiMail, HiHome, HiUsers, HiAcademicCap } from "react-icons/hi";
 import { FaRegUser } from "react-icons/fa6";
 function NavBar({ url, pathName, children, refreshToken, accessToken }) {
   const [openMenu, setOpenMenu] = useState(false);
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(true);
   const [isUser, setIsUser] = useState(true);
   const lang = getLangFromUrl(url);
   const t = useTranslations(lang);
@@ -22,7 +22,6 @@ function NavBar({ url, pathName, children, refreshToken, accessToken }) {
   });
   const [, setTitles] = useState({});
   const urlString = url.toString();
-
   useEffect(() => {
     const fetchData = async () => {
       if (!accessToken || !refreshToken) {
@@ -36,7 +35,7 @@ function NavBar({ url, pathName, children, refreshToken, accessToken }) {
       setIsUser(true);
     };
     fetchData();
-  }, []);
+  }, [isUser]);
   let mensaje1;
   if (lang === "es") {
     if (urlString.includes("contacts")) {
@@ -63,7 +62,6 @@ function NavBar({ url, pathName, children, refreshToken, accessToken }) {
   const handleMenu = () => {
     setOpenMenu(!openMenu);
   };
-
   useEffect(() => {
     // Obtenemos las traducciones de las URLs según el idioma actual
     const translatedUrls = {
@@ -98,7 +96,7 @@ function NavBar({ url, pathName, children, refreshToken, accessToken }) {
     return () => {
       observer.disconnect();
     };
-  }, []);
+  }, [isDarkMode]);
   return (
     <nav
       className={`h-28 box-border bg-cover text-black shadow-2xl dark:text-white bg-white/90 dark:bg-black flex justify-between items-center sticky top-0 px-12 z-10`}
@@ -112,6 +110,7 @@ function NavBar({ url, pathName, children, refreshToken, accessToken }) {
           }
           className="h-20 lg:h-24"
           alt="Unidad Educativa Fiscal Pichincha | Escudo Logo"
+          loading="lazy"
         />
       </a>
       <h3 className="block text-center text-xl font-Rubik uppercase font-bold lg:hidden">
