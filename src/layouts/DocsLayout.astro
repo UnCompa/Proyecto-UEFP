@@ -6,7 +6,7 @@ import SpeedInsights from "@vercel/speed-insights/astro";
 import {SEO} from "astro-seo"
 const url = Astro.url;
 const lang = getLangFromUrl(url);
-const { pageTitle, icon = "/imgs/docs.png", data } = Astro.props;
+const { pageTitle, icon = "/imgs/docs.png", data = "" } = Astro.props;
 import "./../styles/global.css";
 import NavLinkDocs from "../components/docs/NavLinkDocs.astro";
 import ThemeIcon from "../components/ThemeIcon.astro";
@@ -31,13 +31,13 @@ import ThemeIcon from "../components/ThemeIcon.astro";
       rel="stylesheet"
     />
     <SEO
-    title={data.title}
+    title={pageTitle || data.title}
     description={data.description}
     openGraph={{
       basic: {
-        title: data.title,
+        title: data.title || "",
         type: "website",
-        image: data.image
+        image: data.image || ""
       }
     }}
     />
