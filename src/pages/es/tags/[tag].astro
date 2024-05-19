@@ -25,23 +25,28 @@ const { posts } = Astro.props;
 
 <DocsLayout pageTitle={tag}>
   <h1 class="no-underline font-normal">
-    Artículos con la etiqueta: <span class="font-bold" transition:name={tag}>{tag}</span>
+    Artículos con la etiqueta: <span class="font-bold">{tag}</span>
   </h1>
   <section class="grid md:grid-cols-1 lg:grid-cols-2 gap-2">
     {
       posts.map((post) => {
         (post);
         return (
-          <div class="bg-zinc-900 p-2 h-full">
+          <div class="group border border-zinc-900 hover:bg-zinc-200 dark:bg-zinc-900 p-2 h-full dark:hover:bg-zinc-900/50 relative transition-all">
             
             <a
               class="font-Kanit font-light no-underline"
               href={`/es/docs/${post.slug}`}
             >
-              <img src={post.data.image.url} class="object-cover h-56" transition:name={post.data.image.url}>
+              <img 
+              src={post.data.image.url} 
+              class="object-cover h-56" 
+              transition:name={`imagen-${post.data.image.url}`}
+              transition:animate="none"
+              >
               <i class="text-xs text-zinc-500">{post.data.pubDate}</i>
-              <h6 class="h-max no-underline">{post.data.title}</h6>
-              <p class="text-sm">{post.data.description}</p>
+              <h6 class="h-max no-underline text-black dark:text-white">{post.data.title}</h6>
+              <p class="text-sm text-black dark:text-white">{post.data.description}</p>
             </a>
           </div>
         );

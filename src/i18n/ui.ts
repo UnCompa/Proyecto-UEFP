@@ -70,7 +70,7 @@ export const languages = {
 export const defaultLang = "es";
 
 // Mostrar idioma por defecto
-export const showDefaultLang = "es";
+export const showDefaultLang = false;
 
 // Objeto ui
 export const ui = {

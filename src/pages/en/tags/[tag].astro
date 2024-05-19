@@ -25,7 +25,7 @@ const { posts } = Astro.props;
 
 <DocsLayout pageTitle={tag}>
   <h1 class="no-underline font-normal">
-    Artículos con la etiqueta: <span class="font-bold" transition:name={tag}>{tag}</span>
+    Artículos con la etiqueta: <span class="font-bold">{tag}</span>
   </h1>
   <section class="grid md:grid-cols-1 lg:grid-cols-2 gap-2">
     {
@@ -38,7 +38,7 @@ const { posts } = Astro.props;
               class="font-Kanit font-light no-underline"
               href={`/es/docs/${post.slug}`}
             >
-              <img src={post.data.image.url} class="object-cover h-56" transition:name={post.data.image.url}>
+              <img src={post.data.image.url} class="object-cover h-56">
               <p class="h-max">{post.data.title}</p>
             </a>
           </div>

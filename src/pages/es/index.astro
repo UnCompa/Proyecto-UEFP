@@ -9,7 +9,8 @@ import { Diamond } from "../../icons/Icons";
 import { FaGraduationCap } from "react-icons/fa6";
 import { FaEnvelope, FaUser } from "react-icons/fa";
 import CardWithLink from "../../components/CardWithLink.astro";
-const lang = getLangFromUrl(Astro.url);
+const url = Astro.url
+const lang = getLangFromUrl(url);
 const t = useTranslations(lang);
 ---
 

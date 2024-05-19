@@ -62,7 +62,7 @@
       />
     </svg>
 </button>
-<script is:inline type="text/partytown">
+<script is:inline>
   document.addEventListener("astro:page-load", () => {
     const theme = (() => {
       if (
@@ -83,7 +83,7 @@
       document.documentElement.classList.add("dark");
     }
 
-    if (theme !== "light") {
+    if (theme !== "dark") {
         const button = document.getElementById("themeToggle");
         button.innerHTML = `
         <svg
@@ -177,7 +177,7 @@
       const element = document.documentElement;
       element.classList.toggle("dark");
       const isDark = element.classList.contains("dark");
-      if (isDark) {
+      if (!isDark) {
         const button = document.getElementById("themeToggle");
         button.innerHTML = `
         <svg

@@ -17,10 +17,8 @@ const filterPost = allPosts.filter((post) => {
       filterPost.map((post) => (
         <li>
           <a
-            class="font-Kanit font-light no-underline hover:text-zinc-500 transition-colors"
-            href={`/${lang}/docs/${post.slug}`}
-            transition:animate="fade"
-            transition:name={`title ${post.id}`}
+            class="font-Kanit text-black dark:text-white font-light no-underline hover:text-zinc-500 transition-colors"
+            href={`/${lang}/docs/${post.slug}`}}
           >
             {" "}
             <span class="select-none">{post.data.title}</span>

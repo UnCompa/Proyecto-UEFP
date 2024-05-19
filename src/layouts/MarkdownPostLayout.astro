@@ -3,21 +3,22 @@ import DocsLayout from "./DocsLayout.astro";
 const { frontmatter,id } = Astro.props;
 ---
 
-<DocsLayout pageTitle={frontmatter.title}>
-  <h1 transition:animate="fade" transition:name={`title ${id}`}>{frontmatter.title}</h1>
+<DocsLayout pageTitle={frontmatter.title} data={frontmatter}>
+  <h1>{frontmatter.title}</h1>
   <img
     class="shadow-2xl shadow-red-500/10 mb-4"
     src={frontmatter.image.url}
     width="300"
     alt={frontmatter.image.alt}
-    transition:name={frontmatter.image.url}
+    transition:animate="fade"
+    transition:name={`imagen-${frontmatter.image.url}`}
   />
-  <div class="bg-zinc-900/50 my-2 p-2 rounded">
-    <p class="text-zinc-300">
+  <div class="bg-zinc-100 dark:bg-zinc-900/50 my-2 p-2 rounded">
+    <p class="text-zinc-800 dark:text-zinc-300">
       Hecho: {frontmatter.pubDate.toString().slice(0, 10)}
     </p>
     <p class="font-bold">{frontmatter.description}</p>
-    <p>Escrito por: <span class="text-red-200">{frontmatter.author}</span></p>
+    <p>Escrito por: <span class="text-red-600 dark:text-red-200">{frontmatter.author}</span></p>
   </div>
   <slot />
 </DocsLayout>

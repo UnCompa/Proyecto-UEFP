@@ -4,13 +4,39 @@ import NavLinkDocs from "./docs/NavLinkDocs.astro";
 import { FaX } from "react-icons/fa6";
 ---
 
+<script is:inline>
+  document.addEventListener("DOMContentLoaded", () => {
+    const html = document.querySelector("html");
+    const img = document.getElementById("logo");
+    const updateImageSrc = () => {
+      if (html.classList.contains("dark")) {
+        img.src = "/imgs/UEFPescudoblanco.png";
+      } else {
+        img.src = "/imgs/UEFPescudoblack.png";
+      }
+    };
+    updateImageSrc();
+    const observer = new MutationObserver((mutationsList) => {
+      for (let mutation of mutationsList) {
+        if (mutation.attributeName === "class") {
+          updateImageSrc();
+        }
+      }
+    });
+    observer.observe(html, { attributes: true });
+    window.addEventListener("beforeunload", () => {
+      observer.disconnect();
+    });
+  });
+</script>
 <header
-  class="[grid-area:header] sticky text-sm md:text-base px-2 md:top-0 h-28 w-full bg-zinc-900 flex justify-between items-center"
+  class="[grid-area:header] sticky text-sm md:text-base px-2 md:top-0 h-28 w-full bg-zinc-100 dark:bg-zinc-900 flex justify-between items-center"
 >
   <div class="h-full w-full flex items-center justify-between gap-x-4 px-8">
     <div class="flex items-center justify-start gap-1">
       <a href="/" class="w-full h-full">
         <img
+        id="logo"
           class="h-14 w-24 p-0 m-0 sm:h-20 sm:w-fit object-contain"
           src="/imgs/UEFPescudoblanco.png"
           alt="Escudo de la unidad educativa fiscal pichincha"
@@ -20,18 +46,20 @@ import { FaX } from "react-icons/fa6";
     </div>
     <div class="w-full">
       <nav>
-        <ul class="list-none flex items-center justify-center gap-x-2 md:gap-x-4">
+        <ul
+          class="list-none flex items-center justify-center gap-x-2 md:gap-x-4"
+        >
           <li>
             <a
               href="/es/docs"
-              class="bg-zinc-950 text-sm md:text-base px-2 md:px-4 py-1 no-underline rounded hover:shadow-xl hover:bg-zinc-900/50 border border-red-500"
+              class="bg-zinc-200 dark:bg-zinc-950 text-sm md:text-base text-black dark:text-white px-2 md:px-4 py-1 no-underline rounded hover:shadow-xl hover:bg-zinc-300 dark:hover:bg-zinc-900/50 border border-red-500"
               >Inicio</a
             >
           </li>
           <li>
             <a
               href="/es/tags"
-              class="bg-zinc-950 text-sm md:text-base px-2 md:px-4 py-1 no-underline rounded hover:shadow-xl hover:bg-zinc-900/50 border border-red-500"
+              class="bg-zinc-200 dark:bg-zinc-950 text-sm md:text-base text-black dark:text-white px-2 md:px-4 py-1 no-underline rounded hover:shadow-xl hover:bg-zinc-300 dark:hover:bg-zinc-900/50 border border-red-500"
               >Etiquetas</a
             >
           </li>
@@ -39,9 +67,9 @@ import { FaX } from "react-icons/fa6";
       </nav>
     </div>
   </div>
-  <div class="bg-zinc-950 p-1 mr-4 md:mr-8">
+  <div class="bg-zinc-200 dark:bg-zinc-950 p-1 mr-4 md:mr-8 block md:hidden">
     <button id="menu" class="block md:hidden">
-      <FaBars className="text-2xl md:text-4xl" />
+      <FaBars className="text-2xl md:text-4xl text-black dark:text-white" />
     </button>
   </div>
 </header>
@@ -56,10 +84,10 @@ import { FaX } from "react-icons/fa6";
 
 <style>
   .menu-bar.isOpen {
-    @apply bg-zinc-900 p-4 fixed top-0 right-0 w-1/2 h-[100dvh] md:flex md:h-28 md:w-max translate-x-0 md:items-center;
+    @apply bg-zinc-100 dark:bg-zinc-900 p-4 fixed top-0 right-0 w-1/2 h-[100dvh] md:flex md:h-28 md:w-max translate-x-0 md:items-center;
   }
   .menu-bar {
-    @apply bg-zinc-950 fixed top-0 translate-x-full right-0 w-1/2 h-[100dvh] md:flex md:h-28 md:w-max md:items-center;
+    @apply bg-zinc-100 dark:bg-zinc-950 fixed top-0 translate-x-full right-0 w-1/2 h-[100dvh] md:flex md:h-28 md:w-max md:items-center;
   }
 </style>
 <script>
