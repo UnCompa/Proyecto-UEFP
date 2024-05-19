@@ -16,7 +16,7 @@ import { FaX } from "react-icons/fa6";
           alt="Escudo de la unidad educativa fiscal pichincha"
         />
       </a>
-      <h2 class="no-underline text-sm sm:text-2xl">Docs</h2>
+      <h2 class="hidden md:block no-underline text-sm sm:text-2xl">Docs</h2>
     </div>
     <div class="w-full">
       <nav>
@@ -67,12 +67,12 @@ import { FaX } from "react-icons/fa6";
     const menu = document.getElementById("menu");
     menu?.addEventListener("click", () => {
       const menuBar = document.getElementById("menu-bar");
-      menuBar?.classList.toggle("isOpen");
+      menuBar?.classList.add("isOpen");
     });
     const menuClose = document.getElementById("menu-close");
     menuClose?.addEventListener("click", () => {
       const menuBar = document.getElementById("menu-bar");
-      menuBar?.classList.toggle("isOpen");
+      menuBar?.classList.remove("isOpen");
     });
   });
 </script>
