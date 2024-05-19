@@ -35,9 +35,9 @@ import ThemeIcon from "../components/ThemeIcon.astro";
     description={data.description}
     openGraph={{
       basic: {
-        title: data.title || "",
+        title: data?.title || "",
         type: "website",
-        image: data.image.url || ""
+        image: data?.image?.url || ""
       }
     }}
     />
