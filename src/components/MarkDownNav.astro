@@ -2,6 +2,8 @@
 import { FaBars } from "react-icons/fa";
 import NavLinkDocs from "./docs/NavLinkDocs.astro";
 import { FaX } from "react-icons/fa6";
+import { getLangFromUrl } from "../i18n/utils";
+const lang = getLangFromUrl(Astro.url)
 ---
 
 <script is:inline>
@@ -51,16 +53,20 @@ import { FaX } from "react-icons/fa6";
         >
           <li>
             <a
-              href="/es/docs"
+              href={`/${lang}/docs`}
               class="bg-zinc-200 dark:bg-zinc-950 text-sm md:text-base text-black dark:text-white px-2 md:px-4 py-1 no-underline rounded hover:shadow-xl hover:bg-zinc-300 dark:hover:bg-zinc-900/50 border border-red-500"
-              >Inicio</a
-            >
-          </li>
-          <li>
-            <a
-              href="/es/tags"
+              >
+              {lang === "es" ? "Inicio" : "Home"}
+              </a
+              >
+            </li>
+            <li>
+              <a
+              href={`/${lang}/tags`}
               class="bg-zinc-200 dark:bg-zinc-950 text-sm md:text-base text-black dark:text-white px-2 md:px-4 py-1 no-underline rounded hover:shadow-xl hover:bg-zinc-300 dark:hover:bg-zinc-900/50 border border-red-500"
-              >Etiquetas</a
+              >
+              {lang === "es" ? "Etiquetas" : "Tags"}
+              </a
             >
           </li>
         </ul>

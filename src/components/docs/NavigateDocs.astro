@@ -3,18 +3,24 @@ import { getCollection } from "astro:content";
 import { getLangFromUrl } from "../../i18n/utils";
 const url = Astro.url;
 const lang = getLangFromUrl(url);
-const allPosts = await getCollection("dev");
 const { path } = Astro.props;
-const filterPost = allPosts.filter((post) => {
+const allPostsEs = await getCollection("dev");
+const filterPostEs = allPostsEs.filter((post) => {
+  const id = post.id;
+  return id.includes(path);
+});
+const allPostsEn = await getCollection("en");
+const filterPostEn = allPostsEn.filter((post) => {
   const id = post.id;
   return id.includes(path);
 });
 ---
-
-<nav>
+{
+  lang === "es" ? (
+  <nav>
   <ul class="list-none flex flex-col gap-y-4 border-l border-red-200">
     {
-      filterPost.map((post) => (
+      filterPostEs.map((post) => (
         <li>
           <a
             class="font-Kanit text-black dark:text-white font-light no-underline hover:text-zinc-500 transition-colors"
@@ -28,3 +34,23 @@ const filterPost = allPosts.filter((post) => {
     }
   </ul>
 </nav>
+  ) : (
+  <nav>
+  <ul class="list-none flex flex-col gap-y-4 border-l border-red-200">
+    {
+      filterPostEn.map((post) => (
+        <li>
+          <a
+            class="font-Kanit text-black dark:text-white font-light no-underline hover:text-zinc-500 transition-colors"
+            href={`/${lang}/docs/${post.slug}`}
+          >
+            {" "}
+            <span class="select-none">{post.data.title}</span>
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</nav>
+  )
+}

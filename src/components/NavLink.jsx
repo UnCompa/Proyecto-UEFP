@@ -1,5 +1,5 @@
 
-function NavLink({to, text,children, color = "bg-zinc-800"}) {
+function NavLink({to = "/", text,children, color = "bg-zinc-800"}) {
   return (
     <a
       href={`${to}`}
@@ -8,7 +8,7 @@ function NavLink({to, text,children, color = "bg-zinc-800"}) {
       <span className={`p-1 text-white rounded-lg text-xl ${color} hover:text-white dark:hover:text-white`}>
         {children}
       </span>
-        <span className="dark:group-hover:text-black  group-hover:text-white">
+        <span className="dark:group-hover:text-black  group-hover:text-white text-sm">
         {text}
         </span>
       </a>

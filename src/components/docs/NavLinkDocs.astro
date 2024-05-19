@@ -1,8 +1,14 @@
 ---
+import { getLangFromUrl } from "../../i18n/utils";
 import NavigateDocs from "./NavigateDocs.astro";
+const lang = getLangFromUrl(Astro.url)
 ---
 
-<h2 class="no-underline text-xl border-b border-red-500 mt-2 my-4">Guias de usuario</h2>
+<h2 class="no-underline text-xl border-b border-red-500 mt-2 my-4">
+  {lang === "es" ? "Guias de usuario" : "Guide for user"}
+</h2>
 <NavigateDocs path="user"/>
-<h2 class="no-underline text-xl border-b border-red-500 mt-2 my-4">Como empezar</h2>
-<NavigateDocs path="started"/>
+<h2 class="no-underline text-xl border-b border-red-500 mt-2 my-4">
+  {lang === "es" ? "Como empezar" : "How started"}
+</h2>
+<NavigateDocs path="dev"/>

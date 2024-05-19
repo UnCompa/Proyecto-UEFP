@@ -147,6 +147,11 @@ const t = useTranslations(lang);
             <FaEnvelope />
           </FooterLink>
         </li>
+        <li class="text-start font-bold flex gap-2 items-center">
+          <FooterLink to=`/${lang}/docs` text={t("footer-contacto-doc")}>
+            <FaDochub />
+          </FooterLink>
+        </li>
       </ul>
     </div>
     <div class="p-4">
@@ -163,11 +168,6 @@ const t = useTranslations(lang);
         <li class="text-start font-bold flex gap-2 items-center">
           <FaAt />
           <p>{t("footer-contacto-email")}</p>
-        </li>
-        <li class="text-start font-bold flex gap-2 items-center">
-          <FooterLink to=`/${lang}/docs` text={t("footer-contacto-doc")}>
-            <FaDochub />
-          </FooterLink>
         </li>
       </ul>
     </div>

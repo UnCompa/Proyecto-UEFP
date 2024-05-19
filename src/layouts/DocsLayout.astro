@@ -10,6 +10,7 @@ const { pageTitle, icon = "/imgs/docs.png", data } = Astro.props;
 import "./../styles/global.css";
 import NavLinkDocs from "../components/docs/NavLinkDocs.astro";
 import ThemeIcon from "../components/ThemeIcon.astro";
+import ChangeLanguage from "../components/ChangeLanguaje";
 console.log(data);
 
 ---
@@ -57,8 +58,9 @@ console.log(data);
       <slot />
     </main>
     <div class="h-max w-max fixed bottom-0 right-0 z-10 flex items-end">
-      <div class="flex items-end h-max p-4">
+      <div class="flex h-10 w-max m-4 gap-2 list-none">
         <ThemeIcon />
+        <ChangeLanguage lang={lang} url={false} thin></ChangeLanguage>
       </div>
     </div>
   </body><style>

@@ -5,7 +5,7 @@ import ChangeLanguaje from "./ChangeLanguaje.jsx";
 import { getLangFromUrl, useTranslations } from "../i18n/utils";
 import { supabase } from "../lib/supabase.ts";
 import { MdDashboard } from "react-icons/md";
-import { HiMail, HiHome, HiUsers, HiAcademicCap } from "react-icons/hi";
+import { HiMail, HiHome, HiUsers, HiAcademicCap, HiDocument } from "react-icons/hi";
 import { FaRegUser } from "react-icons/fa6";
 function NavBar({ url, pathName, children, refreshToken, accessToken }) {
   const [openMenu, setOpenMenu] = useState(false);
@@ -19,6 +19,7 @@ function NavBar({ url, pathName, children, refreshToken, accessToken }) {
     academics: t("a-academicos"),
     news: t("a-noticias"),
     contact: t("a-contactos"),
+    docs: t("a-docs"),
   });
   const [, setTitles] = useState({});
   const urlString = url.toString();
@@ -70,6 +71,7 @@ function NavBar({ url, pathName, children, refreshToken, accessToken }) {
       academics: t("a-academicos"),
       news: t("a-noticias"),
       contact: t("a-contactos"),
+      docs: t("a-docs"),
     };
     setUrls(translatedUrls);
 
@@ -152,6 +154,11 @@ function NavBar({ url, pathName, children, refreshToken, accessToken }) {
         <li>
           <NavLink to={urls.contact} text={t("nav-contacto")}>
             <HiMail />
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to={urls.docs} text={t("footer-contacto-doc")}>
+            <HiDocument />
           </NavLink>
         </li>
         <ul className="flex items-end gap-x-4 p-4 h-full lg:items-center">
