@@ -90,10 +90,10 @@ const lang = getLangFromUrl(Astro.url)
 
 <style>
   .menu-bar.isOpen {
-    @apply bg-zinc-100 dark:bg-zinc-900 p-4 fixed top-0 right-0 w-1/2 h-[100dvh] md:flex md:h-28 md:w-max translate-x-0 md:items-center;
+    @apply bg-zinc-100 z-30 dark:bg-zinc-900 p-4 fixed top-0 right-0 w-1/2 h-[100dvh] md:flex md:h-28 md:w-max translate-x-0 md:items-center;
   }
   .menu-bar {
-    @apply bg-zinc-100 dark:bg-zinc-950 fixed top-0 translate-x-full right-0 w-1/2 h-[100dvh] md:flex md:h-28 md:w-max md:items-center;
+    @apply bg-zinc-100 z-30 dark:bg-zinc-950 fixed top-0 translate-x-full right-0 w-1/2 h-[100dvh] md:flex md:h-28 md:w-max md:items-center;
   }
 </style>
 <script>
