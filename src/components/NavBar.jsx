@@ -5,12 +5,18 @@ import ChangeLanguaje from "./ChangeLanguaje.jsx";
 import { getLangFromUrl, useTranslations } from "../i18n/utils";
 import { supabase } from "../lib/supabase.ts";
 import { MdDashboard } from "react-icons/md";
-import { HiMail, HiHome, HiUsers, HiAcademicCap, HiDocument } from "react-icons/hi";
+import {
+  HiMail,
+  HiHome,
+  HiUsers,
+  HiAcademicCap,
+  HiDocument,
+} from "react-icons/hi";
 import { FaRegUser } from "react-icons/fa6";
 function NavBar({ url, pathName, children, refreshToken, accessToken }) {
   const [openMenu, setOpenMenu] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(true);
-  const [isUser, setIsUser] = useState(true);
+  const [isUser, setIsUser] = useState(false);
   const lang = getLangFromUrl(url);
   const t = useTranslations(lang);
   const [urls, setUrls] = useState({
@@ -123,7 +129,7 @@ function NavBar({ url, pathName, children, refreshToken, accessToken }) {
           openMenu
             ? "translate-x-0 lg:translate-x-0"
             : "translate-x-full lg:translate-x-0"
-        } lg:h-full lg:relative lg:top-0 lg:flex lg:flex-row lg:items-center lg:justify-center lg:w-max lg:bg-transparent lg:gap-x-2 lg:transition-none`}
+        } lg:h-full lg:relative lg:top-0 lg:flex lg:flex-row lg:items-center lg:justify-end lg:w-max lg:bg-transparent lg:gap-x-2 lg:transition-none`}
       >
         <li className="flex justify-end">
           <button
@@ -140,7 +146,7 @@ function NavBar({ url, pathName, children, refreshToken, accessToken }) {
         </li>
         <li>
           <NavLink to={urls.about} text={t("nav-sobrenosotros")}>
-            <HiUsers/>
+            <HiUsers />
           </NavLink>
         </li>
         <li>
@@ -163,14 +169,13 @@ function NavBar({ url, pathName, children, refreshToken, accessToken }) {
         </li>
         <ul className="flex items-end gap-x-4 p-4 h-full lg:items-center">
           <li>
-            {!isUser ? (
-              <a href={`/${lang}/signin`} className="h-full w-full">
-              <FaRegUser className="h-max w-max shadow-2xl text-2xl p-2 bg-zinc-200 hover:bg-red-600 hover:text-white dark:bg-zinc-900 dark:hover:bg-red-200 dark:hover:text-black transition-all rounded-xl" />
-            </a>
-              
-            ) : (
+            {isUser ? (
               <a href={`/${lang}/dashboard`} className="h-full w-full">
                 <MdDashboard className="h-max w-max shadow-2xl text-2xl p-2 bg-zinc-200 hover:bg-red-600 hover:text-white dark:bg-zinc-900 dark:hover:bg-red-200 dark:hover:text-black transition-all rounded-xl" />
+              </a>
+            ) : (
+              <a href={`/${lang}/signin`} className="h-full w-full">
+                <FaRegUser className="h-max w-max shadow-2xl text-2xl p-2 bg-zinc-200 hover:bg-red-600 hover:text-white dark:bg-zinc-900 dark:hover:bg-red-200 dark:hover:text-black transition-all rounded-xl" />
               </a>
             )}
           </li>

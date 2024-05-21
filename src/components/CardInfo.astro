@@ -10,7 +10,7 @@ interface Props {
 const { title, text, img, invert, alt } = Astro.props;
 ---
 
-<div class="grid grid-cols-1 md:grid-cols-2 container mx-auto font-Rubik p-4 md:p-12">
+<div class="grid grid-cols-1 lg:grid-cols-2 container mx-auto font-Rubik p-4 md:p-12">
   {
     !invert ? (
       <>
@@ -20,7 +20,7 @@ const { title, text, img, invert, alt } = Astro.props;
             <h2 class="text-4xl font-light title">{title}</h2>
           </div>
           <div class="h-0.5 w-1/2 bg-gradient-to-r  from-red-300 from-10% to-transparent dark:from-red-500 dark:to-yellow-500 rounded" />
-          <p class="text-zinc-700 dark:text-zinc-400 py-2 lg:text-lg font-Rubik font-light">
+          <p class="text-zinc-800 dark:text-zinc-300 py-2 md:text-lg lg:text-xl font-Rubik font-light">
             {text}
           </p>
         </div>
@@ -35,7 +35,7 @@ const { title, text, img, invert, alt } = Astro.props;
             <h2 class="text-4xl font-light title">{title}</h2>
           </div>
           <div class="h-0.5 w-1/2 bg-gradient-to-r  from-red-300 from-10% to-transparent dark:from-red-500 dark:to-yellow-500 rounded" />
-          <p class="text-zinc-700 dark:text-zinc-400 py-2 lg:text-lg font-Rubik font-light">
+          <p class="text-zinc-800 dark:text-zinc-300 py-2 md:text-lg lg:text-xl font-Rubik font-light">
             {text}
           </p>
         </div>
