@@ -107,7 +107,7 @@ function NavBar({ url, pathName, children, refreshToken, accessToken }) {
   }, [isDarkMode]);
   return (
     <nav
-      className={`h-28 box-border bg-cover text-black shadow-2xl dark:text-white bg-white/90 dark:bg-black flex justify-between items-center sticky top-0 px-12 z-10`}
+      className={`h-28 box-border bg-cover text-black shadow-2xl dark:text-white bg-white/90 dark:bg-black flex justify-between items-center sticky top-0 pl-12 pr-4 z-10`}
     >
       <a href="/">
         <img
@@ -185,7 +185,7 @@ function NavBar({ url, pathName, children, refreshToken, accessToken }) {
       </ul>
       <button
         onClick={handleMenu}
-        className="text-black dark:text-white h-6 w-6 block lg:hidden"
+        className="text-black dark:text-white h-6 w-6 block lg:hidden mr-8"
       >
         <Bars />
       </button>

@@ -14,16 +14,17 @@ const filterPostEn = allPostsEn.filter((post) => {
   const id = post.id;
   return id.includes(path);
 });
+const urlString = url.toString()
 ---
 {
   lang === "es" ? (
   <nav>
-  <ul class="list-none flex flex-col gap-y-4 border-l border-red-200">
+  <ul class="list-none flex flex-col border-l-2 border-red-500 dark:border-red-800 p-0">
     {
       filterPostEs.map((post) => (
-        <li>
+        <li class={`${urlString.includes(post.slug) ? "from-red-300 dark:from-red-800" : ""} bg-gradient-to-r to-transparent p-2`}>
           <a
-            class="font-Kanit text-black dark:text-white font-light no-underline hover:text-zinc-500 transition-colors"
+            class={`w-full h-max font-Kanit text-black dark:text-white font-light no-underline hover:text-zinc-700 dark:hover:text-zinc-400 transition-colors`}
             href={`/${lang}/docs/${post.slug}`}}
           >
             {" "}
@@ -36,13 +37,13 @@ const filterPostEn = allPostsEn.filter((post) => {
 </nav>
   ) : (
   <nav>
-  <ul class="list-none flex flex-col gap-y-4 border-l border-red-200">
+  <ul class="list-none flex flex-col border-l-2 border-red-500 dark:border-red-800 p-0">
     {
       filterPostEn.map((post) => (
-        <li>
+      <li class={`${urlString.includes(post.slug) ? "from-red-300 dark:from-red-800" : ""} bg-gradient-to-r to-transparent p-2`}>
           <a
-            class="font-Kanit text-black dark:text-white font-light no-underline hover:text-zinc-500 transition-colors"
-            href={`/${lang}/docs/${post.slug}`}
+            class={`w-full h-max font-Kanit text-black dark:text-white font-light no-underline hover:text-zinc-700 dark:hover:text-zinc-400 transition-colors`}
+            href={`/${lang}/docs/${post.slug}`}}
           >
             {" "}
             <span class="select-none">{post.data.title}</span>
