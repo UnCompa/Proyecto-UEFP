@@ -11,8 +11,6 @@ import "./../styles/global.css";
 import NavLinkDocs from "../components/docs/NavLinkDocs.astro";
 import ThemeIcon from "../components/ThemeIcon.astro";
 import ChangeLanguage from "../components/ChangeLanguaje";
-console.log(data);
-
 ---
 
 <!doctype html>
@@ -49,11 +47,11 @@ console.log(data);
   </head>
   <body class="grid-layout bg-white dark:bg-zinc-950 h-full">
     <MarkDownNav lang={lang} />
-    <aside class="hidden md:block bg-zinc-100 dark:bg-zinc-900 p-4 sticky [grid-area:aside]">
+    <aside class="hidden overflow-y-auto md:block bg-zinc-100 dark:bg-zinc-900 p-4 sticky [grid-area:aside]">
       <NavLinkDocs />
     </aside>
     <main
-      class="bg-white dark:bg-zinc-950 overflow-y-auto py-8 px-2 w-full md:w-3/5 mx-auto container [grid-area:main]"
+      class="bg-white dark:bg-zinc-950 overflow-y-auto py-8 px-2 w-full md:w-2/3 mx-auto container [grid-area:main]"
     >
       <slot />
     </main>

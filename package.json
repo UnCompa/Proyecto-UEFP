@@ -28,6 +28,7 @@
     "@vercel/speed-insights": "^1.0.10",
     "astro": "^4.3.5",
     "astro-seo": "^0.8.3",
+    "clipboard": "^2.0.11",
     "dropzone": "^6.0.0-beta.2",
     "framer-motion": "^11.0.24",
     "plyr": "3.7.8",

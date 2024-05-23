@@ -35,7 +35,7 @@ import UEFPblack from "../assets/logos/UEFPescudoblack.png"
   });
 </script>
 <header
-  class="[grid-area:header] sticky text-sm md:text-base px-2 md:top-0 h-20 w-full bg-zinc-100 dark:bg-zinc-900 flex justify-between items-center"
+  class="[grid-area:header] sticky text-sm md:text-base px-2 top-0 h-20 w-full bg-zinc-100 dark:bg-zinc-900 flex justify-between items-center z-10 shadow-xl md:shadow-none shadow-red-500/10"
 >
   <div class="h-full w-full flex items-center justify-between gap-x-4 px-8">
     <div class="flex items-center justify-start gap-1">
@@ -61,7 +61,7 @@ import UEFPblack from "../assets/logos/UEFPescudoblack.png"
           <li>
             <a
               href={`/${lang}/docs`}
-              class="bg-zinc-200 dark:bg-zinc-950 text-sm md:text-base text-black dark:text-white px-2 md:px-4 py-1 no-underline rounded hover:shadow-xl hover:bg-zinc-300 dark:hover:bg-zinc-900/50 border border-red-500"
+              class="bg-zinc-200 dark:bg-zinc-950 text-sm md:text-base text-black dark:text-white px-2 md:px-4 py-1 no-underline rounded hover:shadow-xl hover:bg-red-500 dark:hover:bg-red-500 border border-red-500 transition-all"
               >
               {lang === "es" ? "Inicio" : "Home"}
               </a
@@ -70,7 +70,7 @@ import UEFPblack from "../assets/logos/UEFPescudoblack.png"
             <li>
               <a
               href={`/${lang}/tags`}
-              class="bg-zinc-200 dark:bg-zinc-950 text-sm md:text-base text-black dark:text-white px-2 md:px-4 py-1 no-underline rounded hover:shadow-xl hover:bg-zinc-300 dark:hover:bg-zinc-900/50 border border-red-500"
+              class="bg-zinc-200 dark:bg-zinc-950 text-sm md:text-base text-black dark:text-white px-2 md:px-4 py-1 no-underline rounded hover:shadow-xl hover:bg-red-500 dark:hover:bg-red-500 border border-red-500 transition-all"
               >
               {lang === "es" ? "Etiquetas" : "Tags"}
               </a
@@ -80,7 +80,7 @@ import UEFPblack from "../assets/logos/UEFPescudoblack.png"
       </nav>
     </div>
   </div>
-  <div class="bg-zinc-200 dark:bg-zinc-950 p-1 mr-4 md:mr-8 block md:hidden">
+  <div class="bg-zinc-100 dark:bg-zinc-900 hover:bg-zinc-200 dark:hover:bg-zinc-950/50 active:bg-zinc-300 dark:active:bg-zinc-950 p-1 mr-4 md:mr-8 block md:hidden transition-all">
     <button id="menu" class="block md:hidden">
       <FaBars className="text-2xl md:text-4xl text-black dark:text-white" />
     </button>

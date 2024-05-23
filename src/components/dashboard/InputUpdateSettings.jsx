@@ -4,7 +4,6 @@ import { supabase } from "../../lib/supabase";
 export default function InputUpdateSettings({idUser}) {
   const handleSubmit = async () => {
     const {data} = await supabase.from("profiles").select("").eq("id",idUser)
-    console.log(data);
   }
   return (
     <div class="flex gap-4">

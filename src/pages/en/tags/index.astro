@@ -1,24 +1,37 @@
 ---
 import { getCollection } from "astro:content";
 import BaseLayout from "../../../layouts/DocsLayout.astro";
-const allPosts = await getCollection("dev");
-const tags = [...new Set(allPosts.map((post) => post.data.tags).flat())];
----
+import { getLangFromUrl } from "../../../i18n/utils";
 
-<BaseLayout pageTitle="Etiquetas | UEFP">
-  <h1>Etiquetas</h1>
+const allPosts = await getCollection("en");
+const lang = getLangFromUrl(Astro.url);
+
+// Contar las ocurrencias de cada etiqueta
+const tagCounts = allPosts
+  .map((post) => post.data.tags)
+  .flat()
+  .reduce((acc: { [key: string]: number }, tag: string) => {
+    acc[tag] = (acc[tag] || 0) + 1;
+    return acc;
+  }, {} as { [key: string]: number });
+
+
+const tags = Object.keys(tagCounts);
+---
+<BaseLayout pageTitle="Tags | UEFP">
+  <h1>Tags</h1>
   <div class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2">
     {
-      tags.map((tag) => (
-        <a
-          href={`/en/tags/${tag}`}
-          class="w-full no-underline rounded border-2 border-red-500 px-4 py-2 hover:bg-red-500 shadow-xl hover:shadow-red-500/30 transition-all"
-        >
-          <p class="capitalize text-black dark:text-white">
-            {tag}
-          </p>
-        </a>
-      ))
+      tags.map((tag) => {
+        return (
+          <a
+            href={`/${lang}/tags/${tag}`}
+            class="w-full no-underline rounded border-2 border-red-500 px-4 py-2 hover:bg-red-500 shadow-xl hover:shadow-red-500/30 transition-all"
+          >
+            <p class="capitalize text-black dark:text-white">{tag} ({tagCounts[tag]})</p>
+          </a>
+        );
+      })
     }
   </div>
 </BaseLayout>
