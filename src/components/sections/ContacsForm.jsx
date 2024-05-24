@@ -5,7 +5,7 @@ import { RxCrossCircled } from "react-icons/rx";
 import { motion } from "framer-motion";
 import { useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
-import OpenModal from "../OpenModal";
+import OpenModal from "../Others/OpenModal";
 export default function ContacsForm({ urlStr, url }) {
   const [isSumbit, setIsSubmit] = useState();
   const form = useRef();

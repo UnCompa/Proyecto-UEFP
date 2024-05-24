@@ -1,12 +1,12 @@
 ---
 import { FaBars } from "react-icons/fa";
-import NavLinkDocs from "./docs/NavLinkDocs.astro";
+import NavLinkDocs from "./NavLinkDocs.astro";
 import { FaX } from "react-icons/fa6";
-import { getLangFromUrl } from "../i18n/utils";
+import { getLangFromUrl } from "../../i18n/utils";
 import { Image } from "astro:assets";
 const lang = getLangFromUrl(Astro.url)
-import UEFPblanco from "../assets/logos/UEFPescudoblanco.png"
-import UEFPblack from "../assets/logos/UEFPescudoblack.png"
+import UEFPblanco from "../../assets/logos/UEFPescudoblanco.png"
+import UEFPblack from "../../assets/logos/UEFPescudoblack.png"
 ---
 
 <script is:inline>

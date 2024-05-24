@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import NavLink from "./NavLink.jsx";
-import { Bars, X } from "../icons/Icons.jsx";
-import ChangeLanguaje from "./ChangeLanguaje.jsx";
-import { getLangFromUrl, useTranslations } from "../i18n/utils";
-import { supabase } from "../lib/supabase.ts";
+import NavLink from "../Links/NavLink.jsx";
+import { Bars, X } from "../../icons/Icons.jsx";
+import ChangeLanguaje from "../ChangeUI/ChangeLanguaje.jsx";
+import { getLangFromUrl, useTranslations } from "../../i18n/utils.ts";
+import { supabase } from "../../lib/supabase.ts";
 import { MdDashboard } from "react-icons/md";
 import {
   HiMail,

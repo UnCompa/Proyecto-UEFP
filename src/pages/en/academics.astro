@@ -1,7 +1,6 @@
 ---
-import { Button, Tooltip } from "@nextui-org/react";
-import Navigation from "../../components/Navigation.astro";
-import Footer from "../../components/Footer.astro";
+import Navigation from "../../components/Fundamentales/Navigation.astro";
+import Footer from "../../components/Fundamentales/Footer.astro";
 import Layout from "../../layouts/Layout.astro";
 import CardAcademics from "../../components/sections/CardAcademics.astro";
 import AcademicsLink from "../../components/buttons/AcademicsLink";
@@ -10,8 +9,6 @@ import { FaBrain, FaGraduationCap, FaHand, FaPen } from "react-icons/fa6";
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 const url = Astro.url;
-(url);
-(lang);
 ---
 
 <Layout title="Academicos" icon="/imgs/UEFPescudoblanco.png">

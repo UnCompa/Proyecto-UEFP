@@ -1,6 +1,6 @@
 ---
 import { ViewTransitions } from "astro:transitions";
-import MarkDownNav from "./../components/MarkDownNav.astro";
+import MarkDownNav from "../components/docs/MarkDownNav.astro";
 import { getLangFromUrl } from "../i18n/utils";
 import SpeedInsights from "@vercel/speed-insights/astro";
 import {SEO} from "astro-seo"
@@ -9,8 +9,8 @@ const lang = getLangFromUrl(url);
 const { pageTitle, icon = "/imgs/docs.png", data } = Astro.props;
 import "./../styles/global.css";
 import NavLinkDocs from "../components/docs/NavLinkDocs.astro";
-import ThemeIcon from "../components/ThemeIcon.astro";
-import ChangeLanguage from "../components/ChangeLanguaje";
+import ThemeIcon from "../components/ChangeUI/ThemeIcon.astro";
+import ChangeLanguage from "../components/ChangeUI/ChangeLanguaje";
 const tags = data?.tags || []
 const keyTags = tags.join(",")
 ---

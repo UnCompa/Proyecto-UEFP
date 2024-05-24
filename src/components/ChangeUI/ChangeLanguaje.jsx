@@ -1,5 +1,5 @@
-import { languages } from "../i18n/ui";
-import { useTranslatedPath } from "../i18n/utils";
+import { languages } from "../../i18n/ui";
+import { useTranslatedPath } from "../../i18n/utils";
 
 export default function ChangeLanguage({ lang, url = true, thin = false }) {
   let srcImg = "";
@@ -33,9 +33,9 @@ export default function ChangeLanguage({ lang, url = true, thin = false }) {
             alt={alt}
           />
           {thin ? (
-            <span className="hidden">{languages[oppositeLang]}</span>
+            <span className="hidden px-1 text-sm">{languages[oppositeLang]}</span>
           ) : (
-            <span className="hidden md:block">{languages[oppositeLang]}</span>
+            <span className="hidden md:block md:px-1 text-sm">{languages[oppositeLang]}</span>
           )}
         </a>
       </li>

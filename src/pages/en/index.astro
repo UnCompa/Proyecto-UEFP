@@ -1,13 +1,13 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-import Header from "../../components/Header.astro";
-import CardInfo from "../../components/CardInfo.astro";
-import VideoPlayer from "../../components/VideoPlayer.astro";
+import Header from "../../components/Fundamentales/Header.astro";
+import CardInfo from "../../components/Cards/CardInfo.astro";
+import VideoPlayer from "../../components/Utils/VideoPlayer.astro";
 import IndexMeta from "./../../meta/IndexMeta.astro";
-import Footer from "../../components/Footer.astro";
+import Footer from "../../components/Fundamentales/Footer.astro";
 import { getLangFromUrl, useTranslations } from "../../i18n/utils";
 import { Diamond } from "../../icons/Icons";
-import CardWithLink from "../../components/CardWithLink.astro";
+import CardWithLink from "../../components/Cards/CardWithLink.astro";
 import { FaEnvelope, FaGraduationCap, FaUser } from "react-icons/fa";
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
