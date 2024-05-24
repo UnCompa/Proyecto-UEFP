@@ -4,7 +4,7 @@ import NavigateDocs from "./NavigateDocs.astro";
 const lang = getLangFromUrl(Astro.url)
 ---
 
-<h2 class="no-underline text-xl md:text-2xl border-l-2 border-red-500 mt-2 text-center bg-zinc-300 dark:bg-zinc-950 rounded-tr-2xl rounded-br-2xl font-bold">
+<h2 class="no-underline text-xl md:text-2xl border-l-2 border-red-500 mt-2 block text-center bg-zinc-300 dark:bg-zinc-950 rounded-tr-2xl rounded-br-2xl font-bold">
   {lang === "es" ? "Guias para el usuario" : "Guide for the user"}
 </h2>
 <h3 class="no-underline font-semibold text-xl border-b border-red-500 mt-2 my-4">

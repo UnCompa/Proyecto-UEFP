@@ -1,14 +1,11 @@
 ---
+import "plyr/dist/plyr.css";
 interface Props {
   url: string;
   vertical?: Boolean;
 }
 const { url, vertical } = Astro.props;
-import "plyr/dist/plyr.css";
 ---
-
-<script src="../scripts/Videoplayer.js"></script>
-
 {
   !vertical ? (
     <div class="w-full h-full">
@@ -33,3 +30,4 @@ import "plyr/dist/plyr.css";
     </div>
   )
 }
+<script src="../scripts/Videoplayer.js"></script>

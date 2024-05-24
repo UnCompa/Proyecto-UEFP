@@ -2,29 +2,29 @@
 import { Image } from "astro:assets";
 import DocsLayout from "./DocsLayout.astro";
 import { getLangFromUrl } from "../i18n/utils";
-import { Toaster } from "sonner";
 import { FaLink } from "react-icons/fa";
+import { Toaster } from "sonner";
 const { frontmatter, slug } = Astro.props;
 const tags = frontmatter.tags;
 const lang = getLangFromUrl(Astro.url);
-console.log(slug);
 const url = Astro.url.origin;
-console.log(url);
+console.log(frontmatter);
 ---
 
-<DocsLayout pageTitle={frontmatter.title} data={frontmatter}>
-  <Toaster richColors client:load />
-  <button
+<DocsLayout
+  pageTitle={`${frontmatter.title} • ${frontmatter.author}`}
+  data={frontmatter}
+  icon={frontmatter.icon}
+>
+  <h1
     id="clipboard-text"
     data-clipboard-text={`${url}/${lang}/docs/${slug}`}
-    class="w-full flex justify-center items-center group"
+    class="text-center cursor-pointer"
   >
-    <h1 class="text-center">{frontmatter.title}</h1>
-    <FaLink
-      className="text-2xl text-transparent group-hover:text-black dark:group-hover:text-white ml-4"
-    />
-  </button>
+    {frontmatter.title}
+  </h1>
   <Image
+    id="cover-img"
     class="shadow-2xl shadow-red-500/10 mb-4 aspect-video"
     src={frontmatter.image.url}
     alt={frontmatter.image.alt}
@@ -34,24 +34,41 @@ console.log(url);
     transition:animate="fade"
     transition:name={`imagen-${frontmatter.image.url}`}
   />
-  <div class="bg-zinc-100 dark:bg-zinc-900/50 my-2 p-2 rounded">
-    <p class="text-zinc-800 dark:text-zinc-300">
-      Hecho: {frontmatter.pubDate.toString().slice(0, 10)}
-    </p>
+  <div class="bg-zinc-100 dark:bg-zinc-900/50 my-2 p-4 rounded">
+    <div class="flex items-center justify-between font-light">
+      <div class="flex items-center gap-x-2">
+        <img
+          src={frontmatter.avatar ||
+            "https://static.vecteezy.com/system/resources/thumbnails/005/545/335/small/user-sign-icon-person-symbol-human-avatar-isolated-on-white-backogrund-vector.jpg"}
+          alt="Avatar del creador"
+          class="h-12 w-12 object-cover rounded-full border border-black dark:border-white p-0.5"
+        />
+        <p>
+          Realizado por: <span class="text-red-600 dark:text-red-200"
+            >{frontmatter.author}</span
+          >
+        </p>
+      </div>
+      <div>
+        <p class="text-zinc-800 dark:text-zinc-300">
+          Hecho: {frontmatter.pubDate.toString().slice(0, 10)}
+        </p>
+      </div>
+    </div>
+    <span class="text-xs dark:text-zinc-500"
+      >{lang === "es" ? "Descripcion:" : "Description:"}</span
+    >
     <p class="font-bold">{frontmatter.description}</p>
-    <p>
-      Escrito por: <span class="text-red-600 dark:text-red-200"
-        >{frontmatter.author}</span
-      >
-    </p>
-    <div class="flex gap-2">
-      <span class="p-1">{lang === "es" ? "Etiquetas: " : "Tags: "}</span>
+    <span class="text-xs dark:text-zinc-500"
+      >{lang === "es" ? "Etiquetas: " : "Tags: "}</span
+    >
+    <div class="flex flex-wrap gap-x-2">
       {
         tags.map((tag: any) => {
           return (
             <a
               href={`/${lang}/tags/${tag}`}
-              class="bg-zinc-200 dark:bg-zinc-950 p-1 rounded no-underline hover:bg-zinc-300 dark:hover:bg-black"
+              class="text-sm font-light text-black dark:text-white bg-zinc-200 dark:bg-zinc-950 p-1 rounded no-underline hover:bg-zinc-300 dark:hover:bg-black"
             >
               {tag}
             </a>
@@ -60,21 +77,23 @@ console.log(url);
       }
     </div>
   </div>
+  <Toaster toastOptions={{
+    style: {
+      padding: "1em",
+      display: "flex",
+      alignItems: "center"
+    },
+    unstyled: true,
+    classNames: {
+      toast: "bg-zinc-200 dark:bg-zinc-900",
+      title: "text-black dark:text-white",
+      description: "text-black dark:text-white",
+      actionButton: "bg-zinc-200 dark:bg-zinc-900",
+      cancelButton: "bg-zinc-200 dark:bg-zinc-900",
+      closeButton: "bg-zinc-200 dark:bg-zinc-900",
+      success: "bg-green-500 text-green-500"
+    }
+  }} client:load />
   <slot />
 </DocsLayout>
-<script>
-  import ClipboardJS from "clipboard";
-  import { toast } from "sonner";
-  document.addEventListener("astro:page-load", async () => {
-    const clipboard = new ClipboardJS("#clipboard-text");
-    clipboard.on("success", await function (e) {
-      console.log(e.text);
-      toast.success("Enlace copiado correctamente");
-      e.clearSelection();
-    });
-
-    clipboard.on("error", await function(e) {
-      toast.error("Error al copiar el enlace");
-    });
-  });
-</script>
+<script src="../scripts/MarkdownToast.js"></script>

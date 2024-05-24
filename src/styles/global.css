@@ -10,12 +10,12 @@ html {
   color-scheme: light dark;
   scrollbar-color: #27272a white;
   scrollbar-width: thin;
-  font-family: "Kanit", sans-serif;
+  font-family: "Kanit", "Rubik", sans-serif;
 }
 html.dark {
   scrollbar-width: thin;
   scrollbar-color: white #27272a;
-  font-family: "Kanit", sans-serif;
+  font-family: "Kanit", "Rubik", sans-serif;
 }
 .grid-layout {
   display: grid;
@@ -38,11 +38,11 @@ input {
 }
 h1 {
   text-align: center;
-  font-size: clamp(2em, 2vw + 1em, 3em);
+  font-size: clamp(2em, 2vw + 1em, 2.2em);
   font-weight: bold;
   text-shadow: 0px 0px 10px #fff5;
   text-decoration: underline;
-  padding: 0.2em 0em;
+  padding: 0.1em 0em;
   @apply decoration-2 decoration-red-500;
 }
 h2,
@@ -50,30 +50,34 @@ h3,
 h4,
 h5,
 h6 {
+  display: flex;
+  align-items: center;
   text-align: start;
-
-  font-weight: bold;
   text-shadow: 0px 0px 10px #fff5;
   text-decoration: underline;
   padding: 0.5em 0em;
-  @apply decoration-2 decoration-blue-500;
 }
 h2 {
+  font-weight: bold;
   font-size: clamp(1.8em, 2vw + 1em, 2em);
+  @apply decoration-2 decoration-pink-500;
 }
 h3 {
   font-size: clamp(1.4em, 2vw + 1em, 1.7em);
-  @apply decoration-2 decoration-red-500;
+  @apply decoration-2 decoration-orange-500;
 }
 h4 {
+  font-style: italic;
   font-size: clamp(1.3em, 2vw + 1em, 1.5em);
-  @apply decoration-2 decoration-green-500;
-}
-h5 {
-  font-size: clamp(1em, 2vw + 1em, 1.3em);
   @apply decoration-2 decoration-yellow-500;
 }
+h5 {
+  font-style: italic;
+  font-size: clamp(1em, 2vw + 1em, 1.3em);
+  @apply decoration-2 decoration-green-500;
+}
 h6 {
+  font-style: oblique;
   font-size: clamp(0.8em, 2vw + 1em, 1em);
 }
 a {
@@ -87,17 +91,42 @@ strong {
   text-shadow: 0px 0px 10px #fff5;
 }
 code {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
   background-color: #24292e;
-  padding: 0.3em 1em;
+  padding: .2em .4em;
+  margin: 0em .2em;
+  width: max-content;
   border-radius: 5px;
 }
-img {
-  margin: 0.5em 0em;
+pre{
+  background-color: #000;
+  height: max-content;
   width: 100%;
+  padding: .4em;
+}
+pre code {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  color: white;
+  font-size: clamp(14px, 1vw + .5em, 16px);
+  text-wrap: pretty;
+}
+img {
+  margin: 0.5em auto;
+  width: 100%;
+  max-width: 100%;
   max-height: 25em;
+  object-fit: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 3px;
+}
+#cover-img {
+  margin: 0.5em auto;
+  width: max-content;
+  max-width: 100%;
+  max-height: 20em;
   object-fit: cover;
   display: flex;
   justify-content: center;
@@ -107,7 +136,4 @@ img {
 ul {
   list-style-type: disc;
   padding: 0em 1em;
-}
-pre {
-  margin: 0.5em 0em;
 }

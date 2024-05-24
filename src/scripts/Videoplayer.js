@@ -13,7 +13,7 @@ const player = Plyr.setup("video", {
   ],
   keyboard: { focused: true },
 });
-const playerVertical = new Plyr("#vertical", {
+const playerVertical = Plyr.setup("#vertical", {
   controls: [
     "play",
     "progress",

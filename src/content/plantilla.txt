@@ -6,5 +6,6 @@ author: ""
 image:
   url: ""
   alt: ""
+avatar: ""
 tags: ["",""]
 ---
