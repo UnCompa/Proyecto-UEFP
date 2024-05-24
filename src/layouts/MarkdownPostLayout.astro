@@ -20,6 +20,7 @@ console.log(frontmatter);
     id="clipboard-text"
     data-clipboard-text={`${url}/${lang}/docs/${slug}`}
     class="text-center cursor-pointer"
+    aria-label={frontmatter.title}
   >
     {frontmatter.title}
   </h1>
@@ -81,7 +82,8 @@ console.log(frontmatter);
     style: {
       padding: "1em",
       display: "flex",
-      alignItems: "center"
+      alignItems: "center",
+      justifyContent: "center"
     },
     unstyled: true,
     classNames: {

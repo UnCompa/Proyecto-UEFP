@@ -3,6 +3,7 @@ import { getLangFromUrl } from "../i18n/utils";
 import { ViewTransitions } from "astro:transitions";
 import SpeedInsights from "@vercel/speed-insights/astro";
 import { SEO } from "astro-seo";
+import { FaCircleArrowUp } from "react-icons/fa6";
 const lang = getLangFromUrl(Astro.url);
 interface InterfaceOpenGraphBasic {
   title: string;
@@ -30,8 +31,7 @@ const {
   canonical,
   openGraph,
 } = Astro.props;
-(openGraph);
-
+openGraph;
 ---
 
 <!doctype html>
@@ -46,8 +46,7 @@ const {
           title: openGraph?.basic?.title || "",
           type: openGraph?.basic?.type || "",
           image: openGraph?.basic?.image || "",
-          url: openGraph?.basic?.url || Astro.url.href
-          
+          url: openGraph?.basic?.url || Astro.url.href,
         },
       }}
       canonical={canonical}
@@ -70,14 +69,64 @@ const {
   </head>
   <body class="bg-white dark:bg-black">
     <slot />
+    <div class="h-max w-max fixed bottom-0 right-0 z-10 flex items-end">
+      <div class="flex h-10 w-max m-4 gap-2 list-none">
+        <button
+          id="up-scroll-button"
+          class="text-xl z-50 hidden animate-pulse-fade-in animate-iteration-count-infinite animate-direction-alternate animate-duration-1000"
+        >
+          <FaCircleArrowUp />
+        </button>
+      </div>
+    </div>
     <script src="./../schemas/indexSchema.json" type="application/ld+json"
     ></script>
+    <script>
+      const button: HTMLElement | null =
+        document.getElementById("up-scroll-button");
+
+      let isScrolling: boolean = false;
+
+      window.addEventListener(
+        "scroll",
+        throttle(() => {
+          if (!isScrolling) {
+            const alturaDeseada: number = 720; // Altura deseada en píxeles
+            const scrollActual: number = window.scrollY || window.pageYOffset;
+            if (button) {
+              button.classList.toggle("hidden", scrollActual < alturaDeseada);
+            }
+            isScrolling = true;
+            setTimeout(() => {
+              isScrolling = false;
+            }, 100); // Limitar la frecuencia de activación a cada 100 milisegundos
+          }
+        }, 100)
+      );
+      if (button) {
+        button.addEventListener("click", () => {
+          window.scrollTo(0, 0);
+        });
+      }
+      function throttle(callback: () => void, delay: number): () => void {
+        let timeoutId: ReturnType<typeof setTimeout>;
+        return () => {
+          if (!timeoutId) {
+            timeoutId = setTimeout(() => {
+              callback();
+              timeoutId = null as any;
+            }, delay);
+          }
+        };
+      }
+    </script>
     <style is:global>
       *::selection {
         background-color: #aa0000;
         color: #fafafa;
       }
       html {
+        scroll-behavior: smooth;
         color-scheme: light dark;
         scrollbar-width: thin;
         scrollbar-color: #27272a white;

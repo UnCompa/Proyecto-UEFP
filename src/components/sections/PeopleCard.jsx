@@ -9,7 +9,7 @@ export default function PeopleCard({teacher,work,content,img = ""}) {
       <Divider />
       <h2 className="text-center font-Kanit py-1 text-2xl font-bold">{teacher}</h2>
       <h3 className="text-center font-Noto-Sans text-zinc-800 dark:text-zinc-200">{work}</h3>
-      <p className="py-1 font-Noto-Sans text-zinc-500 text-center">"{content}"</p>
+      <p className="py-1 font-Noto-Sans text-zinc-700 dark:text-zinc-300 text-center">"{content}"</p>
     </div>
   );
 }

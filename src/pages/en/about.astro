@@ -14,30 +14,28 @@ const t = useTranslations(lang);
 ---
 
 <Layout
-  title="Conoce nuestro personal | Informacion inportante"
+  title="Meet our staff | Important information"
   description="Descubre y conoce al personal calificado dedicado a brindar educación de calidad"
   keywords="Sobre nosotros, Nuestro Equipo, Preparar estudiantes"
   icon="/imgs/UEFPescudoblanco.png"
 >
   <Navigation />
   <main class="h-full bg-zinc-400 dark:bg-zinc-900">
-    <section class="h-screen">
-      <div class="absolute -bottom-32 w-full">
+    <section class="h-[80vh]">
+      <div class="absolute bottom-8 w-full">
         <Wave className={"fill-zinc-200 dark:fill-zinc-800"} />
       </div>
       <div
         class="grid lg:grid-cols-2 place-content-center font-Rubik h-full px-8"
       >
         <div class="flex flex-col p-4 gap-y-4 justify-center">
-          <h2 class="text-5xl font-bold animate-blurred-fade-in pt-4">
+          <h2
+            class="text-3xl sm:text-5xl lg:text-7xl font-bold animate-blurred-fade-in pt-4"
+          >
             {t("about-hero-title")}
           </h2>
-          <p class="animate-fade-in-up">
-            Welcome to the Fiscal Pichincha Educational Unit, where over 30
-            years of experience in education converge with deeply rooted values
-            of excellence, equity, and responsibility. Our commitment is to
-            provide quality education that prepares our students for the future,
-            with a skilled team dedicated to their comprehensive development.
+          <p class="animate-fade-in-up text-sm md:text-lg">
+            The Unidad Educativa Fiscal Pichincha was born from the merger of the Juan Montalvo School and the Colegio Nacional Pichincha, founded in 1977. This union, consolidated in 2014, combines tradition and innovation to offer quality education. We focus on the integral development of students, enhancing their skills and preparing them for future challenges.
           </p>
         </div>
         <div class="flex py-12 justify-center items-center h-full">
@@ -52,46 +50,42 @@ const t = useTranslations(lang);
         </h3>
         <div class="h-full">
           <CardInfo
-            text="The Fiscal Pichincha Educational Unit has its roots in the creation of Juan Montalvo School in 1982. At that time, this educational institution began its work with the purpose of providing access to primary education to the local community. Over time, Juan Montalvo School became a fundamental pillar in the academic development of the region, laying the groundwork for quality education."
-            title="From the Beginnings"
-            img="/imgs/about (6).jpg"
-            alt="Image about history"
-          />
+  text="The Unidad Educativa Fiscal Pichincha has its roots in the creation of the Juan Montalvo School on January 17, 1977. At that time, this educational institution began its work with the purpose of providing access to primary education for the local community. The school, built with tiles, gradually became a fundamental pillar in the academic development of the region, laying the foundation for quality education."
+  title="From the Beginning"
+  img="/imgs/about (6).jpg"
+  alt="Image about history"
+/>
+<CardInfo
+  text="As the educational needs of the community grew, the initiative to establish a secondary institution that could continue the legacy of academic excellence of the Juan Montalvo School emerged. Thus, on January 30, 1977, the Colegio Nacional Pichincha was created with the commitment to provide comprehensive and quality education that would prepare students for future challenges. In 1980, the evening cycle was introduced, which began operating on November 18, 1981."
+  title="Educational Consolidation"
+  img="/imgs/about (5).jpg"
+  alt="Image about educational consolidation"
+/>
+<CardInfo
+  text="Aware of the importance of working in a coordinated manner and making the most of available resources, the authorities of the Juan Montalvo School and the Colegio Nacional Pichincha decided to join their efforts to offer even more complete and enriching education. This union, formalized on March 17, 2024, not only allowed the optimization of material and human resources but also strengthened the sense of community and belonging among students, teachers, and parents."
+  title="Unification of Efforts"
+  img="/imgs/about (4).jpg"
+  alt="Image about unification of efforts"
+/>
+<CardInfo
+  text="As a result of this collaboration, the Unidad Educativa Fiscal Pichincha was created, an institution that blends the best of educational tradition and innovation. This new entity is committed to academic excellence, the integral development of students, and the formation of responsible and engaged citizens."
+  title="Creation of the Educational Unit"
+  img="/imgs/about (3).jpg"
+  alt="Image about the creation of the Educational Unit"
+/>
+<CardInfo
+  text="The Unidad Educativa Fiscal Pichincha stands out for its student-centered approach, which aims to enhance their individual skills, capacities, and talents. Through a diversified curriculum and enriching extracurricular activities, students have the opportunity to explore their interests and develop their full potential. In 1986, informatics was introduced, marking a milestone in the institution's educational modernization."
+  title="Educational Commitment"
+  img="/imgs/about (2).jpg"
+  alt="Image about educational commitment"
+/>
+<CardInfo
+  text="Aware of the challenges that young people face in a constantly changing world, at the Unidad Educativa Fiscal Pichincha we strive to provide our students with the necessary tools to succeed academically, professionally, and personally. Our goal is to form integral, critical, and committed citizens who contribute to building a more just and equitable society."
+  title="Preparation for the Future"
+  img="/imgs/about (1).jpg"
+  alt="Image about preparation for the future"
+/>
 
-          <CardInfo
-            text="As the educational needs of the community grew, the initiative arose to establish a secondary-level institution that could continue the legacy of academic excellence of Juan Montalvo School. Thus, Fiscal Pichincha School was born, with the commitment to offer comprehensive and quality education that prepared students for the challenges of the future."
-            title="Education Consolidation"
-            img="/imgs/about (5).jpg"
-            alt="Image about education consolidation"
-          />
-
-          <CardInfo
-            text="Aware of the importance of working in a coordinated manner and making the most of available resources, the authorities of Juan Montalvo School and Fiscal Pichincha School decided to join forces to offer an even more complete and enriching education. This union not only allowed for the optimization of material and human resources but also strengthened the sense of community and belonging among students, teachers, and parents."
-            title="Unified Efforts"
-            img="/imgs/about (4).jpg"
-            alt="Image about unified efforts"
-          />
-
-          <CardInfo
-            text="As a result of this collaboration, in recent years, the Fiscal Pichincha Educational Unit was created, an institution that combines the best of tradition and educational innovation. This new entity is committed to academic excellence, the integral development of students, and the formation of responsible citizens committed to their environment."
-            title="Creation of the Educational Unit"
-            img="/imgs/about (3).jpg"
-            alt="Image about the creation of the educational unit"
-          />
-
-          <CardInfo
-            text="The Fiscal Pichincha Educational Unit is distinguished by its student-centered approach, which seeks to enhance their individual skills, abilities, and talents. Through a diversified curriculum and enriching extracurricular activities, students have the opportunity to explore their interests and develop their full potential."
-            title="Educational Commitment"
-            img="/imgs/about (2).jpg"
-            alt="Image about educational commitment"
-          />
-
-          <CardInfo
-            text="Aware of the challenges that young people face in a constantly changing world, at the Fiscal Pichincha Educational Unit, we strive to provide our students with the necessary tools to succeed in the academic, professional, and personal spheres. Our goal is to train individuals who are upright, critical, and committed to building a fairer and more equitable society."
-            title="Preparation for the Future"
-            img="/imgs/about (1).jpg"
-            alt="Image about preparation for the future"
-          />
         </div>
       </div>
       <div
@@ -104,7 +98,7 @@ const t = useTranslations(lang);
         class="absolute right-0 bottom-0 bg-yellow-400/10 h-96 w-96 rounded-full blur-3xl"
       >
       </div>
-      <div class="w-full">
+      <div class="w-full border-t border-b border-red-500 bg-zinc-200 dark:bg-zinc-900">
         <h3 class="font-Rubik text-5xl text-center font-bold py-4">
           {t("valores-title")}
         </h3>
@@ -122,24 +116,24 @@ const t = useTranslations(lang);
       <div class="h-full py-8 bg-black/10 p-8">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           <Objectives
-            title={"Empower Students"}
-            text={"Prepare students to have the appropriate skills for the job market"}
+            title={"Ejercer estudiantes"}
+            text={"Preparar estudiantes para que tenga las aptitudes adecuadas para el mundo laboral"}
             color={"purple"}
             client:load
           >
             <FaPen />
           </Objectives>
           <Objectives
-            title={"Enhance Students"}
-            text={"Prepare students to have the appropriate skills for the job market"}
+            title={"Mejorar estudiantes"}
+            text={"Preparar estudiantes para que tenga las aptitudes adecuadas para el mundo laboral"}
             color={"green"}
             client:load
           >
             <FaStar />
           </Objectives>
           <Objectives
-            title={"Quality Education"}
-            text={"Prepare students to have the appropriate skills for the job market"}
+            title={"Estudios de calidad"}
+            text={"Preparar estudiantes para que tenga las aptitudes adecuadas para el mundo laboral"}
             color={"red"}
             client:load
           >

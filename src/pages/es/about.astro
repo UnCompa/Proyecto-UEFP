@@ -21,19 +21,26 @@ const t = useTranslations(lang);
 >
   <Navigation />
   <main class="h-full bg-zinc-400 dark:bg-zinc-900">
-    <section class="h-screen">
-      <div class="absolute -bottom-32 w-full">
+    <section class="h-[80vh]">
+      <div class="absolute bottom-8 w-full">
         <Wave className={"fill-zinc-200 dark:fill-zinc-800"} />
       </div>
       <div
         class="grid lg:grid-cols-2 place-content-center font-Rubik h-full px-8"
       >
         <div class="flex flex-col p-4 gap-y-4 justify-center">
-          <h2 class="text-5xl font-bold animate-blurred-fade-in pt-4">
+          <h1
+            class="text-3xl sm:text-5xl lg:text-7xl font-bold animate-blurred-fade-in pt-4"
+          >
             {t("about-hero-title")}
-          </h2>
-          <p class="animate-fade-in-up">
-            Bienvenidos a la Unidad Educativa Fiscal Pichincha, donde combinamos más de 30 años de experiencia en educación con valores arraigados de excelencia, equidad y responsabilidad. Nuestro compromiso es ofrecer una educación de calidad que prepare a nuestros estudiantes para el futuro, con un equipo capacitado y dedicado a su desarrollo integral.
+          </h1>
+          <p class="animate-fade-in-up text-sm md:text-lg">
+            La Unidad Educativa Fiscal Pichincha nació de la fusión de la
+            Escuela Juan Montalvo y el Colegio Nacional Pichincha, fundados en
+            1977. Esta unión, consolidada en 2014, combina tradición e
+            innovación para ofrecer una educación de calidad. Nos enfocamos en
+            el desarrollo integral de los estudiantes, potenciando sus
+            habilidades y preparándolos para los desafíos futuros.
           </p>
         </div>
         <div class="flex py-12 justify-center items-center h-full">
@@ -43,44 +50,40 @@ const t = useTranslations(lang);
     </section>
     <section class="bg-zinc-200 dark:bg-zinc-800 h-max">
       <div class="p-4">
-        <h3 class="text-6xl font-Rubik font-bold text-center">
+        <h2 class="text-6xl font-Rubik font-bold text-center">
           {t("nuestra-historia-title")}
-        </h3>
+        </h2>
         <div class="h-full">
           <CardInfo
-            text="La Unidad Educativa Fiscal Pichincha tiene sus raíces en la creación de la Escuela Juan Montalvo en 1982. En aquel entonces, esta institución educativa comenzó su labor con el propósito de brindar acceso a la educación primaria a la comunidad local. Con el tiempo, la Escuela Juan Montalvo se convirtió en un pilar fundamental en el desarrollo académico de la región, sentando las bases para una educación de calidad."
+            text="La Unidad Educativa Fiscal Pichincha tiene sus raíces en la creación de la Escuela Juan Montalvo el 17 de enero de 1977. En aquel entonces, esta institución educativa comenzó su labor con el propósito de brindar acceso a la educación primaria a la comunidad local. La escuela, construida con tejas, se convirtió con el tiempo en un pilar fundamental en el desarrollo académico de la región, sentando las bases para una educación de calidad."
             title="Desde los inicios"
             img="/imgs/about (6).jpg"
             alt="Imagen sobre la historia"
           />
           <CardInfo
-            text="A medida que las necesidades educativas de la comunidad crecían, surgió la iniciativa de establecer una institución de nivel secundario que pudiera continuar con el legado de excelencia académica de la Escuela Juan Montalvo. Así nació el Colegio Fiscal Pichincha, con el compromiso de ofrecer una educación integral y de calidad que preparara a los estudiantes para los desafíos del futuro."
+            text="A medida que las necesidades educativas de la comunidad crecían, surgió la iniciativa de establecer una institución de nivel secundario que pudiera continuar con el legado de excelencia académica de la Escuela Juan Montalvo. Así, el 30 de enero de 1977, se creó el Colegio Nacional Pichincha, con el compromiso de ofrecer una educación integral y de calidad que preparara a los estudiantes para los desafíos del futuro. En 1980, se introdujo el ciclo vespertino, que comenzó a funcionar el 18 de noviembre de 1981."
             title="Consolidación de la educación"
             img="/imgs/about (5).jpg"
             alt="Imagen sobre la consolidación de la educación"
           />
-
           <CardInfo
-            text="Conscientes de la importancia de trabajar de manera coordinada y aprovechar al máximo los recursos disponibles, las autoridades de la Escuela Juan Montalvo y el Colegio Fiscal Pichincha decidieron unir sus esfuerzos para ofrecer una educación aún más completa y enriquecedora. Esta unión no solo permitió optimizar los recursos materiales y humanos, sino que también fortaleció el sentido de comunidad y pertenencia entre estudiantes, docentes y padres de familia."
+            text="Conscientes de la importancia de trabajar de manera coordinada y aprovechar al máximo los recursos disponibles, las autoridades de la Escuela Juan Montalvo y el Colegio Nacional Pichincha decidieron unir sus esfuerzos para ofrecer una educación aún más completa y enriquecedora. Esta unión, formalizada el 17 de marzo de 2024, no solo permitió optimizar los recursos materiales y humanos, sino que también fortaleció el sentido de comunidad y pertenencia entre estudiantes, docentes y padres de familia."
             title="Unificación de esfuerzos"
             img="/imgs/about (4).jpg"
             alt="Imagen sobre la unificación de esfuerzos"
           />
-
           <CardInfo
-            text="Como resultado de esta colaboración, en los últimos años se creó la Unidad Educativa Fiscal Pichincha, una institución que fusiona lo mejor de la tradición y la innovación educativa. Esta nueva entidad está comprometida con la excelencia académica, el desarrollo integral de los estudiantes y la formación de ciudadanos responsables y comprometidos con su entorno."
+            text="Como resultado de esta colaboración, se creó la Unidad Educativa Fiscal Pichincha, una institución que fusiona lo mejor de la tradición y la innovación educativa. Esta nueva entidad está comprometida con la excelencia académica, el desarrollo integral de los estudiantes y la formación de ciudadanos responsables y comprometidos con su entorno."
             title="Creación de la Unidad Educativa"
             img="/imgs/about (3).jpg"
             alt="Imagen sobre la creación de la Unidad Educativa"
           />
-
           <CardInfo
-            text="La Unidad Educativa Fiscal Pichincha se distingue por su enfoque centrado en el estudiante, que busca potenciar sus habilidades, capacidades y talentos individuales. A través de un currículo diversificado y actividades extracurriculares enriquecedoras, los estudiantes tienen la oportunidad de explorar sus intereses y desarrollar todo su potencial."
+            text="La Unidad Educativa Fiscal Pichincha se distingue por su enfoque centrado en el estudiante, que busca potenciar sus habilidades, capacidades y talentos individuales. A través de un currículo diversificado y actividades extracurriculares enriquecedoras, los estudiantes tienen la oportunidad de explorar sus intereses y desarrollar todo su potencial. En 1986, se introdujo la informática, marcando un hito en la modernización educativa de la institución."
             title="Compromiso educativo"
             img="/imgs/about (2).jpg"
             alt="Imagen sobre el compromiso educativo"
           />
-
           <CardInfo
             text="Conscientes de los desafíos que enfrentan los jóvenes en un mundo en constante cambio, en la Unidad Educativa Fiscal Pichincha nos esforzamos por brindar a nuestros estudiantes las herramientas necesarias para triunfar en el ámbito académico, profesional y personal. Nuestra meta es formar ciudadanos íntegros, críticos y comprometidos con la construcción de una sociedad más justa y equitativa."
             title="Preparación para el futuro"
@@ -99,7 +102,7 @@ const t = useTranslations(lang);
         class="absolute right-0 bottom-0 bg-yellow-400/10 h-96 w-96 rounded-full blur-3xl"
       >
       </div>
-      <div class="w-full">
+      <div class="w-full border-t border-b border-red-500 bg-zinc-200 dark:bg-zinc-900">
         <h3 class="font-Rubik text-5xl text-center font-bold py-4">
           {t("valores-title")}
         </h3>
@@ -109,7 +112,7 @@ const t = useTranslations(lang);
       </div>
     </section>
     <section class="relative bg-zinc-200 dark:bg-zinc-800 pt-10">
-      <div class="w-full">
+      <div class="w-full border-t border-b border-red-500 bg-zinc-200 dark:bg-zinc-900">
         <h3 class="font-Rubik text-5xl text-center font-bold py-4">
           {t("objectivos-title")}
         </h3>
@@ -142,7 +145,7 @@ const t = useTranslations(lang);
           </Objectives>
         </div>
       </div>
-      <div class="w-full">
+      <div class="w-full border-t border-b border-red-500 bg-zinc-200 dark:bg-zinc-900">
         <h3 class="font-Rubik text-5xl text-center font-bold py-4">
           {t("nuestro-equipo-title")}
         </h3>

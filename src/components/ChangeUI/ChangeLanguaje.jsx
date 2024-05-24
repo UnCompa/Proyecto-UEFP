@@ -9,10 +9,10 @@ export default function ChangeLanguage({ lang, url = true, thin = false }) {
 
   if (oppositeLang === "es") {
     srcImg = "/imgs/spain.png";
-    alt = "Español";
+    alt = "Bandera para el idioma Español";
   } else {
     srcImg = "/imgs/english.png";
-    alt = "English";
+    alt = "English Flag";
   }
 
   // Modificación para redirigir a "es/docs" en lugar de "/"
