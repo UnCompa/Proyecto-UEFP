@@ -4,7 +4,7 @@ import { getLangFromUrl } from "../../i18n/utils";
 const url = Astro.url;
 const lang = getLangFromUrl(url);
 const { path } = Astro.props;
-const allPostsEs = await getCollection("dev");
+const allPostsEs = await getCollection("es");
 const filterPostEs = allPostsEs.filter((post) => {
   const id = post.id;
   return id.includes(path);

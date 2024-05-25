@@ -1,6 +1,6 @@
 ---
 import { getCollection } from "astro:content";
 
-const allPosts = await getCollection("dev");
+const allPosts = await getCollection("es");
 ---
 {allPosts.map((post) => <BlogPost url={post.slug} title={post.data.title} />)}

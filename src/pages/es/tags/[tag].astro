@@ -3,7 +3,7 @@ import { getCollection } from "astro:content";
 import DocsLayout from "../../../layouts/DocsLayout.astro";
 export const prerender = true;
 export async function getStaticPaths() {
-  const allPosts = await getCollection("dev");
+  const allPosts = await getCollection("es");
   const uniqueTags = [
     ...new Set(allPosts.map((post) => post.data.tags).flat()),
   ];

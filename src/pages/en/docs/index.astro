@@ -1,11 +1,14 @@
 ---
 import LinkCard from "../../../components/docs/LinkCard.astro";
 import LinksContainer from "../../../components/docs/LinksContainer.astro";
+import HeroImg from "../../../assets/userDocs/banner.png"
 import BaseLayout from "../../../layouts/DocsLayout.astro";
+import { Image } from "astro:assets";
 ---
 
 <BaseLayout pageTitle="Docs | UEFP">
   <h1>Documentation</h1>
+  <Image id="cover-img" alt="Imagen sobre la documentacion de la  UEFP" src={HeroImg} loading="lazy"/>
   <p>
     Welcome to the documentation about the Pichincha public educational unit,
     here you will find useful information to understand how the page works.

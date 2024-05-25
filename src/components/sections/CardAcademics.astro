@@ -3,14 +3,14 @@ const {title = "Titulo",img,content = "Aqui va contenido",color,id} = Astro.prop
 ---
 
 <div class="p-4" id={id}>
-    <h2 class="px-4 title text-3xl font-Kanit">{title}</h2>
-    <div class={`mx-4 h-1 rounded-full w-1/2 my-2 ${color}`}></div>
     <div class="grid grid-col-1 lg:grid-cols-2">
-        <div class="p-4 h-full w-full flex items-center justify-center revealImg">
-            <img src={img} alt="" class="aspect-video h-full w-full object-cover border shadow-xl bg-zinc-900">
+        <div class="p-4 flex flex-col items-start justify-start bg-zinc-200 dark:bg-zinc-950 rounded">
+            <h2 class="px-4 title text-3xl font-Kanit font-extrabold">{title}</h2>
+            <div class={`mx-4 h-1 rounded-full w-1/2 my-2 ${color}`}></div>
+            <p class="text font-Kanit text-base md:text-lg px-4 font-light text-zinc-800 dark:text-zinc-200">{content}</p>
         </div>
-        <div class="p-4 flex flex-col items-center justify-center">
-            <p class="text font-Kanit text-lg md:text-xl">{content}</p>
+        <div class="p-4 h-full w-full flex items-center justify-center revealImg">
+            <img src={img} alt="" class="aspect-video h-72 w-full md:w-2/3 object-cover border-2 p-1 border-black dark:border-white shadow-xl bg-zinc-300 dark:bg-zinc-900 shadow-zinc-900/20 dark:shadow-zinc-100/20">
         </div>
     </div>
 </div>
@@ -26,9 +26,9 @@ const {title = "Titulo",img,content = "Aqui va contenido",color,id} = Astro.prop
     ScrollReveal().reveal(".text", {
         opacity: 0,
         origin: "top",
-        distance: "200px",
+        distance: "50px",
         reset: false,
-        duration: 1000,
+        duration: 500,
       })
     ScrollReveal().reveal(".revealImg", {
         opacity: 0,

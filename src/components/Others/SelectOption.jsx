@@ -18,7 +18,7 @@ export default function SelectOption({ lang }) {
         label: "Libertad",
         content:
           "Valoramos la libertad como un derecho fundamental, alentando a los estudiantes a expresar sus pensamientos libremente y a tomar decisiones independientes mientras respetan los derechos de los demás.",
-        image: "/imgs/persona.jpg",
+        image: "/imgs/liberty.jpg",
         icon: FaDove, // Paloma de la paz
       },
       {
@@ -144,18 +144,18 @@ export default function SelectOption({ lang }) {
             >
               <CardBody>
                 <div className="flex flex-col md:flex-row gap-x-4 items-center">
-                  <div className="h-full w-max py-2">
+                  <div className="h-max w-max p-2">
                     <Image
                       src={item.image}
-                      alt={`Imagen sobre la ${item.label}m`}
-                      className="aspect-auto"
+                      alt={`Imagen sobre la ${item.label}`}
+                      className="aspect-video bg-zinc-400 dark:bg-black max-w-full lg:max-w-96 h-32 object-cover"
                     />
                   </div>
                   <Divider orientation="vertical" />
                   <div>
-                    <h2 className="text-xl font-bold text-center md:text-start">
+                    <h3 className="text-lg md:text-2xl font-bold text-center md:text-start">
                       {item.label}
-                    </h2>
+                    </h3>
                     <p className="text-center md:text-start text-zinc-800 dark:text-zinc-300">
                       {item.content}
                     </p>

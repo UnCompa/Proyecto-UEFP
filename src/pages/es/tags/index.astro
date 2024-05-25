@@ -3,7 +3,7 @@ import { getCollection } from "astro:content";
 import BaseLayout from "../../../layouts/DocsLayout.astro";
 import { getLangFromUrl } from "../../../i18n/utils";
 
-const allPosts = await getCollection("dev");
+const allPosts = await getCollection("es");
 const lang = getLangFromUrl(Astro.url);
 
 // Contar las ocurrencias de cada etiqueta
