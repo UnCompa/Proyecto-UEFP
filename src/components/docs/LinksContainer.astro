@@ -1,3 +1,13 @@
-<section class="grid sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 gap-4 py-4">
+---
+/**
+ * @title Internationalized Links Section
+ * @description A reusable component that displays a heading ("Otros enlaces" in Spanish or "Other links" by default) and a grid layout for a list of links, adapting to different screen sizes.
+ * @prop {string} lang - The language code (e.g., "es" for Spanish, "en" for English) used for localization. Defaults to the value extracted from the URL.
+ */
+import { getLangFromUrl } from "../../i18n/utils"
+const lang = getLangFromUrl(Astro.url)
+---
+<h2>{(lang === "es") ? "Otros enlaces" : "Other links"}</h2>
+<secti1on class="grid sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 gap-4 py-4">
   <slot/>
-</section>
+</secti1on>

@@ -1,0 +1,99 @@
+---
+title: "Tecnologías adicionales"
+pubDate: "2024-05-25"
+description: "Aprende que requerimiento se necesita, además de como puedes aprender más"
+author: "Brandon Paillacho"
+image:
+  url: "https://miro.medium.com/v2/resize:fit:800/1*0FAbAXug4XMepL7fGIvXFg.png"
+  alt: "Imagen de varias tecnologias web"
+tags: ["Desarrollador", "React"]
+avatar: "https://i1.sndcdn.com/artworks-oGvaMt0dsBWPL7WZ-qgbAMA-t500x500.jpg"
+---
+
+import LinksContainer from "../../../components/docs/LinksContainer.astro";
+import LinkCard from "../../../components/docs/LinkCard.astro";
+
+## Entendiendo las nuevas Tecnologías
+
+Gracias a las Tecnologías fundamentales las cuales son **HTML**, **CSS** , y **Javascript** se pueden lograr muchas cosas, como aprender mas ecosistemas del desarrollo web, en esta seccion se dedicara sobre las Tecnologías faltantes, y usadas para este proyecto
+
+## React
+
+Este es una libreria el cual permite crear interfaces de usuario, puedes visitar su [web oficial](https://react.dev/) donde encontraras mas informacion de este. <br/>
+
+Aqui se tratara de dar un ejemplo de lo que se pude conseguir al aprender esta tecnología
+
+### Ecosistema de React
+
+Su ecosistema es distinto a lo habitual ya que se debe importar su libreria de manera especial, sin embargo ya exite empaquetadores para esto como puede ser [Vite](https://vitejs.dev/) el cual es una herramienta para la creacion de proyectos.
+
+![Imagen de Vite y React](https://miro.medium.com/v2/resize:fit:1400/1*ucL7YQ2v8aaOy426soLPZA.png)
+
+#### Componentes en React
+
+Una de las caracteristicas de React es su **componetización** donde se separa partes de la interfaz para que sean reutilizables. <br/>
+
+Un ejemplo de este es cuando se trata de tener diferetes tipos de informacion, que se deberia hacer a mano uno por una, con los componentes es mas facil de abarcar esto
+
+```html
+<!--index.html-->
+<div>
+  <h2>Soy el titulo 1</h2>
+  <p>Aqui texto 1</p>
+</div>
+<div>
+  <h2>Soy el titulo 2</h2>
+  <p>Aqui texto 2</p>
+</div>
+<div>
+  <h2>Soy el titulo 3</h2>
+  <p>Aqui texto 1</p>
+</div>
+<div>
+  <h2>Soy el titulo 3</h2>
+  <p>Aqui texto 2</p>
+</div>
+```
+
+En este ejemplo se declara varios div con una estructura similar, variando solo los titulos <br/>
+
+En React se logra algo similar aunque en este ejemplo no varia el titulo ni el texto
+
+```jsx
+export const Card = () => {
+  <div>
+    <h2>Soy el titulo</h2>
+    <p>Aqui texto</p>
+  </div>;
+};
+```
+
+### Las Props en React
+
+Las Props nos ayudan a que un componente sea de dinámico al mostrar el contenido aqui un ejemplo
+
+```jsx
+/*
+  titulo - Es una prop que recibira el titulo
+  textp - Es donde se recibira el texto
+*/
+export const Card = ({ titulo, texto }) => {
+  <div>
+    <h2>{titulo}</h2>
+    <p>{texto}</p>
+  </div>;
+};
+```
+
+```jsx
+import Card from "/Card.jsx"
+
+<Card
+titulo="Hola soy el titulo 1"
+texto="Soy el texto 1"
+/>
+<Card
+titulo="Hola soy el titulo 2"
+texto="Soy el texto 2"
+/>
+```

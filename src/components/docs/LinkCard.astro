@@ -49,26 +49,26 @@ if (lang === "es") {
   !invert ? (
     <a
       href={cardUrl}
-      class="bg-zinc-300 dark:bg-zinc-900 hover:bg-zinc-400 rounded p-4 group no-underline dark:hover:bg-zinc-900/50 transition-all"
+      class="bg-zinc-300 border-2 border-transparent hover:border-red-500 dark:bg-zinc-900 rounded p-4 group no-underline transition-all"
     >
       <h4 class="text-sm decoration-none no-underline p-1 text-zinc-800 dark:text-zinc-200">
         {title ? title : titleNext}
       </h4>
       <div class="flex items-center gap-x-4 p-1 text-black dark:text-white">
         <p class="no-underline text-lg lg:text-xl">{text}</p>
-        <FaArrowRight className="group-hover:translate-x-2 transition-all" />
+        <FaArrowRight className="group-hover:translate-x-2 group-hover:fill-red-500 transition-all" />
       </div>
     </a>
   ) : (
     <a
       href={cardUrl}
-      class="bg-zinc-300 dark:bg-zinc-900 hover:bg-zinc-400 rounded p-4 group no-underline dark:hover:bg-zinc-900/50 transition-all"
+      class="bg-zinc-300 border-2 border-transparent hover:border-red-500  dark:bg-zinc-900 rounded p-4 group no-underline  transition-all"
     >
       <h4 class="text-sm flex justify-end decoration-none no-underline p-1 text-zinc-800 dark:text-zinc-200 w-full">
         {title ? title : titlePrevius}
       </h4>
-      <div class="flex items-center gap-x-4 p-1 text-black dark:text-white">
-        <FaArrowLeft className="group-hover:-translate-x-2 transition-all" />
+      <div class="flex items-center justify-end gap-x-4 p-1 text-black dark:text-white">
+        <FaArrowLeft className="group-hover:-translate-x-2 group-hover:fill-red-500 transition-all" />
         <p class="no-underline text-lg lg:text-xl text-end">{text}</p>
       </div>
     </a>

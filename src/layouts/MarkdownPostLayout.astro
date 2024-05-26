@@ -2,13 +2,36 @@
 import { Image } from "astro:assets";
 import DocsLayout from "./DocsLayout.astro";
 import { getLangFromUrl } from "../i18n/utils";
-import { FaLink } from "react-icons/fa";
 import { Toaster } from "sonner";
+import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
+import 'dayjs/locale/es';
+import 'dayjs/locale/en';
+
+dayjs.extend(relativeTime);
+
 const { frontmatter, slug } = Astro.props;
 const tags = frontmatter.tags;
 const lang = getLangFromUrl(Astro.url);
 const url = Astro.url.origin;
-console.log(frontmatter);
+
+// Función para formatear la fecha
+function formatearFecha(fecha: string, idioma = 'es') {
+  dayjs.locale(idioma);
+  const fechaObj = dayjs(fecha);
+
+  if (fechaObj.isSame(dayjs(), 'day')) {
+    return idioma === 'es' ? 'Hoy' : 'Today';
+  }
+
+  if (fechaObj.isSame(dayjs().subtract(1, 'day'), 'day')) {
+    return idioma === 'es' ? 'Ayer' : 'Yesterday';
+  }
+
+  return fechaObj.format(idioma === 'es' ? 'D [de] MMMM [del] YYYY' : 'MMMM D, YYYY');
+}
+
+const formattedDate = formatearFecha(frontmatter.pubDate, lang);
 ---
 
 <DocsLayout
@@ -52,7 +75,7 @@ console.log(frontmatter);
       </div>
       <div>
         <p class="text-zinc-800 dark:text-zinc-300">
-          Hecho: {frontmatter.pubDate.toString().slice(0, 10)}
+          {formattedDate}
         </p>
       </div>
     </div>

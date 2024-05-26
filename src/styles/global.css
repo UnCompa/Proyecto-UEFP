@@ -63,10 +63,12 @@ h2 {
   @apply decoration-2 decoration-pink-500;
 }
 h3 {
+  font-weight: bold;
   font-size: clamp(1.4em, 2vw + 1em, 1.7em);
-  @apply decoration-2 decoration-orange-500;
+  @apply decoration-1 decoration-yellow-500;
 }
 h4 {
+  font-weight: bold;
   font-style: italic;
   font-size: clamp(1.3em, 2vw + 1em, 1.5em);
   @apply decoration-2 decoration-yellow-500;
@@ -89,27 +91,6 @@ a {
 
 strong {
   text-shadow: 0px 0px 10px #fff5;
-}
-code {
-  background-color: #24292e;
-  padding: .2em .4em;
-  margin: 0em .2em;
-  width: max-content;
-  border-radius: 5px;
-}
-pre{
-  background-color: #000;
-  height: max-content;
-  width: 100%;
-  padding: .4em;
-}
-pre code {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  color: white;
-  font-size: clamp(14px, 1vw + .5em, 16px);
-  text-wrap: pretty;
 }
 img {
   margin: 0.5em auto;
