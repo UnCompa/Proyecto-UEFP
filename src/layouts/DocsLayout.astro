@@ -36,11 +36,11 @@ const keyTags = tags.join(",")
     <link rel="stylesheet" href="/codeStyle.css">
     <meta name="keywords" content={`${keyTags}`}>
     <SEO
-    title={pageTitle || `${data.title} | UEFP • ${data.author}`}
+    title={pageTitle}
     description={data ? data.description : ""}
     openGraph={{
       basic: {
-        title: `${data.title} | UEFP • ${data.author}` || "",
+        title: `${data?.title} | UEFP • ${data?.author}` || "",
         type: "website",
         image: data?.image?.url || "/"
       }
