@@ -40,7 +40,7 @@ const keyTags = tags.join(",")
     description={data ? data.description : ""}
     openGraph={{
       basic: {
-        title: data?.title || "",
+        title: `${data.title} | UEFP • ${data.author}` || "",
         type: "website",
         image: data?.image?.url || "/"
       }
