@@ -22,7 +22,7 @@ const urlString = url.toString()
   <ul class="list-none flex flex-col border-l-2 border-red-500 dark:border-red-800 p-0">
     {
       filterPostEs.map((post) => (
-        <li class={`${urlString.includes(post.slug) ? "from-red-300 dark:from-red-800" : ""} bg-gradient-to-r to-transparent p-2`}>
+        <li class={`${urlString.includes(post.slug) ? "from-red-300 dark:from-red-800" : ""} bg-gradient-to-r to-transparent p-2 text-base`}>
           <a
             class={`w-full h-max font-Kanit text-black dark:text-white font-light no-underline hover:text-zinc-700 dark:hover:text-zinc-400 transition-colors`}
             href={`/${lang}/docs/${post.slug}`}}

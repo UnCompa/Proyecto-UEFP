@@ -54,35 +54,37 @@ h6 {
   align-items: center;
   text-align: start;
   text-shadow: 0px 0px 10px #fff5;
-  text-decoration: underline;
   padding: 0.5em 0em;
 }
 h2 {
-  font-weight: bold;
+  font-weight: 800;
   font-size: clamp(1.8em, 2vw + 1em, 2em);
-  @apply decoration-2 decoration-pink-500;
 }
 h3 {
-  font-weight: bold;
+  font-weight: 600;
   font-size: clamp(1.4em, 2vw + 1em, 1.7em);
-  @apply decoration-1 decoration-yellow-500;
 }
 h4 {
-  font-weight: bold;
+  font-weight: 500;
   font-style: italic;
   font-size: clamp(1.3em, 2vw + 1em, 1.5em);
-  @apply decoration-2 decoration-yellow-500;
 }
 h5 {
+  font-weight: 400;
   font-style: italic;
   font-size: clamp(1em, 2vw + 1em, 1.3em);
-  @apply decoration-2 decoration-green-500;
 }
 h6 {
+  font-weight: 300;
   font-style: oblique;
-  font-size: clamp(0.8em, 2vw + 1em, 1em);
+  font-size: clamp(0.8em, 2vw + 1em, 1.2em);
+}
+p {
+  font-weight: 300;
+  font-size: clamp(1rem, .3vw + 1rem, 1.1rem);
 }
 a {
+  font-weight: 600;
   color: #fafafa;
   text-decoration: underline;
   text-decoration-color: #ef4444;
@@ -117,4 +119,7 @@ img {
 ul {
   list-style-type: disc;
   padding: 0em 1em;
+}
+li {
+  font-size: clamp(1rem, .3vw + 1rem, 1.2rem);
 }

@@ -67,14 +67,14 @@ const formattedDate = formatearFecha(frontmatter.pubDate, lang);
           alt="Avatar del creador"
           class="h-12 w-12 object-cover rounded-full border border-black dark:border-white p-0.5"
         />
-        <p>
+        <p class="text-base">
           Realizado por: <span class="text-red-600 dark:text-red-200"
             >{frontmatter.author}</span
           >
         </p>
       </div>
       <div>
-        <p class="text-zinc-800 dark:text-zinc-300">
+        <p class="text-zinc-800 dark:text-zinc-300 text-base">
           {formattedDate}
         </p>
       </div>
@@ -82,7 +82,7 @@ const formattedDate = formatearFecha(frontmatter.pubDate, lang);
     <span class="text-xs dark:text-zinc-500"
       >{lang === "es" ? "Descripcion:" : "Description:"}</span
     >
-    <p class="font-bold">{frontmatter.description}</p>
+    <p class="font-bold text-base">{frontmatter.description}</p>
     <span class="text-xs dark:text-zinc-500"
       >{lang === "es" ? "Etiquetas: " : "Tags: "}</span
     >
