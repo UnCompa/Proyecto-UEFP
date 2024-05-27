@@ -12,9 +12,10 @@ import {
   HiAcademicCap,
   HiDocument,
 } from "react-icons/hi";
-import { FaRegUser } from "react-icons/fa6";
+import { FaChevronDown, FaRegUser } from "react-icons/fa6";
+import { FaHouseDamage } from "react-icons/fa";
 function NavBar({ url, pathName, children, refreshToken, accessToken }) {
-  const [openMenu, setOpenMenu] = useState(false);
+  const [openMenu, setOpenMenu] = useState(true);
   const [isDarkMode, setIsDarkMode] = useState(true);
   const [isUser, setIsUser] = useState(false);
   const lang = getLangFromUrl(url);
@@ -144,10 +145,28 @@ function NavBar({ url, pathName, children, refreshToken, accessToken }) {
             <HiHome />
           </NavLink>
         </li>
-        <li>
-          <NavLink to={urls.about} text={t("nav-sobrenosotros")}>
-            <HiUsers />
-          </NavLink>
+        <li className="group relative px-2 py-2">
+          <div className="flex gap-x-2 items-center">
+            <FaHouseDamage className="bg-zinc-800 rounded-lg p-1 text-2xl fill-white" />
+            <span className="font-Rubik text-black dark:text-white text-sm">
+              Institución
+            </span>
+            <span className="font-Rubik text-black dark:text-white text-sm">
+              <FaChevronDown />
+            </span>
+          </div>
+          <ul className="hidden relative top-2 md:absolute md:top-10 left-0 w-full group-hover:flex group-hover:flex-col gap-y-2 text-black dark:text-white transition-all bg-zinc-50 dark:bg-zinc-900">
+            <li>
+              <NavLink to={urls.about} text={t("nav-sobrenosotros")}>
+                <HiUsers />
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to={urls.home} text={t("nav-inicio")}>
+                <HiHome />
+              </NavLink>
+            </li>
+          </ul>
         </li>
         <li>
           <NavLink to={urls.academics} text={t("nav-academicos")}>
