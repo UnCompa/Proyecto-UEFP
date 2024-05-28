@@ -1,10 +1,10 @@
 import HomeEs from './locales/es/es.json';
 import AboutEs from './locales/es/about.json';
 import AcademicsEs from './locales/es/academics.json';
+import ContactsEs from './locales/es/contacts.json';
 import HomeEn from './locales/en/en.json';
 import AboutEn from './locales/en/about.json';
 import AcademicosEn from './locales/en/academics.json';
-import ContactsEs from './locales/es/contacts.json';
 import ContactsEn from './locales/en/contacts.json';
 
 import { selectTranslate } from "../utils/db";
@@ -27,7 +27,7 @@ const fetchTranslations = async (): Promise<{
   }
 
   const keys = ["inicio", "about", "academics", "contacts"];
-  const langs = ["es", "en"];
+  const langs = ["en", "es"];
 
   const promises = keys.flatMap((key) =>
     langs.map((lang) => selectTranslate(key, lang))
@@ -41,14 +41,15 @@ const fetchTranslations = async (): Promise<{
   ] = results;
 
   const TraduccionEs = {
-    ...InicioEs ?? {}, ...SobreNosotrosEs ?? {}, ...AcademicosEs ?? {}, ...ContactosEs ?? {},
     ...HomeEs, ...AboutEs, ...AcademicsEs, ...ContactsEs,
+    ...InicioEs ?? {}, ...SobreNosotrosEs ?? {}, ...AcademicosEs ?? {}, ...ContactosEs ?? {},
   };
-
+  
   const TraduccionEn = {
-    ...InicioEn ?? {}, ...SobreNosotrosEn ?? {}, ...AcademicsEn ?? {}, ...ContactosEn ?? {},
     ...HomeEn, ...AboutEn, ...AcademicosEn, ...ContactsEn,
+    ...InicioEn ?? {}, ...SobreNosotrosEn ?? {}, ...AcademicsEn ?? {}, ...ContactosEn ?? {},
   };
+  console.log(TraduccionEn);
 
   cache.TraduccionEs = TraduccionEs;
   cache.TraduccionEn = TraduccionEn;

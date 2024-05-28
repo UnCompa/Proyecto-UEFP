@@ -30,5 +30,8 @@
   "footer-paginas-contactos": "Contacts",
   "footer-paginas-academicos": "Academics",
   "footer-paginas-sobrenosotros": "About Us",
-  "footer-contacto-doc": "Docs"
+  "footer-contacto-doc": "Docs",
+  "card-info-about": "",
+  "card-info-academics": "",
+  "card-info-contacts": ""
 }

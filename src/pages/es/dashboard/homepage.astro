@@ -83,7 +83,7 @@ const video = videoSplit[0]
         </div>
       </section>
       {
-        !roles.includes("admin") || roles.includes("moderator") ? (
+        roles.includes("admin") || roles.includes("moderator") ? (
           <section class="container mx-auto flex flex-col gap-8">
             <ChangeForm
               title="Lema intitucional"
