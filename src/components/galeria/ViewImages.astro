@@ -1,9 +1,7 @@
 ---
 import { FaX } from "react-icons/fa6";
 
-const api = "https://compis.onrender.com/api/images";
-const response = await fetch(api);
-const data = await response.json();
+const data: [] = [];
 ---
 
 <style>
@@ -36,16 +34,22 @@ const data = await response.json();
   class="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 place-items-stretch gap-4 my-4 py-4 px-24"
 >
   {
-    data.map((img: any) => (
-      <div class="imagenes w-full h-max hover:-translate-y-2 rounded-lg shadow-2xl shadow-background hover:shadow-slate-800 transition-all">
-        <img
-          src={img.url}
-          class="h-full w-full object-cover rounded"
-          transition:name="modal-imagen"
-          transition:animate={"fade"}
-        />
-      </div>
-    ))
+    data && data.length > 0 ? (
+      data.map((img:any) => (
+        <div
+          class="imagenes w-full h-max hover:-translate-y-2 rounded-lg shadow-2xl shadow-background hover:shadow-slate-800 transition-all"
+        >
+          <img
+            src={img.url}
+            class="h-full w-full object-cover rounded"
+            transition-name="modal-imagen"
+            transition-animate={"fade"}
+          />
+        </div>
+      ))
+    ) : (
+      <p class="text-center col-span-4">No se encuentran imagenes</p>
+    )
   }
 </div>
 <div id="modal-container" class="hidden">
@@ -70,29 +74,36 @@ const data = await response.json();
   </div>
 </div>
 <script>
-  const modalContainer = document.getElementById('modal-container') as HTMLElement | null;
-const closeModalButton = document.getElementById('close-modal') as HTMLElement | null;
-const modalImage = document.getElementById('modal-img') as HTMLImageElement | null;
+  const modalContainer = document.getElementById(
+    "modal-container"
+  ) as HTMLElement | null;
+  const closeModalButton = document.getElementById(
+    "close-modal"
+  ) as HTMLElement | null;
+  const modalImage = document.getElementById(
+    "modal-img"
+  ) as HTMLImageElement | null;
 
-// Open modal when clicking an image
-document.querySelectorAll<HTMLImageElement>(".imagenes img").forEach((image) => {
-  image.addEventListener('click', () => {
-    modalContainer?.classList.add('active');
-    if (modalImage) {
-      modalImage.src = image.src; // Set modal image source
+  // Open modal when clicking an image
+  document
+    .querySelectorAll<HTMLImageElement>(".imagenes img")
+    .forEach((image) => {
+      image.addEventListener("click", () => {
+        modalContainer?.classList.add("active");
+        if (modalImage) {
+          modalImage.src = image.src; // Set modal image source
+        }
+      });
+    });
+
+  // Close modal when clicking close button or outside the modal content (optional)
+  closeModalButton?.addEventListener("click", () => {
+    modalContainer?.classList.remove("active");
+  });
+
+  document.addEventListener("click", (event) => {
+    if (event.target === modalContainer) {
+      modalContainer?.classList.remove("active");
     }
   });
-});
-
-// Close modal when clicking close button or outside the modal content (optional)
-closeModalButton?.addEventListener('click', () => {
-  modalContainer?.classList.remove('active');
-});
-
-document.addEventListener('click', (event) => {
-  if (event.target === modalContainer) {
-    modalContainer?.classList.remove('active');
-  }
-});
-
 </script>

@@ -6,7 +6,7 @@ export default function ViewGalleryImage() {
   useEffect(() => {
     const fetchImgs = async () => {
       try {
-        const api = "https://compis.onrender.com/api/images";
+        const api = "";
         const response = await fetch(api);
         const data = await response.json();
         console.log(data);
@@ -40,7 +40,9 @@ export default function ViewGalleryImage() {
   }
   return (
     <div className="bg-gradient-to-tr from-black to-transparent w-full h-[90vh] grid place-content-center">
-      <div className="container mx-auto w-[100%] md:w-[95%] lg:w-[80%] object-cover bg-zinc-800 p-2"></div>
+      <div className="container mx-auto w-[100%] md:w-[95%] lg:w-[80%] object-cover bg-zinc-800 p-2">
+        <p className="text-center">No se encuentran imagenes disponibles</p>
+      </div>
     </div>
   );
 }
