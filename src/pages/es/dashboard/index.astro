@@ -28,8 +28,9 @@ if (error) {
   
   return redirect("/es/signin");
 }
-const userData2 = data?.user?.user_metadata;
-const email = userData2?.username
+const userData = data?.user?.user_metadata;
+const user = data?.user
+const email = userData?.username
 ---
 
 <!-- <ThemeIcon/> -->
@@ -45,7 +46,7 @@ const email = userData2?.username
     <div
       class="p-4 bg-zinc-50 overflow-y-auto dark:bg-zinc-800 w-full h-full [grid-area:main] font-Kanit"
     >
-      <MainDashboard email={email} url={url} client:load />
+      <MainDashboard user={user} email={email} url={url} client:load />
     </div>
   </main>
 </DashBoardBase>

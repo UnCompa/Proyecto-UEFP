@@ -17,7 +17,7 @@ interface InterfaceOpenGraph {
 }
 interface Props {
   title: string;
-  icon: string;
+  icon?: string;
   keywords?: string;
   description?: string;
   canonical?: string;
@@ -25,7 +25,7 @@ interface Props {
 }
 const {
   title,
-  icon,
+  icon = "/imgs/UEFPescudoblanco.png",
   keywords,
   description = "",
   canonical,

@@ -34,7 +34,7 @@ export default function SignForm({ lang, navigate }) {
         onSubmit={onSubmit}
       >
         <label for="email" class="font-bold">
-          Correo electrónico
+          {lang === "es" ? " Correo electrónico" : "Email"}
         </label>
         <div class="h-1 my-2 w-1/3 bg-gradient-to-r from-purple-500 via-red-500 to-orange-400 rounded-full"></div>
         <Input
@@ -60,7 +60,7 @@ export default function SignForm({ lang, navigate }) {
           </span>
         )}
         <label for="password" class="font-bold">
-          Contraseña
+        {lang === "es" ? "Contraseña" : "Password"}
         </label>
         <label htmlFor=""></label>
         <div class="h-1 my-2 w-1/3 bg-gradient-to-r from-purple-500 via-red-500 to-orange-400 rounded-full"></div>
@@ -94,7 +94,7 @@ export default function SignForm({ lang, navigate }) {
           type="submit"
           class="bg-gradient-to-l from-purple-500 via-red-500 to-orange-400 py-2 my-2 rounded-full text-white font-bold hover:shadow-lg hover:shadow-red-500/30 transition-all"
         >
-          Iniciar sesión
+          {lang === "es" ? "Iniciar sesión" : "Log in"}
         </button>
       </form>
     </>

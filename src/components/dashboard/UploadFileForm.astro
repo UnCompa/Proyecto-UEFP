@@ -1,20 +1,26 @@
 ---
+import { supabase } from "../../lib/supabase";
 import VideoPlayer from "../Utils/VideoPlayer.astro";
 import UploadFile from './UploadFile.astro'
 const { title } = Astro.props;
+const { data } = supabase.storage.from('recursos').getPublicUrl('videos/inicial.mp4')
+const videoData = data.publicUrl
+const videoSplit = videoData.split(".mp4")
+const video = videoSplit[0]
+console.log(video);
 ---
 
-<article class="px-8 py-4">
+<article class="px-8 py-4 bg-zinc-200 dark:bg-stone-900">
   {
     title && (
-      <h2 class="text-2xl underline decoration-2 decoration-green-500">
+      <h2 class="text-2xl py-4 text-center font-bold">
         {title}
       </h2>
     )
   }
-  <div class="grid grid-cols-2 gap-8">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
     <div class="w-full">
-      <VideoPlayer url="/videos/test.mp4" />
+      <VideoPlayer url={video} />
     </div>
     <div class="w-full">
       <UploadFile />

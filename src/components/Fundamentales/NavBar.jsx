@@ -12,10 +12,17 @@ import {
   HiAcademicCap,
   HiDocument,
 } from "react-icons/hi";
-import { FaChevronDown, FaRegUser } from "react-icons/fa6";
+import {
+  FaChevronDown,
+  FaImage,
+  FaRegUser,
+  FaSchool,
+  FaUser,
+  FaUsers,
+} from "react-icons/fa6";
 import { FaHouseDamage } from "react-icons/fa";
 function NavBar({ url, pathName, children, refreshToken, accessToken }) {
-  const [openMenu, setOpenMenu] = useState(true);
+  const [openMenu, setOpenMenu] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(true);
   const [isUser, setIsUser] = useState(false);
   const lang = getLangFromUrl(url);
@@ -145,33 +152,35 @@ function NavBar({ url, pathName, children, refreshToken, accessToken }) {
             <HiHome />
           </NavLink>
         </li>
-        <li className="group relative px-2 py-2">
-          <div className="flex gap-x-2 items-center">
-            <FaHouseDamage className="bg-zinc-800 rounded-lg p-1 text-2xl fill-white" />
+        <li className="group relative p-1">
+          <div className="group flex gap-x-2 items-center hover:bg-zinc-300 dark:hover:bg-zinc-700 rounded-xl py-2 px-2 transition-colors">
+            <span className="p-1 text-white rounded-lg bg-zinc-800 text-xl hover:text-white dark:hover:text-white">
+              <FaSchool />
+            </span>
             <span className="font-Rubik text-black dark:text-white text-sm">
               Institución
             </span>
-            <span className="font-Rubik text-black dark:text-white text-sm">
+            <span className="font-Rubik text-black dark:text-white text-sm group-hover:rotate-180 transition-all">
               <FaChevronDown />
             </span>
           </div>
-          <ul className="hidden relative top-2 md:absolute md:top-10 left-0 w-full group-hover:flex group-hover:flex-col gap-y-2 text-black dark:text-white transition-all bg-zinc-50 dark:bg-zinc-900">
+          <ul className="hidden relative top-2 lg:absolute lg:top-12 left-0 w-full group-hover:flex group-hover:flex-col gap-y-2 text-black dark:text-white transition-all bg-zinc-200 dark:bg-zinc-900 rounded-xl">
             <li>
               <NavLink to={urls.about} text={t("nav-sobrenosotros")}>
-                <HiUsers />
+                <FaUsers />
               </NavLink>
             </li>
             <li>
-              <NavLink to={urls.home} text={t("nav-inicio")}>
-                <HiHome />
+              <NavLink to={`/${lang}/galeria/grid`} text={"Galeria"}>
+                <FaImage />
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to={urls.academics} text={t("nav-academicos")}>
+                <HiAcademicCap />
               </NavLink>
             </li>
           </ul>
-        </li>
-        <li>
-          <NavLink to={urls.academics} text={t("nav-academicos")}>
-            <HiAcademicCap />
-          </NavLink>
         </li>
         {/* <li>
           <NavLink to={urls.news} text={t("nav-noticias")}></NavLink>

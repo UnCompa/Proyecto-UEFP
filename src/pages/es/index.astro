@@ -9,9 +9,18 @@ import { Diamond } from "../../icons/Icons";
 import { FaGraduationCap } from "react-icons/fa6";
 import { FaEnvelope, FaUser } from "react-icons/fa";
 import CardWithLink from "../../components/Cards/CardWithLink.astro";
-const url = Astro.url
+import { supabase } from "../../lib/supabase";
+const url = Astro.url;
 const lang = getLangFromUrl(url);
 const t = useTranslations(lang);
+const { data } = supabase.storage
+  .from("recursos")
+  .getPublicUrl("videos/inicial.mp4");
+const videoData = data.publicUrl;
+const videoSplit = videoData.split(".mp4");
+const video = videoSplit[0];
+const hol = t("card-info-contacts");
+console.log(hol);
 ---
 
 <Layout
@@ -32,81 +41,81 @@ const t = useTranslations(lang);
 >
   <Header />
   <main
-  class="h-full w-full bg-zinc-50 dark:bg-zinc-900 grid place-content-center gap-y-4"
->
-  <section class="bg-transparent w-full h-full">
-    <h2
-      class="text-black font-bold mt-4 dark:text-zinc-100 text-center text-4xl md:text-5xl py-2 font-Rubik"
-    >
-      {t("main-mision-vision")}
-    </h2>
-    <div
-      class="h-1 mx-auto w-full lg:w-2/3 bg-gradient-to-l from-red-500 via-orange-500 to-yellow-500 mb-4 shadow shadow-orange-500/50"
-    >
-    </div>
-    <CardInfo
-      img="/imgs/libroIndex1.jpg"
-      title={t("main-mision")}
-      text={t("main-mision-text")}
-      alt="Imagen referente a la mision"
-    >
-      <Diamond height={"16px"} width={"16px"} />
-    </CardInfo>
-    <CardInfo
-      img="/imgs/personaIndex1.jpg"
-      title={t("main-vision")}
-      text={t("main-vision-text")}
-      alt="Imagen referente a la vision"
-    >
-      <Diamond height={"16px"} width={"16px"} /></CardInfo
-    >
-  </section>
-  <section class="container mx-auto grid place-content-center w-full my-4">
-    <h2
-      class="text-black font-bold dark:text-zinc-100 text-center text-5xl py-2 font-Rubik"
-    >
-      {t("main-presentacion")}
-    </h2>
-    <div
-      class="h-1 w-full bg-gradient-to-l from-red-500 via-orange-500 to-yellow-500 mb-4"
-    >
-    </div>
-    <VideoPlayer url="/videos/video.mp4" />
-  </section>
-  <section class="h-full">
-    <h2
-      class="text-black font-bold mt-4 dark:text-zinc-100 text-center text-4xl md:text-5xl py-2 font-Rubik"
-    >
-      {t("main-others-seccions")}
-    </h2>
-    <div
-      class="h-1 mx-auto w-full lg:w-2/3 bg-gradient-to-l from-red-500 via-orange-500 to-yellow-500 mb-4 shadow shadow-orange-500/50"
-    >
-    </div>
-    <div class="flex flex-wrap p-4 gap-4 container mx-auto">
-      <CardWithLink
-        title={t("footer-paginas-sobrenosotros")}
-        to={t("a-about")}
-        content={`Vea cómo la Unidad Educativa Fiscal Pichincha transforma vidas a través de la excelencia educativa. Haga clic aquí para conocer nuestro compromiso con la excelencia educativa y el desarrollo integral de todos los estudiantes.`}
+    class="h-full w-full bg-zinc-50 dark:bg-zinc-900 grid place-content-center gap-y-4"
+  >
+    <section class="bg-transparent w-full h-full">
+      <h2
+        class="text-black font-bold mt-4 dark:text-zinc-100 text-center text-4xl md:text-5xl py-2 font-Rubik"
       >
-        <FaGraduationCap /></CardWithLink
+        {t("main-mision-vision")}
+      </h2>
+      <div
+        class="h-1 mx-auto w-full lg:w-2/3 bg-gradient-to-l from-red-500 via-orange-500 to-yellow-500 mb-4 shadow shadow-orange-500/50"
       >
-      <CardWithLink
-        title={t("footer-paginas-academicos")}
-        to={t("a-academicos")}
-        content={`Explore nuestra oferta de educación desde preescolar hasta secundaria y conozca cómo funciona la Unidad Educativa Fiscal Pichincha. proporciona un ambiente de aprendizaje estimulante y enriquecedor. Conozca nuestro enfoque educativo y oportunidades de crecimiento.`}
+      </div>
+      <CardInfo
+        img="/imgs/libroIndex1.jpg"
+        title={t("main-mision")}
+        text={t("main-mision-text")}
+        alt="Imagen referente a la mision"
       >
-        <FaUser /></CardWithLink
+        <Diamond height={"16px"} width={"16px"} />
+      </CardInfo>
+      <CardInfo
+        img="/imgs/personaIndex1.jpg"
+        title={t("main-vision")}
+        text={t("main-vision-text")}
+        alt="Imagen referente a la vision"
       >
-      <CardWithLink
-        title={t("footer-paginas-contactos")}
-        to={t("a-contactos")}
-        content={`Para más información, ¡no dudes en contactarnos! Haz clic para saber cómo podemos ayudarte y responder cualquier pregunta que tengas sobre la Unidad Educativa Fiscal Pichincha. Estamos aquí para brindarte la ayuda que necesitas en tu camino hacia la excelencia en educación`}
+        <Diamond height={"16px"} width={"16px"} /></CardInfo
       >
-        <FaEnvelope /></CardWithLink
+    </section>
+    <section class="container mx-auto grid place-content-center w-full my-4">
+      <h2
+        class="text-black font-bold dark:text-zinc-100 text-center text-5xl py-2 font-Rubik"
       >
-    </div>
-  </section>
-</main>
+        {t("main-presentacion")}
+      </h2>
+      <div
+        class="h-1 w-full bg-gradient-to-l from-red-500 via-orange-500 to-yellow-500 mb-4"
+      >
+      </div>
+      <VideoPlayer url={video} />
+    </section>
+    <section class="h-full">
+      <h2
+        class="text-black font-bold mt-4 dark:text-zinc-100 text-center text-4xl md:text-5xl py-2 font-Rubik"
+      >
+        {t("main-others-seccions")}
+      </h2>
+      <div
+        class="h-1 mx-auto w-full lg:w-2/3 bg-gradient-to-l from-red-500 via-orange-500 to-yellow-500 mb-4 shadow shadow-orange-500/50"
+      >
+      </div>
+      <div class="flex flex-wrap p-4 gap-4 container mx-auto">
+        <CardWithLink
+          title={t("footer-paginas-sobrenosotros")}
+          to={t("a-about")}
+          content={t("card-info-about")}
+        >
+          <FaGraduationCap /></CardWithLink
+        >
+        <CardWithLink
+          title={t("footer-paginas-academicos")}
+          to={t("a-academicos")}
+          content={t("card-info-academics")}
+        >
+          <FaUser /></CardWithLink
+        >
+        <CardWithLink
+          title={t("footer-paginas-contactos")}
+          to={t("a-contactos")}
+          content={t("card-info-contacts")}
+        >
+          <FaEnvelope /></CardWithLink
+        >
+      </div>
+    </section>
+  </main>
   <Footer />
 </Layout>

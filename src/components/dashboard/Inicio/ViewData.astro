@@ -1,0 +1,42 @@
+---
+import { supabase } from "../../../lib/supabase";
+import { recuperarTexto } from "../../../utils/changeData";
+
+interface Props {
+  /**Identificador que se desea modificar */
+  propiedad: string;
+  /**Lenguaje */
+  lang: "es" | "en";
+  /**A que coleccion pertenece */
+  seccion: string;
+  /**Titulo de la seccion */
+  title: string;
+}
+
+const { propiedad, lang, seccion, title } = Astro.props;
+
+const { data } = await supabase
+  .from(seccion)
+  .select("id")
+  .eq("identificador", propiedad);
+const identificador = data ? data[0] : undefined;
+
+const tableLang = seccion + lang;
+const { data: dataSeccion } = await supabase
+  .from(tableLang)
+  .select("*")
+  .eq("id", identificador?.id);
+const texto = dataSeccion ? dataSeccion[0].texto : undefined
+---
+
+<article class="cardview bg-stone-200 dark:bg-stone-900 font-Rubik p-2 rounded-xl shadow-xl h-max">
+  <h2 class="text-xl md:text-2xl font-bold">{title}</h2>
+  <p class="text-zinc-800 dark:text-zinc-300">{texto}</p>
+</article>
+
+<script>
+  import ScrollReveal from 'scrollreveal'
+  ScrollReveal().reveal(".cardview", {
+    opacity: 0
+  })
+</script>
