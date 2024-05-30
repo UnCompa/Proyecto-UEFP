@@ -1,17 +1,15 @@
 ---
-import { Button, Tooltip } from "@nextui-org/react";
 import Navigation from "../../components/Fundamentales/Navigation.astro";
 import Footer from "../../components/Fundamentales/Footer.astro";
 import Layout from "../../layouts/Layout.astro";
 import CardAcademics from "../../components/sections/CardAcademics.astro";
 import AcademicsLink from "../../components/buttons/AcademicsLink";
 import { getLangFromUrl, useTranslations } from "../../i18n/utils";
-import { FaBrain, FaGraduationCap, FaHand, FaPen } from "react-icons/fa6";
+import { supabase } from "../../lib/supabase";
+import { FaArrowAltCircleRight } from "react-icons/fa";
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
-const url = Astro.url;
-(url);
-(lang);
+const {data: levelsData} = await supabase.from("levels_es").select("*")
 ---
 
 <Layout
@@ -29,46 +27,22 @@ const url = Astro.url;
     >
       <h2 class="text-xl lg:text-3xl font-bold py-1 lg:py-4">Niveles</h2>
       <ul class="flex items-center lg:items-start lg:flex-col gap-4 flex-wrap">
-        <li>
-          <AcademicsLink
-            url={`/${lang}/academics#1`}
-            content={t("nivel-1-title")}
-            text={t("nivel-1-title")}
-            client:load
-          >
-            <FaHand className="text-gray-900 dark:text-gray-100" />
-          </AcademicsLink>
-        </li>
-        <li>
-          <AcademicsLink
-            url={`/${lang}/academics#2`}
-            content={t("nivel-2-title")}
-            text={t("nivel-2-title")}
-            client:load
-          >
-            <FaBrain />
-          </AcademicsLink>
-        </li>
-        <li>
-          <AcademicsLink
-            url={`/${lang}/academics#3`}
-            content={t("nivel-3-title")}
-            text={t("nivel-3-title")}
-            client:load
-          >
-            <FaPen />
-          </AcademicsLink>
-        </li>
-        <li>
-          <AcademicsLink
-            url={`/${lang}/academics#4`}
-            content={t("nivel-4-title")}
-            text={t("nivel-4-title")}
-            client:load
-          >
-            <FaGraduationCap />
-          </AcademicsLink>
-        </li>
+        {
+          levelsData?.map(link => {
+            return (
+              <li>
+                <AcademicsLink
+                id={link.id}
+                url={`/${lang}/academics#${link.id}`}
+                text={link.title}
+                content={link.title}
+                >
+                  <FaArrowAltCircleRight/>
+                </AcademicsLink>
+              </li>
+            )
+          })
+        }
       </ul>
     </aside>
     <div class="border-l-2 border-zinc-200/50 dark:border-zinc-950/50">
@@ -89,34 +63,19 @@ const url = Astro.url;
         </div>
       </section>
       <section class="h-max bg-zinc-100 dark:bg-zinc-900/50 container mx-auto">
-        <CardAcademics
-          id="1"
-          title={t("nivel-1-title")}
-          img="/imgs/persona.jpg"
-          content={t("nivel-1-text")}
-          color="bg-cyan-500"
-        />
-        <CardAcademics
-          id="2"
-          title={t("nivel-2-title")}
-          img="/imgs/liberty.jpg"
-          content={t("nivel-2-text")}
-          color="bg-green-500"
-        />
-        <CardAcademics
-          id="3"
-          title={t("nivel-3-title")}
-          img="/imgs/estudiantes.jpeg"
-          content={t("nivel-3-text")}
-          color="bg-red-500"
-        />
-        <CardAcademics
-          id="4"
-          title={t("nivel-4-title")}
-          img="/imgs/personaIndex1.jpg"
-          content={t("nivel-4-text")}
-          color="bg-purple-500"
-        />
+      {
+        levelsData?.map(levels => {
+          return (
+            <CardAcademics
+              id={levels.id}
+              title={levels.title}
+              img={levels.img}
+              content={levels.content}
+              color={levels.color}
+            />
+          )
+        })
+      }
       </section>
     </div>
   </main>

@@ -7,7 +7,6 @@ import { getLangFromUrl } from "../../i18n/utils";
 export default function MainDashboard({ email, url, user }) {
   const lang = getLangFromUrl(url);
   const [roles, setRoles] = useState(["admin"]);
-  console.log(user);
   useEffect(() => {
     const fetchData = async () => {
       const { data: userData } = await supabase

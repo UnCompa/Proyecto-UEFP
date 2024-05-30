@@ -9,8 +9,12 @@ import Footer from "../../components/Fundamentales/Footer.astro";
 import { Wave, IlustrationPerson } from "../../icons/Icons";
 import { getLangFromUrl, useTranslations } from "../../i18n/utils";
 import InfoTeacher from "../../components/sections/InfoTeacher";
+import { supabase } from "../../lib/supabase";
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+
+const {data: historyData} = await supabase.from("historyes").select("*")
+const {data: objetivesData} = await supabase.from("objetives_es").select("*")
 ---
 
 <Layout
@@ -43,12 +47,7 @@ const t = useTranslations(lang);
             {t("about-hero-title")}
           </h1>
           <p class="animate-fade-in-up text-sm md:text-lg">
-            La Unidad Educativa Fiscal Pichincha nació de la fusión de la
-            Escuela Juan Montalvo y el Colegio Nacional Pichincha, fundados en
-            1977. Esta unión, consolidada en 2014, combina tradición e
-            innovación para ofrecer una educación de calidad. Nos enfocamos en
-            el desarrollo integral de los estudiantes, potenciando sus
-            habilidades y preparándolos para los desafíos futuros.
+            {t("about-hero-text")}
           </p>
         </div>
         <div class="flex py-12 justify-center items-center h-full">
@@ -62,42 +61,18 @@ const t = useTranslations(lang);
           {t("nuestra-historia-title")}
         </h2>
         <div class="h-full">
-          <CardInfo
-            text="La Unidad Educativa Fiscal Pichincha tiene sus raíces en la creación de la Escuela Juan Montalvo el 17 de enero de 1977. En aquel entonces, esta institución educativa comenzó su labor con el propósito de brindar acceso a la educación primaria a la comunidad local. La escuela, construida con tejas, se convirtió con el tiempo en un pilar fundamental en el desarrollo académico de la región, sentando las bases para una educación de calidad."
-            title="Desde los inicios"
-            img="/imgs/about (6).jpg"
-            alt="Imagen sobre la historia"
-          />
-          <CardInfo
-            text="A medida que las necesidades educativas de la comunidad crecían, surgió la iniciativa de establecer una institución de nivel secundario que pudiera continuar con el legado de excelencia académica de la Escuela Juan Montalvo. Así, el 30 de enero de 1977, se creó el Colegio Nacional Pichincha, con el compromiso de ofrecer una educación integral y de calidad que preparara a los estudiantes para los desafíos del futuro. En 1980, se introdujo el ciclo vespertino, que comenzó a funcionar el 18 de noviembre de 1981."
-            title="Consolidación de la educación"
-            img="/imgs/about (5).jpg"
-            alt="Imagen sobre la consolidación de la educación"
-          />
-          <CardInfo
-            text="Conscientes de la importancia de trabajar de manera coordinada y aprovechar al máximo los recursos disponibles, las autoridades de la Escuela Juan Montalvo y el Colegio Nacional Pichincha decidieron unir sus esfuerzos para ofrecer una educación aún más completa y enriquecedora. Esta unión, formalizada el 17 de marzo de 2024, no solo permitió optimizar los recursos materiales y humanos, sino que también fortaleció el sentido de comunidad y pertenencia entre estudiantes, docentes y padres de familia."
-            title="Unificación de esfuerzos"
-            img="/imgs/about (4).jpg"
-            alt="Imagen sobre la unificación de esfuerzos"
-          />
-          <CardInfo
-            text="Como resultado de esta colaboración, se creó la Unidad Educativa Fiscal Pichincha, una institución que fusiona lo mejor de la tradición y la innovación educativa. Esta nueva entidad está comprometida con la excelencia académica, el desarrollo integral de los estudiantes y la formación de ciudadanos responsables y comprometidos con su entorno."
-            title="Creación de la Unidad Educativa"
-            img="/imgs/about (3).jpg"
-            alt="Imagen sobre la creación de la Unidad Educativa"
-          />
-          <CardInfo
-            text="La Unidad Educativa Fiscal Pichincha se distingue por su enfoque centrado en el estudiante, que busca potenciar sus habilidades, capacidades y talentos individuales. A través de un currículo diversificado y actividades extracurriculares enriquecedoras, los estudiantes tienen la oportunidad de explorar sus intereses y desarrollar todo su potencial. En 1986, se introdujo la informática, marcando un hito en la modernización educativa de la institución."
-            title="Compromiso educativo"
-            img="/imgs/about (2).jpg"
-            alt="Imagen sobre el compromiso educativo"
-          />
-          <CardInfo
-            text="Conscientes de los desafíos que enfrentan los jóvenes en un mundo en constante cambio, en la Unidad Educativa Fiscal Pichincha nos esforzamos por brindar a nuestros estudiantes las herramientas necesarias para triunfar en el ámbito académico, profesional y personal. Nuestra meta es formar ciudadanos íntegros, críticos y comprometidos con la construcción de una sociedad más justa y equitativa."
-            title="Preparación para el futuro"
-            img="/imgs/about (1).jpg"
-            alt="Imagen sobre la preparación para el futuro"
-          />
+         {
+          historyData?.map((history) => {
+            return (
+              <CardInfo
+              text={history.content}
+              title={history.title}
+              img={history.img_url}
+              alt={history.img_alt}
+              />
+            )
+          })
+         }
         </div>
       </div>
       <div
@@ -127,30 +102,19 @@ const t = useTranslations(lang);
       </div>
       <div class="h-full py-8 bg-black/10 p-8">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          <Objectives
-            title={"Ejercer estudiantes"}
-            text={"Preparar estudiantes para que tenga las aptitudes adecuadas para el mundo laboral"}
-            color={"purple"}
-            client:load
-          >
-            <FaPen />
-          </Objectives>
-          <Objectives
-            title={"Mejorar estudiantes"}
-            text={"Preparar estudiantes para que tenga las aptitudes adecuadas para el mundo laboral"}
-            color={"green"}
-            client:load
-          >
-            <FaStar />
-          </Objectives>
-          <Objectives
-            title={"Estudios de calidad"}
-            text={"Preparar estudiantes para que tenga las aptitudes adecuadas para el mundo laboral"}
-            color={"red"}
-            client:load
-          >
-            <FaPen />
-          </Objectives>
+          {
+            objetivesData?.map(objetive => {
+              return (
+                <Objectives
+                title={objetive.title}
+                text={objetive.text}
+                color={objetive.color}
+                >
+                  {objetive.icon}
+                </Objectives>
+              )
+            })
+          }
         </div>
       </div>
       <div class="w-full border-t border-b border-red-500 bg-zinc-200 dark:bg-zinc-900">

@@ -9,17 +9,14 @@ export default function ViewGalleryImage() {
         const api = "";
         const response = await fetch(api);
         const data = await response.json();
-        console.log(data);
         const images = data.map((img) => {
           return {
             original: img.url,
             thumbnail: img.url,
           };
         });
-        console.log(images);
         setImages(images);
       } catch (e) {
-        console.log(e);
       }
     };
     fetchImgs();

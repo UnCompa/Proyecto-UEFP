@@ -9,8 +9,11 @@ import Footer from "../../components/Fundamentales/Footer.astro";
 import { Wave, IlustrationPerson } from "../../icons/Icons";
 import { getLangFromUrl, useTranslations } from "../../i18n/utils";
 import InfoTeacher from "../../components/sections/InfoTeacher";
+import { supabase } from "../../lib/supabase";
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+const {data: historyData} = await supabase.from("historyen").select("*")
+const {data: objetivesData} = await supabase.from("objetives_es").select("*")
 ---
 
 <Layout
@@ -43,7 +46,7 @@ const t = useTranslations(lang);
             {t("about-hero-title")}
           </h2>
           <p class="animate-fade-in-up text-sm md:text-lg">
-            The Unidad Educativa Fiscal Pichincha was born from the merger of the Juan Montalvo School and the Colegio Nacional Pichincha, founded in 1977. This union, consolidated in 2014, combines tradition and innovation to offer quality education. We focus on the integral development of students, enhancing their skills and preparing them for future challenges.
+            {t("about-hero-text")}
           </p>
         </div>
         <div class="flex py-12 justify-center items-center h-full">
@@ -57,43 +60,18 @@ const t = useTranslations(lang);
           {t("nuestra-historia-title")}
         </h3>
         <div class="h-full">
-          <CardInfo
-  text="The Unidad Educativa Fiscal Pichincha has its roots in the creation of the Juan Montalvo School on January 17, 1977. At that time, this educational institution began its work with the purpose of providing access to primary education for the local community. The school, built with tiles, gradually became a fundamental pillar in the academic development of the region, laying the foundation for quality education."
-  title="From the Beginning"
-  img="/imgs/about (6).jpg"
-  alt="Image about history"
-/>
-<CardInfo
-  text="As the educational needs of the community grew, the initiative to establish a secondary institution that could continue the legacy of academic excellence of the Juan Montalvo School emerged. Thus, on January 30, 1977, the Colegio Nacional Pichincha was created with the commitment to provide comprehensive and quality education that would prepare students for future challenges. In 1980, the evening cycle was introduced, which began operating on November 18, 1981."
-  title="Educational Consolidation"
-  img="/imgs/about (5).jpg"
-  alt="Image about educational consolidation"
-/>
-<CardInfo
-  text="Aware of the importance of working in a coordinated manner and making the most of available resources, the authorities of the Juan Montalvo School and the Colegio Nacional Pichincha decided to join their efforts to offer even more complete and enriching education. This union, formalized on March 17, 2024, not only allowed the optimization of material and human resources but also strengthened the sense of community and belonging among students, teachers, and parents."
-  title="Unification of Efforts"
-  img="/imgs/about (4).jpg"
-  alt="Image about unification of efforts"
-/>
-<CardInfo
-  text="As a result of this collaboration, the Unidad Educativa Fiscal Pichincha was created, an institution that blends the best of educational tradition and innovation. This new entity is committed to academic excellence, the integral development of students, and the formation of responsible and engaged citizens."
-  title="Creation of the Educational Unit"
-  img="/imgs/about (3).jpg"
-  alt="Image about the creation of the Educational Unit"
-/>
-<CardInfo
-  text="The Unidad Educativa Fiscal Pichincha stands out for its student-centered approach, which aims to enhance their individual skills, capacities, and talents. Through a diversified curriculum and enriching extracurricular activities, students have the opportunity to explore their interests and develop their full potential. In 1986, informatics was introduced, marking a milestone in the institution's educational modernization."
-  title="Educational Commitment"
-  img="/imgs/about (2).jpg"
-  alt="Image about educational commitment"
-/>
-<CardInfo
-  text="Aware of the challenges that young people face in a constantly changing world, at the Unidad Educativa Fiscal Pichincha we strive to provide our students with the necessary tools to succeed academically, professionally, and personally. Our goal is to form integral, critical, and committed citizens who contribute to building a more just and equitable society."
-  title="Preparation for the Future"
-  img="/imgs/about (1).jpg"
-  alt="Image about preparation for the future"
-/>
-
+          {
+            historyData?.map((history) => {
+              return (
+                <CardInfo
+                text={history.content}
+                title={history.title}
+                img={history.img_url}
+                alt={history.img_alt}
+                />
+              )
+            })
+           }
         </div>
       </div>
       <div
@@ -123,30 +101,19 @@ const t = useTranslations(lang);
       </div>
       <div class="h-full py-8 bg-black/10 p-8">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          <Objectives
-            title={"Ejercer estudiantes"}
-            text={"Preparar estudiantes para que tenga las aptitudes adecuadas para el mundo laboral"}
-            color={"purple"}
-            client:load
-          >
-            <FaPen />
-          </Objectives>
-          <Objectives
-            title={"Mejorar estudiantes"}
-            text={"Preparar estudiantes para que tenga las aptitudes adecuadas para el mundo laboral"}
-            color={"green"}
-            client:load
-          >
-            <FaStar />
-          </Objectives>
-          <Objectives
-            title={"Estudios de calidad"}
-            text={"Preparar estudiantes para que tenga las aptitudes adecuadas para el mundo laboral"}
-            color={"red"}
-            client:load
-          >
-            <FaPen />
-          </Objectives>
+          {
+            objetivesData?.map(objetive => {
+              return (
+                <Objectives
+                title={objetive.title}
+                text={objetive.text}
+                color={objetive.color}
+                >
+                  {objetive.icon}
+                </Objectives>
+              )
+            })
+          }
         </div>
       </div>
       <div class="w-full border-t border-b border-red-500 bg-zinc-200 dark:bg-zinc-900">
