@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { supabase } from "../../../lib/supabase";
 import dayjs from "dayjs";
+import { FaPenAlt, FaTrashAlt } from "react-icons/fa";
 
 const HistoryChange = ({ table }) => {
   const [data, setData] = useState([]);
@@ -128,8 +129,20 @@ const HistoryChange = ({ table }) => {
                     {item.id}
                   </span>
                   <span>{dayjs(item.created_at).format("DD/MM/YYYY")}</span>
+                  <button
+                    className="bg-green-600 hover:bg-green-700 active:bg-green-800 px-2 py-1 rounded transition-colors"
+                    onClick={() => handleEdit(index)}
+                  >
+                    <FaPenAlt/>
+                  </button>
+                  <button
+                    className="bg-red-600 hover:bg-red-700 active:bg-red-800 px-2 py-1 rounded transition-colors"
+                    onClick={() => handleDelete(index)}
+                  >
+                    <FaTrashAlt/>
+                  </button>
                 </div>
-                <hgroup className="h-[80%]">
+                <hgroup className="h-max">
                   <h2 className="text-2xl font-bold">
                     <span className="font-extrabold">Titulo:</span> {item.title}
                   </h2>
@@ -137,20 +150,6 @@ const HistoryChange = ({ table }) => {
                     <span className="font-bold">Contenido:</span> {item.content}
                   </p>
                 </hgroup>
-                <div className="flex gap-2">
-                  <button
-                    className="bg-green-600 hover:bg-green-700 active:bg-green-800 px-2 py-1 rounded transition-colors"
-                    onClick={() => handleEdit(index)}
-                  >
-                    Editar
-                  </button>
-                  <button
-                    className="bg-red-600 hover:bg-red-700 active:bg-red-800 px-2 py-1 rounded transition-colors"
-                    onClick={() => handleDelete(index)}
-                  >
-                    Eliminar
-                  </button>
-                </div>
               </div>
               <div className="p-4 h-full flex items-center justify-center">
                 <img

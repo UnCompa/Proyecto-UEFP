@@ -3,7 +3,7 @@ import CardInfo from "../../components/Cards/CardInfo.astro";
 import Navigation from "../../components/Fundamentales/Navigation.astro";
 import Layout from "../../layouts/Layout.astro";
 import SelectOption from "../../components/Others/SelectOption";
-import Objectives from "../../components/sections/Objectives";
+import Objectives from "../../components/sections/Objectives.astro";
 import { FaPen, FaStar } from "react-icons/fa6";
 import Footer from "../../components/Fundamentales/Footer.astro";
 import { Wave, IlustrationPerson } from "../../icons/Icons";
@@ -110,7 +110,6 @@ const {data: objetivesData} = await supabase.from("objetives_es").select("*").or
                 <Objectives
                 title={objetive.title}
                 text={objetive.text}
-                color={objetive.color}
                 >
                   {objetive.icon}
                 </Objectives>

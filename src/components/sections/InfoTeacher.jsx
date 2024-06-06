@@ -7,9 +7,7 @@ export default function InfoTeacher({lang}) {
   useEffect(() => {
     const tableLang = "teachers" + lang
     const fetchDataEs = async () => {
-      (tableLang);
-      const { data } = await supabase.from(tableLang).select("*");
-      (data);
+      const { data } = await supabase.from(tableLang).select("*").order("id", {ascending: true})
       setData(data);
     };
     fetchDataEs();

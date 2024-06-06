@@ -4,8 +4,18 @@ import ThemeIcon from "../../../components/ChangeUI/ThemeIcon.astro";
 import NavDashboard from "../../../components/dashboard/NavDashboard";
 import HistoryChange from "../../../components/dashboard/about/HistoryChange";
 import HistoryCreate from "../../../components/dashboard/about/HistoryCreate";
+import StaffChange from "../../../components/dashboard/about/StaffChange";
+import StaffCreate from "../../../components/dashboard/about/StaffCreate";
+import ObjetivesChange from "../../../components/dashboard/about/ObjetivesChange";
+import ObjetivesCreate from "../../../components/dashboard/about/ObjetivesCreate";
+import ValuesChange from "../../../components/dashboard/about/ValuesChange";
+import ValuesCreate from "../../../components/dashboard/about/ValuesCreate";
+import ValuesView from "../../../components/dashboard/about/ValuesView.astro";
+import Objectives from "../../../components/sections/Objectives.astro";
 import DashBoardBase from "../../../layouts/DashBoardBase.astro";
 import { supabase } from "../../../lib/supabase";
+import PeopleCard from "../../../components/sections/PeopleCard";
+import dayjs from "dayjs";
 const { cookies, redirect } = Astro;
 const url = Astro.url;
 const accessToken = cookies.get("sb-access-token");
@@ -34,7 +44,18 @@ const { data: userData } = await supabase
   .eq("id", data.user?.id);
 const roles: string[] = (userData && userData[0]?.roles) || [];
 
-const {data: dataHistory} = await supabase.from("historyes").select("*").order("id", {ascending: true})
+const { data: dataHistory } = await supabase
+  .from("historyes")
+  .select("*")
+  .order("id", { ascending: true });
+const { data: objetivesData } = await supabase
+  .from("objetives_es")
+  .select("*")
+  .order("id", { ascending: true });
+const { data: dataStaff } = await supabase
+  .from("teachersEs")
+  .select("*")
+  .order("id", { ascending: true });
 ---
 
 <!-- <ThemeIcon/> -->
@@ -104,6 +125,18 @@ const {data: dataHistory} = await supabase.from("historyes").select("*").order("
               href="#valores">Valores</a
             >
           </li>
+          <li>
+            <a
+              class="w-full px-4 py-1 text-center bg-zinc-900 rounded-lg shadow-xl hover:bg-zinc-950 transition-colors"
+              href="#objetivos">Objetivos</a
+            >
+          </li>
+          <li>
+            <a
+              class="w-full px-4 py-1 text-center bg-zinc-900 rounded-lg shadow-xl hover:bg-zinc-950 transition-colors"
+              href="#personal">Personal</a
+            >
+          </li>
         </ul>
       </div>
       {
@@ -112,30 +145,105 @@ const {data: dataHistory} = await supabase.from("historyes").select("*").order("
             <h2 class="text-3xl font-bold py-2" id="historia">
               Seccion Historia
             </h2>
-            <HistoryCreate client:load />
             <HistoryChange table="historyes" client:load />
+            <HistoryCreate client:load />
           </section>
         ) : (
           <section class="h-max flex flex-col gap-2">
             <h2 class="text-3xl text-center font-bold py-2" id="historia">
               Seccion Historia
             </h2>
-            {
-              dataHistory?.map((item) => (
-                <CardInfo
-                title={item.title}
-                text={item.content}
-                img={item.img_url}
-                alt={item.img_alt}
-                />
-              ))
-            }
+            {dataHistory?.map((item) => (
+              <div class="grid grid-cols-1 md:grid-cols-2 bg-zinc-900 rounded">
+                <div class="p-4">
+                  <hgroup class="h-max">
+                    <h2 class="text-2xl font-bold">
+                      <span class="font-extrabold">Titulo:</span> {item.title}
+                    </h2>
+                    <p class="font-light">
+                      <span class="font-bold">Contenido:</span> {item.content}
+                    </p>
+                  </hgroup>
+                </div>
+                <div class="p-4 h-full flex items-center justify-center">
+                  <img
+                    class="h-full max-h-72 border-2 p-2"
+                    src={item.img_url}
+                    alt={item.img_alt}
+                  />
+                </div>
+              </div>
+            ))}
           </section>
         )
       }
-      <section class="h-max flex flex-col gap-2">
-        <h2 class="text-3xl font-bold py-2" id="valores">Seccion Valores</h2>
-      </section>
+      {
+        roles.includes("admin") ? (
+          <section class="h-max flex flex-col gap-2">
+            <h2 class="text-3xl font-bold py-2" id="valores">
+              Seccion Valores
+            </h2>
+            <ValuesChange table="values_es" client:load />
+            <ValuesCreate table="values_es" client:load />
+          </section>
+        ) : (
+          <ValuesView />
+        )
+      }
+      {
+        roles.includes("admin") ? (
+          <section>
+            <h2 class="text-3xl font-bold py-2" id="objetivos">
+              Seccion Objetivos
+            </h2>
+            <ObjetivesChange table="objetives_es" client:load />
+            <ObjetivesCreate table="objetives_es" client:load />
+          </section>
+        ) : (
+          <section>
+            <h2 class="text-3xl font-bold py-2" id="objetivos">
+              Seccion Objetivos
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {objetivesData?.map((objetive) => {
+                return (
+                  <Objectives title={objetive.title} text={objetive.text} />
+                );
+              })}
+            </div>
+          </section>
+        )
+      }
+      {
+        roles.includes("admin") ? (
+          <section>
+            <h2 class="text-3xl font-bold py-2" id="personal">
+              Seccion Personal
+            </h2>
+            <StaffChange table="teachersEs" client:load />
+            <StaffCreate table="teachersEs" client:load />
+          </section>
+        ) : (
+          <section>
+            <h2 class="text-3xl font-bold py-2" id="personal">
+              Seccion Personal
+            </h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 bg-zinc-100  dark:bg-zinc-900 p-4">
+              {dataStaff?.map((teacher) => {
+                return (
+                  <PeopleCard
+                    teacher={teacher.name}
+                    content={teacher.phrase}
+                    work={teacher.profession}
+                    img={teacher.image_link}
+                    client:load
+                  />
+                );
+              })}
+            </div>
+          </section>
+        )
+      }
     </div>
   </main>
 

@@ -16,7 +16,7 @@ export default function SignForm({ lang, navigate }) {
       method: "POST",
       body: formData,
     });
-    (res);
+    console.log(res);
     if(res.status === 203) {
       toast.error("La contraseña o el correo son incorrectos")
     }

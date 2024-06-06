@@ -15,7 +15,7 @@ import { FaStar } from "react-icons/fa6";
 export default function SelectOption({ lang }) {
   const [tabs, setTabs] = useState([]);
   const selectTabs = async (table) => {
-    const { data: dataTabs } = await supabase.from(table).select("*");
+    const { data: dataTabs } = await supabase.from(table).select("*").order("id", {ascending: true})
     setTabs(dataTabs);
   };
   useEffect(() => {
