@@ -1,12 +1,12 @@
 ---
-const {title = "Titulo",img,content = "Aqui va contenido",color,id} = Astro.props
+const {title = "Titulo",img,content = "Aqui va contenido",id} = Astro.props
 ---
 
 <div class="p-4" id={id}>
     <div class="grid grid-col-1 lg:grid-cols-2">
         <div class="p-4 flex flex-col items-start justify-start bg-zinc-200 dark:bg-zinc-950 rounded">
             <h2 class="px-4 title text-3xl font-Kanit font-extrabold">{title}</h2>
-            <div class={`mx-4 h-1 rounded-full w-1/2 my-2 ${color}`}></div>
+            <div class={`bg-gradient-to-l from-red-500 to-orange-500 mx-4 h-1 rounded-full w-1/2 my-2`}></div>
             <p class="text font-Kanit text-base md:text-lg px-4 font-light text-zinc-800 dark:text-zinc-200">{content}</p>
         </div>
         <div class="p-4 h-full w-full flex items-center justify-center revealImg">

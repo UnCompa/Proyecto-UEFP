@@ -5,7 +5,12 @@ import { FaChevronCircleDown } from "react-icons/fa";
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
-
+<script>
+  const boton = document.getElementById("arrow-down")
+  boton?.addEventListener("click", ()=> {
+    window.scrollTo(0,750)
+  })
+</script>
 <div class="gradient-container bg-radial-gradient-light dark:bg-radial-gradient-dark font-Rubik">
   <div class="hero h-full w-full flex flex-col items-center justify-center">
     <h1 class="text-black dark:text-white font-Rubik font-bold text-4xl md:text-6xl text-center animate-slide-in-bottom animate-delay-150 animate-duration-300">
@@ -18,7 +23,7 @@ const t = useTranslations(lang);
       <p class="font-Rubik font-bold text-black dark:text-white text-xl animate-fade-in animate-delay-300">
         {t("hero-frase")}
       </p>
-      <FaChevronCircleDown className="text-3xl text-black/50 dark:text-white/50 animate-jump animate-iteration-count-infinite animate-duration-[2s]" />
+      <FaChevronCircleDown id="arrow-down" className="text-3xl text-black/50 dark:text-white/50 animate-pulsing animate-iteration-count-infinite animate-duration-[2s] hover:text-black dark:hover:text-white transition-colors" />
     </div>
   </div>
 </div>

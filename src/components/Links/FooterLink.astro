@@ -3,14 +3,29 @@ interface Props {
     to: string,
     text: string,
     target?: boolean
+    color?: string,
+    darkColor?: string
 }
-const {to , text, target} = Astro.props
+const {to , text, target, color = "#fff", darkColor = "#000"} = Astro.props
 ---
 <a
+  id="link"
   href={`${to}`}
   target={target ? "_blank" : "_self"}
-  class="w-max text-start py-1 flex justify-center gap-x-2 font-Rubik font-bold text-zinc-800 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-zinc-400 hover:font-normal transition-all duration-200 ease-out"
+  class="w-max text-start py-1 flex justify-center gap-x-2 font-Rubik font-base text-zinc-700 dark:text-zinc-200 hover:text-zinc-900 dark:hover:text-zinc-400 hover:font-normal transition-all duration-200 ease-out"
 >
-  <slot/>
+  <span id="icon">
+    <slot/>
+  </span>
   {text}
 </a>
+<style define:vars={{color, darkColor}}>
+  html.dark #link:hover > #icon{
+    color: var(--color);
+    transition: color 300ms ease-out;
+  }
+  html #link:hover > #icon{
+    color: var(--darkColor);
+    transition: color 300ms ease-out;
+  }
+</style>

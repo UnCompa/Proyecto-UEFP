@@ -115,7 +115,7 @@ function NavBar({ url, pathName, children, refreshToken, accessToken }) {
   }, [isDarkMode]);
   return (
     <nav
-      className={`h-28 box-border bg-cover text-black shadow-2xl dark:text-white bg-white/90 dark:bg-black flex justify-between items-center sticky top-0 pl-12 pr-4 z-10`}
+      className={`h-28 box-border bg-cover text-black shadow-2xl dark:text-white bg-white/90 dark:bg-black flex justify-between items-center sticky top-0 pl-12 pr-4 z-10` }
     >
       <a href="/">
         <img
@@ -164,7 +164,7 @@ function NavBar({ url, pathName, children, refreshToken, accessToken }) {
               <FaChevronDown />
             </span>
           </div>
-          <ul className="hidden relative top-2 lg:absolute lg:top-12 left-0 w-full group-hover:flex group-hover:flex-col gap-y-2 text-black dark:text-white transition-all bg-zinc-200 dark:bg-zinc-900 rounded-xl">
+          <ul className="hidden relative top-2 lg:absolute lg:top-12 left-0 w-full group-hover:flex group-hover:flex-col gap-y-2 text-black dark:text-white transition-all bg-zinc-200 dark:bg-zinc-900 rounded-xl z-50">
             <li>
               <NavLink to={urls.about} text={t("nav-sobrenosotros")}>
                 <FaUsers />

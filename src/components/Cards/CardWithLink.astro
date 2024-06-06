@@ -3,44 +3,34 @@ import { FaChevronCircleRight } from "react-icons/fa";
 import { getLangFromUrl } from "../../i18n/utils";
 
 const { title, content, to } = Astro.props;
-const lang = getLangFromUrl(Astro.url)
+const lang = getLangFromUrl(Astro.url);
 ---
 
-<div
-  class="card flex-1 basis-96 bg-gradient-to-r from-purple-500 via-red-500 to-yellow-400 p-0.5 shadow-2xl transition-all"
->
-  <div class="bg-zinc-100 dark:bg-zinc-950 p-4 h-full w-full">
-    <div class="flex items-center gap-x-2">
-      <span class="text-2xl md:text-4xl">
-        <slot />
-      </span>
+<a 
+href={to}
+class="card flex-1 basis-96 shadow-2xl transition-all border-2 border-transparent hover:border-zinc-500 rounded-lg">
+  <div class="relative bg-zinc-100 dark:bg-zinc-950 p-4 h-full w-full rounded-lg">
+    <div class="flex flex-col items-start gap-x-2">
       <h3
         class="text-2xl md:text-4xl font-Kanit font-bold bg-clip-text text-transparent bg-gradient-to-tr from-purple-500 via-red-500 to-yellow-400"
       >
         {title}
       </h3>
+      <div
+        class="bg-gradient-to-r my-1 from-purple-500 via-red-500 to-yellow-400 rounded-full h-0.5 w-2/3"
+      >
+      </div>
     </div>
     <div>
-      <p class="font-Kanit py-2 text-zinc-800 dark:text-zinc-300 w-[90%]">
+      <p class="font-Kanit py-2 text-zinc-800 dark:text-zinc-300 w-[75%] z-20">
         {content}
       </p>
-      
     </div>
-    <div class="bg-gradient-to-r from-purple-500 via-red-500 to-yellow-400 rounded-full p-0.5">
-      <a
-        href={to}
-        class="px-8 py-2 w-full rounded-full bg-zinc-400 dark:bg-zinc-950 hover:bg-zinc-400/50 dark:hover:bg-transparent group flex items-center justify-center gap-x-1 transition-all"
-      >
-        <span class="text-medium">
-          {lang === "es" ? "Ver más" : "More"}
-        </span>
-        <FaChevronCircleRight
-          className="text-xs group-hover:translate-x-2 translate-y-0.5 transition-all"
-        />
-      </a>
+    <div class="absolute right-[5%] md:right-[10%] top-[30%] text-8xl text-black/20 dark:text-white/20 z-10">
+      <slot/>
     </div>
   </div>
-</div>
+</a>
 <style>
   .card {
     background-position: center center;

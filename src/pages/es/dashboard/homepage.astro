@@ -34,7 +34,6 @@ const { data: userData } = await supabase
   .select("*")
   .eq("id", data.user?.id);
 const roles: string[] = (userData && userData[0]?.roles) || [];
-roles;
 const { data: dataFile } = supabase.storage.from('recursos').getPublicUrl('videos/inicial.mp4')
 const videoData = dataFile.publicUrl
 const videoSplit = videoData.split(".mp4")

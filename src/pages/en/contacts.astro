@@ -7,9 +7,10 @@ import { getLangFromUrl, useTranslations } from "../../i18n/utils";
 import { FaLocationDot } from "react-icons/fa6";
 const url = Astro.url;
 const urlStr = url.toString();
-const lang = getLangFromUrl(url)
-const t = useTranslations(lang)
+const lang = getLangFromUrl(url);
+const t = useTranslations(lang);
 ---
+
 <script>
   import ScrollReveal from "scrollreveal";
   ScrollReveal().reveal(".title", {
@@ -28,7 +29,11 @@ const t = useTranslations(lang)
     <div
       class="flex justify-center border-2 border-red-500 shadow-2xl hover:translate-y-1 hover:bg-red-500 transition-all animate-slide-out-bottom m-8"
     >
-      <img src="/imgs/ciudad.jpg" alt="" class="object-cover w-full h-full p-8"/>
+      <img
+        src="/imgs/ciudad.jpg"
+        alt=""
+        class="object-cover w-full h-full p-4 aspect-video object-center"
+      />
     </div>
     <div class="font-Rubik p-4 lg:p-12">
       <h2
@@ -43,11 +48,15 @@ const t = useTranslations(lang)
       <p
         class="text-gray-800 dark:text-gray-400 text-center text-base lg:text-start lg:text-xl py-4 text-pretty animate-blurred-fade-in animate-delay-300"
       >
-      {t("contacts-text-hero")}
+        {t("contacts-text-hero")}
       </p>
       <div class="flex justify-center lg:justify-start">
-        <a href="https://www.google.com/maps/place/Unidad+Educativa+Fiscal+Pichincha/@-0.2082385,-78.5205527,18.88z/data=!4m6!3m5!1s0x91d59bccd9463a83:0x4347f48344c3cd06!8m2!3d-0.2082454!4d-78.5198222!16s%2Fg%2F11c1wvwb7y?entry=ttu" target="_blank" class="bg-red-500 rounded-xl p-4 flex gap-x-2 items-center justify-center w-1/2 lg:w-max bg-gradient-to-br hover:from-red-500 hover:to-pink-500 text-white">
-          <FaLocationDot className="lg:text-xl"/>
+        <a
+          href="https://www.google.com/maps/place/Unidad+Educativa+Fiscal+Pichincha/@-0.2082385,-78.5205527,18.88z/data=!4m6!3m5!1s0x91d59bccd9463a83:0x4347f48344c3cd06!8m2!3d-0.2082454!4d-78.5198222!16s%2Fg%2F11c1wvwb7y?entry=ttu"
+          target="_blank"
+          class="bg-red-500 rounded-xl p-4 flex gap-x-2 items-center justify-center w-1/2 lg:w-max bg-gradient-to-br hover:from-red-500 hover:to-pink-500 text-white"
+        >
+          <FaLocationDot className="lg:text-xl" />
           <span class="text-center font-bold">View in Google Maps</span>
         </a>
       </div>
@@ -57,7 +66,7 @@ const t = useTranslations(lang)
     <h2
       class="title text-4xl lg:text-5xl font-bold font-Rubik text-center pt-8"
     >
-    {t("contacts-title-form")}
+      {t("contacts-title-form")}
     </h2>
     <div
       class="mx-auto bg-gradient-to-r from-red-500 to-pink-500/30 h-0.5 w-2/3 lg:w-1/2 my-2 rounded"
@@ -84,6 +93,6 @@ const t = useTranslations(lang)
 </Layout>
 <style>
   .email {
-    filter: drop-shadow(0 0 50px #ef44ef7e)
+    filter: drop-shadow(0 0 50px #ef44ef7e);
   }
 </style>

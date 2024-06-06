@@ -9,7 +9,10 @@ import { supabase } from "../../lib/supabase";
 import { FaArrowAltCircleRight } from "react-icons/fa";
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
-const {data: levelsData} = await supabase.from("levels_es").select("*")
+const { data: levelsData } = await supabase
+  .from("levels_es")
+  .select("*")
+  .order("id", { ascending: true });
 ---
 
 <Layout
@@ -28,19 +31,19 @@ const {data: levelsData} = await supabase.from("levels_es").select("*")
       <h2 class="text-xl lg:text-3xl font-bold py-1 lg:py-4">Niveles</h2>
       <ul class="flex items-center lg:items-start lg:flex-col gap-4 flex-wrap">
         {
-          levelsData?.map(link => {
+          levelsData?.map((link) => {
             return (
               <li>
                 <AcademicsLink
-                id={link.id}
-                url={`/${lang}/academics#${link.id}`}
-                text={link.title}
-                content={link.title}
+                  id={link.id}
+                  url={`/${lang}/academics#${link.id}`}
+                  text={link.title}
+                  content={link.title}
                 >
-                  <FaArrowAltCircleRight/>
+                  <FaArrowAltCircleRight />
                 </AcademicsLink>
               </li>
-            )
+            );
           })
         }
       </ul>
@@ -48,34 +51,45 @@ const {data: levelsData} = await supabase.from("levels_es").select("*")
     <div class="border-l-2 border-zinc-200/50 dark:border-zinc-950/50">
       <section class={`hero h-[85vh] w-full flex items-center`}>
         <div
-          class="py-4 md:px-8 lg:px-12 backdrop-blur flex flex-col sm:block container mx-auto dark:text-white text-white"
+          class="font-Rubik py-4 md:px-3 lg:px-12 backdrop-blur flex flex-col sm:block container mx-auto dark:text-white text-white"
         >
           <h1
-            class="animate-sink z-20 text-6xl md:text-9xl text-center md:text-start font-Rubit font-bold"
+            class="animate-pulsing z-20 text-5xl md:text-7xl lg:text-9xl text-center md:text-start font-extrabold"
           >
             {t("academics-title-hero")}
           </h1>
           <p
-            class="font-Kanit text-base md:text-xl py-4 w-full md:w-2/3 text-center md:text-start"
+            class="text-zinc-200 animate-blurred-fade-in font-light text-base md:text-xl py-4 w-full lg:w-2/3 text-center md:text-start px-2 sm:px-0"
           >
             {t("academics-text-hero")}
           </p>
+          <span class="px-2 sm:p-0 text-red-500">Ofertas academcias en:</span>
+          <ul class="flex gap-2 mt-2 flex-wrap px-2 sm:p-0">
+            {
+              levelsData?.map((data) => {
+                return (
+                  <li class="border-1 shadow-2xl px-2 py-1 rounded-full border-zinc-500 text-zinc-200 font-light">
+                    {data.title}
+                  </li>
+                );
+              })
+            }
+          </ul>
         </div>
       </section>
       <section class="h-max bg-zinc-100 dark:bg-zinc-900/50 container mx-auto">
-      {
-        levelsData?.map(levels => {
-          return (
-            <CardAcademics
-              id={levels.id}
-              title={levels.title}
-              img={levels.img}
-              content={levels.content}
-              color={levels.color}
-            />
-          )
-        })
-      }
+        {
+          levelsData?.map((levels) => {
+            return (
+              <CardAcademics
+                id={levels.id}
+                title={levels.title}
+                img={levels.img}
+                content={levels.content}
+              />
+            );
+          })
+        }
       </section>
     </div>
   </main>
@@ -87,8 +101,7 @@ const {data: levelsData} = await supabase.from("levels_es").select("*")
     scroll-behavior: smooth;
   }
   .hero {
-    background: linear-gradient(45deg, rgba(0, 0, 0, 100), rgba(29, 29, 32, 0)),
-      url("/imgs/study.jpg");
+    background: linear-gradient(90deg, #000, #0005), url("/imgs/study.jpg");
     background-repeat: no-repeat;
     background-size: cover;
   }

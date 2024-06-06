@@ -32,12 +32,12 @@ const {data: objetivesData} = await supabase.from("objetives_es").select("*")
 >
   <Navigation />
   <main class="h-full bg-zinc-400 dark:bg-zinc-900">
-    <section class="h-[80vh]">
-      <div class="absolute bottom-8 w-full">
-        <Wave className={"fill-zinc-200 dark:fill-zinc-800"} />
+    <section class="relative top-0 h-max lg:h-[80vh]">
+      <div class="absolute w-full bottom-0 h-max flex items-end justify-end">
+        <Wave className={"fill-zinc-200 dark:fill-zinc-800"} /> 
       </div>
       <div
-        class="grid lg:grid-cols-2 place-content-center font-Rubik h-full px-8"
+        class="grid grid-cols-1 lg:grid-cols-2 place-content-center font-Rubik h-full px-8"
       >
         <div class="flex flex-col p-4 gap-y-4 justify-center">
           <h2

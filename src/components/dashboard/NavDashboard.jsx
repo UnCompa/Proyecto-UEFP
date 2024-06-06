@@ -82,12 +82,12 @@ export default function NavDashboard({ children,url }) {
                 </Link>
               </li>
               <li>
-                <Link disable={true} to={""} text={"Sobre nosotros"}>
+                <Link to={`/${lang}/dashboard/about`} text={"Sobre nosotros"}>
                   <FaUsers />
                 </Link>
               </li>
               <li>
-                <Link disable={true} to={""} text={"Academicos"}>
+                <Link to={`/${lang}/dashboard/academics`} text={"Academicos"}>
                   <FaGraduationCap />
                 </Link>
               </li>

@@ -2,7 +2,7 @@
 import ChangeLanguage from "../ChangeUI/ChangeLanguaje";
 import FooterLink from "../Links/FooterLink.astro";
 import { getLangFromUrl, useTranslations } from "../../i18n/utils";
-import pkg from "../../../package.json"
+import pkg from "../../../package.json";
 import {
   FaFacebook,
   FaTiktok,
@@ -13,9 +13,9 @@ import {
   FaEnvelope,
   FaPhone,
   FaAt,
-FaDochub,
-FaInstagram,
-FaYoutube,
+  FaDochub,
+  FaInstagram,
+  FaYoutube,
 } from "react-icons/fa6";
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -83,6 +83,8 @@ const t = useTranslations(lang);
             target
             to="https://www.facebook.com/unidadeducativafiscal.pichincha"
             text={t("footer-redes-facebook")}
+            color="#1877f2"
+            darkColor="#1877f2"
           >
             <FaFacebook className="font-bold text-xl" />
           </FooterLink>
@@ -101,6 +103,8 @@ const t = useTranslations(lang);
             target
             to="https://www.instagram.com/colegiouefp20"
             text="Instagram"
+            color="#833ab4"
+            darkColor="#833ab4"
           >
             <FaInstagram className="font-bold text-xl" />
           </FooterLink>
@@ -110,6 +114,8 @@ const t = useTranslations(lang);
             target
             to="https://www.youtube.com/channel/UCDTkTM8MCe6zgndWaNOQKQQ"
             text="Youtube"
+            color="#ff0000"
+            darkColor="#ff0000"
           >
             <FaYoutube className="font-bold text-xl" />
           </FooterLink>
@@ -147,7 +153,7 @@ const t = useTranslations(lang);
             <FaEnvelope />
           </FooterLink>
         </li>
-        <li class="text-start font-bold flex gap-2 items-center">
+        <li class="text-start flex gap-2 items-center">
           <FooterLink to=`/${lang}/docs` text={t("footer-contacto-doc")}>
             <FaDochub />
           </FooterLink>

@@ -32,7 +32,7 @@ export default function MainDashboard({ email, url, user }) {
         {roles.includes("admin") ? (
           <section className="bg-zinc-200 dark:bg-zinc-900 grid grid-cols-1 md:grid-cols-2 py-4 place-content-center rounded">
             <div className="p-8 flex flex-col justify-center">
-              <h2 className="text-5xl font-bold py-4">
+              <h2 className="text-3xl md:text-5xl font-bold py-4">
                 Empieza a crear y editar la web
               </h2>
               <p className="text-lg text-black dark:text-zinc-300">
