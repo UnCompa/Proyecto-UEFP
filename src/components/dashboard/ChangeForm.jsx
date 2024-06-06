@@ -16,10 +16,11 @@ export default function ChangeForm(props) {
   useEffect(() => {
     const fetchData = async () => {
       const textoDB = await recuperarTexto(propiedad, lang, seccion);
+      console.log(textoDB);
       setTexto(textoDB);
     };
     fetchData();
-  }, [loading]);
+  }, []);
   
   const handleSubmit = async () => {
     const newText = {
@@ -38,7 +39,7 @@ export default function ChangeForm(props) {
           <label for="">Actual:</label>
           <textarea
             disabled
-            value={texto}
+            value={(texto) ? texto : "Loading..."}
             type="text"
             class="bg-zinc-200 text-sm dark:bg-zinc-900 my-4 px-2 py-4 border-l-2 border-green-500 focus:outline-none focus:border-emerald-300 disabled:text-zinc-500 disabled:bg-zinc-300 dark:disabled:bg-zinc-950 [scrollbar-color:rgb(34_197_94)_rgb(212_212_216)] dark:[scrollbar-color:rgb(34_197_94)_rgb(9_9_11)]"
           />

@@ -14,12 +14,12 @@ const lang = getLangFromUrl(Astro.url)
       <div class="flex flex-col items-center justify-center">
         <FaEnvelope className="text-5xl" />
         <h1 class="text-xl text-zinc-300 font-Rubik font-bold text-center">
-          Correo confirmado ✔
+          Confirm your email
         </h1>
         <p class="py-2 font-Rubik text-center">
-          Tu correo a sido verificado, continua al dashboard y explora que tenemos para ti
+          Check your inbox for a confirmation email to continue.
         </p>
-        <a class="text-blue-500 dark:text-blue-500" href={`/${lang}/signin`}> <span class="text-blue-500 dark:text-blue-500">Regresar</span></a>
+        <a class="text-green-500 dark:text-green-500" href={`/${lang}/`}> <span class="text-green-500 dark:text-green-500">Regresar</span></a>
       </div>
     </section>
   </main>

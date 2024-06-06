@@ -13,11 +13,14 @@ export const recuperarTexto = async (key: string, lang: "es" | "en", seccion:str
     .eq("identificador", key);
   const identificador = data ? data[0] : undefined
   const tableLang = seccion + lang;
-  const { data: value } = await supabase
+  const { data: value, error } = await supabase
     .from(tableLang)
     .select("texto")
     .eq("id", identificador?.id);
   const texto = value ? value[0].texto : undefined
+  if(error) {
+    return error
+  }
   return texto;
 };
 /**

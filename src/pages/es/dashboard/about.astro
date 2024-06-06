@@ -1,20 +1,19 @@
 ---
+import CardInfo from "../../../components/Cards/CardInfo.astro";
 import ThemeIcon from "../../../components/ChangeUI/ThemeIcon.astro";
 import NavDashboard from "../../../components/dashboard/NavDashboard";
-import TabHistory from "../../../components/dashboard/aboutComponents/TabHistory";
+import HistoryChange from "../../../components/dashboard/about/HistoryChange";
+import HistoryCreate from "../../../components/dashboard/about/HistoryCreate";
 import DashBoardBase from "../../../layouts/DashBoardBase.astro";
 import { supabase } from "../../../lib/supabase";
 const { cookies, redirect } = Astro;
-const url = Astro.url
+const url = Astro.url;
 const accessToken = cookies.get("sb-access-token");
 const refreshToken = cookies.get("sb-refresh-token");
 
 if (!accessToken || !refreshToken) {
   return redirect("/es/signin");
 }
-const { data: datanew, error: errornew } = await supabase
-.from("pages")
-.select("*");
 const { data, error } = await supabase.auth.setSession({
   refresh_token: refreshToken.value,
   access_token: accessToken.value,
@@ -26,7 +25,7 @@ if (error) {
   cookies.delete("sb-refresh-token", {
     path: "/",
   });
-  
+
   return redirect("/es/signin");
 }
 const { data: userData } = await supabase
@@ -34,6 +33,8 @@ const { data: userData } = await supabase
   .select("*")
   .eq("id", data.user?.id);
 const roles: string[] = (userData && userData[0]?.roles) || [];
+
+const {data: dataHistory} = await supabase.from("historyes").select("*").order("id", {ascending: true})
 ---
 
 <!-- <ThemeIcon/> -->
@@ -43,58 +44,120 @@ const roles: string[] = (userData && userData[0]?.roles) || [];
       class="bg-zinc-200 dark:bg-zinc-900 h-full w-full [grid-area:aside] boxshadow"
     >
       <NavDashboard url={url} client:load={true}>
-        <ThemeIcon/>
+        <ThemeIcon />
       </NavDashboard>
     </div>
     <div
       class="p-4 bg-zinc-50 overflow-y-auto dark:bg-zinc-800 w-full h-full [grid-area:main] font-Kanit"
     >
-    <section class="w-full h-max flex flex-col items-center justify-center font-Rubik">
-      <h1 class="text-3xl my-8 font-bold md:text-4xl lg:text-5xl bg-clip-text text-transparent bg-gradient-to-b from-white via-zinc-50 to-stone-800">Pagina de Sobre nosotros</h1>
-      {
-        roles.includes("admin") ? (
-          <p class="text-center font-light py-4">Administra el contenido que se presenta en la pagina de sobre nosotros, usarlo de manera responsable</p>
-        ): (
-          <p class="text-center font-light py-4">Lugar donde recide la información de la Unidad Educativa Fiscal Pichincha explora de manera diferente que ofreze esta seccion</p>
-        )
-      }
-      <div class="w-full">
-        <h2 class="font-bold text-xl text-start text-black dark:text-white">Aqui encontraras:</h2>
-        <ul class="flex flex-wrap justify-start gap-2">
-          <li class="border text-sm border-red-700 bg-stone-900 px-4 py-2 mt-2 text-black dark:text-white hover:bg-stone-800 transition-all">Historia de la institucion</li>
-          <li class="border text-sm border-red-700 bg-stone-900 px-4 py-2 mt-2 text-black dark:text-white hover:bg-stone-800 transition-all">Valores de la institucion</li>
+      <section
+        class="w-full h-max flex flex-col items-center justify-center font-Rubik"
+      >
+        <h1
+          class="text-3xl my-8 font-bold md:text-4xl lg:text-5xl bg-clip-text text-transparent bg-gradient-to-b from-white via-zinc-50 to-stone-800"
+        >
+          Pagina de Sobre nosotros
+        </h1>
+        {
+          roles.includes("admin") ? (
+            <p class="text-center font-light py-4">
+              Administra el contenido que se presenta en la pagina de sobre
+              nosotros, usarlo de manera responsable
+            </p>
+          ) : (
+            <p class="text-center font-light py-4">
+              Lugar donde recide la información de la Unidad Educativa Fiscal
+              Pichincha explora de manera diferente que ofreze esta seccion
+            </p>
+          )
+        }
+        <div class="w-full">
+          <h2 class="font-bold text-xl text-start text-black dark:text-white">
+            Aqui encontraras:
+          </h2>
+          <ul class="flex flex-wrap justify-start gap-2">
+            <li
+              class="border text-sm border-red-700 bg-stone-900 px-4 py-2 mt-2 text-black dark:text-white hover:bg-stone-800 transition-all"
+            >
+              Historia de la institucion
+            </li>
+            <li
+              class="border text-sm border-red-700 bg-stone-900 px-4 py-2 mt-2 text-black dark:text-white hover:bg-stone-800 transition-all"
+            >
+              Valores de la institucion
+            </li>
+          </ul>
+        </div>
+      </section>
+      <div class="my-2">
+        <h3>Ir a la seccion:</h3>
+        <ul class="flex w-full gap-2 items-center justify-start my-2">
+          <li>
+            <a
+              class="w-full px-4 py-1 text-center bg-zinc-900 rounded-lg shadow-xl hover:bg-zinc-950 transition-colors"
+              href="#historia">Historia</a
+            >
+          </li>
+          <li>
+            <a
+              class="w-full px-4 py-1 text-center bg-zinc-900 rounded-lg shadow-xl hover:bg-zinc-950 transition-colors"
+              href="#valores">Valores</a
+            >
+          </li>
         </ul>
       </div>
-    </section>
-    <section class="">
-      <h2 class="py-2 font-bold text-2xl md:text-3xl lg:text-4xl">Seccion Historia</h2>
-      <TabHistory client:load/>
-    </section>
-    <section class="">
-      <h2 class="py-2 font-bold text-2xl md:text-3xl lg:text-4xl">Seccion Historia</h2>
-      <TabHistory client:load/>
-    </section>
+      {
+        roles.includes("admin") ? (
+          <section class="h-max flex flex-col gap-2">
+            <h2 class="text-3xl font-bold py-2" id="historia">
+              Seccion Historia
+            </h2>
+            <HistoryCreate client:load />
+            <HistoryChange table="historyes" client:load />
+          </section>
+        ) : (
+          <section class="h-max flex flex-col gap-2">
+            <h2 class="text-3xl text-center font-bold py-2" id="historia">
+              Seccion Historia
+            </h2>
+            {
+              dataHistory?.map((item) => (
+                <CardInfo
+                title={item.title}
+                text={item.content}
+                img={item.img_url}
+                alt={item.img_alt}
+                />
+              ))
+            }
+          </section>
+        )
+      }
+      <section class="h-max flex flex-col gap-2">
+        <h2 class="text-3xl font-bold py-2" id="valores">Seccion Valores</h2>
+      </section>
     </div>
   </main>
-</DashBoardBase>
-<style>
-  .dashboard {
-    display: grid;
-    grid-template-columns: 200px 1fr;
-    grid-template-rows: 100vh;
-    grid-template-areas: "aside main";
-  }
-  @media (max-width: 1024px) {
+
+  <style>
     .dashboard {
       display: grid;
-      grid-template-columns: 1fr;
-      grid-template-rows: 96px 1fr;
-      grid-template-areas:
-        "aside"
-        "main";
+      grid-template-columns: 200px 1fr;
+      grid-template-rows: 100vh;
+      grid-template-areas: "aside main";
     }
-  }
-  .boxshadow {
-    box-shadow: 0px -20px 10px black;
-  }
-</style>
+    @media (max-width: 1024px) {
+      .dashboard {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 96px 1fr;
+        grid-template-areas:
+          "aside"
+          "main";
+      }
+    }
+    .boxshadow {
+      box-shadow: 0px -20px 10px black;
+    }
+  </style>
+</DashBoardBase>
