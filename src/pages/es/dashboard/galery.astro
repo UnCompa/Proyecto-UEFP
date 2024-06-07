@@ -2,7 +2,7 @@
 import ThemeIcon from "../../../components/ChangeUI/ThemeIcon.astro";
 import DashBoardBase from "../../../layouts/DashBoardBase.astro";
 import NavDashboard from "../../../components/dashboard/NavDashboard";
-import UploadGalery from "../../../components/dashboard/galery/UploadGalery"
+import UploadGalery from "../../../components/dashboard/galery/UploadGalery";
 import { supabase } from "../../../lib/supabase";
 import GaleryChange from "../../../components/dashboard/galery/GaleryChange";
 const url = Astro.url;
@@ -27,7 +27,6 @@ if (error) {
 
   return redirect("/es/signin");
 }
-const { user } = dataUser;
 const { data } = await supabase.storage.from("galeria").list("");
 console.log(data);
 const imgsUrl = data?.map((file) => {
@@ -36,6 +35,12 @@ const imgsUrl = data?.map((file) => {
   return publicUrl;
 });
 console.log(imgsUrl);
+
+const { data: userData } = await supabase
+  .from("profiles")
+  .select("*")
+  .eq("id", dataUser.user?.id);
+const roles: string[] = (userData && userData[0]?.roles) || [];
 ---
 
 <DashBoardBase
@@ -61,13 +66,36 @@ console.log(imgsUrl);
           Suba imagenes destacadas de la institucion
         </p>
       </section>
-      <section>
-        <UploadGalery client:load/>
-      </section>
+      {
+        roles.includes("admin") && (
+          <section>
+            <UploadGalery client:load />
+          </section>
+        )
+      }
       <section
-        class="px-2 container mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
+        class="p-2 container mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
       >
-        <GaleryChange client:load />
+        {
+          roles.includes("admin") ? (
+            <GaleryChange client:load />
+          ) : (
+            <>
+              {imgsUrl?.map((img) => {
+                console.log(img);
+                return (
+                  <div class="h-full max-h-96 hover:-translate-y-2 shadow-xl hover:shadow-blue-800/40 transition-all">
+                    <img
+                      src={img}
+                      alt=""
+                      class="w-full h-full object-object rounded-lg"
+                    />
+                  </div>
+                );
+              })}
+            </>
+          )
+        }
       </section>
     </div>
   </main>

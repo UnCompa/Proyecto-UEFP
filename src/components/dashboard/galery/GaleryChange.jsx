@@ -50,7 +50,7 @@ const GalleryChange = () => {
     <>
       {imgsUrl.length > 0 ? (
         imgsUrl.map((img) => (
-          <div key={img.id} className="bg-slate-950 p-2">
+          <div key={img.id} className="bg-slate-50 dark:bg-slate-950 p-2">
             <img
               src={img.publicUrl}
               alt=""

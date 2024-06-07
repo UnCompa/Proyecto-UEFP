@@ -32,13 +32,13 @@ const ContactsChange = (props) => {
     window.location.reload();
   };
   return (
-    <div className="bg-zinc-900 p-4 rounded">
+    <div className="bg-zinc-200 dark:bg-zinc-900 p-4 rounded">
       <h3 className="text-xl md:text-3xl font-bold">{title}</h3>
       <div class="h-1 rounded bg-gradient-to-r from-red-500 to-pink-500 my-1"></div>
       <div className="flex flex-col gap-1">
         <span>Actual:</span>
         <input
-          className="bg-zinc-950 p-1.5 rounded disabled:text-zinc-400 disabled:bg-zinc-950/50"
+          className="bg-zinc-200 disabled:bg-zinc-300 dark:bg-zinc-950 p-1.5 rounded disabled:text-zinc-400 dark:disabled:bg-zinc-950/50"
           disabled
           value={texto ? texto : "Loading..."}
           type="text"
@@ -48,7 +48,7 @@ const ContactsChange = (props) => {
         <span>Modificar:</span>
         <input
         onChange={e => setNewTexto(e.target.value)}
-          className="bg-zinc-950 p-1.5 rounded outline-none focus:ring-2 focus:ring-pink-500 selection:bg-pink-500"
+          className="bg-zinc-50 dark:bg-zinc-950 p-1.5 rounded outline-none focus:ring-2 focus:ring-pink-500 selection:bg-pink-500"
           type="text"
         />
       </div>
