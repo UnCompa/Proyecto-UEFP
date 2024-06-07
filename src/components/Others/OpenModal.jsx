@@ -36,9 +36,7 @@ export default function OpenModal({ isOpen }) {
                 </div>
                 <div>
                   <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Nullam pulvinar risus non risus hendrerit venenatis.
-                    Pellentesque sit amet hendrerit risus, sed porttitor quam.
+                    Gracias por enviarnos su email, estaremos al tanto del mismo.
                   </p>
                 </div>
               </ModalBody>

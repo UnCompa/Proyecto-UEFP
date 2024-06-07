@@ -10,7 +10,7 @@ import {
 import Link from "./Link";
 import { getLangFromUrl } from "../../i18n/utils";
 import { MdDashboard } from "react-icons/md";
-import { FaGear } from "react-icons/fa6";
+import { FaGear, FaImage } from "react-icons/fa6";
 export default function NavDashboard({ children,url }) {
   const lang = getLangFromUrl(url)
   const [openMenu, setOpenMenu] = useState(false);
@@ -92,8 +92,13 @@ export default function NavDashboard({ children,url }) {
                 </Link>
               </li>
               <li>
-                <Link disable={true} to={""} text={"Contactos"}>
+                <Link to={`/${lang}/dashboard/contacts`} text={"Contactos"}>
                   <FaEnvelope />
+                </Link>
+              </li>
+              <li>
+                <Link to={`/${lang}/dashboard/galery`} text={"Galeria"}>
+                  <FaImage />
                 </Link>
               </li>
             </ul>

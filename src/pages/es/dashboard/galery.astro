@@ -1,22 +1,17 @@
 ---
 import ThemeIcon from "../../../components/ChangeUI/ThemeIcon.astro";
-import NavDashboard from "../../../components/dashboard/NavDashboard";
-import MainDashboard from "../../../components/dashboard/MainDashboard";
 import DashBoardBase from "../../../layouts/DashBoardBase.astro";
+import NavDashboard from "../../../components/dashboard/NavDashboard";
 import { supabase } from "../../../lib/supabase";
-import AcademicsChange from "../../../components/dashboard/academics/AcademicsChange";
-const { cookies, redirect } = Astro;
 const url = Astro.url
+const { cookies, redirect } = Astro;
 const accessToken = cookies.get("sb-access-token");
 const refreshToken = cookies.get("sb-refresh-token");
 
 if (!accessToken || !refreshToken) {
   return redirect("/es/signin");
 }
-const { data: datanew, error: errornew } = await supabase
-.from("pages")
-.select("*");
-const { error } = await supabase.auth.setSession({
+const { data: dataUser, error } = await supabase.auth.setSession({
   refresh_token: refreshToken.value,
   access_token: accessToken.value,
 });
@@ -27,35 +22,25 @@ if (error) {
   cookies.delete("sb-refresh-token", {
     path: "/",
   });
-  
+
   return redirect("/es/signin");
 }
+const {user} = dataUser
 ---
-
-<!-- <ThemeIcon/> -->
-<DashBoardBase title="Dashboard | Panel de control" icon="">
-  <main class="dashboard">
+<DashBoardBase
+  title="Configura tu perfil aqui | UEFP"
+  icon="/imgs/UEFPescudoblanco.png"
+>
+  <main class="dashboard bg-zinc-800">
     <div
       class="bg-zinc-200 dark:bg-zinc-900 h-full w-full [grid-area:aside] boxshadow"
     >
       <NavDashboard url={url} client:load={true}>
-        <ThemeIcon/>
+        <ThemeIcon />
       </NavDashboard>
     </div>
-    <div
-      class="p-4 bg-zinc-50 overflow-y-auto bg-gradient-to-b dark:from-black/90 dark:to-zinc-800 w-full h-full [grid-area:main] font-Kanit"
-    >
-    <section class="p-4">
-      <h1 class="text-3xl my-2 md:text-5xl font-Rubik font-bold">Pagina de academicos</h1>
-      <div class="h-1 rounded bg-gradient-to-l from-red-500 to-orange-500 my-1"></div>
-      <p>
-        Agrega, edita o elimina las ofertas academicas de la Unidad Educativa Fiscal Pichincha
-      </p>
-    </section>
-    <section>
-      <h2 class="p-4 font-bold text-xl">Ofertas:</h2>
-      <AcademicsChange table="levels_es" client:load/>
-    </section>
+    <div>
+      
     </div>
   </main>
 </DashBoardBase>
@@ -75,8 +60,5 @@ if (error) {
         "aside"
         "main";
     }
-  }
-  .boxshadow {
-    box-shadow: 0px -20px 10px black;
   }
 </style>

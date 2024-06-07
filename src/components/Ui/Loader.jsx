@@ -1,6 +1,11 @@
-import {Spinner} from "@nextui-org/spinner";
-export default function Loader() {
+import React from "react";
+import "../../styles/loader.css";
+const Loader = ({ height = "h-6", width = "w-6" }) => {
   return (
-  <Spinner color="default" size="sm"/>
-  )
-}
+    <>
+      <span className={`loader ${height} ${width}`}></span>
+    </>
+  );
+};
+
+export default Loader;

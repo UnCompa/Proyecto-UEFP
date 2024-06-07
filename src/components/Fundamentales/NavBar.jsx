@@ -153,7 +153,7 @@ function NavBar({ url, pathName, children, refreshToken, accessToken }) {
           </NavLink>
         </li>
         <li className="group relative p-1">
-          <div className="group flex gap-x-2 items-center hover:bg-zinc-300 dark:hover:bg-zinc-700 rounded-xl py-2 px-2 transition-colors">
+          <button className="group flex gap-x-2 items-center hover:bg-zinc-300 dark:hover:bg-zinc-700 rounded-xl py-2 px-2 transition-colors">
             <span className="p-1 text-white rounded-lg bg-zinc-800 text-xl hover:text-white dark:hover:text-white">
               <FaSchool />
             </span>
@@ -163,8 +163,8 @@ function NavBar({ url, pathName, children, refreshToken, accessToken }) {
             <span className="font-Rubik text-black dark:text-white text-sm group-hover:rotate-180 transition-all">
               <FaChevronDown />
             </span>
-          </div>
-          <ul className="hidden relative top-2 lg:absolute lg:top-12 left-0 w-full group-hover:flex group-hover:flex-col gap-y-2 text-black dark:text-white transition-all bg-zinc-200 dark:bg-zinc-900 rounded-xl z-50">
+          </button>
+          <ul className="hidden relative top-2 lg:absolute lg:top-12 left-0 w-full group-hover:flex group-hover:flex-col group-focus:flex group-focus:flex-col gap-y-2 text-black dark:text-white transition-all bg-zinc-200 dark:bg-zinc-900 rounded-xl z-50">
             <li>
               <NavLink to={urls.about} text={t("nav-sobrenosotros")}>
                 <FaUsers />
