@@ -1,23 +1,21 @@
 import { useEffect, useState } from "react";
 import ImageGallery from "react-image-gallery";
 import "react-image-gallery/styles/css/image-gallery.css";
+import { supabase } from "../../lib/supabase";
 export default function ViewGalleryImage() {
-  const [images, setImages] = useState();
+  const [images, setImages] = useState([]);
   useEffect(() => {
     const fetchImgs = async () => {
       try {
-        const api = "";
-        const response = await fetch(api);
-        const data = await response.json();
-        const images = data.map((img) => {
-          return {
-            original: img.url,
-            thumbnail: img.url,
-          };
+        const { data } = await supabase.storage.from("galeria").list("");
+        const imgsUrl = data?.map((file) => {
+          const data = supabase.storage.from("galeria").getPublicUrl(file.name);
+          const { publicUrl } = data.data;
+          return publicUrl;
         });
-        setImages(images);
-      } catch (e) {
-      }
+        console.log(imgsUrl);
+        setImages(imgsUrl);
+      } catch (e) {}
     };
     fetchImgs();
   }, []);

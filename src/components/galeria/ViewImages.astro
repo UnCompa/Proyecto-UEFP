@@ -1,7 +1,18 @@
 ---
 import { FaX } from "react-icons/fa6";
+import { supabase } from "../../lib/supabase";
 
-const data: [] = [];
+const { data } = await supabase.storage.from("galeria").list("");
+console.log(data);
+const imgsUrl = data?.map((file) => {
+  const data = supabase.storage.from("galeria").getPublicUrl(file.name);
+  const { publicUrl } = data.data;
+  const newData = {
+    publicUrl,
+    ...file,
+  };
+  return newData;
+});
 ---
 
 <style>
@@ -34,13 +45,11 @@ const data: [] = [];
   class="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 place-items-stretch gap-4 my-4 py-4 px-24"
 >
   {
-    data && data.length > 0 ? (
-      data.map((img:any) => (
-        <div
-          class="imagenes w-full h-max hover:-translate-y-2 rounded-lg shadow-2xl shadow-background hover:shadow-slate-800 transition-all"
-        >
+    imgsUrl && imgsUrl.length > 0 ? (
+      imgsUrl.map((img: any) => (
+        <div class="imagenes w-full h-max hover:-translate-y-2 rounded-lg shadow-2xl shadow-background hover:shadow-slate-800 transition-all">
           <img
-            src={img.url}
+            src={img.publicUrl}
             class="h-full w-full object-cover rounded"
             transition-name="modal-imagen"
             transition-animate={"fade"}

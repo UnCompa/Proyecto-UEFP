@@ -2,8 +2,10 @@
 import ThemeIcon from "../../../components/ChangeUI/ThemeIcon.astro";
 import DashBoardBase from "../../../layouts/DashBoardBase.astro";
 import NavDashboard from "../../../components/dashboard/NavDashboard";
+import UploadGalery from "../../../components/dashboard/galery/UploadGalery"
 import { supabase } from "../../../lib/supabase";
-const url = Astro.url
+import GaleryChange from "../../../components/dashboard/galery/GaleryChange";
+const url = Astro.url;
 const { cookies, redirect } = Astro;
 const accessToken = cookies.get("sb-access-token");
 const refreshToken = cookies.get("sb-refresh-token");
@@ -25,8 +27,17 @@ if (error) {
 
   return redirect("/es/signin");
 }
-const {user} = dataUser
+const { user } = dataUser;
+const { data } = await supabase.storage.from("galeria").list("");
+console.log(data);
+const imgsUrl = data?.map((file) => {
+  const data = supabase.storage.from("galeria").getPublicUrl(file.name);
+  const { publicUrl } = data.data;
+  return publicUrl;
+});
+console.log(imgsUrl);
 ---
+
 <DashBoardBase
   title="Configura tu perfil aqui | UEFP"
   icon="/imgs/UEFPescudoblanco.png"
@@ -39,8 +50,25 @@ const {user} = dataUser
         <ThemeIcon />
       </NavDashboard>
     </div>
-    <div>
-      
+    <div
+      class="bg-slate-200 min-h-screen h-full p-4 overflow-y-auto dark:bg-slate-900 w-full [grid-area:main] font-Rubik"
+    >
+      <section class="my-4">
+        <h2 class="font-bold font-Rubik text-center text-3xl md:text-4xl">
+          Galeria
+        </h2>
+        <p class="text-lg md:text-xl font-light text-center">
+          Suba imagenes destacadas de la institucion
+        </p>
+      </section>
+      <section>
+        <UploadGalery client:load/>
+      </section>
+      <section
+        class="px-2 container mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
+      >
+        <GaleryChange client:load />
+      </section>
     </div>
   </main>
 </DashBoardBase>
