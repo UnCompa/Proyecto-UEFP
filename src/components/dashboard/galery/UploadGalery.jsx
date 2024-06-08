@@ -4,10 +4,10 @@ import "dropzone/dist/dropzone.css";
 import Dropzone from "dropzone";
 import { supabase } from "../../../lib/supabase";
 
-const UploadGallery = () => {
+const UploadGallery = ({lang = "es"}) => {
   useEffect(() => {
     const myDropzone = new Dropzone(".dropzone", {
-      dictDefaultMessage: "Arrastra o sube tus imagenes aqui",
+      dictDefaultMessage: lang === "es" ? "Arrastra y suelta tus archivos aqui, o presiona para abrir el explorardor" : "Drag and drop your files here, or press to open the explorer",
       url: "/", // Esta URL no se usa ya que vamos a manejar la subida manualmente
       acceptedFiles: "image/*",
     });
@@ -38,13 +38,17 @@ const UploadGallery = () => {
 
   return (
     <div className="text-black dark:text-white">
-      <h3 className="py-1">Subir imagenes:</h3>
+      <h3 className="py-1">
+        {lang === "es" ? "Subir imagenes:" : "Upload images"}
+      </h3>
       <div className="dropzone bg-stone-100 dark:bg-slate-950"></div>
       <div className="flex flex-col">
         <span className="text-sm font-semibold">
-          Suba responsablemente las imagenes
+        {lang === "es" ? "Suba responsablemente las imagenes" : "Responsibly upload images"}
         </span>
-        <span className="text-xs">Puede que tarde en reflejar los cambios</span>
+        <span className="text-xs">
+          {lang === "es" ? "Puede que tarde en reflejar los cambios" : "It may take time to reflect the changes"}
+          </span>
       </div>
     </div>
   );

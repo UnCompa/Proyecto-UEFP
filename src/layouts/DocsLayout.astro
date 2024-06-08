@@ -5,6 +5,7 @@ import { getLangFromUrl } from "../i18n/utils";
 import SpeedInsights from "@vercel/speed-insights/astro";
 import {SEO} from "astro-seo"
 const url = Astro.url;
+const pathname = Astro.url.pathname
 const lang = getLangFromUrl(url);
 const { pageTitle, icon = "/imgs/docs.png", data } = Astro.props;
 import "./../styles/global.css";
@@ -62,7 +63,7 @@ const keyTags = tags.join(",")
     <div class="h-max w-max fixed bottom-0 right-0 z-10 flex items-end">
       <div class="flex h-10 w-max m-4 gap-2 list-none">
         <ThemeIcon />
-        <ChangeLanguage lang={lang} url={false} thin></ChangeLanguage>
+        <ChangeLanguage lang={lang} url={pathname} thin></ChangeLanguage>
       </div>
     </div>
   </body><style>

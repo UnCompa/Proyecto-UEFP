@@ -31,6 +31,7 @@ if (error) {
 const userData = data?.user?.user_metadata;
 const user = data?.user
 const email = userData?.username
+const pathname = Astro.url.pathname
 ---
 
 <!-- <ThemeIcon/> -->
@@ -39,7 +40,7 @@ const email = userData?.username
     <div
       class="bg-zinc-200 dark:bg-zinc-900 h-full w-full [grid-area:aside] boxshadow"
     >
-      <NavDashboard url={url} client:load={true}>
+      <NavDashboard url={url} pathname={pathname} client:load={true}>
         <ThemeIcon/>
       </NavDashboard>
     </div>

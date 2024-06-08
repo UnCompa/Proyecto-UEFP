@@ -1,0 +1,121 @@
+---
+import ThemeIcon from "../../../components/ChangeUI/ThemeIcon.astro";
+import DashBoardBase from "../../../layouts/DashBoardBase.astro";
+import NavDashboard from "../../../components/dashboard/NavDashboard";
+import UploadGalery from "../../../components/dashboard/galery/UploadGalery";
+import { supabase } from "../../../lib/supabase";
+import GaleryChange from "../../../components/dashboard/galery/GaleryChange";
+const url = Astro.url;
+const { cookies, redirect } = Astro;
+const accessToken = cookies.get("sb-access-token");
+const refreshToken = cookies.get("sb-refresh-token");
+
+if (!accessToken || !refreshToken) {
+  return redirect("/es/signin");
+}
+const { data: dataUser, error } = await supabase.auth.setSession({
+  refresh_token: refreshToken.value,
+  access_token: accessToken.value,
+});
+if (error) {
+  cookies.delete("sb-access-token", {
+    path: "/",
+  });
+  cookies.delete("sb-refresh-token", {
+    path: "/",
+  });
+
+  return redirect("/es/signin");
+}
+const { data } = await supabase.storage.from("galeria").list("");
+console.log(data);
+const imgsUrl = data?.map((file) => {
+  const data = supabase.storage.from("galeria").getPublicUrl(file.name);
+  const { publicUrl } = data.data;
+  return publicUrl;
+});
+console.log(imgsUrl);
+
+const { data: userData } = await supabase
+  .from("profiles")
+  .select("*")
+  .eq("id", dataUser.user?.id);
+const roles: string[] = (userData && userData[0]?.roles) || [];
+const pathname = Astro.url.pathname
+---
+
+<DashBoardBase
+  title="Configura tu perfil aqui | UEFP"
+  icon="/imgs/UEFPescudoblanco.png"
+>
+  <main class="dashboard bg-zinc-800">
+    <div
+      class="bg-zinc-200 dark:bg-zinc-900 h-full w-full [grid-area:aside] boxshadow"
+    >
+      <NavDashboard url={url} pathname={pathname} client:load={true}>
+        <ThemeIcon />
+      </NavDashboard>
+    </div>
+    <div
+      class="bg-slate-200 min-h-screen h-full p-4 overflow-y-auto dark:bg-slate-900 w-full [grid-area:main] font-Rubik"
+    >
+      <section class="my-4">
+        <h2 class="font-bold font-Rubik text-center text-3xl md:text-4xl">
+          Gallery
+        </h2>
+        <p class="text-lg md:text-xl font-light text-center">
+          Upload featured images of the institution
+        </p>
+      </section>
+      {
+        roles.includes("admin") && (
+          <section>
+            <UploadGalery lang="en" client:load />
+          </section>
+        )
+      }
+      <section
+        class="p-2 container mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
+      >
+        {
+          roles.includes("admin") ? (
+            <GaleryChange lang="en" client:load />
+          ) : (
+            <>
+              {imgsUrl?.map((img) => {
+                console.log(img);
+                return (
+                  <div class="h-full max-h-96 hover:-translate-y-2 shadow-xl hover:shadow-blue-800/40 transition-all">
+                    <img
+                      src={img}
+                      alt=""
+                      class="w-full h-full object-object rounded-lg"
+                    />
+                  </div>
+                );
+              })}
+            </>
+          )
+        }
+      </section>
+    </div>
+  </main>
+</DashBoardBase>
+<style>
+  .dashboard {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    grid-template-rows: 100vh;
+    grid-template-areas: "aside main";
+  }
+  @media (max-width: 1024px) {
+    .dashboard {
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-rows: 96px 1fr;
+      grid-template-areas:
+        "aside"
+        "main";
+    }
+  }
+</style>

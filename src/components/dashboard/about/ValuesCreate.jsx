@@ -28,7 +28,7 @@ const ValuesCreate = ({ table }) => {
     <>
       <button
         onClick={() => setOpenModal(true)}
-        className="w-full h-12 py-8 border-2 border-green-500 flex items-center justify-center hover:bg-zinc-900 transition-colors"
+        className="w-full h-12 py-8 border-2 border-green-500 flex items-center justify-center hover:bg-zinc-300 dark:hover:bg-zinc-900 transition-colors"
       >
         <span className="text-xl text-green-500">
           <FaPlusCircle />
@@ -36,7 +36,7 @@ const ValuesCreate = ({ table }) => {
       </button>
       {openModal && (
         <div className="bg-black/30 h-full w-full fixed top-0 left-0 z-10 flex items-center justify-center">
-          <div className="bg-zinc-900 flex flex-col h-max w-2/3 p-2">
+          <div className="bg-zinc-200 dark:bg-zinc-900 flex flex-col h-max w-2/3 p-2">
             <h2 className="text-center text-2xl font-bold">Crear</h2>
             <article className="grid grid-cols-1 md:grid-cols-2">
             <div className="flex flex-col">
@@ -63,7 +63,7 @@ const ValuesCreate = ({ table }) => {
               />
             </div>
               <div className="flex items-center justify-center my-2">
-                <img className="h-52 object-cover aspect-video bg-zinc-950 border-none flex items-center justify-center" src={newImage} alt="Imagen sobre el valor" />
+                <img className="h-52 object-cover aspect-video bg-zinc-100 dark:bg-zinc-950 border-none flex items-center justify-center" src={newImage} alt="Imagen sobre el valor" />
               </div>
             </article>
             <div className="flex my-1 gap-2">

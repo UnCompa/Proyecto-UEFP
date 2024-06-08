@@ -28,6 +28,7 @@ if (error) {
   return redirect("/es/signin");
 }
 const {user} = dataUser
+const pathname = Astro.url.pathname
 ---
 
 <DashBoardBase
@@ -38,11 +39,11 @@ const {user} = dataUser
     <div
       class="bg-zinc-200 dark:bg-zinc-900 h-full w-full [grid-area:aside] boxshadow"
     >
-      <NavDashboard url={url} client:load={true}>
+      <NavDashboard url={url} pathname={pathname} client:load={true}>
         <ThemeIcon />
       </NavDashboard>
     </div>
-    <div>
+    <div class="bg-zinc-100 dark:bg-zinc-950">
       <section class="grid grid-cols-1 sm:grid-cols-2 place-content-center">
         <div class="flex flex-col items-center p-4">
           <h2
@@ -64,11 +65,9 @@ const {user} = dataUser
       <section class="grid grid-cols-2 p-4 font-Kanit">
         <div class="border-r border-zinc-500 flex flex-col gap-y-4">
           <CardUpdateSettings title="Cambia tu nombre de usuario" now={user?.user_metadata?.username}/>
-          <CardUpdateSettings title="Cambia tu nombre de usuario" now={user?.email}/>
         </div>
         <div class="p-4">
-          <form action="" class="flex flex-col gap-4">
-            <InputUpdateSettings idUser={user?.id} client:load />
+          <form class="flex flex-col gap-4">
             <InputUpdateSettings idUser={user?.id} client:load />
           </form>
         </div>

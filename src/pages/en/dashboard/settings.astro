@@ -28,6 +28,7 @@ if (error) {
   return redirect("/es/signin");
 }
 const {user} = dataUser
+const pathname = Astro.url.pathname
 ---
 
 <DashBoardBase
@@ -38,7 +39,7 @@ const {user} = dataUser
     <div
       class="bg-zinc-200 dark:bg-zinc-900 h-full w-full [grid-area:aside] boxshadow"
     >
-      <NavDashboard url={url} client:load={true}>
+      <NavDashboard url={url} pathname={pathname} client:load={true}>
         <ThemeIcon />
       </NavDashboard>
     </div>

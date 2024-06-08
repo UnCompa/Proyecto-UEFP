@@ -69,9 +69,9 @@ const ValuesChange = ({ table }) => {
       {data.map((item, index) => (
         <div key={item.id}>
           {editedIndex === index ? (
-            <div className="bg-zinc-900 h-full rounded-lg p-2 font-Rubik flex flex-col">
+            <div className="bg-zinc-200 dark:bg-zinc-900 h-full rounded-lg p-2 font-Rubik flex flex-col">
               <h2 className="text-xl text-center font-bold">Modo edición</h2>
-              <label className="text-sm text-zinc-300" htmlFor="">
+              <label className="text-sm text-zinc-800 dark:text-zinc-300" htmlFor="">
                 Titulo:
               </label>
               <input
@@ -80,7 +80,7 @@ const ValuesChange = ({ table }) => {
                 value={newTitle}
                 onChange={(e) => setNewTitle(e.target.value)}
               />
-              <label className="text-sm text-zinc-300" htmlFor="">
+              <label className="text-sm text-zinc-800 dark:text-zinc-300" htmlFor="">
                 Contenido:
               </label>
               <textarea
@@ -89,7 +89,7 @@ const ValuesChange = ({ table }) => {
                 value={newContent}
                 onChange={(e) => setNewContent(e.target.value)}
               />
-              <label className="text-sm text-zinc-300" htmlFor="">
+              <label className="text-sm text-zinc-800 dark:text-zinc-300" htmlFor="">
                 Imagen:
               </label>
               <input
@@ -114,10 +114,10 @@ const ValuesChange = ({ table }) => {
               </div>
             </div>
           ) : (
-            <div className="bg-zinc-900 h-full rounded-lg p-2 font-Rubik flex flex-col lg:flex-row">
+            <div className="bg-zinc-200 dark:bg-zinc-900 h-full rounded-lg p-2 font-Rubik flex flex-col lg:flex-row">
               <picture className="w-full md:w-max px-2 flex items-center justify-center">
                 <img
-                  className="max-w-72 border-1 p-2 my-2 object-cover bg-black h-52 aspect-video"
+                  className="max-w-72 border-1 p-2 my-2 object-cover bg-zinc-100 dark:bg-black h-52 aspect-video"
                   src={item.image}
                   alt={item.label}
                 />

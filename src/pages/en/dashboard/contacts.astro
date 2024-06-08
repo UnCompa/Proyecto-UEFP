@@ -4,8 +4,10 @@ import NavDashboard from "../../../components/dashboard/NavDashboard";
 import MainDashboard from "../../../components/dashboard/MainDashboard";
 import DashBoardBase from "../../../layouts/DashBoardBase.astro";
 import { supabase } from "../../../lib/supabase";
+import ContactsChange from "../../../components/dashboard/contacts/ContactsChange";
+import ViewData from "../../../components/dashboard/Inicio/ViewData.astro";
 const { cookies, redirect } = Astro;
-const url = Astro.url
+const url = Astro.url;
 const accessToken = cookies.get("sb-access-token");
 const refreshToken = cookies.get("sb-refresh-token");
 
@@ -13,9 +15,9 @@ if (!accessToken || !refreshToken) {
   return redirect("/es/signin");
 }
 const { data: datanew, error: errornew } = await supabase
-.from("pages")
-.select("*");
-const { error } = await supabase.auth.setSession({
+  .from("pages")
+  .select("*");
+const { data, error } = await supabase.auth.setSession({
   refresh_token: refreshToken.value,
   access_token: accessToken.value,
 });
@@ -26,24 +28,77 @@ if (error) {
   cookies.delete("sb-refresh-token", {
     path: "/",
   });
-  
+
   return redirect("/es/signin");
 }
+const { data: userData } = await supabase
+  .from("profiles")
+  .select("*")
+  .eq("id", data.user?.id);
+const roles: string[] = (userData && userData[0]?.roles) || [];
+const pathname = Astro.url.pathname
 ---
 
-<!-- <ThemeIcon/> -->
-<DashBoardBase title="Dashboard | Panel de control" icon="">
+<DashBoardBase title="Contactos | Dashboard" icon="">
   <main class="dashboard">
     <div
       class="bg-zinc-200 dark:bg-zinc-900 h-full w-full [grid-area:aside] boxshadow"
     >
-      <NavDashboard url={url} client:load={true}>
-        <ThemeIcon/>
+      <NavDashboard url={url} pathname={pathname} client:load={true}>
+        <ThemeIcon />
       </NavDashboard>
     </div>
     <div
       class="p-4 bg-zinc-50 overflow-y-auto dark:bg-zinc-800 w-full h-full [grid-area:main] font-Kanit"
     >
+      <section class="text-center">
+        <h1
+          class="text-3xl md:text-4xl lg:text-5xl font-Rubik font-bold animate-blurred-fade-in"
+        >
+          Contacts
+        </h1>
+        <div class="h-1 rounded bg-gradient-to-r from-red-500 to-pink-500 my-1">
+        </div>
+        <p class="text-base md:text-lg lg:text-xl font-light">
+          Edit the contact section, with information about where the contact is located.
+          Pichincha Fiscal Educational Unit
+        </p>
+      </section>
+      {
+        roles.includes("admin") ? (
+          <section class="flex flex-col gap-2">
+            <ContactsChange
+              propiedad="contacts-title-hero"
+              lang="en"
+              seccion="contacts"
+              title="Starting title"
+              client:load
+            />
+            <ContactsChange
+              propiedad="contacts-text-hero"
+              lang="en"
+              seccion="contacts"
+              title="Start text"
+              client:load
+            />
+          </section>
+        ) : (
+          <section class="flex flex-col gap-2">
+            <ViewData
+              propiedad="contacts-title-hero"
+              lang="en"
+              seccion="contacts"
+              title="Titulo de inicio"
+            />
+            <ViewData
+              propiedad="contacts-text-hero"
+              lang="en"
+              seccion="contacts"
+              title="Texto del inicio"
+            />
+          </section>
+        )
+      }
     </div>
   </main>
 </DashBoardBase>

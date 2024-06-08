@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { supabase } from "../../../lib/supabase";
 
-const GalleryChange = () => {
+const GalleryChange = ({lang = "es"}) => {
   const [imgsUrl, setImgsUrl] = useState([]);
   const [loading, setLoading] = useState(true); // Estado para el cargando
 
@@ -43,7 +43,9 @@ const GalleryChange = () => {
   };
 
   if (loading) {
-    return <p>Cargando imágenes...</p>;
+    return <p>
+      {lang === "es" ? "Cargando imagenes" : "Loading images"}
+    </p>;
   }
 
   return (
@@ -67,7 +69,7 @@ const GalleryChange = () => {
                 className="text-center text-red-500 border border-red-500 w-full py-1 my-1 hover:bg-red-500 hover:text-white transition-all"
                 onClick={() => handleDelete(img.name)}
               >
-                Eliminar
+                {lang === "es" ? "Eliminar" : "Delete"}
               </button>
             </div>
           </div>

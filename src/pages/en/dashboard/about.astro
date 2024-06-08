@@ -1,21 +1,31 @@
 ---
 import ThemeIcon from "../../../components/ChangeUI/ThemeIcon.astro";
 import NavDashboard from "../../../components/dashboard/NavDashboard";
-import MainDashboard from "../../../components/dashboard/MainDashboard";
+import HistoryChange from "../../../components/dashboard/about/HistoryChange";
+import HistoryCreate from "../../../components/dashboard/about/HistoryCreate";
+import StaffChange from "../../../components/dashboard/about/StaffChange";
+import StaffCreate from "../../../components/dashboard/about/StaffCreate";
+import ObjetivesChange from "../../../components/dashboard/about/ObjetivesChange";
+import ObjetivesCreate from "../../../components/dashboard/about/ObjetivesCreate";
+import ValuesChange from "../../../components/dashboard/about/ValuesChange";
+import ValuesCreate from "../../../components/dashboard/about/ValuesCreate";
+import ValuesView from "../../../components/dashboard/about/ValuesView.astro";
+import Objectives from "../../../components/sections/Objectives.astro";
 import DashBoardBase from "../../../layouts/DashBoardBase.astro";
 import { supabase } from "../../../lib/supabase";
+import PeopleCard from "../../../components/sections/PeopleCard";
+import { getLangFromUrl } from "../../../i18n/utils";
 const { cookies, redirect } = Astro;
-const url = Astro.url
+const url = Astro.url;
+const pathname = Astro.url.pathname
+const lang = getLangFromUrl(url);
 const accessToken = cookies.get("sb-access-token");
 const refreshToken = cookies.get("sb-refresh-token");
 
 if (!accessToken || !refreshToken) {
   return redirect("/es/signin");
 }
-const { data: datanew, error: errornew } = await supabase
-.from("pages")
-.select("*");
-const { error } = await supabase.auth.setSession({
+const { data, error } = await supabase.auth.setSession({
   refresh_token: refreshToken.value,
   access_token: accessToken.value,
 });
@@ -26,45 +36,246 @@ if (error) {
   cookies.delete("sb-refresh-token", {
     path: "/",
   });
-  
+
   return redirect("/es/signin");
 }
+const { data: userData } = await supabase
+  .from("profiles")
+  .select("*")
+  .eq("id", data.user?.id);
+const roles: string[] = (userData && userData[0]?.roles) || [];
+
+const { data: dataHistory } = await supabase
+  .from("historyen")
+  .select("*")
+  .order("id", { ascending: true });
+const { data: objetivesData } = await supabase
+  .from("objetives_en")
+  .select("*")
+  .order("id", { ascending: true });
+const { data: dataStaff } = await supabase
+  .from("teachersEn")
+  .select("*")
+  .order("id", { ascending: true });
 ---
 
 <!-- <ThemeIcon/> -->
-<DashBoardBase title="Dashboard | Panel de control" icon="">
+<DashBoardBase title="About Page | Dashboard">
   <main class="dashboard">
     <div
       class="bg-zinc-200 dark:bg-zinc-900 h-full w-full [grid-area:aside] boxshadow"
     >
-      <NavDashboard url={url} client:load={true}>
-        <ThemeIcon/>
+      <NavDashboard url={url} pathname={pathname} client:load={true}>
+        <ThemeIcon />
       </NavDashboard>
     </div>
     <div
       class="p-4 bg-zinc-50 overflow-y-auto dark:bg-zinc-800 w-full h-full [grid-area:main] font-Kanit"
     >
+      <section
+        class="w-full h-max flex flex-col items-center justify-center font-Rubik"
+      >
+        <h1
+          class="text-3xl my-8 font-bold md:text-4xl lg:text-5xl bg-clip-text text-transparent bg-gradient-to-b from-blue-500 via-cyan-500 to-black dark:from-white dark:via-zinc-50 dark:to-stone-800"
+        >
+          About us page
+        </h1>
+        {
+          roles.includes("admin") ? (
+            lang === "en" ? (
+              <p class="text-center font-light py-4">
+                Manage the content displayed on the about us page, use it
+                responsibly.
+              </p>
+            ) : (
+              <p class="text-center font-light py-4">
+                Administra el contenido que se presenta en la página de sobre
+                nosotros, úsalo de manera responsable.
+              </p>
+            )
+          ) : lang === "en" ? (
+            <p class="text-center font-light py-4">
+              Place where information about the Unidad Educativa Fiscal
+              Pichincha resides. Explore differently what this section offers.
+            </p>
+          ) : (
+            <p class="text-center font-light py-4">
+              Lugar donde reside la información de la Unidad Educativa Fiscal
+              Pichincha. Explora de manera diferente lo que ofrece esta sección.
+            </p>
+          )
+        }
+      </section>
+      <div class="my-2">
+        <h3>
+          {lang === "es" ? "Ir a la seccion:" : "Go to section:"}
+        </h3>
+        <ul class="flex w-full gap-2 items-center justify-start my-2">
+          <li>
+            <a
+              class="w-full px-4 py-1 text-center bg-zinc-100 dark:bg-zinc-900 rounded-lg shadow-xl hover:bg-zinc-950 transition-colors"
+              href="#historia"
+            >
+              {lang === "es" ? "Historia" : "History"}
+            </a>
+          </li>
+          <li>
+            <a
+              class="w-full px-4 py-1 text-center bg-zinc-100 dark:bg-zinc-900 rounded-lg shadow-xl hover:bg-zinc-950 transition-colors"
+              href="#valores"
+            >
+              {lang === "es" ? "Valores" : "Values"}
+            </a>
+          </li>
+          <li>
+            <a
+              class="w-full px-4 py-1 text-center bg-zinc-100 dark:bg-zinc-900 rounded-lg shadow-xl hover:bg-zinc-950 transition-colors"
+              href="#objetivos"
+            >
+              {lang === "es" ? "Objetivos" : "Goals"}
+            </a>
+          </li>
+          <li>
+            <a
+              class="w-full px-4 py-1 text-center bg-zinc-100 dark:bg-zinc-900 rounded-lg shadow-xl hover:bg-zinc-950 transition-colors"
+              href="#personal"
+            >
+              {lang === "es" ? "Personal" : "Staff"}
+            </a>
+          </li>
+        </ul>
+      </div>
+      {
+        roles.includes("admin") ? (
+          <section class="h-max flex flex-col gap-2">
+            <h2 class="text-3xl font-bold py-2" id="historia">
+              {lang === "es" ? "Seccion Historia" : "History Section"}
+            </h2>
+            <HistoryChange lang="en" table="historyen" client:load />
+            <HistoryCreate client:load />
+          </section>
+        ) : (
+          <section class="h-max flex flex-col gap-2">
+            <h2 class="text-3xl text-center font-bold py-2" id="historia">
+              {lang === "es" ? "Seccion Historia" : "History Section"}
+            </h2>
+            {dataHistory?.map((item) => (
+              <div class="grid grid-cols-1 md:grid-cols-2 bg-zinc-900 rounded">
+                <div class="p-4">
+                  <hgroup class="h-max">
+                    <h2 class="text-2xl font-bold">
+                      <span class="font-extrabold">
+                        {lang === "es" ? "Titulo" : "Title"}
+                        </span> {item.title}
+                    </h2>
+                    <p class="font-light">
+                      <span class="font-bold">
+                        {lang === "es" ? "Contenido" : "Content"}
+                        </span> {item.content}
+                    </p>
+                  </hgroup>
+                </div>
+                <div class="p-4 h-full flex items-center justify-center">
+                  <img
+                    class="h-full max-h-72 border-2 p-2"
+                    src={item.img_url}
+                    alt={item.img_alt}
+                  />
+                </div>
+              </div>
+            ))}
+          </section>
+        )
+      }
+      {
+        roles.includes("admin") ? (
+          <section class="h-max flex flex-col gap-2">
+            <h2 class="text-3xl font-bold py-2" id="valores">
+              Seccion Valores
+            </h2>
+            <ValuesChange table="values_en" client:load />
+            <ValuesCreate table="values_en" client:load />
+          </section>
+        ) : (
+          <ValuesView />
+        )
+      }
+      {
+        roles.includes("admin") ? (
+          <section>
+            <h2 class="text-3xl font-bold py-2" id="objetivos">
+              Seccion Objetivos
+            </h2>
+            <ObjetivesChange table="objetives_en" client:load />
+            <ObjetivesCreate table="objetives_en" client:load />
+          </section>
+        ) : (
+          <section>
+            <h2 class="text-3xl font-bold py-2" id="objetivos">
+              Seccion Objetivos
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {objetivesData?.map((objetive) => {
+                return (
+                  <Objectives title={objetive.title} text={objetive.text} />
+                );
+              })}
+            </div>
+          </section>
+        )
+      }
+      {
+        roles.includes("admin") ? (
+          <section>
+            <h2 class="text-3xl font-bold py-2" id="personal">
+              Seccion Personal
+            </h2>
+            <StaffChange table="teachersEn" client:load />
+            <StaffCreate table="teachersEn" client:load />
+          </section>
+        ) : (
+          <section>
+            <h2 class="text-3xl font-bold py-2" id="personal">
+              Seccion Personal
+            </h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 bg-zinc-100  dark:bg-zinc-900 p-4">
+              {dataStaff?.map((teacher) => {
+                return (
+                  <PeopleCard
+                    teacher={teacher.name}
+                    content={teacher.phrase}
+                    work={teacher.profession}
+                    img={teacher.image_link}
+                    client:load
+                  />
+                );
+              })}
+            </div>
+          </section>
+        )
+      }
     </div>
   </main>
-</DashBoardBase>
-<style>
-  .dashboard {
-    display: grid;
-    grid-template-columns: 200px 1fr;
-    grid-template-rows: 100vh;
-    grid-template-areas: "aside main";
-  }
-  @media (max-width: 1024px) {
+
+  <style>
     .dashboard {
       display: grid;
-      grid-template-columns: 1fr;
-      grid-template-rows: 96px 1fr;
-      grid-template-areas:
-        "aside"
-        "main";
+      grid-template-columns: 200px 1fr;
+      grid-template-rows: 100vh;
+      grid-template-areas: "aside main";
     }
-  }
-  .boxshadow {
-    box-shadow: 0px -20px 10px black;
-  }
-</style>
+    @media (max-width: 1024px) {
+      .dashboard {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 96px 1fr;
+        grid-template-areas:
+          "aside"
+          "main";
+      }
+    }
+    .boxshadow {
+      box-shadow: 0px -20px 10px black;
+    }
+  </style>
+</DashBoardBase>

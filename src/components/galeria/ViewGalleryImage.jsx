@@ -1,43 +1,87 @@
 import { useEffect, useState } from "react";
 import ImageGallery from "react-image-gallery";
-import "react-image-gallery/styles/css/image-gallery.css";
 import { supabase } from "../../lib/supabase";
-export default function ViewGalleryImage() {
-  const [images, setImages] = useState([]);
+import "react-image-gallery/styles/css/image-gallery.css"
+import Loader from "../Ui/Loader";
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
+const ViewGalleryImage = ({lang = "es"}) => {
+  const [images, setImages] = useState()
   useEffect(() => {
-    const fetchImgs = async () => {
-      try {
-        const { data } = await supabase.storage.from("galeria").list("");
-        const imgsUrl = data?.map((file) => {
-          const data = supabase.storage.from("galeria").getPublicUrl(file.name);
-          const { publicUrl } = data.data;
-          return publicUrl;
-        });
-        console.log(imgsUrl);
-        setImages(imgsUrl);
-      } catch (e) {}
-    };
-    fetchImgs();
-  }, []);
-  if (images) {
+    const loadImage = async () => {
+      const {data} = await supabase.storage.from("galeria").list("")
+      console.log(data);
+      const imgsUrl = data?.map((file) => {
+        const data = supabase.storage.from("galeria").getPublicUrl(file.name);
+        const { publicUrl } = data.data;
+        const newData = {
+          publicUrl,
+        };
+        return newData;
+      });
+      console.log(imgsUrl);
+      const images = imgsUrl.map((imgs) => {
+        return {
+          original: imgs.publicUrl,
+          thumbnail: imgs.publicUrl
+        }
+      })
+      console.log(images);
+      setImages(images)
+    }
+    loadImage()
+  }, [])
+  
+  const renderLeftNav = (onClick, disabled) => {
     return (
-      <div className="bg-gradient-to-tr from-black to-transparent w-full h-[90vh] grid place-content-center">
-        <div className="container mx-auto w-[95%] md:w-[90%] lg:w-[80%] h-max bg-slate-800 p-2 rounded-lg">
-          <ImageGallery
-            items={images}
-            autoPlay={false}
-            thumbnailPosition="left"
-            additionalClass="bg-black p-1"
-          />
-        </div>
-      </div>
+      <button
+        type="button"
+        className="image-gallery-left-nav image-gallery-icon text-white hover:fill-red-500 text-3xl md:text-6xl"
+        disabled={disabled}
+        onClick={onClick}
+        aria-label="Previous Slide"
+      >
+        <FaArrowLeft/>
+      </button>
     );
-  }
-  return (
-    <div className="bg-gradient-to-tr from-black to-transparent w-full h-[90vh] grid place-content-center">
-      <div className="container mx-auto w-[100%] md:w-[95%] lg:w-[80%] object-cover bg-zinc-800 p-2">
-        <p className="text-center">No se encuentran imagenes disponibles</p>
+  };
+  const renderRightNav = (onClick, disabled) => {
+    return (
+      <button
+        type="button"
+        className="image-gallery-right-nav image-gallery-icon text-white hover:fill-red-500 text-3xl md:text-6xl"
+        disabled={disabled}
+        onClick={onClick}
+        aria-label="Previous Slide"
+      >
+        <FaArrowRight/>
+        
+      </button>
+    );
+  };
+  if(images) {
+    return (
+      <div className="h-full w-full bg-gradient-to-b from-white dark:from-black to-transparent py-2">
+        <ImageGallery items={images}
+        autoPlay
+        showPlayButton={false}
+        showFullscreenButton={false}
+        renderLeftNav={renderLeftNav}
+        renderRightNav={renderRightNav}
+        />
       </div>
+    )
+  }
+
+  return (
+    <div className="h-screen w-full grid place-content-center">
+      <h3 className="font-Rubik text-3xl">
+        {lang === "es" ? "Cargando" : "Loading"}
+      </h3>
+        <div className="flex justify-center my-2">
+        <Loader/>
+        </div>
     </div>
   );
-}
+};
+
+export default ViewGalleryImage;

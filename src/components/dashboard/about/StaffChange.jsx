@@ -78,10 +78,10 @@ const StaffChange = ({ table }) => {
         return (
           <div key={item.id}>
             {editedIndex === index ? (
-              <div className="h-full w-full col-span-2 bg-zinc-900 p-2 rounded">
+              <div className="h-full w-full col-span-2 bg-zinc-200 dark:bg-zinc-900 p-2 rounded">
                 <h2 className="text-lg font-bold text-center">Editar</h2>
                 <div>
-                  <label className="text-zinc-100" htmlFor="">
+                  <label className="text-zinc-800 dark:text-zinc-100" htmlFor="">
                     Nombre:
                   </label>
                   <input
@@ -90,7 +90,7 @@ const StaffChange = ({ table }) => {
                     onChange={(e)=> setEditName(e.target.value)}
                     value={editName}
                   />
-                  <label className="text-zinc-100" htmlFor="">
+                  <label className="text-zinc-800 dark:text-zinc-100" htmlFor="">
                     Profesion:
                   </label>
                   <input
@@ -99,7 +99,7 @@ const StaffChange = ({ table }) => {
                     onChange={(e)=> setEditProfession(e.target.value)}
                     value={editProfession}
                   />
-                  <label className="text-zinc-100" htmlFor="">
+                  <label className="text-zinc-800 dark:text-zinc-100" htmlFor="">
                     Frase:
                   </label>
                   <input
@@ -108,7 +108,7 @@ const StaffChange = ({ table }) => {
                     onChange={(e)=> setEditPhrase(e.target.value)}
                     value={editPhrase}
                   />
-                  <label className="text-zinc-100" htmlFor="">
+                  <label className="text-zinc-800 dark:text-zinc-100" htmlFor="">
                     Imagen:
                   </label>
                   <input
@@ -134,7 +134,7 @@ const StaffChange = ({ table }) => {
                 </div>
               </div>
             ) : (
-              <div className="bg-zinc-900 p-2 h-full">
+              <div className="bg-zinc-200 dark:bg-zinc-900 p-2 h-full">
                 <picture className="flex justify-center">
                   <img
                     className="w-32 h-32 object-cover rounded-full border-2 p-1"
@@ -145,7 +145,7 @@ const StaffChange = ({ table }) => {
                 <div className="my-2 text-center">
                   <h3 className="text-lg font-bold">{item.name}</h3>
                   <span>{item.profession}</span>
-                  <p className="text-zinc-300 font-light">{item.phrase}</p>
+                  <p className="text-zinc-800 dark:text-zinc-300 font-light">{item.phrase}</p>
                 </div>
                 <div className="flex my-2 gap-2">
                   <button

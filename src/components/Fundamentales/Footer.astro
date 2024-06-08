@@ -19,6 +19,7 @@ import {
 } from "react-icons/fa6";
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+const pathname = Astro.url.pathname
 ---
 
 <script async>
@@ -180,7 +181,7 @@ const t = useTranslations(lang);
   </div>
   <div class="flex items-center justify-around p-4">
     <ul class="flex text-black dark:text-white">
-      <ChangeLanguage lang={lang} />
+      <ChangeLanguage lang={lang} url={pathname} client:load/>
     </ul>
     <div>
       <span class="text-gray-700 dark:text-gray-300 text-sm flex items-center">

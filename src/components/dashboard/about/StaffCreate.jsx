@@ -35,7 +35,7 @@ const StaffCreate = ({ table }) => {
     <>
       <button
         onClick={() => setOpenModal(true)}
-        className="w-full h-12 py-8 border-2 border-green-600 flex items-center justify-center hover:bg-zinc-900 transition-colors"
+        className="w-full my-2 h-12 py-8 border-2 border-green-600 flex items-center justify-center hover:bg-zinc-300 dark:hover:bg-zinc-900 transition-colors"
       >
         <span className="text-xl text-green-500">
           <FaPlusCircle />
@@ -43,7 +43,7 @@ const StaffCreate = ({ table }) => {
       </button>
       {openModal && (
         <div className="bg-black/30 h-full w-full fixed top-0 left-0 z-10 flex items-center justify-center">
-          <div className="bg-zinc-900 flex flex-col h-max w-2/3 p-2 rounded">
+          <div className="bg-zinc-200 dark:bg-zinc-900 flex flex-col h-max w-2/3 p-2 rounded">
             <h2 className="text-center font-bold text-xl">Crear</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 p-2">
               <div className="flex flex-col p-2">
@@ -74,7 +74,7 @@ const StaffCreate = ({ table }) => {
               </div>
               <div className="flex items-center justify-center my-2">
                 <img
-                  className="h-52 object-cover aspect-video bg-zinc-950 border-none flex items-center justify-center"
+                  className="h-52 object-cover aspect-video bg-zinc-50 dark:bg-zinc-950 border-none flex items-center justify-center"
                   src={imageLink}
                   alt="Imagen sobre el docente"
                 />

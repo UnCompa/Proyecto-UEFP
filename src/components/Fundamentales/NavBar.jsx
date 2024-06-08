@@ -115,9 +115,9 @@ function NavBar({ url, pathName, children, refreshToken, accessToken }) {
   }, [isDarkMode]);
   return (
     <nav
-      className={`h-28 box-border bg-cover text-black shadow-2xl dark:text-white bg-white/90 dark:bg-black flex justify-between items-center sticky top-0 pl-12 pr-4 z-10` }
+      className={`h-28 box-border bg-cover text-black shadow-2xl dark:text-white bg-white/90 dark:bg-black flex justify-between items-center sticky top-0 pl-12 pr-4 z-10`}
     >
-      <a href="/">
+      <a href="/" tabIndex="1">
         <img
           src={
             isDarkMode
@@ -153,35 +153,35 @@ function NavBar({ url, pathName, children, refreshToken, accessToken }) {
           </NavLink>
         </li>
         <li className="group relative p-1">
-          <button className="group flex gap-x-2 items-center hover:bg-zinc-300 dark:hover:bg-zinc-700 rounded-xl py-2 px-2 transition-colors">
-            <span className="p-1 text-white rounded-lg bg-zinc-800 text-xl hover:text-white dark:hover:text-white">
-              <FaSchool />
-            </span>
-            <span className="font-Rubik text-black dark:text-white text-sm">
-              Institución
-            </span>
-            <span className="font-Rubik text-black dark:text-white text-sm group-hover:rotate-180 transition-all">
-              <FaChevronDown />
-            </span>
-          </button>
-          <ul className="hidden relative top-2 lg:absolute lg:top-12 left-0 w-full group-hover:flex group-hover:flex-col group-focus:flex group-focus:flex-col gap-y-2 text-black dark:text-white transition-all bg-zinc-200 dark:bg-zinc-900 rounded-xl z-50">
-            <li>
-              <NavLink to={urls.about} text={t("nav-sobrenosotros")}>
-                <FaUsers />
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to={`/${lang}/galeria/grid`} text={"Galeria"}>
-                <FaImage />
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to={urls.academics} text={t("nav-academicos")}>
-                <HiAcademicCap />
-              </NavLink>
-            </li>
-          </ul>
-        </li>
+        <button className="group flex gap-x-2 items-center hover:bg-zinc-300 dark:hover:bg-zinc-700 focus:bg-zinc-300 dark:focus:bg-zinc-700 rounded-xl py-2 px-2 transition-colors">
+          <span className="p-1 text-white rounded-lg bg-zinc-800 text-xl group-hover:text-white group-focus:text-white">
+            <FaSchool />
+          </span>
+          <span className="font-Rubik text-black dark:text-white text-sm">
+            {lang === "es" ? "Institución" : "Institution"}
+          </span>
+          <span className="font-Rubik text-black dark:text-white text-sm group-hover:rotate-180 group-focus:rotate-180 transition-all">
+            <FaChevronDown />
+          </span>
+        </button>
+        <ul className="hidden relative top-2 lg:absolute lg:top-12 left-0 w-full group-hover:flex group-hover:flex-col group-focus:flex group-focus:flex-col gap-y-2 text-black dark:text-white transition-all bg-zinc-200 dark:bg-zinc-900 rounded-xl z-50">
+          <li>
+            <NavLink to={urls.about} text={t("nav-sobrenosotros")}>
+              <FaUsers />
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to={`/${lang}/gallery`} text={(lang === "es") ? "Galería" : "Gallery"}>
+              <FaImage />
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to={urls.academics} text={t("nav-academicos")}>
+              <HiAcademicCap />
+            </NavLink>
+          </li>
+        </ul>
+      </li>
         {/* <li>
           <NavLink to={urls.news} text={t("nav-noticias")}></NavLink>
         </li> */}

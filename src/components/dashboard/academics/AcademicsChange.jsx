@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { supabase } from "../../../lib/supabase";
 import { FaPen, FaTrash, FaX } from "react-icons/fa6";
 
-const AcademicsChange = ({ table }) => {
+const AcademicsChange = ({ table, lang = "es" }) => {
   const [data, setData] = useState([]);
   const [editedIndex, setEditedIndex] = useState(null);
   const [title, setTitle] = useState("")
@@ -71,12 +71,14 @@ const AcademicsChange = ({ table }) => {
             {editedIndex === index ? (
               <article className="dark:bg-zinc-950 rounded grid grid-cols-1 md:grid-cols-2">
                 <div class="p-4 flex flex-col items-start justify-start bg-zinc-200 dark:bg-zinc-950 rounded">
-                  <h2 className="text-2xl font-bold">Modo Edicion</h2>
+                  <h2 className="text-2xl font-bold">
+                    {lang === "es" ? "Modo Edicion" : "Edit Mode"}
+                  </h2>
                   <div
                     class={`bg-gradient-to-l from-red-500 to-orange-500 h-1 rounded-full w-1/2 my-2`}
                   ></div>
                   <label className="text-zinc-300" htmlFor="">
-                    Titulo:
+                  {lang === "es" ? "Titulo" : "Title"}
                   </label>
                   <input
                     className="bg-zinc-800 rounded my-1 outline-none focus:ring-2 focus:ring-orange-500 p-1 w-full"
@@ -85,7 +87,7 @@ const AcademicsChange = ({ table }) => {
                     onChange={e => setTitle(e.target.value)}
                   />
                   <label className="text-zinc-300" htmlFor="">
-                    Descripcion:
+                  {lang === "es" ? "Descripcion" : "Description"}
                   </label>
                   <textarea
                     className="bg-zinc-800 rounded my-1 outline-none focus:ring-2 focus:ring-orange-500 p-1 w-full"
@@ -94,7 +96,7 @@ const AcademicsChange = ({ table }) => {
                     onChange={e => setContent(e.target.value)}
                   />
                   <label className="text-zinc-300" htmlFor="">
-                    Imagen:
+                  {lang === "es" ? "Imagen" : "Image"}
                   </label>
                   <input
                     className="bg-zinc-800 rounded my-1 outline-none focus:ring-2 focus:ring-orange-500 p-1 w-full"

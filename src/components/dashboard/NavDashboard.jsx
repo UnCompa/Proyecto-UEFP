@@ -10,8 +10,9 @@ import {
 import Link from "./Link";
 import { getLangFromUrl } from "../../i18n/utils";
 import { MdDashboard } from "react-icons/md";
+import ChangeLanguaje from '../ChangeUI/ChangeLanguaje'
 import { FaGear, FaImage } from "react-icons/fa6";
-export default function NavDashboard({ children,url }) {
+export default function NavDashboard({ children,url, pathname }) {
   const lang = getLangFromUrl(url)
   const [openMenu, setOpenMenu] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -55,7 +56,7 @@ export default function NavDashboard({ children,url }) {
         <h2 className="font-bold text-3xl font-Rubik text-center">UEFP</h2>
       </div>
       <nav
-        className={`bg-slate-200 dark:bg-zinc-900 h-full fixed w-1/2 top-0 left-0 p-4 flex flex-col gap-y-4 transition-all ${
+        className={`bg-slate-200 dark:bg-zinc-900 h-full fixed w-1/2 top-0 z-50 left-0 p-4 flex flex-col gap-y-4 transition-all ${
           openMenu
             ? "translate-x-0 lg:translate-x-0"
             : "-translate-x-full lg:translate-x-0"
@@ -72,50 +73,55 @@ export default function NavDashboard({ children,url }) {
             <h2 className="font-bold py-4">Paginas</h2>
             <ul className="flex flex-col gap-y-4">
               <li>
-                <Link to={`/${lang}/dashboard`} text={"Dashboard"}>
+                <Link to={`/${lang}/dashboard`} text={lang === "es" ? "Panel de control" : "Dashboard"}>
                   <MdDashboard />
                 </Link>
               </li>
               <li>
-                <Link to={`/${lang}/dashboard/homepage`} text={"Inicio"}>
+                <Link to={`/${lang}/dashboard/homepage`} text={lang === "es" ? "Pagina de inicio" : "Homepage"}>
                   <FaHome />
                 </Link>
               </li>
               <li>
-                <Link to={`/${lang}/dashboard/about`} text={"Sobre nosotros"}>
+                <Link to={`/${lang}/dashboard/about`} text={lang === "es" ? "Sobre nosotros" : "About us"}>
                   <FaUsers />
                 </Link>
               </li>
               <li>
-                <Link to={`/${lang}/dashboard/academics`} text={"Academicos"}>
+                <Link to={`/${lang}/dashboard/academics`} text={lang === "es" ? "Academicos" : "Academics"}>
                   <FaGraduationCap />
                 </Link>
               </li>
               <li>
-                <Link to={`/${lang}/dashboard/contacts`} text={"Contactos"}>
+                <Link to={`/${lang}/dashboard/contacts`} text={lang === "es" ? "Contactos" : "Contacts"}>
                   <FaEnvelope />
                 </Link>
               </li>
               <li>
-                <Link to={`/${lang}/dashboard/galery`} text={"Galeria"}>
+                <Link to={`/${lang}/dashboard/gallery`} text={lang === "es" ? "Galería" : "Gallery"}>
                   <FaImage />
                 </Link>
               </li>
             </ul>
           </li>
           <li>
-          <h2 className="font-bold py-2">Opciones</h2>
-          <ul className="flex h-full items-center gap-x-4">
-            <li className="w-max h-max rounded-xl p-2 bg-zinc-200 dark:bg-zinc-900 shadow-2xl dark:hover:bg-red-200 dark:hover:text-black text-dark fill-black hover:bg-red-500 hover:text-white dark:text-white transition-all">
+          <h2 className="font-bold py-2">
+            {lang === "es" ? "Opciones" : "Options"}
+          </h2>
+          <ul className="flex h-full items-center gap-x-4 flex-wrap">
+            {/* <li className="w-max h-max rounded-xl p-2 bg-zinc-200 dark:bg-zinc-900 shadow-2xl dark:hover:bg-red-200 dark:hover:text-black text-dark fill-black hover:bg-red-500 hover:text-white dark:text-white transition-all">
               <a href={`/${lang}/dashboard/settings`} className="">
               <FaGear className="text-xl"/>
               </a>
-            </li>
+            </li> */}
             <li>{children}</li>
+            <ChangeLanguaje lang={lang} url={pathname}/>
             <li>
               <form action="/api/auth/signout">
-                <button className="text-red-400" type="submit">
-                  Cerrar sesión
+                <button className="text-red-400 py-2" type="submit">
+                  {
+                    lang === "es" ? "Cerrar sesion" : "Sign out"
+                  }
                 </button>
               </form>
             </li>

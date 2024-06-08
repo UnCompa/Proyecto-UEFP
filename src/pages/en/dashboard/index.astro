@@ -31,15 +31,16 @@ if (error) {
 const userData2 = data?.user?.user_metadata;
 const user = data?.user
 const email = userData2?.username
+const pathname = Astro.url.pathname
 ---
 
 <!-- <ThemeIcon/> -->
-<DashBoardBase title="Dashboard | Panel de control" icon="">
+<DashBoardBase title="Dashboard | UEFP" icon="">
   <main class="dashboard">
     <div
       class="bg-zinc-200 dark:bg-zinc-900 h-full w-full [grid-area:aside] boxshadow"
     >
-      <NavDashboard url={url} client:load={true}>
+      <NavDashboard url={url} pathname={pathname} client:load={true}>
         <ThemeIcon/>
       </NavDashboard>
     </div>

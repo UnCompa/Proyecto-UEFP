@@ -13,7 +13,7 @@ import { supabase } from "../../lib/supabase";
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 const {data: historyData} = await supabase.from("historyen").select("*")
-const {data: objetivesData} = await supabase.from("objetives_es").select("*")
+const {data: objetivesData} = await supabase.from("objetives_en").select("*")
 ---
 
 <Layout

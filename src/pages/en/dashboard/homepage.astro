@@ -2,9 +2,11 @@
 import ThemeIcon from "../../../components/ChangeUI/ThemeIcon.astro";
 import NavDashboard from "../../../components/dashboard/NavDashboard";
 import ChangeForm from "../../../components/dashboard/ChangeForm";
+import ViewData from "../../../components/dashboard/Inicio/ViewData.astro";
 import DashBoardBase from "../../../layouts/DashBoardBase.astro";
 import { supabase } from "../../../lib/supabase";
 import UploadFileForm from "../../../components/dashboard/UploadFileForm.astro";
+import VideoPlayer from "../../../components/Utils/VideoPlayer.astro";
 const { cookies, redirect } = Astro;
 const url = Astro.url;
 const accessToken = cookies.get("sb-access-token");
@@ -31,49 +33,144 @@ const { data: userData } = await supabase
   .from("profiles")
   .select("*")
   .eq("id", data.user?.id);
-  const roles: string[] = (userData && userData[0]?.roles) || [];
-(roles);
-
-if (!roles.includes("admin") && !roles.includes("dev")) {
-    // Si el usuario no tiene los roles "admin" ni "dev", redirige a /es/dashboard
-    return redirect("/es/dashboard")
-}
+const roles: string[] = (userData && userData[0]?.roles) || [];
+const { data: dataFile } = supabase.storage.from('recursos').getPublicUrl('videos/inicial.mp4')
+const videoData = dataFile.publicUrl
+const videoSplit = videoData.split(".mp4")
+const video = videoSplit[0]
+const pathname = Astro.url.pathname
 ---
 
 <!-- <ThemeIcon/> -->
-<DashBoardBase title="Dashboard | Panel de control" icon="">
+<DashBoardBase title="Home Page | Dashboard">
   <main class="dashboard">
     <div
       class="bg-zinc-200 dark:bg-zinc-900 h-full w-full [grid-area:aside] boxshadow"
     >
-      <NavDashboard url={url} client:load={true}>
+      <NavDashboard url={url} pathname={pathname} client:load={true}>
         <ThemeIcon />
       </NavDashboard>
     </div>
     <div
-      class="p-4 bg-zinc-50 overflow-y-auto dark:bg-zinc-800 w-full h-full [grid-area:main] font-Kanit"
+      class="p-4 bg-zinc-50 overflow-y-auto dark:bg-zinc-800 w-full h-full [grid-area:main] font-Rubik"
     >
-      <section class="grid grid-cols-1 sm:grid-cols-2 place-content-center">
-        <div class="flex flex-col items-center p-4">
-          <h2
-            class="text-3xl lg:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-green-500 to-emerald-500"
-          >
-            Página inicial
-          </h2>
-          <p class="text-light font-Rubik text-zinc-800 dark:text-zinc-300 p-4">
-            En esta sección se manera el cambio de los diferentes texto que se presentan en la web, com el lema, la mision y vision intitucional, entre otras cosas, modificarlas <strong>cuando sea necesario</strong> para mantener con información veridicá y de cadlidad.
-          </p>
-        </div>
-        <div class="grid place-content-center">
-          <img class="h-96" src="/svg/calendar-55.svg" alt="" />
+      <section class="flex">
+        <div class="flex flex-col items-center p-4 w-full">
+          <div class="w-full">
+            <h2 class="text-center text-4xl lg:text-6xl font-extrabold py-4">
+              Página inicial
+            </h2>
+            <div
+              class="h-1 mx-auto rounded w-full lg:w-1/2 bg-gradient-to-r from-green-500 to-cyan-500"
+            >
+            </div>
+          </div>
+          {
+            roles.includes("admin") ? (
+              <p class="text-light font-Rubik text-zinc-800 dark:text-zinc-300 p-4">
+                En esta sección se manera el cambio de los diferentes texto que
+                se presentan en la web, com el lema, la mision y vision
+                intitucional, entre otras cosas, modificarlas{" "}
+                <strong>cuando sea necesario</strong> para mantener con
+                información veridicá y de cadlidad.
+              </p>
+            ) : (
+              <p class="text-light font-Rubik text-zinc-800 dark:text-zinc-300 p-4">
+                Explora el contenido de la página inicial
+              </p>
+            )
+          }
         </div>
       </section>
-      <section class="container mx-auto">
-        <ChangeForm title="Lema intitucional" propiedad="hero-frase" lang="es" seccion="inicio" client:load />
-        <ChangeForm title="Mision intitucional" propiedad="main-mision-text" lang="es" seccion="inicio" client:load />
-        <ChangeForm title="Vision intitucional" propiedad="main-vision-text" lang="es" seccion="inicio" client:load />
-        <UploadFileForm title="Subir presentacion"/>
-      </section>
+      {
+        roles.includes("admin") || roles.includes("moderator") ? (
+          <section class="container mx-auto flex flex-col gap-8">
+            <ChangeForm
+              title="Institutional motto"
+              propiedad="hero-frase"
+              lang="en"
+              seccion="inicio"
+              client:load
+            />
+            <ChangeForm
+              title="Vision of the institution"
+              propiedad="main-vision-text"
+              lang="en"
+              seccion="inicio"
+              client:load
+            />
+            <ChangeForm
+              title="Mision intitucional"
+              propiedad="main-mision-text"
+              lang="en"
+              seccion="inicio"
+              client:load
+            />
+            <ChangeForm
+              title="Section about us"
+              propiedad="card-info-about"
+              lang="en"
+              seccion="inicio"
+              client:load
+            />
+            <ChangeForm
+              title="Academic section"
+              propiedad="card-info-academics"
+              lang="en"
+              seccion="inicio"
+              client:load
+            />
+            <ChangeForm
+              title="Contact section"
+              propiedad="card-info-contacts"
+              lang="en"
+              seccion="inicio"
+              client:load
+            />
+            <UploadFileForm title="Subir presentacion" />
+          </section>
+        ) : (
+          <section class="container mx-auto grid grid-cols-1 gap-2">
+            <ViewData
+              title="Institutional motto"
+              propiedad="hero-frase"
+              seccion="inicio"
+              lang="en"
+            />
+            <ViewData
+              title="Mission"
+              propiedad="main-mision-text"
+              seccion="inicio"
+              lang="en"
+            />
+            <ViewData
+              title="Vission"
+              propiedad="main-vision-text"
+              seccion="inicio"
+              lang="en"
+            />
+            <ViewData
+              title="Information About Us"
+              propiedad="card-info-about"
+              seccion="inicio"
+              lang="en"
+            />
+            <ViewData
+              title="Academic Information"
+              propiedad="card-info-academics"
+              seccion="inicio"
+              lang="en"
+            />
+            <ViewData
+              title="Contact information"
+              propiedad="card-info-contacts"
+              seccion="inicio"
+              lang="en"
+            />
+            <VideoPlayer url={video}/>
+          </section>
+        )
+      }
     </div>
   </main>
 </DashBoardBase>

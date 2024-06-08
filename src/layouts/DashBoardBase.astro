@@ -4,10 +4,10 @@ import { ViewTransitions } from "astro:transitions";
 const lang = getLangFromUrl(Astro.url);
 interface Props {
   title: string;
-  icon: string;
+  icon?: string;
   keywords?: string;
 }
-const { title, icon, keywords } = Astro.props;
+const { title, icon = "/imgs/UEFPescudoblanco.png", keywords } = Astro.props;
 ---
 
 <!doctype html>

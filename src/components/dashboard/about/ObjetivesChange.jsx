@@ -70,7 +70,7 @@ const ObjetivesChange = ({ table }) => {
         return (
           <div key={item.id}>
             {editedIndex === index ? (
-              <div className="bg-zinc-900 p-2 rounded-lg shadow shadow-red-500/20 flex flex-col">
+              <div className="bg-zinc-200 dark:bg-zinc-900 p-2 rounded-lg shadow shadow-red-500/20 flex flex-col">
                 <h2 className="text-lg font-bold text-center">Modo edición</h2>
                 <label htmlFor="">Objetivo:</label>
                 <input
@@ -102,7 +102,7 @@ const ObjetivesChange = ({ table }) => {
                 </div>
               </div>
             ) : (
-              <div className="bg-zinc-900 p-2 rounded-lg shadow shadow-red-500/20">
+              <div className="bg-zinc-200 dark:bg-zinc-900 p-2 rounded-lg shadow shadow-red-500/20">
                 <h2 className="text-2xl font-bold">{item.title}</h2>
                 <div className="h-0.5 bg-zinc-800 my-1"></div>
                 <p className="font-light">{item.text}</p>

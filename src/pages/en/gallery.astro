@@ -1,0 +1,35 @@
+---
+import Navigation from "../../components/Fundamentales/Navigation.astro";
+import Footer from "../../components/Fundamentales/Footer.astro";
+import Layout from "../../layouts/Layout.astro";
+import ViewImages from "../../components/galeria/ViewImages.astro";
+import { getLangFromUrl } from "../../i18n/utils";
+import ViewGalleryImage from "../../components/galeria/ViewGalleryImage";
+const lang = getLangFromUrl(Astro.url);
+---
+
+<Layout title="Galeria | UEFP">
+  <Navigation />
+  <main class="h-full font-Rubik bg-gradient-to-tr from-slate-200 to-slate-300 dark:from-slate-800 dark:to-slate-900">
+    <section>
+      <ViewGalleryImage lang="en" client:load/>
+    </section>
+    <section class="h-full flex justify-center">
+      <h1 class="font-bold py-4 text-5xl lg:text-7xl">Gallery</h1>
+    </section>
+    <section class="container mx-auto">
+      <ViewImages />
+    </section>
+  </main>
+</Layout>
+<Footer />
+<style is:global>
+  .galery-button-active {
+    background-color: #f2f2f2;
+    color: black;
+  }
+  .galery-button:hover {
+    background-color: #f2f2f2;
+    color: black;
+  }
+</style>

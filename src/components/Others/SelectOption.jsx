@@ -1,4 +1,4 @@
-import { Divider, select } from "@nextui-org/react";
+import { Divider } from "@nextui-org/react";
 import { Tabs, Tab, Card, CardBody, Image } from "@nextui-org/react";
 import {
   FaDove,
@@ -7,29 +7,43 @@ import {
   FaPeopleCarry,
   FaHandsHelping,
   FaBalanceScale,
+  FaStar,
 } from "react-icons/fa";
 import { supabase } from "../../lib/supabase";
 import { useEffect, useState } from "react";
-import { FaStar } from "react-icons/fa6";
+import Loader from "../Ui/Loader";
 
 export default function SelectOption({ lang }) {
   const [tabs, setTabs] = useState([]);
+  const [loading, setLoading] = useState(false);
+
   const selectTabs = async (table) => {
-    const { data: dataTabs } = await supabase.from(table).select("*").order("id", {ascending: true})
+    setLoading(true);
+    const { data: dataTabs } = await supabase
+      .from(table)
+      .select("*")
+      .order("id", { ascending: true });
     setTabs(dataTabs);
+    setLoading(false);
   };
+
   useEffect(() => {
     if (lang === "es") {
       selectTabs("values_es");
     } else if (lang === "en") {
       selectTabs("values_en");
     }
-  }, []);
-  return (
-    !tabs ? (
-      <div className="h-52 container mx-auto bg-zinc-900 rounded-lg animate-pulse"></div>
-    ) : (
-      <div className="flex aspect-auto w-full flex-col justify-center items-center">
+  }, [lang]);
+
+  return loading ? (
+    <div className="flex justify-center items-center gap-2 flex-col">
+      <h2 className="text-3xl md:text-5xl font-Rubik font-bold py-2">
+        Cargando
+      </h2>
+      <Loader />
+    </div>
+  ) : (
+    <div className="flex aspect-auto w-full flex-col justify-center items-center">
       <Tabs
         aria-label="Dynamic tabs"
         items={tabs}
@@ -82,6 +96,5 @@ export default function SelectOption({ lang }) {
         )}
       </Tabs>
     </div>
-    )
   );
 }
