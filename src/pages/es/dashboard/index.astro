@@ -35,20 +35,22 @@ const pathname = Astro.url.pathname
 ---
 
 <!-- <ThemeIcon/> -->
-<DashBoardBase title="Dashboard | Panel de control" icon="">
+<DashBoardBase title="Panel de control | Pagina principal" >
   <main class="dashboard">
     <div
-      class="bg-zinc-200 dark:bg-zinc-900 h-full w-full [grid-area:aside] boxshadow"
+      class="bg-zinc-200 dark:bg-zinc-900 h-full w-full [grid-area:aside]"
     >
       <NavDashboard url={url} pathname={pathname} client:load={true}>
         <ThemeIcon/>
       </NavDashboard>
     </div>
-    <div
-      class="p-4 bg-zinc-50 overflow-y-auto dark:bg-zinc-800 w-full h-full [grid-area:main] font-Kanit"
+    <section class="p-4">
+      <div
+      class="p-4 rounded-lg bg-zinc-50 overflow-y-auto dark:bg-zinc-800 w-full h-full [grid-area:main] font-Kanit"
     >
       <MainDashboard user={user} email={email} url={url} client:load />
     </div>
+    </section>
   </main>
 </DashBoardBase>
 <style>
@@ -67,8 +69,5 @@ const pathname = Astro.url.pathname
         "aside"
         "main";
     }
-  }
-  .boxshadow {
-    box-shadow: 0px -20px 10px black;
   }
 </style>

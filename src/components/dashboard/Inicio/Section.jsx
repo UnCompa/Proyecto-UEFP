@@ -2,8 +2,8 @@ import React from "react";
 
 const Section = ({ lang, roles }) => {
   return (
-    <section className="bg-zinc-200 dark:bg-zinc-900 grid grid-cols-1 md:grid-cols-2 py-4 place-content-center rounded">
-      <div className="p-8 flex flex-col justify-center">
+    <section className="bg-zinc-200 dark:bg-zinc-900 grid grid-cols-1 md:grid-cols-2 py-4 place-content-center rounded-xl shadow-xl box-content">
+      <div className="py-2 px-8 flex flex-col justify-center">
         <h2 className="text-3xl md:text-5xl font-bold py-4">
           {roles.includes("admin") 
             ? (lang === "es" ? "Empieza a crear y editar la web" : "Start creating and editing the web") 
@@ -18,7 +18,7 @@ const Section = ({ lang, roles }) => {
         </p>
       </div>
       <div className="flex items-center justify-center">
-        <img className="h-96" src="/svg/calendar-55.svg" alt="" />
+        <img className="h-96 p-8" src="/svg/coding.svg" alt="" />
       </div>
     </section>
   );

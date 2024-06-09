@@ -34,7 +34,7 @@ const { title, icon = "/imgs/UEFPescudoblanco.png", keywords } = Astro.props;
     <title>{title}</title>
     <ViewTransitions />
   </head>
-  <body class="bg-white dark:bg-black">
+  <body class="bg-zinc-200 dark:bg-zinc-900">
     <slot />
     <script src="https://cdn.plyr.io/3.7.8/plyr.js"></script>
   </body><style is:global>
@@ -44,10 +44,10 @@ const { title, icon = "/imgs/UEFPescudoblanco.png", keywords } = Astro.props;
     }
     html {
       color-scheme: light dark;
-      scrollbar-color: #27272a white;
+      scrollbar-color: #27272a #a1a1a1;
     }
     html.dark {
-      scrollbar-color: white #27272a;
+      scrollbar-color: #a1a1a1 #27272a;
     }
   </style>
 </html>

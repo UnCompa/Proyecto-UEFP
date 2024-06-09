@@ -4,26 +4,13 @@ import { Bars, X } from "../../icons/Icons.jsx";
 import ChangeLanguaje from "../ChangeUI/ChangeLanguaje.jsx";
 import { getLangFromUrl, useTranslations } from "../../i18n/utils.ts";
 import { supabase } from "../../lib/supabase.ts";
-import { MdDashboard } from "react-icons/md";
-import {
-  HiMail,
-  HiHome,
-  HiUsers,
-  HiAcademicCap,
-  HiDocument,
-} from "react-icons/hi";
-import {
-  FaChevronDown,
-  FaImage,
-  FaRegUser,
-  FaSchool,
-  FaUser,
-  FaUsers,
-} from "react-icons/fa6";
-import { FaHouseDamage } from "react-icons/fa";
+import { FaCircleUser, FaEnvelopeCircleCheck, FaFile, FaGraduationCap, FaHouse, FaSchoolFlag } from "react-icons/fa6";
+import { FaChevronDown, FaImage, FaRegUser, FaUsers } from "react-icons/fa6";
+import LayoutDashboardIcon from "../../icons/LayoutDashboardIcon.jsx";
+
 function NavBar({ url, pathName, children, refreshToken, accessToken }) {
   const [openMenu, setOpenMenu] = useState(false);
-  const [isDarkMode, setIsDarkMode] = useState(true);
+  const [isDarkMode, setIsDarkMode] = useState(false);
   const [isUser, setIsUser] = useState(false);
   const lang = getLangFromUrl(url);
   const t = useTranslations(lang);
@@ -37,6 +24,7 @@ function NavBar({ url, pathName, children, refreshToken, accessToken }) {
   });
   const [, setTitles] = useState({});
   const urlString = url.toString();
+
   useEffect(() => {
     const fetchData = async () => {
       if (!accessToken || !refreshToken) {
@@ -51,6 +39,7 @@ function NavBar({ url, pathName, children, refreshToken, accessToken }) {
     };
     fetchData();
   }, [isUser]);
+
   let mensaje1;
   if (lang === "es") {
     if (urlString.includes("contacts")) {
@@ -74,11 +63,12 @@ function NavBar({ url, pathName, children, refreshToken, accessToken }) {
       mensaje1 = "Home";
     }
   }
+
   const handleMenu = () => {
     setOpenMenu(!openMenu);
   };
+
   useEffect(() => {
-    // Obtenemos las traducciones de las URLs según el idioma actual
     const translatedUrls = {
       home: t("a-inicio"),
       about: t("a-about"),
@@ -98,21 +88,24 @@ function NavBar({ url, pathName, children, refreshToken, accessToken }) {
     };
     setTitles(titlesNav);
   }, [lang]);
+
   useEffect(() => {
-    const html = document.querySelector("html");
-    setIsDarkMode(html?.classList.contains("dark"));
-    const observer = new MutationObserver((mutationsList) => {
-      mutationsList.forEach((mutation) => {
-        if (mutation.attributeName === "class") {
-          setIsDarkMode(html.classList.contains("dark"));
-        }
-      });
-    });
-    observer.observe(html, { attributes: true });
-    return () => {
-      observer.disconnect();
-    };
-  }, [isDarkMode]);
+    if (typeof window !== "undefined") {
+      const darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+      setIsDarkMode(darkModeMediaQuery.matches);
+
+      const handleDarkModeChange = (event) => {
+        setIsDarkMode(event.matches);
+      };
+
+      darkModeMediaQuery.addEventListener('change', handleDarkModeChange);
+
+      return () => {
+        darkModeMediaQuery.removeEventListener('change', handleDarkModeChange);
+      };
+    }
+  }, []);
+
   return (
     <nav
       className={`h-28 box-border bg-cover text-black shadow-2xl dark:text-white bg-white/90 dark:bg-black flex justify-between items-center sticky top-0 pl-12 pr-4 z-10`}
@@ -133,7 +126,7 @@ function NavBar({ url, pathName, children, refreshToken, accessToken }) {
         {mensaje1}
       </h3>
       <ul
-        className={`bg-slate-50 dark:bg-black h-[100dvh] fixed w-1/2 top-0 z-30 right-0 px-4 py-8 flex flex-1 flex-col gap-y-4 transition-all ${
+        className={`bg-slate-50 dark:bg-black h-[100dvh] fixed w-1/2 top-0 z-50 right-0 px-4 py-8 flex flex-1 flex-col gap-y-4 transition-all ${
           openMenu
             ? "translate-x-0 lg:translate-x-0"
             : "translate-x-full lg:translate-x-0"
@@ -148,61 +141,58 @@ function NavBar({ url, pathName, children, refreshToken, accessToken }) {
           </button>
         </li>
         <li>
-          <NavLink to={urls.home} text={t("nav-inicio")}>
-            <HiHome />
+          <NavLink to={urls.home} text={t("nav-inicio")} tabIndex="2" aria-label="Inicio">
+            <FaHouse />
           </NavLink>
         </li>
         <li className="group relative p-1">
-        <button className="group flex gap-x-2 items-center hover:bg-zinc-300 dark:hover:bg-zinc-700 focus:bg-zinc-300 dark:focus:bg-zinc-700 rounded-xl py-2 px-2 transition-colors">
-          <span className="p-1 text-white rounded-lg bg-zinc-800 text-xl group-hover:text-white group-focus:text-white">
-            <FaSchool />
-          </span>
-          <span className="font-Rubik text-black dark:text-white text-sm">
-            {lang === "es" ? "Institución" : "Institution"}
-          </span>
-          <span className="font-Rubik text-black dark:text-white text-sm group-hover:rotate-180 group-focus:rotate-180 transition-all">
-            <FaChevronDown />
-          </span>
-        </button>
-        <ul className="hidden relative top-2 lg:absolute lg:top-12 left-0 w-full group-hover:flex group-hover:flex-col group-focus:flex group-focus:flex-col gap-y-2 text-black dark:text-white transition-all bg-zinc-200 dark:bg-zinc-900 rounded-xl z-50">
-          <li>
-            <NavLink to={urls.about} text={t("nav-sobrenosotros")}>
-              <FaUsers />
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to={`/${lang}/gallery`} text={(lang === "es") ? "Galería" : "Gallery"}>
-              <FaImage />
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to={urls.academics} text={t("nav-academicos")}>
-              <HiAcademicCap />
-            </NavLink>
-          </li>
-        </ul>
-      </li>
-        {/* <li>
-          <NavLink to={urls.news} text={t("nav-noticias")}></NavLink>
-        </li> */}
+          <button className="group flex gap-x-2 items-center hover:bg-zinc-300 dark:hover:bg-zinc-700 focus:bg-zinc-300 dark:focus:bg-zinc-700 rounded-xl py-2 px-2 transition-colors" tabIndex="3" aria-label={lang === "es" ? "Institución" : "Institution"}>
+            <span className="p-1 text-white rounded-lg bg-zinc-800 text-xl group-hover:text-white group-focus:text-white">
+              <FaSchoolFlag />
+            </span>
+            <span className="font-Rubik text-black dark:text-white text-sm">
+              {lang === "es" ? "Institución" : "Institution"}
+            </span>
+            <span className="font-Rubik text-black dark:text-white text-sm group-hover:rotate-180 group-focus:rotate-180 transition-all">
+              <FaChevronDown />
+            </span>
+          </button>
+          <ul className="hidden relative top-2 lg:absolute lg:top-12 left-0 w-full group-hover:flex group-hover:flex-col group-focus:flex group-focus:flex-col gap-y-2 text-black dark:text-white transition-all bg-zinc-200 dark:bg-zinc-900 rounded-xl z-50">
+            <li>
+              <NavLink to={urls.about} text={t("nav-sobrenosotros")} tabIndex="4" aria-label={t("nav-sobrenosotros")}>
+                <FaUsers />
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to={`/${lang}/gallery`} text={(lang === "es") ? "Galería" : "Gallery"} tabIndex="5" aria-label={(lang === "es") ? "Galería" : "Gallery"}>
+                <FaImage />
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to={urls.academics} text={t("nav-academicos")} tabIndex="6" aria-label={t("nav-academicos")}>
+                <FaGraduationCap />
+              </NavLink>
+            </li>
+          </ul>
+        </li>
         <li>
-          <NavLink to={urls.contact} text={t("nav-contacto")}>
-            <HiMail />
+          <NavLink to={urls.contact} text={t("nav-contacto")} tabIndex="7" aria-label={t("nav-contacto")}>
+            <FaEnvelopeCircleCheck />
           </NavLink>
         </li>
         <li>
-          <NavLink to={urls.docs} text={t("footer-contacto-doc")}>
-            <HiDocument />
+          <NavLink to={urls.docs} text={t("footer-contacto-doc")} tabIndex="8" aria-label={t("footer-contacto-doc")}>
+            <FaFile />
           </NavLink>
         </li>
         <ul className="flex items-end gap-x-4 p-4 h-full lg:items-center">
           <li>
             {isUser ? (
-              <a href={`/${lang}/dashboard`} className="h-full w-full">
-                <MdDashboard className="h-max w-max shadow-2xl text-2xl p-2 bg-zinc-200 hover:bg-red-600 hover:text-white dark:bg-zinc-900 dark:hover:bg-red-200 dark:hover:text-black transition-all rounded-xl" />
+              <a href={`/${lang}/dashboard`} className="h-full w-full" tabIndex="9" aria-label={t("dashboard-link")}>
+                <LayoutDashboardIcon className="h-11 w-11 shadow-2xl p-2 bg-zinc-200 hover:bg-red-600 hover:text-white dark:bg-zinc-900 dark:hover:bg-red-200 dark:hover:text-black transition-all rounded-xl" />
               </a>
             ) : (
-              <a href={`/${lang}/signin`} className="h-full w-full">
+              <a href={`/${lang}/signin`} className="h-full w-full" tabIndex="10" aria-label={t("signin-link")}>
                 <FaRegUser className="h-max w-max shadow-2xl text-2xl p-2 bg-zinc-200 hover:bg-red-600 hover:text-white dark:bg-zinc-900 dark:hover:bg-red-200 dark:hover:text-black transition-all rounded-xl" />
               </a>
             )}
@@ -214,6 +204,8 @@ function NavBar({ url, pathName, children, refreshToken, accessToken }) {
       <button
         onClick={handleMenu}
         className="text-black dark:text-white h-6 w-6 block lg:hidden mr-8"
+        tabIndex="11"
+        aria-label={openMenu ? t("close-menu") : t("open-menu")}
       >
         <Bars />
       </button>

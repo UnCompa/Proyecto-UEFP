@@ -9,9 +9,9 @@ import {
 } from "react-icons/fa";
 import Link from "./Link";
 import { getLangFromUrl } from "../../i18n/utils";
-import { MdDashboard } from "react-icons/md";
 import ChangeLanguaje from '../ChangeUI/ChangeLanguaje'
 import { FaGear, FaImage } from "react-icons/fa6";
+import LayoutDashboardIcon from "../../icons/LayoutDashboardIcon";
 export default function NavDashboard({ children,url, pathname }) {
   const lang = getLangFromUrl(url)
   const [openMenu, setOpenMenu] = useState(false);
@@ -73,38 +73,39 @@ export default function NavDashboard({ children,url, pathname }) {
             <h2 className="font-bold py-4">Paginas</h2>
             <ul className="flex flex-col gap-y-4">
               <li>
-                <Link to={`/${lang}/dashboard`} text={lang === "es" ? "Panel de control" : "Dashboard"}>
-                  <MdDashboard />
+                <Link thin to={`/${lang}/dashboard`} text={lang === "es" ? "Pagina principal" : "Dashboard"}>
+                  <LayoutDashboardIcon className="h-6 w-6 py-0.5" />
                 </Link>
               </li>
               <li>
-                <Link to={`/${lang}/dashboard/homepage`} text={lang === "es" ? "Pagina de inicio" : "Homepage"}>
+                <Link url={url} thin to={`/${lang}/dashboard/homepage`} text={lang === "es" ? "Pagina de inicio" : "Homepage"}>
                   <FaHome />
                 </Link>
               </li>
               <li>
-                <Link to={`/${lang}/dashboard/about`} text={lang === "es" ? "Sobre nosotros" : "About us"}>
+                <Link url={url} to={`/${lang}/dashboard/about`} text={lang === "es" ? "Sobre nosotros" : "About us"}>
                   <FaUsers />
                 </Link>
               </li>
               <li>
-                <Link to={`/${lang}/dashboard/academics`} text={lang === "es" ? "Academicos" : "Academics"}>
+                <Link url={url} to={`/${lang}/dashboard/academics`} text={lang === "es" ? "Academicos" : "Academics"}>
                   <FaGraduationCap />
                 </Link>
               </li>
               <li>
-                <Link to={`/${lang}/dashboard/contacts`} text={lang === "es" ? "Contactos" : "Contacts"}>
+                <Link url={url} to={`/${lang}/dashboard/contacts`} text={lang === "es" ? "Contactos" : "Contacts"}>
                   <FaEnvelope />
                 </Link>
               </li>
               <li>
-                <Link to={`/${lang}/dashboard/gallery`} text={lang === "es" ? "Galería" : "Gallery"}>
+                <Link url={url} to={`/${lang}/dashboard/gallery`} text={lang === "es" ? "Galería" : "Gallery"}>
                   <FaImage />
                 </Link>
               </li>
             </ul>
           </li>
           <li>
+            <div className="h-0.5 bg-zinc-700 rounded"></div>
           <h2 className="font-bold py-2">
             {lang === "es" ? "Opciones" : "Options"}
           </h2>
