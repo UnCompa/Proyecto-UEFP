@@ -1,6 +1,5 @@
 import type { APIRoute } from "astro";
 import { supabase } from "../../../lib/supabase";
-import { getLangFromUrl } from "../../../i18n/utils";
 
 export const POST: APIRoute = async ({ request, redirect }) => {
   const formData = await request.formData();
@@ -13,7 +12,6 @@ export const POST: APIRoute = async ({ request, redirect }) => {
       status: 400,
     });
   }
-
   const { data, error } = await supabase.auth.signUp({
     email: email,
     password: password,
@@ -24,16 +22,12 @@ export const POST: APIRoute = async ({ request, redirect }) => {
     }
   });  
   if (error) {
-    (error);
     return redirect(`/es/`);
   }
-
   const { data: updatedProfile } = await supabase
   .from("profiles")
   .update({ username: name })
   .eq("id", data.user?.id)
-  .select("*");
-  (updatedProfile);
-  
+  .select("*");  
   return redirect(`/es/verification`);
 };

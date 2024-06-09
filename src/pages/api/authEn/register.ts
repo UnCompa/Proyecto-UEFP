@@ -6,15 +6,12 @@ export const POST: APIRoute = async ({ request, redirect }) => {
   const name = formData.get("name")?.toString();
   const email = formData.get("email")?.toString();
   const password = formData.get("password")?.toString();
-  const lang = "en"
-  
   if (!email || !password) {
     ("Here");
     return new Response("Correo electrónico y contraseña obligatorios", {
       status: 400,
     });
   }
-
   const { data, error } = await supabase.auth.signUp({
     email: email,
     password: password,
@@ -23,18 +20,14 @@ export const POST: APIRoute = async ({ request, redirect }) => {
         username: name
       }
     }
-  }); 
-
+  });  
   if (error) {
-    (error);
-    return redirect(`/${lang}/`);
+    return redirect(`/en/`);
   }
-
   const { data: updatedProfile } = await supabase
   .from("profiles")
-  .update({ username: name, email: email })
+  .update({ username: name })
   .eq("id", data.user?.id)
-  .select("*");
-  
-  return redirect(`/${lang}/verification`);
+  .select("*");  
+  return redirect(`/en/verification`);
 };
