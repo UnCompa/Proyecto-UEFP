@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { supabase } from "../../../lib/supabase";
 import { FaCheck, FaPen, FaTrashCan, FaX } from "react-icons/fa6";
 

@@ -1,11 +1,10 @@
 ---
 import ThemeIcon from "../../../components/ChangeUI/ThemeIcon.astro";
 import NavDashboard from "../../../components/dashboard/NavDashboard";
-import MainDashboard from "../../../components/dashboard/MainDashboard";
 import DashBoardBase from "../../../layouts/DashBoardBase.astro";
 import { supabase } from "../../../lib/supabase";
 import AcademicsChange from "../../../components/dashboard/academics/AcademicsChange";
-import CardAcademics from "../../../components/sections/CardAcademics.astro";
+import CardAcademics from "../../../components/Cards/CardAcademics.astro";
 const { cookies, redirect } = Astro;
 const url = Astro.url;
 const accessToken = cookies.get("sb-access-token");
@@ -14,9 +13,6 @@ const refreshToken = cookies.get("sb-refresh-token");
 if (!accessToken || !refreshToken) {
   return redirect("/es/signin");
 }
-const { data: datanew, error: errornew } = await supabase
-  .from("pages")
-  .select("*");
 const { data, error } = await supabase.auth.setSession({
   refresh_token: refreshToken.value,
   access_token: accessToken.value,
@@ -41,7 +37,7 @@ const { data: academicsData } = await supabase
   .select("*")
   .order("id", { ascending: true });
 console.log(data);
-const pathname = Astro.url.pathname
+const pathname = Astro.url.pathname;
 ---
 
 <!-- <ThemeIcon/> -->
@@ -77,17 +73,14 @@ const pathname = Astro.url.pathname
             <AcademicsChange table="levels_es" client:load />
           ) : (
             <>
-              {academicsData?.map((item) => {
-                return (
-                  <CardAcademics
-                    id={item.id}
-                    title={item.title}
-                    img={item.img}
-                    content={item.content}
-                    client:load
-                  />
-                );
-              })}
+              {academicsData?.map((item) => (
+                <CardAcademics
+                  id={item.id}
+                  title={item.title}
+                  img={item.img}
+                  content={item.content}
+                />
+              ))}
             </>
           )
         }
