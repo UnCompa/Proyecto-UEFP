@@ -1,7 +1,6 @@
 ---
-import { FaBars } from "react-icons/fa";
 import NavLinkDocs from "./NavLinkDocs.astro";
-import { FaX } from "react-icons/fa6";
+import { FaHouse, FaX, FaTag, FaBars, FaRightToBracket } from "react-icons/fa6";
 import { getLangFromUrl } from "../../i18n/utils";
 import { Image } from "astro:assets";
 const lang = getLangFromUrl(Astro.url)
@@ -60,9 +59,20 @@ import UEFPblack from "../../assets/logos/UEFPescudoblack.png"
         >
           <li>
             <a
-              href={`/${lang}/docs`}
-              class="bg-zinc-200 dark:bg-zinc-950 text-sm md:text-base text-black dark:text-white px-2 md:px-4 py-1 no-underline rounded hover:shadow-xl hover:bg-red-500 dark:hover:bg-red-500 border border-red-500 transition-all"
+              href={`/${lang}/`}
+              class="flex gap-1 items-center text-sm md:text-base text-red-600 dark:text-red-300 px-2 md:px-4 py-1 no-underline rounded hover:shadow-xl hover:bg-zinc-300 dark:hover:bg-zinc-950 text-none sm:text-sm transition-all"
               >
+              <FaRightToBracket/>
+              {lang === "es" ? "Regresar" : "Back"}
+              </a
+              >
+            </li>
+          <li>
+            <a
+              href={`/${lang}/docs`}
+              class="flex gap-1 items-center text-sm md:text-base text-red-600 dark:text-red-300 px-2 md:px-4 py-1 no-underline rounded hover:shadow-xl hover:bg-zinc-300 dark:hover:bg-zinc-950 text-none sm:text-base transition-all"
+              >
+              <FaHouse/>
               {lang === "es" ? "Inicio" : "Home"}
               </a
               >
@@ -70,8 +80,9 @@ import UEFPblack from "../../assets/logos/UEFPescudoblack.png"
             <li>
               <a
               href={`/${lang}/tags`}
-              class="bg-zinc-200 dark:bg-zinc-950 text-sm md:text-base text-black dark:text-white px-2 md:px-4 py-1 no-underline rounded hover:shadow-xl hover:bg-red-500 dark:hover:bg-red-500 border border-red-500 transition-all"
+              class="flex gap-1 items-center text-sm md:text-base text-red-600 dark:text-red-300 px-2 md:px-4 py-1 no-underline rounded hover:shadow-xl hover:bg-zinc-300 dark:hover:bg-zinc-950 text-none sm:text-sm transition-all"
               >
+              <FaTag/>
               {lang === "es" ? "Etiquetas" : "Tags"}
               </a
             >

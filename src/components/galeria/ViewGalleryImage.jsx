@@ -9,7 +9,6 @@ const ViewGalleryImage = ({lang = "es"}) => {
   useEffect(() => {
     const loadImage = async () => {
       const {data} = await supabase.storage.from("galeria").list("")
-      console.log(data);
       const imgsUrl = data?.map((file) => {
         const data = supabase.storage.from("galeria").getPublicUrl(file.name);
         const { publicUrl } = data.data;
@@ -18,14 +17,12 @@ const ViewGalleryImage = ({lang = "es"}) => {
         };
         return newData;
       });
-      console.log(imgsUrl);
       const images = imgsUrl.map((imgs) => {
         return {
           original: imgs.publicUrl,
           thumbnail: imgs.publicUrl
         }
       })
-      console.log(images);
       setImages(images)
     }
     loadImage()
@@ -64,9 +61,9 @@ const ViewGalleryImage = ({lang = "es"}) => {
         <ImageGallery items={images}
         autoPlay
         showPlayButton={false}
-        showFullscreenButton={false}
         renderLeftNav={renderLeftNav}
         renderRightNav={renderRightNav}
+        thumbnailPosition="left"
         />
       </div>
     )
