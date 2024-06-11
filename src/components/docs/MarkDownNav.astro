@@ -60,30 +60,42 @@ import UEFPblack from "../../assets/logos/UEFPescudoblack.png"
           <li>
             <a
               href={`/${lang}/`}
-              class="flex gap-1 items-center text-sm md:text-base text-red-600 dark:text-red-300 px-2 md:px-4 py-1 no-underline rounded hover:shadow-xl hover:bg-zinc-300 dark:hover:bg-zinc-950 text-none sm:text-sm transition-all"
+              class="flex gap-1 items-center text-sm md:text-base text-red-600 dark:text-red-300 px-2 md:px-4 py-1 no-underline rounded hover:shadow-xl hover:bg-zinc-300 dark:hover:bg-zinc-950 transition-all"
               >
-              <FaRightToBracket/>
-              {lang === "es" ? "Regresar" : "Back"}
+              <span class="text-lg sm:text-base">
+                <FaRightToBracket/>
+              </span>
+              <span class="hidden sm:block">
+                {lang === "es" ? "Regresar" : "Back"}
+              </span>
               </a
               >
             </li>
           <li>
             <a
               href={`/${lang}/docs`}
-              class="flex gap-1 items-center text-sm md:text-base text-red-600 dark:text-red-300 px-2 md:px-4 py-1 no-underline rounded hover:shadow-xl hover:bg-zinc-300 dark:hover:bg-zinc-950 text-none sm:text-base transition-all"
+              class="flex gap-1 items-center text-sm md:text-base text-red-600 dark:text-red-300 px-2 md:px-4 py-1 no-underline rounded hover:shadow-xl hover:bg-zinc-300 dark:hover:bg-zinc-950 transition-all"
               >
-              <FaHouse/>
-              {lang === "es" ? "Inicio" : "Home"}
+              <span class="text-lg sm:text-base">
+                <FaHouse/>
+              </span>
+              <span class="hidden sm:block">
+                {lang === "es" ? "Inicio" : "Home"}
+              </span>
               </a
               >
             </li>
             <li>
               <a
               href={`/${lang}/tags`}
-              class="flex gap-1 items-center text-sm md:text-base text-red-600 dark:text-red-300 px-2 md:px-4 py-1 no-underline rounded hover:shadow-xl hover:bg-zinc-300 dark:hover:bg-zinc-950 text-none sm:text-sm transition-all"
+              class="flex gap-1 items-center text-sm md:text-base text-red-600 dark:text-red-300 px-2 md:px-4 py-1 no-underline rounded hover:shadow-xl hover:bg-zinc-300 dark:hover:bg-zinc-950 ansition-all"
               >
-              <FaTag/>
-              {lang === "es" ? "Etiquetas" : "Tags"}
+              <span class="text-lg sm:text-base">
+                <FaTag/>
+              </span>
+              <span class="hidden sm:block">
+                {lang === "es" ? "Etiquetas" : "Tags"}
+              </span>
               </a
             >
           </li>
