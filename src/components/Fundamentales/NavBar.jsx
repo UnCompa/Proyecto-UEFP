@@ -117,7 +117,7 @@ function NavBar({ url, pathName, children, refreshToken, accessToken }) {
               ? "/imgs/UEFPescudoblanco.png"
               : "/imgs/UEFPescudoblack.png"
           }
-          className="h-20 lg:h-24"
+          className="h-20 lg:h-24 hover:saturate-150 active:opacity-80"
           alt="Unidad Educativa Fiscal Pichincha | Escudo Logo"
           loading="lazy"
         />

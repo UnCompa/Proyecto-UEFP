@@ -4,52 +4,119 @@ import LinksContainer from "../../../components/docs/LinksContainer.astro";
 import LinkCard from "../../../components/docs/LinkCard.astro";
 import HeroImg from "../../../assets/userDocs/banner.png";
 import { Image } from "astro:assets";
+import { FaCode, FaUser } from "react-icons/fa6";
 ---
 
-<DocsLayout pageTitle="Documentación | UEFP" icon="/imgs/UEFPescudoblanco.png">
-  <h1>Documentación</h1>
-  <Image
-    id="cover-img"
-    alt="Imagen sobre la documentacion de la  UEFP"
-    src={HeroImg}
-    loading="lazy"
-  />
-  <p>
-    Bienvenidos a la documentacion sobre la unidad educativa fiscal pichincha,
-    aquí encontraras información de utilidad para entender como funciona la
-    página.
-  </p>
-  <h2>Para el usuario</h2>
-  <p>
-    Se a preparado una guia para el usuario de como manejar responsablemente la
-    web, para no causar problemas en su mantenimiento
-  </p>
-  <p>
-    Para mas información visita la seccion <strong>Sobre el usuario</strong> para
-    conocer mas información
-  </p>
-  <h2>Para los desarrolladores</h2>
-  <p>
-    A los desarolladores se les proporcionará información mas detallada ademas
-    de conceptos que se deben tener en cuenta para el mantenimiento de la web,
-    aportando con mejoras, correcciones, etc.
-  </p>
-  <p>
-    Visita las diferentes secciones para el desarrollador donde encontraras
-    informacion util
-  </p>
-  <LinksContainer>
-    <LinkCard
-      title="Para el usuario"
-      text="Guia de inicio para el usuario"
-      content="user"
-      destiny="iniciar"
-    />
-    <LinkCard
-      title="Para el desarrollador"
-      text="Como empezar como desarrollador"
-      content="dev"
-      destiny="como-iniciar"
-    />
-  </LinksContainer>
+<DocsLayout
+  pageTitle="Documentación | UEFP"
+  icon="/imgs/UEFPescudoblanco.png"
+  fullWdith={true}
+>
+  <section class="background overflow-hidden container mx-auto px-4">
+    <h1 class="no-underline font-extrabold font-Rubik my-12 text-3xl md:text-4xl">
+      Unidad Educativa Fiscal Pichincha <br />
+      <span class="font-bold animate-fade-in bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-orange-500">Documentación</span>
+    </h1>
+    <div class="w-full flex justify-center">
+      <p class="font-light w-full px-2 lg:w-2/3 text-center">
+        Bienvenidos a la documentacion sobre la unidad educativa fiscal
+        pichincha, aquí encontraras información de utilidad para entender como
+        funciona la página.
+      </p>
+    </div>
+    <article class="grid grid-cols-1 lg:grid-cols-2 gap-4 my-4">
+      <div
+        class="animate-slide-in-bottom bg-zinc-300 dark:bg-zinc-900 rounded-lg p-2 shadow-xl flex flex-col justify-center items-center"
+      >
+        <div class="bg-zinc-300 dark:bg-zinc-950 p-2 text-2xl rounded text-red-600 dark:text-red-300">
+          <FaUser />
+        </div>
+        <h2 class="p-0 m-0">Para el usuario</h2>
+        <p class="text-center">
+          Se a preparado una guia para el usuario de como manejar
+          responsablemente la web, para no causar problemas en su mantenimiento
+        </p>
+        <p class="text-center">
+          Para mas información visita la seccion <strong
+            >Sobre el usuario</strong
+          > para conocer mas información
+        </p>
+        <LinksContainer fullWidth viewTitle={false}>
+          <LinkCard
+            title="Para el usuario"
+            text="Guia de inicio para el usuario"
+            content="user"
+            destiny="iniciar"
+          />
+        </LinksContainer>
+      </div>
+      <div
+        class="animate-slide-in-bottom animate-delay-300 bg-zinc-300 dark:bg-zinc-900 rounded-lg p-2 shadow-xl flex flex-col justify-center items-center"
+      >
+        <div class="bg-zinc-300 dark:bg-zinc-950 p-2 text-2xl rounded text-red-600 dark:text-red-300">
+          <FaCode />
+        </div>
+        <h2 class="p-0 m-0">Para los desarrolladores</h2>
+        <p class="text-center">
+          A los desarolladores se les proporcionará información mas detallada
+          ademas de conceptos que se deben tener en cuenta para el mantenimiento
+          de la web, aportando con mejoras, correcciones, etc.
+        </p>
+        <p class="text-center">
+          Visita las diferentes secciones para el desarrollador donde
+          encontraras informacion util
+        </p>
+        <LinksContainer fullWidth viewTitle={false}>
+          <LinkCard
+            title="Para el desarrollador"
+            text="Como empezar como desarrollador"
+            content="dev"
+            destiny="como-iniciar"
+          />
+        </LinksContainer>
+      </div>
+    </article>
+  </section>
 </DocsLayout>
+<style>
+  html .background {
+  width: 100%;
+  height: 100%;
+  --color: #E1E1E1;
+  background-color: #F3F3F3;
+  background-image: linear-gradient(0deg, transparent 24%, var(--color) 25%, var(--color) 26%, transparent 27%,transparent 74%, var(--color) 75%, var(--color) 76%, transparent 77%,transparent),
+      linear-gradient(90deg, transparent 24%, var(--color) 25%, var(--color) 26%, transparent 27%,transparent 74%, var(--color) 75%, var(--color) 76%, transparent 77%,transparent);
+  background-size: 55px 55px;
+}
+  html.dark .background {
+    width: 100%;
+    height: 100%;
+    --color: #4242424d;
+    background-color: #0a0a0a;
+    background-image: linear-gradient(
+        0deg,
+        transparent 24%,
+        var(--color) 25%,
+        var(--color) 26%,
+        transparent 27%,
+        transparent 74%,
+        var(--color) 75%,
+        var(--color) 76%,
+        transparent 77%,
+        transparent
+      ),
+      linear-gradient(
+        90deg,
+        transparent 24%,
+        var(--color) 25%,
+        var(--color) 26%,
+        transparent 27%,
+        transparent 74%,
+        var(--color) 75%,
+        var(--color) 76%,
+        transparent 77%,
+        transparent
+      );
+    background-size: 54px 55px;
+  }
+</style>

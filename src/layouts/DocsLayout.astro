@@ -7,7 +7,7 @@ import {SEO} from "astro-seo"
 const url = Astro.url;
 const pathname = Astro.url.pathname
 const lang = getLangFromUrl(url);
-const { pageTitle, icon = "/imgs/docs.png", data } = Astro.props;
+const { pageTitle, icon = "/imgs/docs.png", data, fullWdith = false} = Astro.props;
 import "./../styles/global.css";
 import NavLinkDocs from "../components/docs/NavLinkDocs.astro";
 import ThemeIcon from "../components/ChangeUI/ThemeIcon.astro";
@@ -57,7 +57,7 @@ const keyTags = tags.join(",")
       <NavLinkDocs />
     </aside>
     <main
-      class="bg-white dark:bg-zinc-950 overflow-y-auto py-8 px-2 w-full md:w-2/3 mx-auto container [grid-area:main]"
+      class={`bg-white dark:bg-zinc-950 overflow-y-auto w-full ${(!fullWdith) ? "md:w-2/3 py-8 px-2" : ""} mx-auto container [grid-area:main]`}
     >
       <slot />
     </main>
@@ -67,7 +67,7 @@ const keyTags = tags.join(",")
         href="https://github.com/UnCompa/Proyecto-UEFP"
         class="rounded-xl p-1 h-10 w-10 flex items-center justify-center bg-zinc-200 dark:bg-zinc-900 shadow-2xl dark:hover:bg-red-200 dark:hover:text-black text-dark fill-black hover:bg-red-500 hover:text-white dark:text-white transition-all"
         >
-        <FaGithub className="text-xl"/>
+        <FaGithub className="text-xl text-black dark:text-white"/>
         </a>
         <ThemeIcon />
         <ChangeLanguage lang={lang} url={pathname} thin></ChangeLanguage>

@@ -1,39 +1,151 @@
 ---
-import LinkCard from "../../../components/docs/LinkCard.astro";
+import DocsLayout from "../../../layouts/DocsLayout.astro";
 import LinksContainer from "../../../components/docs/LinksContainer.astro";
-import HeroImg from "../../../assets/userDocs/banner.png"
-import BaseLayout from "../../../layouts/DocsLayout.astro";
+import LinkCard from "../../../components/docs/LinkCard.astro";
+import HeroImg from "../../../assets/userDocs/banner.png";
 import { Image } from "astro:assets";
+import { FaCode, FaUser } from "react-icons/fa6";
 ---
 
-<BaseLayout pageTitle="Docs | UEFP">
-  <h1>Documentation</h1>
-  <Image id="cover-img" alt="Imagen sobre la documentacion de la  UEFP" src={HeroImg} loading="lazy"/>
-  <p>
-    Welcome to the documentation about the Pichincha public educational unit,
-    here you will find useful information to understand how the page works.
-  </p>
-  <h2>For the user</h2>
-  <p>
-    A guide has been prepared for the user on how to responsibly manage the
-    website, to avoid causing problems in its maintenance.
-  </p>
-  <p>
-    For more information, visit the <strong>About the user</strong> section to learn
-    more.
-  </p>
-  <h2>For developers</h2>
-  <p>
-    Developers will be provided with more detailed information as well as
-    concepts that must be taken into account for the maintenance of the website,
-    contributing with improvements, corrections, etc.
-  </p>
-  <p>
-    Visit the different developer sections where you will find useful
-    information.
-  </p>
-  <LinksContainer>
-    <LinkCard title="For the user" text="Getting Started" content="user" destiny="iniciar"/>
-    <LinkCard title="For the user" text="Getting Started" content="started" destiny="dev"/>
-  </LinksContainer>
-</BaseLayout>
+<DocsLayout
+  pageTitle="Documentación | UEFP"
+  icon="/imgs/UEFPescudoblanco.png"
+  fullWdith={true}
+>
+  <section class="background overflow-hidden container mx-auto px-4">
+    <h1
+      class="no-underline font-extrabold font-Rubik my-12 text-3xl md:text-4xl"
+    >
+      Unidad Educativa Fiscal Pichincha <br />
+      <span
+        class="font-bold animate-fade-in bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-orange-500"
+        >Docs</span
+      >
+    </h1>
+    <div class="w-full flex justify-center">
+      <p class="font-light w-full px-2 lg:w-2/3 text-center">
+        Welcome to the documentation on the Pichincha fiscal educational unit,
+        here you will find useful information to understand how the page works.
+      </p>
+    </div>
+    <article class="grid grid-cols-1 lg:grid-cols-2 gap-4 my-4">
+      <div
+        class="animate-slide-in-bottom bg-zinc-300 dark:bg-zinc-900 rounded-lg p-2 shadow-xl flex flex-col justify-center items-center"
+      >
+        <div
+          class="bg-zinc-300 dark:bg-zinc-950 p-2 text-2xl rounded text-red-600 dark:text-red-300"
+        >
+          <FaUser />
+        </div>
+        <h2 class="p-0 m-0">For the user</h2>
+        <p class="text-center">
+          A user guide has been prepared on how to handle responsibly the
+          website, so as not to cause problems in its maintenance
+        </p>
+        <p class="text-center">
+          For more information visit the section <strong>For the user</strong> to
+          know more information
+        </p>
+        <LinksContainer fullWidth viewTitle={false}>
+          <LinkCard
+            title="For the user"
+            text="Guide the initial"
+            content="user"
+            destiny="iniciar"
+          />
+        </LinksContainer>
+      </div>
+      <div
+        class="animate-slide-in-bottom animate-delay-300 bg-zinc-300 dark:bg-zinc-900 rounded-lg p-2 shadow-xl flex flex-col justify-center items-center"
+      >
+        <div
+          class="bg-zinc-300 dark:bg-zinc-950 p-2 text-2xl rounded text-red-600 dark:text-red-300"
+        >
+          <FaCode />
+        </div>
+        <h2 class="p-0 m-0">For developers</h2>
+        <p class="text-center">
+          Developers will be provided with more detailed information in addition
+          to concepts that must be taken into account for maintenance of the
+          website, contributing with improvements, corrections, etc.
+        </p>
+        <p class="text-center">
+          Visit the different sections for the developer where you will find
+          useful information
+        </p>
+        <LinksContainer fullWidth viewTitle={false}>
+          <LinkCard
+            title="For developers"
+            text="Developer Guide"
+            content="dev"
+            destiny="como-iniciar"
+          />
+        </LinksContainer>
+      </div>
+    </article>
+  </section>
+</DocsLayout>
+<style>
+  html .background {
+    width: 100%;
+    height: 100%;
+    --color: #e1e1e1;
+    background-color: #f3f3f3;
+    background-image: linear-gradient(
+        0deg,
+        transparent 24%,
+        var(--color) 25%,
+        var(--color) 26%,
+        transparent 27%,
+        transparent 74%,
+        var(--color) 75%,
+        var(--color) 76%,
+        transparent 77%,
+        transparent
+      ),
+      linear-gradient(
+        90deg,
+        transparent 24%,
+        var(--color) 25%,
+        var(--color) 26%,
+        transparent 27%,
+        transparent 74%,
+        var(--color) 75%,
+        var(--color) 76%,
+        transparent 77%,
+        transparent
+      );
+    background-size: 55px 55px;
+  }
+  html.dark .background {
+    width: 100%;
+    height: 100%;
+    --color: #4242424d;
+    background-color: #0a0a0a;
+    background-image: linear-gradient(
+        0deg,
+        transparent 24%,
+        var(--color) 25%,
+        var(--color) 26%,
+        transparent 27%,
+        transparent 74%,
+        var(--color) 75%,
+        var(--color) 76%,
+        transparent 77%,
+        transparent
+      ),
+      linear-gradient(
+        90deg,
+        transparent 24%,
+        var(--color) 25%,
+        var(--color) 26%,
+        transparent 27%,
+        transparent 74%,
+        var(--color) 75%,
+        var(--color) 76%,
+        transparent 77%,
+        transparent
+      );
+    background-size: 54px 55px;
+  }
+</style>
