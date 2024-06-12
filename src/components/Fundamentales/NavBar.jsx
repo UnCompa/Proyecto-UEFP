@@ -4,7 +4,14 @@ import { Bars, X } from "../../icons/Icons.jsx";
 import ChangeLanguaje from "../ChangeUI/ChangeLanguaje.jsx";
 import { getLangFromUrl, useTranslations } from "../../i18n/utils.ts";
 import { supabase } from "../../lib/supabase.ts";
-import { FaCircleUser, FaEnvelopeCircleCheck, FaFile, FaGraduationCap, FaHouse, FaSchoolFlag } from "react-icons/fa6";
+import {
+  FaCircleUser,
+  FaEnvelopeCircleCheck,
+  FaFile,
+  FaGraduationCap,
+  FaHouse,
+  FaSchoolFlag,
+} from "react-icons/fa6";
 import { FaChevronDown, FaImage, FaRegUser, FaUsers } from "react-icons/fa6";
 import LayoutDashboardIcon from "../../icons/LayoutDashboardIcon.jsx";
 
@@ -48,7 +55,13 @@ function NavBar({ url, pathName, children, refreshToken, accessToken }) {
       mensaje1 = "Academicos";
     } else if (urlString.includes("about")) {
       mensaje1 = "Sobre Nosotros";
-    } else if (urlString.includes("/es")) {
+    } else if (urlString.includes("/es/signin")) {
+      mensaje1 = "Iniciar Sesion";
+    } else if (urlString.includes("/es/register")) {
+      mensaje1 = "Registrarse";
+    } else if (urlString.includes("/es/gallery")) {
+      mensaje1 = "Galeria";
+    } else {
       mensaje1 = "Inicio";
     }
   }
@@ -59,7 +72,14 @@ function NavBar({ url, pathName, children, refreshToken, accessToken }) {
       mensaje1 = "Academics";
     } else if (urlString.includes("about")) {
       mensaje1 = "About us";
-    } else if (urlString.includes("/en")) {
+    } else if (urlString.includes("/en/signin")) {
+      mensaje1 = "Login";
+    } else if (urlString.includes("/en/register")) {
+      mensaje1 = "Register";
+    } else if (urlString.includes("/en/gallery")) {
+      mensaje1 = "Gallery";
+    }
+    else {
       mensaje1 = "Home";
     }
   }
@@ -91,17 +111,19 @@ function NavBar({ url, pathName, children, refreshToken, accessToken }) {
 
   useEffect(() => {
     if (typeof window !== "undefined") {
-      const darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+      const darkModeMediaQuery = window.matchMedia(
+        "(prefers-color-scheme: dark)"
+      );
       setIsDarkMode(darkModeMediaQuery.matches);
 
       const handleDarkModeChange = (event) => {
         setIsDarkMode(event.matches);
       };
 
-      darkModeMediaQuery.addEventListener('change', handleDarkModeChange);
+      darkModeMediaQuery.addEventListener("change", handleDarkModeChange);
 
       return () => {
-        darkModeMediaQuery.removeEventListener('change', handleDarkModeChange);
+        darkModeMediaQuery.removeEventListener("change", handleDarkModeChange);
       };
     }
   }, []);
@@ -117,7 +139,7 @@ function NavBar({ url, pathName, children, refreshToken, accessToken }) {
               ? "/imgs/UEFPescudoblanco.png"
               : "/imgs/UEFPescudoblack.png"
           }
-          className="h-20 lg:h-24 hover:saturate-150 active:opacity-80"
+          className="h-20 lg:h-24 hover:saturate-150 active:opac"
           alt="Unidad Educativa Fiscal Pichincha | Escudo Logo"
           loading="lazy"
         />
@@ -141,12 +163,21 @@ function NavBar({ url, pathName, children, refreshToken, accessToken }) {
           </button>
         </li>
         <li>
-          <NavLink to={urls.home} text={t("nav-inicio")} tabIndex="2" aria-label="Inicio">
+          <NavLink
+            to={urls.home}
+            text={t("nav-inicio")}
+            tabIndex="2"
+            aria-label="Inicio"
+          >
             <FaHouse />
           </NavLink>
         </li>
         <li className="group relative p-1">
-          <button className="group flex gap-x-2 items-center hover:bg-zinc-300 dark:hover:bg-zinc-700 focus:bg-zinc-300 dark:focus:bg-zinc-700 rounded-xl py-2 px-2 transition-colors" tabIndex="3" aria-label={lang === "es" ? "Institución" : "Institution"}>
+          <button
+            className="group flex gap-x-2 items-center hover:bg-zinc-300 dark:hover:bg-zinc-700 focus:bg-zinc-300 dark:focus:bg-zinc-700 rounded-xl py-2 px-2 transition-colors"
+            tabIndex="3"
+            aria-label={lang === "es" ? "Institución" : "Institution"}
+          >
             <span className="p-1 text-white rounded-lg bg-zinc-800 text-xl group-hover:text-white group-focus:text-white">
               <FaSchoolFlag />
             </span>
@@ -159,40 +190,75 @@ function NavBar({ url, pathName, children, refreshToken, accessToken }) {
           </button>
           <ul className="hidden relative top-2 lg:absolute lg:top-12 left-0 w-full group-hover:flex group-hover:flex-col group-focus:flex group-focus:flex-col gap-y-2 text-black dark:text-white transition-all bg-zinc-200 dark:bg-zinc-900 rounded-xl z-50">
             <li>
-              <NavLink to={urls.about} text={t("nav-sobrenosotros")} tabIndex="4" aria-label={t("nav-sobrenosotros")}>
+              <NavLink
+                to={urls.about}
+                text={t("nav-sobrenosotros")}
+                tabIndex="4"
+                aria-label={t("nav-sobrenosotros")}
+              >
                 <FaUsers />
               </NavLink>
             </li>
             <li>
-              <NavLink to={`/${lang}/gallery`} text={(lang === "es") ? "Galería" : "Gallery"} tabIndex="5" aria-label={(lang === "es") ? "Galería" : "Gallery"}>
+              <NavLink
+                to={`/${lang}/gallery`}
+                text={lang === "es" ? "Galería" : "Gallery"}
+                tabIndex="5"
+                aria-label={lang === "es" ? "Galería" : "Gallery"}
+              >
                 <FaImage />
               </NavLink>
             </li>
             <li>
-              <NavLink to={urls.academics} text={t("nav-academicos")} tabIndex="6" aria-label={t("nav-academicos")}>
+              <NavLink
+                to={urls.academics}
+                text={t("nav-academicos")}
+                tabIndex="6"
+                aria-label={t("nav-academicos")}
+              >
                 <FaGraduationCap />
               </NavLink>
             </li>
           </ul>
         </li>
         <li>
-          <NavLink to={urls.contact} text={t("nav-contacto")} tabIndex="7" aria-label={t("nav-contacto")}>
+          <NavLink
+            to={urls.contact}
+            text={t("nav-contacto")}
+            tabIndex="7"
+            aria-label={t("nav-contacto")}
+          >
             <FaEnvelopeCircleCheck />
           </NavLink>
         </li>
         <li>
-          <NavLink to={urls.docs} text={t("footer-contacto-doc")} tabIndex="8" aria-label={t("footer-contacto-doc")}>
+          <NavLink
+            to={urls.docs}
+            text={t("footer-contacto-doc")}
+            tabIndex="8"
+            aria-label={t("footer-contacto-doc")}
+          >
             <FaFile />
           </NavLink>
         </li>
         <ul className="flex items-end gap-x-4 p-4 h-full lg:items-center">
           <li>
             {isUser ? (
-              <a href={`/${lang}/dashboard`} className="h-full w-full" tabIndex="9" aria-label={t("dashboard-link")}>
+              <a
+                href={`/${lang}/dashboard`}
+                className="h-full w-full"
+                tabIndex="9"
+                aria-label={t("dashboard-link")}
+              >
                 <LayoutDashboardIcon className="h-11 w-11 shadow-2xl p-2 bg-zinc-200 hover:bg-red-600 hover:text-white dark:bg-zinc-900 dark:hover:bg-red-200 dark:hover:text-black transition-all rounded-xl" />
               </a>
             ) : (
-              <a href={`/${lang}/signin`} className="h-full w-full" tabIndex="10" aria-label={t("signin-link")}>
+              <a
+                href={`/${lang}/signin`}
+                className="h-full w-full"
+                tabIndex="10"
+                aria-label={t("signin-link")}
+              >
                 <FaRegUser className="h-max w-max shadow-2xl text-2xl p-2 bg-zinc-200 hover:bg-red-600 hover:text-white dark:bg-zinc-900 dark:hover:bg-red-200 dark:hover:text-black transition-all rounded-xl" />
               </a>
             )}

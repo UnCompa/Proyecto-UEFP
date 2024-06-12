@@ -4,50 +4,48 @@ import { FaHouse, FaX, FaTag, FaBars, FaRightToBracket } from "react-icons/fa6";
 import { getLangFromUrl } from "../../i18n/utils";
 import { Image } from "astro:assets";
 const lang = getLangFromUrl(Astro.url)
-import UEFPblanco from "../../assets/logos/UEFPescudoblanco.png"
-import UEFPblack from "../../assets/logos/UEFPescudoblack.png"
 ---
 
-<script is:inline>
-  document.addEventListener("DOMContentLoaded", () => {
-    const html = document.querySelector("html");
+<script async>
+  function handleClassChange() {
     const img = document.getElementById("logo");
-    const updateImageSrc = () => {
-      if (html.classList.contains("dark")) {
-        img.src = UEFPblanco;
+    const htmlElement = document.querySelector("html");
+    const classes = htmlElement?.classList;
+
+    if (classes?.contains("dark")) {
+      // El tema cambió a oscuro
+      if (img instanceof HTMLImageElement) {
+        img.src = "/imgs/UEFPescudoblanco.png";
       } else {
-        img.src = UEFPblack;
+        console.error("El elemento no es una imagen");
       }
-    };
-    updateImageSrc();
-    const observer = new MutationObserver((mutationsList) => {
-      for (let mutation of mutationsList) {
-        if (mutation.attributeName === "class") {
-          updateImageSrc();
-        }
+    } else {
+      // El tema cambió a claro
+      if (img instanceof HTMLImageElement) {
+        img.src = "/imgs/UEFPescudoblack.png";
+      } else {
+        console.error("El elemento no es una imagen");
       }
-    });
-    observer.observe(html, { attributes: true });
-    window.addEventListener("beforeunload", () => {
-      observer.disconnect();
-    });
+    }
+  }
+
+  // Observar cambios en la clase del elemento <html>
+  document.addEventListener("DOMContentLoaded", () => {
+    handleClassChange(); // Llama a la función al cargar la página para establecer el tema inicial
+    document.addEventListener("transitionend", handleClassChange); // Observa cambios de clase
   });
 </script>
 <header
-  class="[grid-area:header] sticky text-sm md:text-base px-2 top-0 h-20 w-full bg-zinc-100 dark:bg-zinc-900 flex justify-between items-center z-10 shadow-xl md:shadow-none shadow-red-500/10"
+  class="[grid-area:header] sticky text-sm md:text-base px-2 top-0 h-20 w-full bg-zinc-200 dark:bg-zinc-950 flex justify-between items-center z-10 shadow-xl md:shadow-none shadow-red-500/10"
 >
   <div class="h-full w-full flex items-center justify-between gap-x-4 px-8">
     <div class="flex items-center justify-start gap-1">
       <a href="/" class="w-full h-full">
-        <Image
+        <img
           id="logo"
+          src="/imgs/UEFPescudoblanco.png"
           class="h-14 w-24 p-0 m-0 sm:h-20 sm:w-fit object-contain hover:saturate-150 active:opacity-90"
-          src={UEFPblanco}
           alt="Escudo de la unidad educativa fiscal pichincha"
-          height={120}
-          width={120}
-          quality="high"
-          format="webp"
         />
       </a>
       <h2 class="hidden md:block no-underline text-sm sm:text-2xl">Docs</h2>
