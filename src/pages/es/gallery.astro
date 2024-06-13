@@ -9,11 +9,25 @@ import ViewGalleryImage from "../../components/galeria/ViewGalleryImage";
 const lang = getLangFromUrl(Astro.url);
 ---
 
-<Layout title="Galeria | UEFP">
+<Layout
+  title="Galeria | UEFP"
+  description="Explora las imagenes destacadas de la UEFP en esta galeria"
+  keywords="uefp galeria, galeria uefp, imagenes uefp, uefp imagenes"
+  openGraph={{
+    basic: {
+      type: "website",
+      title: "Imagen sobre la galeria | UEFP",
+      image: "https://i.postimg.cc/T1dx5tQH/Galer-a.png",
+      url: "https://unidad-educativa-fiscal-pichincha.vercel.app/es/gallery",
+    },
+  }}
+>
   <Navigation />
-  <main class="h-full font-Rubik bg-gradient-to-tr from-slate-200 to-slate-300 dark:from-slate-800 dark:to-slate-900">
+  <main
+    class="h-full font-Rubik bg-gradient-to-tr from-slate-200 to-slate-300 dark:from-slate-800 dark:to-slate-900"
+  >
     <section>
-      <ViewGalleryImage client:load/>
+      <ViewGalleryImage client:load />
     </section>
     <section class="h-full flex justify-center">
       <h1 class="font-bold py-4 text-5xl lg:text-7xl">Galeria</h1>

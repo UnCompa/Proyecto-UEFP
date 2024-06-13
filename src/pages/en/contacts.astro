@@ -21,7 +21,20 @@ const t = useTranslations(lang);
     duration: 500,
   });
 </script>
-<Layout title="Contactos" icon="/imgs/UEFPescudoblanco.png">
+<Layout
+  title="Contactos"
+  icon="/imgs/UEFPescudoblanco.png"
+  description="Send your valuable information through this section"
+  keywords="unidad educativa fiscal pichincha contacts, uefp contacts"
+  openGraph={{
+    basic: {
+      type: "website",
+      title: "Image about contacts | UEFP",
+      url: "https://unidad-educativa-fiscal-pichincha.vercel.app/en/contacts",
+      image: "https://i.postimg.cc/3wzWpQDf/Contact.png"
+    }
+  }}
+>
   <Navigation />
   <div
     class="h-full grid grid-cols-1 lg:grid-cols-2 p-4 lg:p-8 place-content-center"

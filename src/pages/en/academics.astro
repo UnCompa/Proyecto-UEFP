@@ -15,7 +15,20 @@ const { data: levelsData } = await supabase
   .order("id", { ascending: true });
 ---
 
-<Layout title="Academicos" icon="/imgs/UEFPescudoblanco.png">
+<Layout
+  title="Academicos"
+  icon="/imgs/UEFPescudoblanco.png"
+  description="Find the academic offers here, inform yourself and apply to join!!"
+  keywords="unidad educativa fiscal pichincha offerts, uefp offerts, uefp academics"
+  openGraph={{
+    basic: {
+      type: "website",
+      title: "Image about academics | UEFP",
+      url: "https://unidad-educativa-fiscal-pichincha.vercel.app/en/academics",
+      image: "https://i.postimg.cc/t4C1G5jk/Academics.png"
+    }
+  }}
+>
   <Navigation />
   <main
     class="grid-academics relative w-full h-full bg-zinc-50 dark:bg-zinc-950"
