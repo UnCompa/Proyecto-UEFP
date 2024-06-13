@@ -15,7 +15,19 @@ if (accessToken && refreshToken) {
 }
 ---
 
-<Layout title="Login | UEFP" icon="">
+<Layout
+  title="Login | UEFP"
+  description="Image referring to registration in"
+  keywords="uefp login"
+  openGraph={{
+    basic: {
+      title: "Image referring to logging in",
+      image: "https://i.postimg.cc/pV3ZVhxC/Log-in.png",
+      url: Astro.url.href,
+      type: "website",
+    },
+  }}
+>
   <Navigation />
   <main
     class="w-full h-full bg-zinc-100 dark:bg-zinc-800 px-4 py-12 grid grid-cols-1 lg:grid-cols-2"
@@ -28,9 +40,7 @@ if (accessToken && refreshToken) {
           class="h-24 w-72 bg-red-500/20 absolute rounded-full blur-xl -top-5 z-10 animate-pulse-fade-in animate-iteration-count-infinite animate-duration-1000 animate-direction-alternate-reverse"
         >
         </div>
-        <h1 class="text-5xl font-bold animate-blurred-fade-in">
-          Log in
-        </h1>
+        <h1 class="text-5xl font-bold animate-blurred-fade-in">Log in</h1>
         <div
           class="h-1 my-2 w-1/2 bg-gradient-to-r from-purple-500 via-red-500 to-orange-400 rounded-full"
         >

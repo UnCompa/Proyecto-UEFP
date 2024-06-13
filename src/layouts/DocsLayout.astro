@@ -3,18 +3,23 @@ import { ViewTransitions } from "astro:transitions";
 import MarkDownNav from "../components/docs/MarkDownNav.astro";
 import { getLangFromUrl } from "../i18n/utils";
 import SpeedInsights from "@vercel/speed-insights/astro";
-import {SEO} from "astro-seo"
+import { SEO } from "astro-seo";
 const url = Astro.url;
-const pathname = Astro.url.pathname
+const pathname = Astro.url.pathname;
 const lang = getLangFromUrl(url);
-const { pageTitle, icon = "/imgs/docs.png", data, fullWdith = false} = Astro.props;
+const {
+  pageTitle,
+  icon = "/imgs/docs.png",
+  data,
+  fullWdith = false,
+} = Astro.props;
 import "./../styles/global.css";
 import NavLinkDocs from "../components/docs/NavLinkDocs.astro";
 import ThemeIcon from "../components/ChangeUI/ThemeIcon.astro";
 import ChangeLanguage from "../components/ChangeUI/ChangeLanguaje";
 import { FaGithub } from "react-icons/fa6";
-const tags = data?.tags || []
-const keyTags = tags.join(",")
+const tags = data?.tags || [];
+const keyTags = tags.join(",");
 ---
 
 <!doctype html>
@@ -35,48 +40,52 @@ const keyTags = tags.join(",")
       href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="/codeStyle.css">
-    <meta name="keywords" content={`${keyTags}`}>
+    <link rel="stylesheet" href="/codeStyle.css" />
+    <meta name="keywords" content={`${keyTags}`} />
     <SEO
-    title={pageTitle}
-    description={data ? data.description : ""}
-    openGraph={{
-      basic: {
-        title: `${data?.title} | UEFP • ${data?.author}` || "",
-        type: "website",
-        image: data?.image?.url || "/"
-      }
-    }}
+      title={pageTitle}
+      description={data ? data.description : ""}
+      openGraph={{
+        basic: {
+          title: `${data?.title} | UEFP • ${data?.author}` || "",
+          type: "website",
+          image: data?.image?.url || (lang === "es") ? "https://i.postimg.cc/hjyd5w4M/Documentaci-n.png" : "https://i.postimg.cc/VN4rJTt1/Docs.png",
+          url: Astro.url.href
+        },
+      }}
     />
     <SpeedInsights />
     <ViewTransitions />
   </head>
   <body class="grid-layout bg-white dark:bg-zinc-950 h-full">
     <MarkDownNav lang={lang} />
-    <aside class="hidden overflow-y-auto md:block bg-zinc-100 dark:bg-zinc-900 p-4 sticky [grid-area:aside]">
+    <aside
+      class="hidden overflow-y-auto md:block bg-zinc-100 dark:bg-zinc-900 p-4 sticky [grid-area:aside]"
+    >
       <NavLinkDocs />
     </aside>
     <main
-      class={`bg-white dark:bg-zinc-950 overflow-y-auto w-full ${(!fullWdith) ? "md:w-2/3 py-8 px-2" : ""} mx-auto container [grid-area:main]`}
+      class={`bg-white dark:bg-zinc-950 overflow-y-auto w-full ${!fullWdith ? "md:w-2/3 py-8 px-2" : ""} mx-auto container [grid-area:main]`}
     >
       <slot />
     </main>
     <div class="h-max w-max fixed bottom-0 right-0 z-10 flex items-end">
       <div class="flex h-10 w-max m-4 gap-2 list-none">
         <a
-        href="https://github.com/UnCompa/Proyecto-UEFP"
-        class="rounded-xl p-1 h-10 w-10 flex items-center justify-center bg-zinc-200 dark:bg-zinc-900 shadow-2xl dark:hover:bg-red-200 dark:hover:text-black text-dark fill-black hover:bg-red-500 hover:text-white dark:text-white transition-all"
+          href="https://github.com/UnCompa/Proyecto-UEFP"
+          class="rounded-xl p-1 h-10 w-10 flex items-center justify-center bg-zinc-200 dark:bg-zinc-900 shadow-2xl dark:hover:bg-red-200 dark:hover:text-black text-dark fill-black hover:bg-red-500 hover:text-white dark:text-white transition-all"
         >
-        <FaGithub className="text-xl text-black dark:text-white"/>
+          <FaGithub className="text-xl text-black dark:text-white" />
         </a>
         <ThemeIcon />
-        <ChangeLanguage lang={lang} url={pathname} thin></ChangeLanguage>
+        <ChangeLanguage lang={lang} url={pathname} thin />
       </div>
     </div>
-  </body><style>
-    aside {
-      height: calc(100vh - 5rem);
-      top: 5em;
-    }
-  </style>
+    <style>
+      aside {
+        height: calc(100vh - 5rem);
+        top: 5em;
+      }
+    </style>
+  </body>
 </html>
