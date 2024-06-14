@@ -7,6 +7,7 @@ import UploadVideoNews from "../../../components/sections/UploadVideoNews";
 import DashBoardBase from "../../../layouts/DashBoardBase.astro";
 import { supabase } from "../../../lib/supabase";
 import dayjs from "dayjs";
+import VideosList from "../../../components/dashboard/news/VideosList";
 const { cookies, redirect } = Astro;
 const url = Astro.url;
 const accessToken = cookies.get("sb-access-token");
@@ -69,32 +70,34 @@ console.log(videos_metadata);
             </section>
           )
         }
-        <section
-          class="my-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
-        >
-          {
-            videos_metadata?.map((item: any) => (
-              <div class="bg-zinc-200 dark:bg-zinc-900 snap-center border border-red-500 dark:border-red-300 h-max w-full">
-                <div>
-                  <VideoPlayer url={item.video_url} />
+        {
+          roles.includes("admin") ? (
+            <VideosList videosMetadata={videos_metadata} client:load />
+          ) : (
+            <section class="my-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {videos_metadata?.map((item: any) => (
+                <div class="bg-zinc-200 dark:bg-zinc-900 snap-center border border-red-500 dark:border-red-300 h-max w-full">
+                  <div>
+                    <VideoPlayer url={item.video_url} />
+                  </div>
+                  <div class="grid grid-cols-2">
+                    <span class="flex items-center justify-center gap-2">
+                      <FaHeart className="dark:text-red-300" />
+                      {item.likes}
+                    </span>
+                    <span>
+                      Creado en: {dayjs(item.created_at).format("DD/MM/YYYY")}
+                    </span>
+                  </div>
+                  <div class="p-2">
+                    <h2 class="text-xl font-extrabold">{item.title}</h2>
+                    <p class="font-light">{item.description}</p>
+                  </div>
                 </div>
-                <div class="grid grid-cols-2">
-                  <span class="flex items-center justify-center gap-2">
-                    <FaHeart className="dark:text-red-300" />
-                    {item.likes}
-                  </span>
-                  <span>
-                    Creado en: {dayjs(item.created_at).format("DD/MM/YYYY")}
-                  </span>
-                </div>
-                <div class="p-2">
-                  <h2 class="text-xl font-extrabold">{item.title}</h2>
-                  <p class="font-light">{item.description}</p>
-                </div>
-              </div>
-            ))
-          }
-        </section>
+              ))}
+            </section>
+          )
+        }
       </div>
     </section>
   </main>

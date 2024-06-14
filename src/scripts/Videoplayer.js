@@ -12,6 +12,7 @@ const player = Plyr.setup("video", {
     "fullscreen",
   ],
   keyboard: { focused: true },
+  
 });
 const playerVertical = Plyr.setup("#vertical", {
   controls: [

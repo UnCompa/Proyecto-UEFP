@@ -44,10 +44,11 @@ console.log(backUrl);
   <Navigation />
   <main class="grid grid-cols-1 md:grid-cols-2 my-4">
     <section class="grid">
-      <a href={backUrl} class="bg-zinc-200 dark:bg-zinc-900 rounded w-max text-3xl my-1 p-1 h-max container mx-auto px-4">
+      <a href={backUrl} class="flex gap-2 items-center justify-center bg-zinc-200 dark:bg-zinc-900 rounded w-full text-xl font-Rubik container mx-auto text-center my-1 p-1 h-max px-4">
         <FaArrowLeft/>
+        <span>Volver</span>
       </a>
-      <VideoPlayer url={videoInfo.video_url} />
+      <VideoPlayer thin={false} url={videoInfo.video_url} />
     </section>
     <section class="container mx-auto p-2">
       <h2 class="font-Rubik font-bold text-3xl md:text-4xl">
@@ -67,10 +68,13 @@ console.log(backUrl);
               <CommentsList videoId={id} client:load />
             </>
           ) : (
+            <>
             <div class="bg-zinc-900 flex flex-col justify-center items-center gap-2 my-2 rounded-lg shadow-lg">
               <p class="font-bold text-lg">Inicia sesion para poder comentar</p>
               <a href={`${urlOrigin}/${lang}/signin`} class="bg-red-500 py-1 w-full text-center rounded-br-lg rounded-bl-lg">Iniciar sesion</a>
             </div>
+            <CommentsList videoId={id} client:load />
+            </>
           )
         }
       </div>
