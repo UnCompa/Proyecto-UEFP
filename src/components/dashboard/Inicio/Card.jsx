@@ -1,5 +1,5 @@
 import { FaHome, FaUsers } from "react-icons/fa";
-import { FaEnvelopeOpen, FaGraduationCap, FaImage } from "react-icons/fa6";
+import { FaEnvelopeOpen, FaGraduationCap, FaImage, FaNewspaper } from "react-icons/fa6";
 
 // Mapear los iconos a sus componentes
 const iconMap = {
@@ -8,6 +8,7 @@ const iconMap = {
   academic: FaGraduationCap,
   contact: FaEnvelopeOpen,
   image: FaImage,
+  news: FaNewspaper
 };
 
 const Card = ({ lang, title, description, link, icon, color = "text-red-500" }) => {

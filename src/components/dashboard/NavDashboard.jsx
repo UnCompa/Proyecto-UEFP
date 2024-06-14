@@ -10,7 +10,7 @@ import {
 import Link from "./Link";
 import { getLangFromUrl } from "../../i18n/utils";
 import ChangeLanguaje from '../ChangeUI/ChangeLanguaje'
-import { FaGear, FaImage } from "react-icons/fa6";
+import { FaGear, FaImage, FaNewspaper, FaRegNewspaper } from "react-icons/fa6";
 import LayoutDashboardIcon from "../../icons/LayoutDashboardIcon";
 export default function NavDashboard({ children,url, pathname }) {
   const lang = getLangFromUrl(url)
@@ -100,6 +100,11 @@ export default function NavDashboard({ children,url, pathname }) {
               <li>
                 <Link url={url} to={`/${lang}/dashboard/gallery`} text={lang === "es" ? "Galería" : "Gallery"}>
                   <FaImage />
+                </Link>
+              </li>
+              <li>
+                <Link url={url} to={`/${lang}/dashboard/news`} text={lang === "es" ? "Noticias" : "News"}>
+                  <FaRegNewspaper />
                 </Link>
               </li>
             </ul>

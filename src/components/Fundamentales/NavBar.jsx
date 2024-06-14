@@ -10,6 +10,7 @@ import {
   FaFile,
   FaGraduationCap,
   FaHouse,
+  FaRegNewspaper,
   FaSchoolFlag,
 } from "react-icons/fa6";
 import { FaChevronDown, FaImage, FaRegUser, FaUsers } from "react-icons/fa6";
@@ -211,9 +212,19 @@ function NavBar({ url, pathName, children, refreshToken, accessToken }) {
             </li>
             <li>
               <NavLink
+                to={`/${lang}/news`}
+                text={lang === "es" ? "Noticias" : "News"}
+                tabIndex="6"
+                aria-label={lang === "es" ? "Noticias" : "News"}
+              >
+                <FaRegNewspaper />
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
                 to={urls.academics}
                 text={t("nav-academicos")}
-                tabIndex="6"
+                tabIndex="7"
                 aria-label={t("nav-academicos")}
               >
                 <FaGraduationCap />
@@ -225,7 +236,7 @@ function NavBar({ url, pathName, children, refreshToken, accessToken }) {
           <NavLink
             to={urls.contact}
             text={t("nav-contacto")}
-            tabIndex="7"
+            tabIndex="8"
             aria-label={t("nav-contacto")}
           >
             <FaEnvelopeCircleCheck />
@@ -235,7 +246,7 @@ function NavBar({ url, pathName, children, refreshToken, accessToken }) {
           <NavLink
             to={urls.docs}
             text={t("footer-contacto-doc")}
-            tabIndex="8"
+            tabIndex="9"
             aria-label={t("footer-contacto-doc")}
           >
             <FaFile />
@@ -247,7 +258,7 @@ function NavBar({ url, pathName, children, refreshToken, accessToken }) {
               <a
                 href={`/${lang}/dashboard`}
                 className="h-full w-full"
-                tabIndex="9"
+                tabIndex="10"
                 aria-label={t("dashboard-link")}
               >
                 <LayoutDashboardIcon className="h-11 w-11 shadow-2xl p-2 bg-zinc-200 hover:bg-red-600 hover:text-white dark:bg-zinc-900 dark:hover:bg-red-200 dark:hover:text-black transition-all rounded-xl" />
@@ -256,7 +267,7 @@ function NavBar({ url, pathName, children, refreshToken, accessToken }) {
               <a
                 href={`/${lang}/signin`}
                 className="h-full w-full"
-                tabIndex="10"
+                tabIndex="11"
                 aria-label={t("signin-link")}
               >
                 <FaRegUser className="h-max w-max shadow-2xl text-2xl p-2 bg-zinc-200 hover:bg-red-600 hover:text-white dark:bg-zinc-900 dark:hover:bg-red-200 dark:hover:text-black transition-all rounded-xl" />
@@ -270,7 +281,7 @@ function NavBar({ url, pathName, children, refreshToken, accessToken }) {
       <button
         onClick={handleMenu}
         className="text-black dark:text-white h-6 w-6 block lg:hidden mr-8"
-        tabIndex="11"
+        tabIndex="12"
         aria-label={openMenu ? t("close-menu") : t("open-menu")}
       >
         <Bars />

@@ -1,0 +1,114 @@
+---
+import Navigation from "../../../components/Fundamentales/Navigation.astro";
+import VideoPlayer from "../../../components/Utils/VideoPlayer.astro";
+import Layout from "../../../layouts/Layout.astro";
+import UploadVideoNews from "../../../components/sections/UploadVideoNews";
+import { supabase } from "../../../lib/supabase";
+import dayjs from "dayjs";
+import {FaHeart} from 'react-icons/fa6'
+import { getLangFromUrl } from "../../../i18n/utils";
+interface VideoFile {
+  name: string;
+  id: string;
+  created_at: string;
+  updated_at: string;
+  last_accessed_at: string;
+  metadata: object | null;
+  publicUrl: string;
+}
+
+const { data, error } = await supabase.storage.from("videos").list("");
+
+console.log(data);
+
+// Obtener las URLs públicas y estructurar los datos
+const dataVideos = data?.map((file) => {
+  const { data: publicUrlData } = supabase.storage
+    .from("videos")
+    .getPublicUrl(file.name);
+  const { publicUrl } = publicUrlData;
+  const newData: VideoFile = {
+    publicUrl,
+    ...file,
+  };
+  return newData;
+});
+// Ordenar por fecha de creación
+const sortedVideos = dataVideos?.sort(
+  (a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
+);
+
+// Limitar a los 5 más recientes
+const videos = sortedVideos?.slice(0, 5);
+console.log(videos);
+
+const { data: videos_metadata } = await supabase
+  .from("videos_metadata")
+  .select("*");
+console.log(videos_metadata);
+
+const url = Astro.url.href;
+console.log(url);
+const lang = getLangFromUrl(Astro.url)
+---
+
+<Layout title="Noticias" description="" keywords="">
+  <Navigation />
+  <main class="font-Rubik container mx-auto px-2">
+    <h2 class="text-3xl md:text-4xl font-bold">Ultimas noticias</h2>
+    <div class="h-1 bg-gradient-to-r from-red-500 to-orange-500 my-2"></div>
+    <section
+      class="carrusel flex snap-x snap-mandatory flex-nowrap p-2 overflow-scroll"
+    >
+      {
+        videos?.map((item: any) => (
+          <div class="bg-zinc-200 dark:bg-zinc-900 snap-center border m-4 min-h-52 min-w-96">
+            <VideoPlayer thin={false} url={item.publicUrl} />
+          </div>
+        ))
+      }
+    </section>
+    <h2 class="text-3xl md:text-4xl my-2 font-bold">Noticias</h2>
+    <div class="h-1 bg-gradient-to-r from-red-500 to-orange-500 my-2"></div>
+    <section
+      class="carrusel flex snap-x snap-mandatory flex-nowrap p-2 overflow-scroll"
+    >
+      {
+        videos_metadata?.map((item: any) => (
+          <a
+            href={`${url}/${item.id}`}
+            class="bg-zinc-200 dark:bg-zinc-900 snap-center border border-red-500 dark:border-red-300 m-4 min-h-52 min-w-96 h-max"
+          >
+            <div>
+              <VideoPlayer thin={false} url={item.video_url} />
+            </div>
+            <div class="grid grid-cols-2">
+              <span class="flex items-center justify-center gap-2">
+                <FaHeart className="dark:text-red-300"/>
+                {item.likes}
+              </span>
+              <span>
+                Creado en: {dayjs(item.created_at).format("DD/MM/YYYY")}
+              </span>
+            </div>
+            <div class="p-2">
+              <h2 class="text-xl font-extrabold">{item.title}</h2>
+              <p class="font-light">{item.description}</p>
+            </div>
+          </a>
+        ))
+      }
+    </section>
+  </main>
+</Layout>
+<style>
+  .carrusel {
+    scrollbar-width: thin;
+  }
+  html.dark .carrusel {
+    scrollbar-color: #dddddd #121212;
+  }
+  html .carrusel {
+    scrollbar-color: #121212 #dddddd;
+  }
+</style>

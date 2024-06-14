@@ -66,6 +66,14 @@ export default function MainDashboard({ email, url, user }) {
             icon="image"
             color="text-cyan-500"
           />
+          <Card
+            lang={lang}
+            title={lang === "es" ? "Noticias" : "News"}
+            description={lang === "es" ? "Todo sobre la historia de la institución, agrega y modifica esta sección a través de paneles de ayuda" : "All about the institution's history, add and modify this section through help panels"}
+            link={`/${lang}/dashboard/news`}
+            icon="news"
+            color="text-emerald-500"
+          />
         </section>
       </main>
     </>

@@ -1,0 +1,119 @@
+---
+import { FaHeart } from "react-icons/fa";
+import ThemeIcon from "../../../components/ChangeUI/ThemeIcon.astro";
+import VideoPlayer from "../../../components/Utils/VideoPlayer.astro";
+import NavDashboard from "../../../components/dashboard/NavDashboard";
+import UploadVideoNews from "../../../components/sections/UploadVideoNews";
+import DashBoardBase from "../../../layouts/DashBoardBase.astro";
+import { supabase } from "../../../lib/supabase";
+import dayjs from "dayjs";
+const { cookies, redirect } = Astro;
+const url = Astro.url;
+const accessToken = cookies.get("sb-access-token");
+const refreshToken = cookies.get("sb-refresh-token");
+
+if (!accessToken || !refreshToken) {
+  return redirect("/es/signin");
+}
+
+const { data: dataUser, error } = await supabase.auth.setSession({
+  refresh_token: refreshToken.value,
+  access_token: accessToken.value,
+});
+
+if (error) {
+  cookies.delete("sb-access-token", {
+    path: "/",
+  });
+  cookies.delete("sb-refresh-token", {
+    path: "/",
+  });
+
+  return redirect("/es/signin");
+}
+const { data: userData } = await supabase
+  .from("profiles")
+  .select("*")
+  .eq("id", dataUser.user?.id);
+const roles: string[] = (userData && userData[0]?.roles) || [];
+const pathname = Astro.url.pathname;
+const { data: videos_metadata } = await supabase
+  .from("videos_metadata")
+  .select("*");
+console.log(videos_metadata);
+---
+
+<!-- <ThemeIcon/> -->
+<DashBoardBase title="Panel de control | Pagina principal">
+  <main class="dashboard">
+    <div class="bg-zinc-200 dark:bg-zinc-900 h-full w-full [grid-area:aside]">
+      <NavDashboard url={url} pathname={pathname} client:load={true}>
+        <ThemeIcon />
+      </NavDashboard>
+    </div>
+    <section class="p-4">
+      <div
+        class="p-4 rounded-lg bg-zinc-50 overflow-y-auto dark:bg-zinc-800 w-full h-full [grid-area:main] font-Kanit"
+      >
+        <section>
+          <h1
+            class="text-4xl md:text-5xl font-Rubik font-extrabold text-center"
+          >
+            Noticias
+          </h1>
+        </section>
+        {
+          roles.includes("admin") && (
+            <section>
+              <UploadVideoNews client:load />
+            </section>
+          )
+        }
+        <section
+          class="my-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
+        >
+          {
+            videos_metadata?.map((item: any) => (
+              <div class="bg-zinc-200 dark:bg-zinc-900 snap-center border border-red-500 dark:border-red-300 h-max w-full">
+                <div>
+                  <VideoPlayer url={item.video_url} />
+                </div>
+                <div class="grid grid-cols-2">
+                  <span class="flex items-center justify-center gap-2">
+                    <FaHeart className="dark:text-red-300" />
+                    {item.likes}
+                  </span>
+                  <span>
+                    Creado en: {dayjs(item.created_at).format("DD/MM/YYYY")}
+                  </span>
+                </div>
+                <div class="p-2">
+                  <h2 class="text-xl font-extrabold">{item.title}</h2>
+                  <p class="font-light">{item.description}</p>
+                </div>
+              </div>
+            ))
+          }
+        </section>
+      </div>
+    </section>
+  </main>
+</DashBoardBase>
+<style>
+  .dashboard {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    grid-template-rows: 100vh;
+    grid-template-areas: "aside main";
+  }
+  @media (max-width: 1024px) {
+    .dashboard {
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-rows: 96px 1fr;
+      grid-template-areas:
+        "aside"
+        "main";
+    }
+  }
+</style>

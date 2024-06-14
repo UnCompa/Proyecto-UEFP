@@ -1,0 +1,85 @@
+---
+import { FaArrowLeft } from "react-icons/fa6";
+import Navigation from "../../../components/Fundamentales/Navigation.astro";
+import VideoPlayer from "../../../components/Utils/VideoPlayer.astro";
+import LikedVideo from "../../../components/sections/LikedVideo";
+import Layout from "../../../layouts/Layout.astro";
+import { supabase } from "../../../lib/supabase";
+import AddComment from "../../../components/sections/AddComment";
+import CommentsList from "../../../components/sections/CommentList";
+import ClipboardVideo from "../../../components/sections/ClipboardVideo";
+import ShareModal from "../../../components/sections/ShareModal";
+import { getLangFromUrl } from "../../../i18n/utils";
+// Informacion del video segun el id
+const { id } = Astro.params;
+console.log(id);
+const { data } = await supabase
+  .from("videos_metadata")
+  .select("*")
+  .eq("id", id);
+const videoInfo = data ? data[0] : data;
+console.log(videoInfo);
+// Datos del usuario
+const { cookies, redirect } = Astro;
+const accessToken = cookies.get("sb-access-token");
+const refreshToken = cookies.get("sb-refresh-token");
+
+const { data: dataUser, error } = await supabase.auth.setSession({
+  refresh_token: refreshToken?.value ?? "",
+  access_token: accessToken?.value ?? "",
+});
+console.log(dataUser);
+
+const shareUrl = Astro.url.href
+console.log(shareUrl);
+const urlOrigin = Astro.url.origin
+console.log(urlOrigin);
+const lang = getLangFromUrl(Astro.url)
+const backUrl = `${urlOrigin}/${lang}/news`
+console.log(backUrl);
+
+---
+
+<Layout title="XD">
+  <Navigation />
+  <main class="grid grid-cols-1 md:grid-cols-2 my-4">
+    <section class="grid">
+      <a href={backUrl} class="bg-zinc-200 dark:bg-zinc-900 rounded w-max text-3xl my-1 p-1 h-max container mx-auto px-4">
+        <FaArrowLeft/>
+      </a>
+      <VideoPlayer url={videoInfo.video_url} />
+    </section>
+    <section class="container mx-auto p-2">
+      <h2 class="font-Rubik font-bold text-3xl md:text-4xl">
+        {videoInfo.title}
+      </h2>
+      <p class="font-Rubik font-light">{videoInfo.description}</p>
+      <div>
+        {
+          dataUser.user ? (
+            <>
+              <div class="grid grid-cols-2 border-t border-b my-2 py-4 border-zinc-500">
+                <LikedVideo user={dataUser.user.id} video={id} client:load />
+                <ClipboardVideo url={shareUrl} client:load/>
+                {/* <ShareModal url={shareUrl} client:load/> */}
+              </div>
+              <AddComment user={dataUser.user.id} videoId={id} client:load />
+              <CommentsList videoId={id} client:load />
+            </>
+          ) : (
+            <div class="bg-zinc-900 flex flex-col justify-center items-center gap-2 my-2 rounded-lg shadow-lg">
+              <p class="font-bold text-lg">Inicia sesion para poder comentar</p>
+              <a href={`${urlOrigin}/${lang}/signin`} class="bg-red-500 py-1 w-full text-center rounded-br-lg rounded-bl-lg">Iniciar sesion</a>
+            </div>
+          )
+        }
+      </div>
+    </section>
+  </main>
+</Layout>
+<script>
+  const likeBtn = document.getElementById("like-btn");
+  likeBtn?.addEventListener("click", () => {
+    console.log("Holas");
+  });
+</script>

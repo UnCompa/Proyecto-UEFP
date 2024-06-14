@@ -3,12 +3,13 @@ import "plyr/dist/plyr.css";
 interface Props {
   url: string;
   vertical?: Boolean;
+  thin?: Boolean,
 }
-const { url, vertical } = Astro.props;
+const { url, vertical, thin = true } = Astro.props;
 ---
 {
   !vertical ? (
-    <div class="w-full lg:w-2/3 h-full mx-auto">
+    <div class={`${!thin ? "w-full" : "w-full lg:w-2/3"} h-full mx-auto`}>
       <div class="p-2 bg-zinc-100 border-black border dark:bg-zinc-900 shadow-2xl max-w-full grid place-content-center">
         <video playsinline controls style="--plyr-color-main: #ff0000;">
           <source src={url} type="video/mp4" />
