@@ -69,8 +69,8 @@ const pathname = Astro.url.pathname
         </div>
         <div class="p-4">
           <form action="" class="flex flex-col gap-4">
-            <InputUpdateSettings idUser={user?.id} client:load />
-            <InputUpdateSettings idUser={user?.id} client:load />
+            <InputUpdateSettings type="username" idUser={user?.id} client:load />
+            <InputUpdateSettings type="username" idUser={user?.id} client:load />
           </form>
         </div>
       </section>
