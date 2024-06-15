@@ -71,7 +71,7 @@ console.log(videos_metadata);
           )
         }
         {
-          roles.includes("admin") ? (
+          roles.includes("admin") || roles.includes("moderator") ? (
             <VideosList videosMetadata={videos_metadata} client:load />
           ) : (
             <section class="my-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">

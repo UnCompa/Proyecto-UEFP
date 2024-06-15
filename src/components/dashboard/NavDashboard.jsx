@@ -115,11 +115,11 @@ export default function NavDashboard({ children,url, pathname }) {
             {lang === "es" ? "Opciones" : "Options"}
           </h2>
           <ul className="flex h-full items-center gap-x-4 flex-wrap">
-            {/* <li className="w-max h-max rounded-xl p-2 bg-zinc-200 dark:bg-zinc-900 shadow-2xl dark:hover:bg-red-200 dark:hover:text-black text-dark fill-black hover:bg-red-500 hover:text-white dark:text-white transition-all">
+            <li className="w-max h-max rounded-xl p-2 bg-zinc-200 dark:bg-zinc-900 shadow-2xl dark:hover:bg-red-200 dark:hover:text-black text-dark fill-black hover:bg-red-500 hover:text-white dark:text-white transition-all">
               <a href={`/${lang}/dashboard/settings`} className="">
               <FaGear className="text-xl"/>
               </a>
-            </li> */}
+            </li>
             <li>{children}</li>
             <ChangeLanguaje lang={lang} url={pathname}/>
             <li>

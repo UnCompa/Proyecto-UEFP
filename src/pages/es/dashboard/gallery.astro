@@ -34,7 +34,6 @@ const imgsUrl = data?.map((file) => {
   const { publicUrl } = data.data;
   return publicUrl;
 });
-console.log(imgsUrl);
 
 const { data: userData } = await supabase
   .from("profiles")
@@ -68,7 +67,7 @@ const pathname = Astro.url.pathname
         </p>
       </section>
       {
-        roles.includes("admin") && (
+        roles.includes("admin") || roles.includes("moderator") && (
           <section>
             <UploadGalery client:load />
           </section>

@@ -21,7 +21,6 @@ interface VideoFile {
 const { data: videos_metadata } = await supabase
   .from("videos_metadata")
   .select("*");
-console.log(videos_metadata);
 
 // Obtener las URLs públicas y estructurar los datos
 const dataVideos = videos_metadata?.map((file) => {
@@ -42,10 +41,8 @@ const sortedVideos = dataVideos?.sort(
 
 // Limitar a los 5 más recientes
 const videos = sortedVideos?.slice(0, 5);
-console.log(videos);
 
 const url = Astro.url.href;
-console.log(url);
 const lang = getLangFromUrl(Astro.url);
 ---
 

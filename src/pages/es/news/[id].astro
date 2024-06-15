@@ -12,13 +12,11 @@ import ShareModal from "../../../components/sections/ShareModal";
 import { getLangFromUrl } from "../../../i18n/utils";
 // Informacion del video segun el id
 const { id } = Astro.params;
-console.log(id);
 const { data } = await supabase
   .from("videos_metadata")
   .select("*")
   .eq("id", id);
 const videoInfo = data ? data[0] : data;
-console.log(videoInfo);
 // Datos del usuario
 const { cookies, redirect } = Astro;
 const accessToken = cookies.get("sb-access-token");
@@ -28,15 +26,11 @@ const { data: dataUser, error } = await supabase.auth.setSession({
   refresh_token: refreshToken?.value ?? "",
   access_token: accessToken?.value ?? "",
 });
-console.log(dataUser);
 
 const shareUrl = Astro.url.href
-console.log(shareUrl);
 const urlOrigin = Astro.url.origin
-console.log(urlOrigin);
 const lang = getLangFromUrl(Astro.url)
 const backUrl = `${urlOrigin}/${lang}/news`
-console.log(backUrl);
 
 ---
 
@@ -81,9 +75,3 @@ console.log(backUrl);
     </section>
   </main>
 </Layout>
-<script>
-  const likeBtn = document.getElementById("like-btn");
-  likeBtn?.addEventListener("click", () => {
-    console.log("Holas");
-  });
-</script>

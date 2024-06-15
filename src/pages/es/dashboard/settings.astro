@@ -5,6 +5,8 @@ import CardUpdateSettings from "../../../components/dashboard/CardUpdateSettings
 import NavDashboard from "../../../components/dashboard/NavDashboard";
 import DashBoardBase from "../../../layouts/DashBoardBase.astro";
 import { supabase } from "../../../lib/supabase";
+import ChangeAvatar from "../../../components/dashboard/settings/ChangeAvatar";
+import AddRoles from "../../../components/dashboard/settings/AddRoles";
 const url = Astro.url;
 const { cookies, redirect } = Astro;
 const accessToken = cookies.get("sb-access-token");
@@ -27,8 +29,14 @@ if (error) {
 
   return redirect("/es/signin");
 }
-const {user} = dataUser
-const pathname = Astro.url.pathname
+const { user } = dataUser;
+const pathname = Astro.url.pathname;
+const { data: userData } = await supabase
+  .from("profiles")
+  .select("*")
+  .eq("id", user?.id);
+const profileData = userData ? userData[0] : userData;
+const roles: string[] = (userData && userData[0]?.roles) || [];
 ---
 
 <DashBoardBase
@@ -43,35 +51,56 @@ const pathname = Astro.url.pathname
         <ThemeIcon />
       </NavDashboard>
     </div>
-    <div class="bg-zinc-100 dark:bg-zinc-950">
-      <section class="grid grid-cols-1 sm:grid-cols-2 place-content-center">
-        <div class="flex flex-col items-center p-4">
-          <h2
-            class="text-3xl h-max lg:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-slate-500 to-zinc-500"
-          >
-            Configuración
-          </h2>
-          <p class="text-light font-Rubik text-zinc-800 dark:text-zinc-300 p-4">
-            En esta sección se manera el cambio de los diferentes texto que se
-            presentan en la web, com el lema, la mision y vision intitucional,
-            entre otras cosas, modificarlas <strong>cuando sea necesario</strong
-            > para mantener con información veridicá y de cadlidad.
-          </p>
-        </div>
-        <div class="grid place-content-center">
-          <img class="h-96" src="/svg/calendar-55.svg" alt="" />
-        </div>
+    <div class="bg-zinc-100 dark:bg-neutral-900 font-Rubik overflow-y-auto">
+      <section class="flex flex-col items-center justify-center gap-2">
+        <h1 class="text-3xl my-4 md:text-4xl font-bold">Configuracion</h1>
+        <div></div>
+        <p>
+          Perzonaliza tu cuenta, asi como modificar tu usuario, foto de perfil,
+          etc
+        </p>
+      </section>
+      <h2 class="text-2xl md:text-3xl font-bold my-2 px-4">
+        Portal de usuario
+      </h2>
+      <section class="grid grid-cols-1 lg:grid-cols-2">
+        <ChangeAvatar user={user} client:load />
       </section>
       <section class="grid grid-cols-2 p-4 font-Kanit">
         <div class="border-r border-zinc-500 flex flex-col gap-y-4">
-          <CardUpdateSettings title="Cambia tu nombre de usuario" now={user?.user_metadata?.username}/>
+          <CardUpdateSettings
+            title="Cambia tu nombre de usuario"
+            now={profileData.username}
+          />
         </div>
         <div class="p-4">
           <form class="flex flex-col gap-4">
-            <InputUpdateSettings idUser={user?.id} client:load />
+            <InputUpdateSettings
+              type="username"
+              idUser={profileData.id}
+              client:load
+            />
           </form>
         </div>
       </section>
+      {
+        roles.includes("admin") && (
+          <>
+            <h2 class="text-2xl md:text-3xl font-bold my-2 px-4">
+              Portal de Admin
+            </h2>
+            <div class="container mx-auto px-4 my-4 grid grid-cols-1 place-items-center md:grid-cols-2 lg:grid-cols-4 w-full">
+              <span>Foto de perfil</span>
+              <span>Nombre de usuario</span>
+              <span>Correo</span>
+              <span>Roles</span>
+            </div>
+            <section class="container mx-auto px-4 flex flex-col gap-2">
+              <AddRoles client:load />
+            </section>
+          </>
+        )
+      }
     </div>
   </main>
 </DashBoardBase>

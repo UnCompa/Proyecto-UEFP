@@ -16,7 +16,6 @@ export default function ChangeForm(props) {
   useEffect(() => {
     const fetchData = async () => {
       const textoDB = await recuperarTexto(propiedad, lang, seccion);
-      console.log(textoDB);
       setTexto(textoDB);
     };
     fetchData();

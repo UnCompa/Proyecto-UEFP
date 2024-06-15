@@ -56,178 +56,138 @@ const { data: dataStaff } = await supabase
   .from("teachersEs")
   .select("*")
   .order("id", { ascending: true });
-const pathname = Astro.url.pathname
+const pathname = Astro.url.pathname;
 ---
 
-<!-- <ThemeIcon/> -->
 <DashBoardBase title="Dashboard | Panel de control" icon="">
   <main class="dashboard">
-    <div
-      class="bg-zinc-200 dark:bg-zinc-900 h-full w-full [grid-area:aside] boxshadow"
-    >
+    <div class="bg-zinc-200 dark:bg-zinc-900 h-full w-full [grid-area:aside] boxshadow">
       <NavDashboard url={url} pathname={pathname} client:load={true}>
         <ThemeIcon />
       </NavDashboard>
     </div>
-    <div
-      class="p-4 bg-zinc-50 overflow-y-auto dark:bg-zinc-800 w-full h-full [grid-area:main] font-Kanit"
-    >
-      <section
-        class="w-full h-max flex flex-col items-center justify-center font-Rubik"
-      >
-        <h1
-          class="text-3xl my-8 font-bold md:text-4xl lg:text-5xl bg-clip-text text-transparent bg-gradient-to-b from-blue-500 via-cyan-500 to-black dark:from-white dark:via-zinc-50 dark:to-stone-800"
-        >
+    <div class="p-4 bg-zinc-50 overflow-y-auto dark:bg-zinc-800 w-full h-full [grid-area:main] font-Kanit">
+      <section class="w-full h-max flex flex-col items-center justify-center font-Rubik">
+        <h1 class="text-3xl my-8 font-bold md:text-4xl lg:text-5xl bg-clip-text text-transparent bg-gradient-to-b from-blue-500 via-cyan-500 to-black dark:from-white dark:via-zinc-50 dark:to-stone-800">
           Pagina de Sobre nosotros
         </h1>
-        {
-          roles.includes("admin") ? (
-            <p class="text-center font-light py-4">
-              Administra el contenido que se presenta en la pagina de sobre
-              nosotros, usarlo de manera responsable
-            </p>
-          ) : (
-            <p class="text-center font-light py-4">
-              Lugar donde recide la información de la Unidad Educativa Fiscal
-              Pichincha explora de manera diferente que ofreze esta seccion
-            </p>
-          )
-        }
+        {roles.includes("admin") ? (
+          <p class="text-center font-light py-4">
+            Administra el contenido que se presenta en la pagina de sobre nosotros, usarlo de manera responsable
+          </p>
+        ) : (
+          <p class="text-center font-light py-4">
+            Lugar donde recide la información de la Unidad Educativa Fiscal Pichincha explora de manera diferente que ofrece esta sección
+          </p>
+        )}
       </section>
       <div class="my-2">
         <h3>Ir a la seccion:</h3>
         <ul class="flex w-full gap-2 items-center justify-start my-2">
           <li>
-            <a
-              class="w-full px-4 py-1 text-center bg-zinc-100 dark:bg-zinc-900 rounded-lg shadow-xl hover:bg-zinc-950 transition-colors"
-              href="#historia">Historia</a
-            >
+            <a class="w-full px-4 py-1 text-center bg-zinc-100 dark:bg-zinc-900 rounded-lg shadow-xl hover:bg-zinc-950 transition-colors" href="#historia">Historia</a>
           </li>
           <li>
-            <a
-              class="w-full px-4 py-1 text-center bg-zinc-100 dark:bg-zinc-900 rounded-lg shadow-xl hover:bg-zinc-950 transition-colors"
-              href="#valores">Valores</a
-            >
+            <a class="w-full px-4 py-1 text-center bg-zinc-100 dark:bg-zinc-900 rounded-lg shadow-xl hover:bg-zinc-950 transition-colors" href="#valores">Valores</a>
           </li>
           <li>
-            <a
-              class="w-full px-4 py-1 text-center bg-zinc-100 dark:bg-zinc-900 rounded-lg shadow-xl hover:bg-zinc-950 transition-colors"
-              href="#objetivos">Objetivos</a
-            >
+            <a class="w-full px-4 py-1 text-center bg-zinc-100 dark:bg-zinc-900 rounded-lg shadow-xl hover:bg-zinc-950 transition-colors" href="#objetivos">Objetivos</a>
           </li>
           <li>
-            <a
-              class="w-full px-4 py-1 text-center bg-zinc-100 dark:bg-zinc-900 rounded-lg shadow-xl hover:bg-zinc-950 transition-colors"
-              href="#personal">Personal</a
-            >
+            <a class="w-full px-4 py-1 text-center bg-zinc-100 dark:bg-zinc-900 rounded-lg shadow-xl hover:bg-zinc-950 transition-colors" href="#personal">Personal</a>
           </li>
         </ul>
       </div>
-      {
-        roles.includes("admin") ? (
-          <section class="h-max flex flex-col gap-2">
-            <h2 class="text-3xl font-bold py-2" id="historia">
-              Seccion Historia
-            </h2>
-            <HistoryChange table="historyes" client:load />
+      <section class="h-max flex flex-col gap-2">
+        <h2 class="text-3xl font-bold py-2" id="historia">
+          Seccion Historia
+        </h2>
+        {roles.includes("admin") ? (
+          <>
             <HistoryCreate client:load />
-          </section>
+            <HistoryChange table="historyes" client:load />
+          </>
+        ) : roles.includes("moderator") ? (
+          <HistoryChange table="historyes" client:load />
         ) : (
-          <section class="h-max flex flex-col gap-2">
-            <h2 class="text-3xl text-center font-bold py-2" id="historia">
-              Seccion Historia
-            </h2>
-            {dataHistory?.map((item) => (
-              <div class="grid grid-cols-1 md:grid-cols-2 bg-zinc-900 rounded">
-                <div class="p-4">
-                  <hgroup class="h-max">
-                    <h2 class="text-2xl font-bold">
-                      <span class="font-extrabold">Titulo:</span> {item.title}
-                    </h2>
-                    <p class="font-light">
-                      <span class="font-bold">Contenido:</span> {item.content}
-                    </p>
-                  </hgroup>
-                </div>
-                <div class="p-4 h-full flex items-center justify-center">
-                  <img
-                    class="h-full max-h-72 border-2 p-2"
-                    src={item.img_url}
-                    alt={item.img_alt}
-                  />
-                </div>
+          dataHistory?.map((item) => (
+            <div class="grid grid-cols-1 md:grid-cols-2 bg-zinc-900 rounded">
+              <div class="p-4">
+                <hgroup class="h-max">
+                  <h2 class="text-2xl font-bold">
+                    <span class="font-extrabold">Titulo:</span> {item.title}
+                  </h2>
+                  <p class="font-light">
+                    <span class="font-bold">Contenido:</span> {item.content}
+                  </p>
+                </hgroup>
               </div>
-            ))}
-          </section>
-        )
-      }
-      {
-        roles.includes("admin") ? (
-          <section class="h-max flex flex-col gap-2">
-            <h2 class="text-3xl font-bold py-2" id="valores">
-              Seccion Valores
-            </h2>
-            <ValuesChange table="values_es" client:load />
+              <div class="p-4 h-full flex items-center justify-center">
+                <img class="h-full max-h-72 border-2 p-2" src={item.img_url} alt={item.img_alt} />
+              </div>
+            </div>
+          ))
+        )}
+      </section>
+      <section class="h-max flex flex-col gap-2">
+        <h2 class="text-3xl font-bold py-2" id="valores">
+          Seccion Valores
+        </h2>
+        {roles.includes("admin") ? (
+          <>
             <ValuesCreate table="values_es" client:load />
-          </section>
+            <ValuesChange table="values_es" client:load />
+          </>
+        ) : roles.includes("moderator") ? (
+          <ValuesChange table="values_es" client:load />
         ) : (
           <ValuesView />
-        )
-      }
-      {
-        roles.includes("admin") ? (
-          <section>
-            <h2 class="text-3xl font-bold py-2" id="objetivos">
-              Seccion Objetivos
-            </h2>
-            <ObjetivesChange table="objetives_es" client:load />
+        )}
+      </section>
+      <section class="h-max flex flex-col gap-2">
+        <h2 class="text-3xl font-bold py-2" id="objetivos">
+          Seccion Objetivos
+        </h2>
+        {roles.includes("admin") ? (
+          <>
             <ObjetivesCreate table="objetives_es" client:load />
-          </section>
+            <ObjetivesChange table="objetives_es" client:load />
+          </>
+        ) : roles.includes("moderator") ? (
+          <ObjetivesChange table="objetives_es" client:load />
         ) : (
-          <section>
-            <h2 class="text-3xl font-bold py-2" id="objetivos">
-              Seccion Objetivos
-            </h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {objetivesData?.map((objetive) => {
-                return (
-                  <Objectives title={objetive.title} text={objetive.text} />
-                );
-              })}
-            </div>
-          </section>
-        )
-      }
-      {
-        roles.includes("admin") ? (
-          <section>
-            <h2 class="text-3xl font-bold py-2" id="personal">
-              Seccion Personal
-            </h2>
-            <StaffChange table="teachersEs" client:load />
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {objetivesData?.map((objetive) => (
+              <Objectives title={objetive.title} text={objetive.text} />
+            ))}
+          </div>
+        )}
+      </section>
+      <section class="h-max flex flex-col gap-2">
+        <h2 class="text-3xl font-bold py-2" id="personal">
+          Seccion Personal
+        </h2>
+        {roles.includes("admin") ? (
+          <>
             <StaffCreate table="teachersEs" client:load />
-          </section>
+            <StaffChange table="teachersEs" client:load />
+          </>
+        ) : roles.includes("moderator") ? (
+          <StaffChange table="teachersEs" client:load />
         ) : (
-          <section>
-            <h2 class="text-3xl font-bold py-2" id="personal">
-              Seccion Personal
-            </h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 bg-zinc-100  dark:bg-zinc-900 p-4">
-              {dataStaff?.map((teacher) => {
-                return (
-                  <PeopleCard
-                    teacher={teacher.name}
-                    content={teacher.phrase}
-                    work={teacher.profession}
-                    img={teacher.image_link}
-                    client:load
-                  />
-                );
-              })}
-            </div>
-          </section>
-        )
-      }
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 bg-zinc-100 dark:bg-zinc-900 p-4">
+            {dataStaff?.map((teacher) => (
+              <PeopleCard
+                teacher={teacher.name}
+                content={teacher.phrase}
+                work={teacher.profession}
+                img={teacher.image_link}
+                client:load
+              />
+            ))}
+          </div>
+        )}
+      </section>
     </div>
   </main>
 

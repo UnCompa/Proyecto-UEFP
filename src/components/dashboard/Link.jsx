@@ -1,8 +1,5 @@
 export default function Link({ to, children, text, disable, thin = false, url = "/" }) {
-  console.log(url);
-  console.log(to);
   const urlStr = url.toString()
-  console.log(urlStr.includes(to))
   return (
     <>
       {disable ? (

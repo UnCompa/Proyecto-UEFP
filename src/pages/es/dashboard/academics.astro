@@ -5,6 +5,7 @@ import DashBoardBase from "../../../layouts/DashBoardBase.astro";
 import { supabase } from "../../../lib/supabase";
 import AcademicsChange from "../../../components/dashboard/academics/AcademicsChange";
 import CardAcademics from "../../../components/Cards/CardAcademics.astro";
+import AcademicsCreate from "../../../components/dashboard/academics/AcademicsCreate";
 const { cookies, redirect } = Astro;
 const url = Astro.url;
 const accessToken = cookies.get("sb-access-token");
@@ -13,10 +14,12 @@ const refreshToken = cookies.get("sb-refresh-token");
 if (!accessToken || !refreshToken) {
   return redirect("/es/signin");
 }
+
 const { data, error } = await supabase.auth.setSession({
   refresh_token: refreshToken.value,
   access_token: accessToken.value,
 });
+
 if (error) {
   cookies.delete("sb-access-token", {
     path: "/",
@@ -27,42 +30,43 @@ if (error) {
 
   return redirect("/es/signin");
 }
+
 const { data: userData } = await supabase
   .from("profiles")
   .select("*")
   .eq("id", data.user?.id);
+
 const roles: string[] = (userData && userData[0]?.roles) || [];
 const { data: academicsData } = await supabase
   .from("levels_es")
   .select("*")
   .order("id", { ascending: true });
-console.log(data);
+
 const pathname = Astro.url.pathname;
 ---
 
-<!-- <ThemeIcon/> -->
 <DashBoardBase title="Dashboard | Panel de control" icon="">
   <main class="dashboard">
     <div
-      class="bg-zinc-200 dark:bg-zinc-900 h-full w-full [grid-area:aside] boxshadow"
+      class="bg-zinc-200 dark:bg-zinc-900 h-full w-full grid-area:aside boxshadow"
     >
       <NavDashboard url={url} pathname={pathname} client:load={true}>
         <ThemeIcon />
       </NavDashboard>
     </div>
     <div
-      class="p-4 bg-zinc-50 overflow-y-auto bg-gradient-to-b dark:from-black/90 dark:to-zinc-800 w-full h-full [grid-area:main] font-Kanit"
+      class="p-4 bg-zinc-50 overflow-y-auto bg-gradient-to-b dark:from-black/90 dark:to-zinc-800 w-full h-full grid-area:main font-Kanit"
     >
       <section class="p-4">
         <h1 class="text-3xl my-2 md:text-5xl font-Rubik font-bold">
-          Pagina de academicos
+          Página de académicos
         </h1>
         <div
           class="h-1 rounded bg-gradient-to-l from-red-500 to-orange-500 my-1"
         >
         </div>
         <p>
-          Agrega, edita o elimina las ofertas academicas de la Unidad Educativa
+          Agrega, edita o elimina las ofertas académicas de la Unidad Educativa
           Fiscal Pichincha
         </p>
       </section>
@@ -70,11 +74,17 @@ const pathname = Astro.url.pathname;
         <h2 class="p-4 font-bold text-xl">Ofertas:</h2>
         {
           roles.includes("admin") ? (
+            <>
+              <AcademicsCreate table="levels_es" client:load />
+              <AcademicsChange table="levels_es" client:load />
+            </>
+          ) : roles.includes("moderator") ? (
             <AcademicsChange table="levels_es" client:load />
           ) : (
             <>
               {academicsData?.map((item) => (
                 <CardAcademics
+                  key={item.id}
                   id={item.id}
                   title={item.title}
                   img={item.img}
@@ -88,6 +98,7 @@ const pathname = Astro.url.pathname;
     </div>
   </main>
 </DashBoardBase>
+
 <style>
   .dashboard {
     display: grid;
@@ -95,6 +106,7 @@ const pathname = Astro.url.pathname;
     grid-template-rows: 100vh;
     grid-template-areas: "aside main";
   }
+
   @media (max-width: 1024px) {
     .dashboard {
       display: grid;
@@ -105,7 +117,10 @@ const pathname = Astro.url.pathname;
         "main";
     }
   }
+
   .boxshadow {
     box-shadow: 0px -20px 10px black;
   }
 </style>
+
+);

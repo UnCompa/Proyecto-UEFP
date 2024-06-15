@@ -36,7 +36,6 @@ const { data: academicsData } = await supabase
   .from("levels_en")
   .select("*")
   .order("id", { ascending: true });
-console.log(data);
 const pathname = Astro.url.pathname
 ---
 

@@ -30,7 +30,10 @@ if (error) {
 }
 const userData = data?.user?.user_metadata;
 const user = data?.user
-const email = userData?.username
+const {data: userNowData} = await supabase.from("profiles").select("*").eq("id", user?.id)
+const profileData = userNowData ? userNowData[0] : userNowData
+console.log(profileData);
+const email = profileData?.username
 const pathname = Astro.url.pathname
 ---
 
