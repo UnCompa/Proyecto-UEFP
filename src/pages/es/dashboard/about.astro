@@ -16,6 +16,7 @@ import DashBoardBase from "../../../layouts/DashBoardBase.astro";
 import { supabase } from "../../../lib/supabase";
 import PeopleCard from "../../../components/sections/PeopleCard";
 import dayjs from "dayjs";
+import LikePage from "../../../components/Utils/LikePage.astro";
 const { cookies, redirect } = Astro;
 const url = Astro.url;
 const accessToken = cookies.get("sb-access-token");
@@ -190,7 +191,6 @@ const pathname = Astro.url.pathname;
       </section>
     </div>
   </main>
-
   <style>
     .dashboard {
       display: grid;
