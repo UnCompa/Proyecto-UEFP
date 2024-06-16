@@ -9,8 +9,16 @@ import { getLangFromUrl, useTranslations } from "../../i18n/utils";
 import { Diamond } from "../../icons/Icons";
 import CardWithLink from "../../components/Cards/CardWithLink.astro";
 import { FaEnvelope, FaGraduationCap, FaUser } from "react-icons/fa";
+import { supabase } from "../../lib/supabase";
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+const { data: cardInitial } = await supabase.from("card_homeEn").select("*");
+console.log(cardInitial);
+const { data: cardSections } = await supabase
+  .from("sectionsEn")
+  .select("*")
+  .order("id");
+console.log(cardSections);
 ---
 
 <Layout
@@ -34,22 +42,18 @@ const t = useTranslations(lang);
         class="h-1 mx-auto w-full lg:w-2/3 bg-gradient-to-l from-red-500 via-orange-500 to-yellow-500 mb-4 shadow shadow-orange-500/50"
       >
       </div>
-      <CardInfo
-        img="/imgs/libroIndex1.jpg"
-        title={t("main-mision")}
-        text={t("main-mision-text")}
-        alt="Imagen referente a la mision"
-      >
-        <Diamond height={"16px"} width={"16px"} />
-      </CardInfo>
-      <CardInfo
-        img="/imgs/personaIndex1.jpg"
-        title={t("main-vision")}
-        text={t("main-vision-text")}
-        alt="Imagen referente a la vision"
-      >
-        <Diamond height={"16px"} width={"16px"} /></CardInfo
-      >
+      {
+        cardInitial?.map((item) => (
+          <CardInfo
+            img={item.img_url}
+            title={item.title}
+            text={item.content}
+            alt={item.img_alt}
+          >
+            <Diamond height={"16px"} width={"16px"} />
+          </CardInfo>
+        ))
+      }
     </section>
     <section class="container mx-auto grid place-content-center w-full my-4">
       <h2
@@ -74,27 +78,15 @@ const t = useTranslations(lang);
       >
       </div>
       <div class="flex flex-wrap p-4 gap-4 container mx-auto">
-        <CardWithLink
-          title={t("footer-paginas-sobrenosotros")}
-          to={t("a-about")}
-          content={t("card-info-about")}
-        >
-          <FaGraduationCap /></CardWithLink
-        >
-        <CardWithLink
-          title={t("footer-paginas-academicos")}
-          to={t("a-academicos")}
-          content={t("card-info-academics")}
-        >
-          <FaUser /></CardWithLink
-        >
-        <CardWithLink
-          title={t("footer-paginas-contactos")}
-          to={t("a-contactos")}
-          content={t("card-info-contacts")}
-        >
-          <FaEnvelope /></CardWithLink
-        >
+        {
+          cardSections?.map((item) => (
+            <CardWithLink
+              title={item.title}
+              to={item.to}
+              content={item.content}
+            />
+          ))
+        }
       </div>
     </section>
   </main>

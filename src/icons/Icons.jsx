@@ -18,7 +18,7 @@ export function Bars() {
   );
 }
 
-export function X({ height, width }) {
+export function X({ height = 32, width = 32 }) {
   return (
     <svg
       height={`${height}`}

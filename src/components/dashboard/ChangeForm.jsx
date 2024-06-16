@@ -31,7 +31,7 @@ export default function ChangeForm(props) {
     window.location.reload()
   };
   return (
-    <article class="container mx-auto px-8 bg-zinc-100 dark:bg-stone-900 grid grid-rows-2 rounded-md shadow-lg h-full">
+    <article class="container mx-auto px-8 bg-zinc-100 dark:bg-zinc-900 grid grid-rows-2 rounded-md shadow-lg h-full">
       <div className="h-full">
         <h2 class="text-2xl py-4 text-center font-bold">{title}</h2>
         <div class="flex flex-col flex-1">
@@ -51,7 +51,7 @@ export default function ChangeForm(props) {
             <textarea
               id="InputHomeChange"
               type="text"
-              class="[resize:none] bg-zinc-200 dark:bg-stone-950 rounded-xl w-full my-4 px-4 py-2 text-sm focus:outline-none focus:bg-stone-50 dark:focus:bg-stone-800 [scrollbar-color:rgb(34_197_94)_rgb(228_228_231)] dark:[scrollbar-color:rgb(34_197_94)_rgb(24_24_27)] transition-all"
+              class="[resize:none] bg-zinc-200 dark:bg-zinc-950 rounded-xl w-full my-4 px-4 py-2 text-sm focus:outline-none focus:bg-stone-50 dark:focus:bg-zinc-800 [scrollbar-color:rgb(34_197_94)_rgb(228_228_231)] dark:[scrollbar-color:rgb(34_197_94)_rgb(24_24_27)] transition-all"
               onChange={(e) => setNewTexto(e.target.value)}
             />
           </div>
