@@ -43,9 +43,11 @@ openGraph;
       description={description}
       openGraph={{
         basic: {
-          title: openGraph?.basic?.title || "UEFP",
+          title: openGraph?.basic?.title || title,
           type: openGraph?.basic?.type || "website",
-          image: openGraph?.basic?.image || "https://i.postimg.cc/yxryq7k5/UEFP-1.png",
+          image:
+            openGraph?.basic?.image ||
+            "https://i.postimg.cc/yxryq7k5/UEFP-1.png",
           url: openGraph?.basic?.url || Astro.url.href,
         },
       }}
@@ -142,6 +144,6 @@ openGraph;
         --plyr-color-main: #ff0000;
       }
     </style>
+    <script src="../scripts/Videoplayer.js"></script>
   </body>
-  <script src="../scripts/Videoplayer.js"></script>
 </html>
