@@ -84,6 +84,9 @@ export default function SignForm({ lang, navigate }) {
             },
           })}
         />
+        <a href={`/${lang}/reset-password`} className="text-red-300 my-1">
+          {lang === "es" ? "¿Olvidaste tu contraseña?" : "Forget your password?"}
+        </a>
         {errors.password && (
           <span className="py-2 text-red-500 italic">
             {errors.password.message}
