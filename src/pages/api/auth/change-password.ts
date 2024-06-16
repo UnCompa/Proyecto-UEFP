@@ -17,15 +17,18 @@ export const POST: APIRoute = async ({ params, request }) => {
         { status: 400 }
       );
     }
-
+    const xd = await supabase.auth.signInWithIdToken({
+      provider: "email",
+      token: "",
+    });
     // Actualización de la contraseña en Supabase
     const { data, error } = await supabase.auth.updateUser({
       password: newPassword,
     });
-    
+
     console.log(data);
     console.log(error);
-    
+
     // Manejo de errores de Supabase
     if (error) {
       console.error("Error al cambiar la contraseña en Supabase:", error);

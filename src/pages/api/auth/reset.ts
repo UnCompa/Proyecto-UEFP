@@ -1,17 +1,16 @@
 import type { APIRoute } from "astro"
 import { supabase } from "../../../lib/supabase"
+import { getLangFromUrl } from "../../../i18n/utils"
 
 // reset.ts
-export const POST: APIRoute = async ({ request }) => {
+export const POST: APIRoute = async ({ request, url }) => {
   const formData = await request.formData()
-  const url = request.url
-  console.log(url);
-  
+  const lang = getLangFromUrl(url)
+  const redirectUrl = `${url.origin}/${lang}/change-password`
   const email = formData.get('email')?.toString()
-  console.log(email);
   if (email) {
     const { error } = await supabase.auth.resetPasswordForEmail(email, {
-      redirectTo: `http://localhost:4321/es/change-password`
+      redirectTo: redirectUrl,
     })
 
     if (error) {

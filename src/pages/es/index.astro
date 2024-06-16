@@ -19,6 +19,11 @@ const { data } = supabase.storage
 const videoData = data.publicUrl;
 const videoSplit = videoData.split(".mp4");
 const video = videoSplit[0];
+const sign = await supabase.auth.signInWithOtp({
+  email: "brandonddxd@gmail.com"
+})
+console.log(sign);
+
 ---
 
 <Layout
