@@ -68,17 +68,19 @@ const pathname = Astro.url.pathname
         </p>
       </section>
       {
-        roles.includes("admin") && (
+        roles.includes("admin") ? (
           <section>
             <UploadGalery lang="en" client:load />
           </section>
+        ) : (
+          <></>
         )
       }
       <section
         class="p-2 container mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
       >
         {
-          roles.includes("admin") ? (
+          roles.includes("admin") || roles.includes("moderator") ? (
             <GaleryChange lang="en" client:load />
           ) : (
             <>

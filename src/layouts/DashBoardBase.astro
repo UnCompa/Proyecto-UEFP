@@ -36,7 +36,7 @@ const { title, icon = "/imgs/UEFPescudoblanco.png", keywords } = Astro.props;
   </head>
   <body class="bg-zinc-200 dark:bg-zinc-900">
     <slot />
-    <script src="https://cdn.plyr.io/3.7.8/plyr.js"></script>
+    <script src="../scripts/Videoplayer.js"></script>
   </body><style is:global>
     * {
       scrollbar-width: thin;
@@ -49,5 +49,8 @@ const { title, icon = "/imgs/UEFPescudoblanco.png", keywords } = Astro.props;
     html.dark {
       scrollbar-color: #a1a1a1 #27272a;
     }
+    * {
+        --plyr-color-main: #ff0000;
+      }
   </style>
 </html>

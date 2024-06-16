@@ -8,6 +8,7 @@ import dayjs from "dayjs";
 import { FaHeart } from "react-icons/fa6";
 import { getLangFromUrl } from "../../../i18n/utils";
 import TextoRecortado from "../../../components/Utils/TextoRecortado";
+import { FaSadTear } from "react-icons/fa";
 interface VideoFile {
   name: string;
   id: string;
@@ -55,62 +56,74 @@ const lang = getLangFromUrl(Astro.url);
   <main class="font-Rubik container mx-auto px-2">
     <h2 class="text-3xl md:text-4xl font-bold">Ultimas noticias</h2>
     <div class="h-1 bg-gradient-to-r from-red-500 to-orange-500 my-2"></div>
-    <section
-      class="carrusel flex snap-x snap-mandatory flex-nowrap p-2 overflow-auto"
-    >
-      {
-        videos?.map((item: any) => (
-          <div class="bg-zinc-300 dark:bg-zinc-900 snap-center rounded-lg p-2 m-4 min-h-52 min-w-96 w-full h-max shadow-xl">
-            <div>
-              <VideoPlayer thin={false} url={item.video_url} />
+    {
+      videos?.length ? (
+        <section class="carrusel flex snap-x snap-mandatory flex-nowrap p-2 overflow-auto">
+          {videos?.map((item: any) => (
+            <div class="bg-zinc-300 dark:bg-zinc-900 snap-center rounded-lg p-2 m-4 min-h-52 min-w-96 w-full h-max shadow-xl">
+              <div>
+                <VideoPlayer thin={false} url={item.video_url} />
+              </div>
+              <div class="grid grid-cols-2 mt-4">
+                <span class="flex items-center justify-center gap-2">
+                  <FaHeart className="text-red-500 dark:text-red-300" />
+                  {item.likes}
+                </span>
+                <span class="text-sm flex justify-center items-center">
+                  {dayjs(item.created_at).format("DD/MM/YYYY HH:MM")}
+                </span>
+              </div>
+              <div class="p-2">
+                <h2 class="text-xl font-extrabold">{item.title}</h2>
+                <TextoRecortado texto={item.description} client:load />
+              </div>
             </div>
-            <div class="grid grid-cols-2 mt-4">
-              <span class="flex items-center justify-center gap-2">
-                <FaHeart className="text-red-500 dark:text-red-300" />
-                {item.likes}
-              </span>
-              <span class="text-sm flex justify-center items-center">
-                {dayjs(item.created_at).format("DD/MM/YYYY HH:MM")}
-              </span>
-            </div>
-            <div class="p-2">
-              <h2 class="text-xl font-extrabold">{item.title}</h2>
-              <TextoRecortado texto={item.description} client:load />
-            </div>
-          </div>
-        ))
-      }
-    </section>
+          ))}
+        </section>
+      ) : (
+        <section class="flex flex-col gap-2 items-center justify-center h-52">
+          <FaSadTear className="text-3xl md:text-4xl" />
+          <h3 class="text-lg md:text-xl">Sin ultimas noticias de momento</h3>
+        </section>
+      )
+    }
     <h2 class="text-3xl md:text-4xl my-2 font-bold">Noticias</h2>
     <div class="h-1 bg-gradient-to-r from-red-500 to-orange-500 my-2"></div>
-    <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-      {
-        videos_metadata?.map((item: any) => (
-          <article>
-            <div class="bg-zinc-300 dark:bg-zinc-900 h-max p-2 rounded-tr-lg rounded-tl-lg shadow-lg w-full hover:bg-zinc-400 dark:hover:bg-zinc-950 transition-all">
-              <a href={`${url}/${item.id}`}>
-                <div class="p-2">
-                  <h2 class="text-xl font-extrabold">{item.title}</h2>
-                  <TextoRecortado texto={item.description} client:load />
-                </div>
-                <div class="grid grid-cols-2">
-                  <span class="flex items-center justify-center gap-2">
-                    <FaHeart className="text-red-500 dark:text-red-300" />
-                    {item.likes}
-                  </span>
-                  <span>
-                    Creado en: {dayjs(item.created_at).format("DD/MM/YYYY")}
-                  </span>
-                </div>
-              </a>
-            </div>
-            <div class="p-2 bg-zinc-300 dark:bg-zinc-900 rounded-br-lg rounded-bl-lg">
-              <video controls src={item.video_url} />
-            </div>
-          </article>
-        ))
-      }
-    </section>
+    {
+      videos_metadata?.length ? (
+        <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {videos_metadata?.map((item: any) => (
+            <article>
+              <div class="bg-zinc-300 dark:bg-zinc-900 h-max p-2 rounded-tr-lg rounded-tl-lg shadow-lg w-full hover:bg-zinc-400 dark:hover:bg-zinc-950 transition-all">
+                <a href={`${url}/${item.id}`}>
+                  <div class="p-2">
+                    <h2 class="text-xl font-extrabold">{item.title}</h2>
+                    <TextoRecortado texto={item.description} client:load />
+                  </div>
+                  <div class="grid grid-cols-2">
+                    <span class="flex items-center justify-center gap-2">
+                      <FaHeart className="text-red-500 dark:text-red-300" />
+                      {item.likes}
+                    </span>
+                    <span>
+                      Creado en: {dayjs(item.created_at).format("DD/MM/YYYY")}
+                    </span>
+                  </div>
+                </a>
+              </div>
+              <div class="p-2 bg-zinc-300 dark:bg-zinc-900 rounded-br-lg rounded-bl-lg">
+                <video controls src={item.video_url} />
+              </div>
+            </article>
+          ))}
+        </section>
+      ) : (
+        <section class="flex flex-col gap-2 items-center justify-center h-52">
+          <FaSadTear className="text-3xl md:text-4xl" />
+          <h3 class="text-lg md:text-xl">Sin noticias de momento</h3>
+        </section>
+      )
+    }
   </main>
 </Layout>
 <style>
