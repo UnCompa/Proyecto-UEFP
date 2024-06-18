@@ -17,17 +17,22 @@ export const POST: APIRoute = async ({ request, redirect }) => {
     password: password,
     options: {
       data: {
-        username: name
-      }
-    }
-  });  
+        username: name,
+      },
+    },
+  });
   if (error) {
     return redirect(`/es/`);
   }
   const { data: updatedProfile } = await supabase
-  .from("profiles")
-  .update({ username: name })
-  .eq("id", data.user?.id)
-  .select("*");  
+    .from("profiles")
+    .update({
+      username: name,
+      avatar_url:
+        "https://static.vecteezy.com/system/resources/thumbnails/002/318/271/small_2x/user-profile-icon-free-vector.jpg",
+      email: email
+    })
+    .eq("id", data.user?.id)
+    .select("*");
   return redirect(`/es/verification`);
 };

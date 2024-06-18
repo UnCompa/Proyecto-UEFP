@@ -10,6 +10,7 @@ import { Wave, IlustrationPerson } from "../../icons/Icons";
 import { getLangFromUrl, useTranslations } from "../../i18n/utils";
 import InfoTeacher from "../../components/sections/InfoTeacher";
 import { supabase } from "../../lib/supabase";
+import LikePage from "../../components/Utils/LikePage.astro";
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 const {data: historyData} = await supabase.from("historyen").select("*")
@@ -125,6 +126,7 @@ const {data: objetivesData} = await supabase.from("objetives_en").select("*")
         <InfoTeacher lang={"En"} client:load />
       </div>
     </section>
+    <LikePage page="about" text="Was this information useful to you?"/>
   </main>
   <Footer />
 </Layout>

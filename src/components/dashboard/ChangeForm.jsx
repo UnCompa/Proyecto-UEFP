@@ -16,7 +16,6 @@ export default function ChangeForm(props) {
   useEffect(() => {
     const fetchData = async () => {
       const textoDB = await recuperarTexto(propiedad, lang, seccion);
-      console.log(textoDB);
       setTexto(textoDB);
     };
     fetchData();
@@ -32,11 +31,13 @@ export default function ChangeForm(props) {
     window.location.reload()
   };
   return (
-    <article class="container mx-auto px-8 bg-zinc-100 dark:bg-stone-900 grid grid-rows-2 rounded-md shadow-lg h-full">
-      <div className="h-full">
+    <article class="container mx-auto px-8 bg-zinc-100 dark:bg-zinc-900 flex flex-col rounded-md shadow-lg h-max">
+      <div className="h-max">
         <h2 class="text-2xl py-4 text-center font-bold">{title}</h2>
         <div class="flex flex-col flex-1">
-          <label for="">Actual:</label>
+          <label for="">
+            {lang === "es" ? "Actual" : "Current"}
+          </label>
           <textarea
             disabled
             value={(texto) ? texto : "Loading..."}
@@ -45,14 +46,16 @@ export default function ChangeForm(props) {
           />
         </div>
       </div>
-      <div class="flex flex-col md:flex-row md:items-center md:justify-center gap-x-4 h-full">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-center gap-x-4 h-max">
         <div class="flex flex-col flex-1">
-          <label for="">Modificar:</label>
+          <label for="">
+            {lang === "es" ? "Modificar" : "Modify"}
+          </label>
           <div class="flex items-center gap-x-4 w-full">
             <textarea
               id="InputHomeChange"
               type="text"
-              class="[resize:none] bg-zinc-200 dark:bg-stone-950 rounded-xl w-full my-4 px-4 py-2 text-sm focus:outline-none focus:bg-stone-50 dark:focus:bg-stone-800 [scrollbar-color:rgb(34_197_94)_rgb(228_228_231)] dark:[scrollbar-color:rgb(34_197_94)_rgb(24_24_27)] transition-all"
+              class="[resize:none] bg-zinc-200 dark:bg-zinc-950 rounded-xl w-full my-4 px-4 py-2 text-sm focus:outline-none focus:bg-stone-50 dark:focus:bg-zinc-800 [scrollbar-color:rgb(34_197_94)_rgb(228_228_231)] dark:[scrollbar-color:rgb(34_197_94)_rgb(24_24_27)] transition-all"
               onChange={(e) => setNewTexto(e.target.value)}
             />
           </div>

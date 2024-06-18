@@ -1,6 +1,6 @@
 ---
-import { FaChevronCircleRight } from "react-icons/fa";
 import { getLangFromUrl } from "../../i18n/utils";
+import { FaChevronRight } from "react-icons/fa6";
 
 const { title, content, to } = Astro.props;
 const lang = getLangFromUrl(Astro.url);
@@ -27,7 +27,7 @@ class="card flex-1 basis-96 shadow-2xl transition-all border-2 border-transparen
       </p>
     </div>
     <div class="absolute right-[5%] md:right-[10%] top-[30%] text-8xl text-black/20 dark:text-white/20 z-10">
-      <slot/>
+      <FaChevronRight/>
     </div>
   </div>
 </a>

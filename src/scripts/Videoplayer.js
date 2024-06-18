@@ -7,11 +7,12 @@ const player = Plyr.setup("video", {
     "mute",
     "volume",
     "settings",
-    "play-large",
     "airplay",
     "fullscreen",
+    "download",
   ],
   keyboard: { focused: true },
+  invertTime: false  
 });
 const playerVertical = Plyr.setup("#vertical", {
   controls: [

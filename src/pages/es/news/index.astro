@@ -1,0 +1,139 @@
+---
+import Navigation from "../../../components/Fundamentales/Navigation.astro";
+import VideoPlayer from "../../../components/Utils/VideoPlayer.astro";
+import Layout from "../../../layouts/Layout.astro";
+import UploadVideoNews from "../../../components/sections/UploadVideoNews";
+import { supabase } from "../../../lib/supabase";
+import dayjs from "dayjs";
+import { FaHeart } from "react-icons/fa6";
+import { getLangFromUrl } from "../../../i18n/utils";
+import TextoRecortado from "../../../components/Utils/TextoRecortado";
+import { FaSadTear } from "react-icons/fa";
+interface VideoFile {
+  name: string;
+  id: string;
+  created_at: string;
+  updated_at: string;
+  last_accessed_at: string;
+  metadata: object | null;
+  publicUrl: string;
+}
+
+const { data: videos_metadata } = await supabase
+  .from("videos_metadata")
+  .select("*");
+
+// Obtener las URLs públicas y estructurar los datos
+const dataVideos = videos_metadata?.map((file) => {
+  const { data: publicUrlData } = supabase.storage
+    .from("videos")
+    .getPublicUrl(file.name);
+  const { publicUrl } = publicUrlData;
+  const newData: VideoFile = {
+    publicUrl,
+    ...file,
+  };
+  return newData;
+});
+// Ordenar por fecha de creación
+const sortedVideos = dataVideos?.sort(
+  (a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
+);
+
+// Limitar a los 5 más recientes
+const videos = sortedVideos?.slice(0, 5);
+
+const url = Astro.url.href;
+const lang = getLangFromUrl(Astro.url);
+---
+
+<Layout
+  title="Noticias | UEFP"
+  description="Encuentra las nuevas noticias que la UEFP tiene para ti"
+  keywords="news uefp, noticias unidad educativa fiscal pichincha, unidad educativa fiscal pichincha noticias"
+>
+  <Navigation />
+  <main class="font-Rubik container mx-auto px-2">
+    <h2 class="text-3xl md:text-4xl font-bold">Ultimas noticias</h2>
+    <div class="h-1 bg-gradient-to-r from-red-500 to-orange-500 my-2"></div>
+    {
+      videos?.length ? (
+        <section class="carrusel flex snap-x snap-mandatory flex-nowrap p-2 overflow-auto">
+          {videos?.map((item: any) => (
+            <div class="bg-zinc-300 dark:bg-zinc-900 snap-center rounded-lg p-2 m-4 min-h-52 min-w-96 w-full h-max shadow-xl">
+              <div>
+                <VideoPlayer thin={false} url={item.video_url} />
+              </div>
+              <div class="grid grid-cols-2 mt-4">
+                <span class="flex items-center justify-center gap-2">
+                  <FaHeart className="text-red-500 dark:text-red-300" />
+                  {item.likes}
+                </span>
+                <span class="text-sm flex justify-center items-center">
+                  {dayjs(item.created_at).format("DD/MM/YYYY HH:MM")}
+                </span>
+              </div>
+              <div class="p-2">
+                <h2 class="text-xl font-extrabold">{item.title}</h2>
+                <TextoRecortado texto={item.description} client:load />
+              </div>
+            </div>
+          ))}
+        </section>
+      ) : (
+        <section class="flex flex-col gap-2 items-center justify-center h-52">
+          <FaSadTear className="text-3xl md:text-4xl" />
+          <h3 class="text-lg md:text-xl">Sin ultimas noticias de momento</h3>
+        </section>
+      )
+    }
+    <h2 class="text-3xl md:text-4xl my-2 font-bold">Noticias</h2>
+    <div class="h-1 bg-gradient-to-r from-red-500 to-orange-500 my-2"></div>
+    {
+      videos_metadata?.length ? (
+        <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {videos_metadata?.map((item: any) => (
+            <article>
+              <div class="bg-zinc-300 dark:bg-zinc-900 h-max p-2 rounded-tr-lg rounded-tl-lg shadow-lg w-full hover:bg-zinc-400 dark:hover:bg-zinc-950 transition-all">
+                <a href={`${url}/${item.id}`}>
+                  <div class="p-2">
+                    <h2 class="text-xl font-extrabold">{item.title}</h2>
+                    <TextoRecortado texto={item.description} client:load />
+                  </div>
+                  <div class="grid grid-cols-2">
+                    <span class="flex items-center justify-center gap-2">
+                      <FaHeart className="text-red-500 dark:text-red-300" />
+                      {item.likes}
+                    </span>
+                    <span>
+                      Creado en: {dayjs(item.created_at).format("DD/MM/YYYY")}
+                    </span>
+                  </div>
+                </a>
+              </div>
+              <div class="p-2 bg-zinc-300 dark:bg-zinc-900 rounded-br-lg rounded-bl-lg">
+                <video controls src={item.video_url} />
+              </div>
+            </article>
+          ))}
+        </section>
+      ) : (
+        <section class="flex flex-col gap-2 items-center justify-center h-52">
+          <FaSadTear className="text-3xl md:text-4xl" />
+          <h3 class="text-lg md:text-xl">Sin noticias de momento</h3>
+        </section>
+      )
+    }
+  </main>
+</Layout>
+<style>
+  .carrusel {
+    scrollbar-width: thin;
+  }
+  html.dark .carrusel {
+    scrollbar-color: #dddddd #121212;
+  }
+  html .carrusel {
+    scrollbar-color: #121212 #dddddd;
+  }
+</style>

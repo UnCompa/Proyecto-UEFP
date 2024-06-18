@@ -7,6 +7,10 @@ import DashBoardBase from "../../../layouts/DashBoardBase.astro";
 import { supabase } from "../../../lib/supabase";
 import UploadFileForm from "../../../components/dashboard/UploadFileForm.astro";
 import VideoPlayer from "../../../components/Utils/VideoPlayer.astro";
+import CardChange from "../../../components/dashboard/home/CardChange";
+import CardCreate from "../../../components/dashboard/home/CardCreate";
+import OtherSectionChange from "../../../components/dashboard/home/OtherSectionChange";
+import OtherSectionCreate from "../../../components/dashboard/home/OtherSectionCreate";
 const { cookies, redirect } = Astro;
 const url = Astro.url;
 const accessToken = cookies.get("sb-access-token");
@@ -34,15 +38,19 @@ const { data: userData } = await supabase
   .select("*")
   .eq("id", data.user?.id);
 const roles: string[] = (userData && userData[0]?.roles) || [];
-const { data: dataFile } = supabase.storage.from('recursos').getPublicUrl('videos/inicial.mp4')
-const videoData = dataFile.publicUrl
-const videoSplit = videoData.split(".mp4")
-const video = videoSplit[0]
-const pathname = Astro.url.pathname
+const { data: dataFile } = supabase.storage
+  .from("recursos")
+  .getPublicUrl("videos/inicial.mp4");
+const videoData = dataFile.publicUrl;
+const videoSplit = videoData.split(".mp4");
+const video = videoSplit[0];
+const pathname = Astro.url.pathname;
+const { data: cardInfo } = await supabase.from("card_homeEs").select("*");
+const { data: sectionsEs } = await supabase.from("sectionsEs").select("*");
 ---
 
 <!-- <ThemeIcon/> -->
-<DashBoardBase title="Dashboard | Panel de control" icon="">
+<DashBoardBase title="Pagina inicial | Panel de control">
   <main class="dashboard">
     <div
       class="bg-zinc-200 dark:bg-zinc-900 h-full w-full [grid-area:aside] boxshadow"
@@ -72,7 +80,7 @@ const pathname = Astro.url.pathname
                 se presentan en la web, com el lema, la mision y vision
                 intitucional, entre otras cosas, modificarlas{" "}
                 <strong>cuando sea necesario</strong> para mantener con
-                información veridicá y de cadlidad.
+                información veridicá y de calidad.
               </p>
             ) : (
               <p class="text-light font-Rubik text-zinc-800 dark:text-zinc-300 p-4">
@@ -85,6 +93,15 @@ const pathname = Astro.url.pathname
       {
         roles.includes("admin") || roles.includes("moderator") ? (
           <section class="container mx-auto flex flex-col gap-8">
+            <h2 class="font-bold text-xl md:text-2xl">Enlaces a otras paginas</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
+              <OtherSectionChange table="sectionsEs" client:load />
+            </div>
+            <OtherSectionCreate table="sectionsEs" client:load />
+            <h2 class="font-bold text-xl md:text-2xl">Mision y vision y mas</h2>
+            <CardChange table="card_homeEs" client:load />
+            <CardCreate table="card_homeEs" client:load />
+            <h2 class="font-bold text-xl md:text-2xl">Textos de la pagina inicial</h2>
             <ChangeForm
               title="Lema intitucional"
               propiedad="hero-frase"
@@ -93,43 +110,22 @@ const pathname = Astro.url.pathname
               client:load
             />
             <ChangeForm
-              title="Vision de la institucion"
-              propiedad="main-vision-text"
+              title="Titulo inicial"
+              propiedad="main-mision-vision"
               lang="es"
               seccion="inicio"
               client:load
             />
             <ChangeForm
-              title="Vision de la institucion"
-              propiedad="main-vision-text"
+              title="Titulo de presentacion"
+              propiedad="main-presentacion"
               lang="es"
               seccion="inicio"
               client:load
             />
             <ChangeForm
-              title="Mision intitucional"
-              propiedad="main-mision-text"
-              lang="es"
-              seccion="inicio"
-              client:load
-            />
-            <ChangeForm
-              title="Seccion de nosotros"
-              propiedad="card-info-about"
-              lang="es"
-              seccion="inicio"
-              client:load
-            />
-            <ChangeForm
-              title="Seccion de academicos"
-              propiedad="card-info-academics"
-              lang="es"
-              seccion="inicio"
-              client:load
-            />
-            <ChangeForm
-              title="Seccion de contacto"
-              propiedad="card-info-contacts"
+              title="Otras secciones"
+              propiedad="main-others-seccions"
               lang="es"
               seccion="inicio"
               client:load
@@ -145,36 +141,74 @@ const pathname = Astro.url.pathname
               lang="es"
             />
             <ViewData
-              title="Mision"
-              propiedad="main-mision-text"
+              title="Titulo inicial"
+              propiedad="main-mision-vision"
               seccion="inicio"
               lang="es"
             />
             <ViewData
-              title="Vision"
-              propiedad="main-vision-text"
+              title="Titulo de presentacion"
+              propiedad="main-presentacion"
               seccion="inicio"
               lang="es"
             />
             <ViewData
-              title="Información de Sobre Nosostros"
-              propiedad="card-info-about"
+              title="Otras secciones"
+              propiedad="main-others-seccions"
               seccion="inicio"
               lang="es"
             />
-            <ViewData
-              title="Información de Academicos"
-              propiedad="card-info-academics"
-              seccion="inicio"
-              lang="es"
-            />
-            <ViewData
-              title="Información de Contacto"
-              propiedad="card-info-contacts"
-              seccion="inicio"
-              lang="es"
-            />
-            <VideoPlayer url={video}/>
+            {cardInfo?.map((item) => {
+              return (
+                <div class="grid grid-cols-1 lg:grid-cols-2 container mx-auto font-Rubik p-4 md:p-12">
+                  <div class="flex items-center justify-center py-4 lg:p-0">
+                    <img
+                      loading="lazy"
+                      src={item.img_url}
+                      alt={item.img_alt}
+                      class="reveal rounded h-max w-full md:w-2/3 shadow-xl hover:shadow-orange-500/10 transition-all"
+                    />
+                  </div>
+                  <div class="text-black dark:text-white border-l-4 p-4 border-red-300 dark:border-red-500">
+                    <div class="flex items-center justify-start gap-x-2 w-max pr-8 py-2">
+                      <slot />
+                      <h3 class="text-2xl md:text-4xl font-light title text-pretty">
+                        {item.title}
+                      </h3>
+                    </div>
+                    <div class="h-0.5 w-1/2 bg-gradient-to-r  from-red-300 from-10% to-transparent dark:from-red-500 dark:to-yellow-500 rounded" />
+                    <p class="text-zinc-800 dark:text-zinc-300 py-2 md:text-lg lg:text-xl font-Rubik font-light">
+                      {item.content}
+                    </p>
+                  </div>
+                </div>
+              );
+            })}
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
+              {sectionsEs?.map((item) => {
+              return (
+                <a
+                  href={item.to}
+                  class="card flex-1 basis-96 shadow-2xl transition-all border-2 border-transparent hover:border-zinc-500 rounded-lg"
+                >
+                  <div class="relative bg-zinc-100 dark:bg-zinc-950 p-4 h-full w-full rounded-lg">
+                    <div class="flex flex-col items-start gap-x-2">
+                      <h3 class="text-2xl md:text-4xl font-Kanit font-bold bg-clip-text text-transparent bg-gradient-to-tr from-purple-500 via-red-500 to-yellow-400">
+                        {item.title}
+                      </h3>
+                      <div class="bg-gradient-to-r my-1 from-purple-500 via-red-500 to-yellow-400 rounded-full h-0.5 w-2/3"></div>
+                    </div>
+                    <div>
+                      <p class="font-Kanit py-2 text-zinc-800 dark:text-zinc-300 z-20">
+                        {item.content}
+                      </p>
+                    </div>
+                  </div>
+                </a>
+              );
+            })}
+            </div>
+            <VideoPlayer url={video} />
           </section>
         )
       }

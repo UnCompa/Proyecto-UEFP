@@ -36,12 +36,11 @@ const { data: academicsData } = await supabase
   .from("levels_en")
   .select("*")
   .order("id", { ascending: true });
-console.log(data);
 const pathname = Astro.url.pathname
 ---
 
 <!-- <ThemeIcon/> -->
-<DashBoardBase title="Dashboard | Panel de control" icon="">
+<DashBoardBase title="Academics | Dashboard">
   <main class="dashboard">
     <div
       class="bg-zinc-200 dark:bg-zinc-900 h-full w-full [grid-area:aside] boxshadow"

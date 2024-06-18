@@ -39,7 +39,7 @@ const roles: string[] = (userData && userData[0]?.roles) || [];
 const pathname = Astro.url.pathname
 ---
 
-<DashBoardBase title="Contactos | Dashboard" icon="">
+<DashBoardBase title="Contactos | Panel de control">
   <main class="dashboard">
     <div
       class="bg-zinc-200 dark:bg-zinc-900 h-full w-full [grid-area:aside] boxshadow"
@@ -65,7 +65,7 @@ const pathname = Astro.url.pathname
         </p>
       </section>
       {
-        roles.includes("admin") ? (
+        roles.includes("admin") || roles.includes("moderator") ? (
           <section class="flex flex-col gap-2">
             <ContactsChange
               propiedad="contacts-title-hero"

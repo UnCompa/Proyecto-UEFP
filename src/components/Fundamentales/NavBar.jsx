@@ -5,11 +5,11 @@ import ChangeLanguaje from "../ChangeUI/ChangeLanguaje.jsx";
 import { getLangFromUrl, useTranslations } from "../../i18n/utils.ts";
 import { supabase } from "../../lib/supabase.ts";
 import {
-  FaCircleUser,
   FaEnvelopeCircleCheck,
   FaFile,
   FaGraduationCap,
   FaHouse,
+  FaRegNewspaper,
   FaSchoolFlag,
 } from "react-icons/fa6";
 import { FaChevronDown, FaImage, FaRegUser, FaUsers } from "react-icons/fa6";
@@ -20,16 +20,6 @@ function NavBar({ url, pathName, children, refreshToken, accessToken }) {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [isUser, setIsUser] = useState(false);
   const lang = getLangFromUrl(url);
-  const t = useTranslations(lang);
-  const [urls, setUrls] = useState({
-    home: t("a-inicio"),
-    about: t("a-about"),
-    academics: t("a-academicos"),
-    news: t("a-noticias"),
-    contact: t("a-contactos"),
-    docs: t("a-docs"),
-  });
-  const [, setTitles] = useState({});
   const urlString = url.toString();
 
   useEffect(() => {
@@ -78,8 +68,7 @@ function NavBar({ url, pathName, children, refreshToken, accessToken }) {
       mensaje1 = "Register";
     } else if (urlString.includes("/en/gallery")) {
       mensaje1 = "Gallery";
-    }
-    else {
+    } else {
       mensaje1 = "Home";
     }
   }
@@ -87,27 +76,6 @@ function NavBar({ url, pathName, children, refreshToken, accessToken }) {
   const handleMenu = () => {
     setOpenMenu(!openMenu);
   };
-
-  useEffect(() => {
-    const translatedUrls = {
-      home: t("a-inicio"),
-      about: t("a-about"),
-      academics: t("a-academicos"),
-      news: t("a-noticias"),
-      contact: t("a-contactos"),
-      docs: t("a-docs"),
-    };
-    setUrls(translatedUrls);
-
-    const titlesNav = {
-      home: t("title-inicio"),
-      about: t("title-about"),
-      academics: t("title-academicos"),
-      news: t("title-noticias"),
-      contact: t("title-contactos"),
-    };
-    setTitles(titlesNav);
-  }, [lang]);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -126,7 +94,7 @@ function NavBar({ url, pathName, children, refreshToken, accessToken }) {
         darkModeMediaQuery.removeEventListener("change", handleDarkModeChange);
       };
     }
-  }, []);
+  }, [isDarkMode]);
 
   return (
     <nav
@@ -164,8 +132,8 @@ function NavBar({ url, pathName, children, refreshToken, accessToken }) {
         </li>
         <li>
           <NavLink
-            to={urls.home}
-            text={t("nav-inicio")}
+            to={`/${lang}/`}
+            text={lang === "es" ? "Inicio" : "Home"}
             tabIndex="2"
             aria-label="Inicio"
           >
@@ -191,10 +159,10 @@ function NavBar({ url, pathName, children, refreshToken, accessToken }) {
           <ul className="hidden relative top-2 lg:absolute lg:top-12 left-0 w-full group-hover:flex group-hover:flex-col group-focus:flex group-focus:flex-col gap-y-2 text-black dark:text-white transition-all bg-zinc-200 dark:bg-zinc-900 rounded-xl z-50">
             <li>
               <NavLink
-                to={urls.about}
-                text={t("nav-sobrenosotros")}
+                to={`/${lang}/about`}
+                text={lang === "es" ? "Sobre nosotros" : "About us"}
                 tabIndex="4"
-                aria-label={t("nav-sobrenosotros")}
+                aria-label={lang === "es" ? "Sobre nosotros" : "About us"}
               >
                 <FaUsers />
               </NavLink>
@@ -211,10 +179,20 @@ function NavBar({ url, pathName, children, refreshToken, accessToken }) {
             </li>
             <li>
               <NavLink
-                to={urls.academics}
-                text={t("nav-academicos")}
+                to={`/${lang}/news`}
+                text={lang === "es" ? "Noticias" : "News"}
                 tabIndex="6"
-                aria-label={t("nav-academicos")}
+                aria-label={lang === "es" ? "Noticias" : "News"}
+              >
+                <FaRegNewspaper />
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to={`/${lang}/academics`}
+                text={lang === "es" ? "Academicos" : "Academics"}
+                tabIndex="7"
+                aria-label={lang === "es" ? "Academicos" : "Academics"}
               >
                 <FaGraduationCap />
               </NavLink>
@@ -223,20 +201,20 @@ function NavBar({ url, pathName, children, refreshToken, accessToken }) {
         </li>
         <li>
           <NavLink
-            to={urls.contact}
-            text={t("nav-contacto")}
-            tabIndex="7"
-            aria-label={t("nav-contacto")}
+            to={`/${lang}/contacts`}
+            text={lang === "es" ? "Contacto" : "Contacts"}
+            tabIndex="8"
+            aria-label={lang === "es" ? "Contacto" : "Contacts"}
           >
             <FaEnvelopeCircleCheck />
           </NavLink>
         </li>
         <li>
           <NavLink
-            to={urls.docs}
-            text={t("footer-contacto-doc")}
-            tabIndex="8"
-            aria-label={t("footer-contacto-doc")}
+            to={`/${lang}/docs`}
+            text={lang === "es" ? "Documentacion" : "Docs"}
+            tabIndex="9"
+            aria-label={lang === "es" ? "Documentacion" : "Docs"}
           >
             <FaFile />
           </NavLink>
@@ -247,8 +225,7 @@ function NavBar({ url, pathName, children, refreshToken, accessToken }) {
               <a
                 href={`/${lang}/dashboard`}
                 className="h-full w-full"
-                tabIndex="9"
-                aria-label={t("dashboard-link")}
+                tabIndex="10"
               >
                 <LayoutDashboardIcon className="h-11 w-11 shadow-2xl p-2 bg-zinc-200 hover:bg-red-600 hover:text-white dark:bg-zinc-900 dark:hover:bg-red-200 dark:hover:text-black transition-all rounded-xl" />
               </a>
@@ -256,8 +233,7 @@ function NavBar({ url, pathName, children, refreshToken, accessToken }) {
               <a
                 href={`/${lang}/signin`}
                 className="h-full w-full"
-                tabIndex="10"
-                aria-label={t("signin-link")}
+                tabIndex="11"
               >
                 <FaRegUser className="h-max w-max shadow-2xl text-2xl p-2 bg-zinc-200 hover:bg-red-600 hover:text-white dark:bg-zinc-900 dark:hover:bg-red-200 dark:hover:text-black transition-all rounded-xl" />
               </a>
@@ -270,8 +246,7 @@ function NavBar({ url, pathName, children, refreshToken, accessToken }) {
       <button
         onClick={handleMenu}
         className="text-black dark:text-white h-6 w-6 block lg:hidden mr-8"
-        tabIndex="11"
-        aria-label={openMenu ? t("close-menu") : t("open-menu")}
+        tabIndex="12"
       >
         <Bars />
       </button>

@@ -25,7 +25,12 @@ export const POST: APIRoute = async ({ request, redirect }) => {
   }
   const { data: updatedProfile } = await supabase
   .from("profiles")
-  .update({ username: name })
+  .update({
+    username: name,
+    avatar_url:
+      "https://static.vecteezy.com/system/resources/thumbnails/002/318/271/small_2x/user-profile-icon-free-vector.jpg",
+    email: email
+  })
   .eq("id", data.user?.id)
   .select("*");  
   return redirect(`/en/verification`);

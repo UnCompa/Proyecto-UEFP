@@ -1,0 +1,89 @@
+---
+import { FaThumbsUp, FaRegThumbsUp } from "react-icons/fa6";
+interface Props {
+  /** Pagina a que se va a dar like*/
+  page: string;
+  /** Texto de sugerencia */
+  text?: string;
+}
+const { page, text = "Esta información te fue útil?" } = Astro.props;
+---
+
+<section class="w-full my-2 py-6">
+  <div
+    class="my-4 font-Rubik gap-4 w-full h-max flex items-center justify-center"
+  >
+    <input id="page" type="hidden" value={page} />
+    <span class="text-lg md:text-xl font-light">
+      {text}
+    </span>
+    <button id="btnLike" class="text-red-500 text-xl md:text-2xl">
+      <span id="iconNoLike">
+        <FaRegThumbsUp />
+      </span>
+      <span id="iconLike" class="hidden">
+        <FaThumbsUp />
+      </span>
+    </button>
+  </div>
+</section>
+<script>
+  import { supabase } from "../../lib/supabase";
+
+  window.addEventListener("load", () => {
+    const pageInput = document.getElementById("page") as HTMLInputElement;
+    const page = pageInput.value;
+    const likedStorage = localStorage.getItem(page);
+    console.log(likedStorage);
+    console.log(page);
+    if (likedStorage === page) {
+      document.getElementById("iconNoLike")?.classList.add("hidden");
+      document.getElementById("iconLike")?.classList.remove("hidden");
+    }
+  });
+
+  document.getElementById("btnLike")?.addEventListener("click", async () => {
+    const pageInput = document.getElementById("page") as HTMLInputElement;
+    const page = pageInput.value;
+    const likedStorage = localStorage.getItem(page);
+
+    if (likedStorage === page) return; // Prevent multiple likes
+    const { data: dataLikes, error } = await supabase
+      .from("like_pages")
+      .select("likes")
+      .eq("page", page);
+
+    if (error) {
+      console.error("Error fetching likes:", error);
+      return;
+    }
+
+    const likesNow = dataLikes?.length ? dataLikes[0].likes : 0;
+
+    if (dataLikes?.length === 0) {
+      const { data, error } = await supabase
+        .from("like_pages")
+        .insert({ likes: 1, page });
+      if (error) {
+        console.error("Error inserting like:", error);
+        return;
+      }
+    } else {
+      const { data, error } = await supabase
+        .from("like_pages")
+        .update({ likes: likesNow + 1 })
+        .eq("page", page);
+      if (error) {
+        console.error("Error updating like:", error);
+        return;
+      }
+    }
+
+    document.getElementById("iconNoLike")?.classList.add("hidden");
+    document.getElementById("iconLike")?.classList.remove("hidden");
+    document
+      .getElementById("iconLike")
+      ?.classList.add("animate-fade-in", "animate-delay-300");
+    localStorage.setItem(page, page);
+  });
+</script>

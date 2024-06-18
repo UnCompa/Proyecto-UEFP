@@ -10,7 +10,7 @@ import {
 import Link from "./Link";
 import { getLangFromUrl } from "../../i18n/utils";
 import ChangeLanguaje from '../ChangeUI/ChangeLanguaje'
-import { FaGear, FaImage } from "react-icons/fa6";
+import { FaGear, FaImage, FaNewspaper, FaRegNewspaper, FaShare } from "react-icons/fa6";
 import LayoutDashboardIcon from "../../icons/LayoutDashboardIcon";
 export default function NavDashboard({ children,url, pathname }) {
   const lang = getLangFromUrl(url)
@@ -36,7 +36,7 @@ export default function NavDashboard({ children,url, pathname }) {
   }, []);
   return (
     <>
-      <div className="flex p-4 gap-x-4 items-center lg:justify-around lg:items-start">
+      <div className="flex p-4 gap-x-4 items-center lg:justify-around lg:items-start sticky top-0">
         <button
           onClick={handleMenu}
           className="text-black dark:text-white text-3xl p-2 hover:bg-zinc-800 block lg:hidden transition-background"
@@ -73,6 +73,11 @@ export default function NavDashboard({ children,url, pathname }) {
             <h2 className="font-bold py-4">Paginas</h2>
             <ul className="flex flex-col gap-y-4">
               <li>
+                <Link thin to={`/${lang}/`} text={lang === "es" ? "Regresar" : "Go back"}>
+                  <FaShare className="h-6 w-6 py-0.5" />
+                </Link>
+              </li>
+              <li>
                 <Link thin to={`/${lang}/dashboard`} text={lang === "es" ? "Pagina principal" : "Dashboard"}>
                   <LayoutDashboardIcon className="h-6 w-6 py-0.5" />
                 </Link>
@@ -102,6 +107,11 @@ export default function NavDashboard({ children,url, pathname }) {
                   <FaImage />
                 </Link>
               </li>
+              <li>
+                <Link url={url} to={`/${lang}/dashboard/news`} text={lang === "es" ? "Noticias" : "News"}>
+                  <FaRegNewspaper />
+                </Link>
+              </li>
             </ul>
           </li>
           <li>
@@ -110,11 +120,11 @@ export default function NavDashboard({ children,url, pathname }) {
             {lang === "es" ? "Opciones" : "Options"}
           </h2>
           <ul className="flex h-full items-center gap-x-4 flex-wrap">
-            {/* <li className="w-max h-max rounded-xl p-2 bg-zinc-200 dark:bg-zinc-900 shadow-2xl dark:hover:bg-red-200 dark:hover:text-black text-dark fill-black hover:bg-red-500 hover:text-white dark:text-white transition-all">
+            <li className="w-max h-max rounded-xl p-2 bg-zinc-200 dark:bg-zinc-900 shadow-2xl dark:hover:bg-red-200 dark:hover:text-black text-dark fill-black hover:bg-red-500 hover:text-white dark:text-white transition-all">
               <a href={`/${lang}/dashboard/settings`} className="">
               <FaGear className="text-xl"/>
               </a>
-            </li> */}
+            </li>
             <li>{children}</li>
             <ChangeLanguaje lang={lang} url={pathname}/>
             <li>

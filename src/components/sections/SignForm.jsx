@@ -1,13 +1,15 @@
 import { Input } from "@nextui-org/react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
-import {Toaster,toast} from 'sonner'
+import { Toaster, toast } from "sonner";
 export default function SignForm({ lang, navigate }) {
+  const [viewpassword, setViewPassword] = useState(false);
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-  (lang);
+  lang;
   const onSubmit = handleSubmit(async (data) => {
     const formData = new FormData();
     formData.append("email", data.email);
@@ -16,17 +18,16 @@ export default function SignForm({ lang, navigate }) {
       method: "POST",
       body: formData,
     });
-    console.log(res);
-    if(res.status === 203) {
-      toast.error("La contraseña o el correo son incorrectos")
+    if (res.status === 203) {
+      toast.error("La contraseña o el correo son incorrectos");
     }
-    if(res.status === 200) {
-      window.location.href = `/${lang}/dashboard`
+    if (res.status === 200) {
+      window.location.href = `/${lang}/dashboard`;
     }
   });
   return (
     <>
-    <Toaster position="top-center" richColors/>
+      <Toaster position="top-center" richColors />
       <form
         action="/api/auth/signin"
         method="post"
@@ -38,6 +39,7 @@ export default function SignForm({ lang, navigate }) {
         </label>
         <div class="h-1 my-2 w-1/3 bg-gradient-to-r from-purple-500 via-red-500 to-orange-400 rounded-full"></div>
         <Input
+          autoFocus
           type="text"
           name="email"
           id="email"
@@ -60,12 +62,12 @@ export default function SignForm({ lang, navigate }) {
           </span>
         )}
         <label for="password" class="font-bold">
-        {lang === "es" ? "Contraseña" : "Password"}
+          {lang === "es" ? "Contraseña" : "Password"}
         </label>
         <label htmlFor=""></label>
         <div class="h-1 my-2 w-1/3 bg-gradient-to-r from-purple-500 via-red-500 to-orange-400 rounded-full"></div>
         <Input
-          type="password"
+          type={viewpassword ? "text" : "password"}
           name="password"
           id="password"
           placeholder="***********"
@@ -85,6 +87,25 @@ export default function SignForm({ lang, navigate }) {
             },
           })}
         />
+        <div className="flex justify-between">
+          <div className="flex gap-2 items-center">
+            <input
+              onClick={() => setViewPassword(!viewpassword)}
+              type="checkbox"
+              name=""
+              className="checked:accent-red-500"
+              id=""
+            />{" "}
+            <label htmlFor="">
+              {lang === "es" ? "Ver contraseña" : "View password"}
+            </label>
+          </div>
+          <a href={`/${lang}/reset-password`} className="text-red-300 my-1">
+            {lang === "es"
+              ? "¿Olvidaste tu contraseña?"
+              : "Forget your password?"}
+          </a>
+        </div>
         {errors.password && (
           <span className="py-2 text-red-500 italic">
             {errors.password.message}

@@ -1,7 +1,9 @@
 import Dropzone from "dropzone";
 import { supabase } from "../lib/supabase";
+import { getLangFromUrl } from "../i18n/utils";
+const lang = getLangFromUrl(window.location)
 let myDropzone = new Dropzone(".dropzone", {
-  dictDefaultMessage: "Arrastra o sube tus archivos aqui",
+  dictDefaultMessage: lang === "es" ? "Arrastra o sube tus archivos aqui" : "Drag or upload your files here",
   url: "/",
   acceptedFiles: "video/*",
   maxFiles: 1,
