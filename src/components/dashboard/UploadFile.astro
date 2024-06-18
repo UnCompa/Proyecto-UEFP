@@ -1,16 +1,24 @@
 ---
 import "dropzone/dist/basic.css";
 import "dropzone/dist/dropzone.css";
+import { getLangFromUrl } from "../../i18n/utils";
+const lang = getLangFromUrl(Astro.url)
 ---
 
 <script src="../../scripts/Dropzone.js"></script>
 <div class="text-black dark:text-white">
-  <h3 class="py-1">Cambia la presentación:</h3>
+  <h3 class="py-1">
+    {lang === "es" ? "Cambia la presentación:" : "Change the presentation"}
+  </h3>
 
   <div class="dropzone bg-stone-100 dark:bg-zinc-950">
   </div>
   <div class="flex flex-col">
-    <span class="text-sm font-semibold">Solo se permite 1 video</span>
-    <span class="text-xs">Puede que tarde en reflejar los cambios</span>
+    <span class="text-sm font-semibold">
+      {lang === "es" ? "Solo se permite 1 video" : "Only 1 video allowed"}
+    </span>
+    <span class="text-xs">
+      {lang === "es" ? "Puede que tarde en reflejar los cambios" : "It may take time to reflect the changes"}
+    </span>
   </div>
 </div>

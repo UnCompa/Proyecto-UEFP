@@ -31,11 +31,13 @@ export default function ChangeForm(props) {
     window.location.reload()
   };
   return (
-    <article class="container mx-auto px-8 bg-zinc-100 dark:bg-zinc-900 grid grid-rows-2 rounded-md shadow-lg h-full">
-      <div className="h-full">
+    <article class="container mx-auto px-8 bg-zinc-100 dark:bg-zinc-900 flex flex-col rounded-md shadow-lg h-max">
+      <div className="h-max">
         <h2 class="text-2xl py-4 text-center font-bold">{title}</h2>
         <div class="flex flex-col flex-1">
-          <label for="">Actual:</label>
+          <label for="">
+            {lang === "es" ? "Actual" : "Current"}
+          </label>
           <textarea
             disabled
             value={(texto) ? texto : "Loading..."}
@@ -44,9 +46,11 @@ export default function ChangeForm(props) {
           />
         </div>
       </div>
-      <div class="flex flex-col md:flex-row md:items-center md:justify-center gap-x-4 h-full">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-center gap-x-4 h-max">
         <div class="flex flex-col flex-1">
-          <label for="">Modificar:</label>
+          <label for="">
+            {lang === "es" ? "Modificar" : "Modify"}
+          </label>
           <div class="flex items-center gap-x-4 w-full">
             <textarea
               id="InputHomeChange"

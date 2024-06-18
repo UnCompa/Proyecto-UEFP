@@ -10,7 +10,7 @@ import {
 import Link from "./Link";
 import { getLangFromUrl } from "../../i18n/utils";
 import ChangeLanguaje from '../ChangeUI/ChangeLanguaje'
-import { FaGear, FaImage, FaNewspaper, FaRegNewspaper } from "react-icons/fa6";
+import { FaGear, FaImage, FaNewspaper, FaRegNewspaper, FaShare } from "react-icons/fa6";
 import LayoutDashboardIcon from "../../icons/LayoutDashboardIcon";
 export default function NavDashboard({ children,url, pathname }) {
   const lang = getLangFromUrl(url)
@@ -36,7 +36,7 @@ export default function NavDashboard({ children,url, pathname }) {
   }, []);
   return (
     <>
-      <div className="flex p-4 gap-x-4 items-center lg:justify-around lg:items-start">
+      <div className="flex p-4 gap-x-4 items-center lg:justify-around lg:items-start sticky top-0">
         <button
           onClick={handleMenu}
           className="text-black dark:text-white text-3xl p-2 hover:bg-zinc-800 block lg:hidden transition-background"
@@ -72,6 +72,11 @@ export default function NavDashboard({ children,url, pathname }) {
           <li>
             <h2 className="font-bold py-4">Paginas</h2>
             <ul className="flex flex-col gap-y-4">
+              <li>
+                <Link thin to={`/${lang}/`} text={lang === "es" ? "Regresar" : "Go back"}>
+                  <FaShare className="h-6 w-6 py-0.5" />
+                </Link>
+              </li>
               <li>
                 <Link thin to={`/${lang}/dashboard`} text={lang === "es" ? "Pagina principal" : "Dashboard"}>
                   <LayoutDashboardIcon className="h-6 w-6 py-0.5" />

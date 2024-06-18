@@ -11,8 +11,10 @@ import CardChange from "../../../components/dashboard/home/CardChange";
 import CardCreate from "../../../components/dashboard/home/CardCreate";
 import OtherSectionChange from "../../../components/dashboard/home/OtherSectionChange";
 import OtherSectionCreate from "../../../components/dashboard/home/OtherSectionCreate";
+import { getLangFromUrl } from "../../../i18n/utils";
 const { cookies, redirect } = Astro;
 const url = Astro.url;
+const lang = getLangFromUrl(url)
 const accessToken = cookies.get("sb-access-token");
 const refreshToken = cookies.get("sb-refresh-token");
 
@@ -93,7 +95,7 @@ const { data: sectionsEs } = await supabase.from("sectionsEn").select("*");
           <section class="container mx-auto flex flex-col gap-8">
             <h2 class="font-bold text-xl md:text-2xl">Links to other pages</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
-              <OtherSectionChange table="sectionsEn" client:load />
+              <OtherSectionChange lang="en" table="sectionsEn" client:load />
             </div>
             <OtherSectionCreate table="sectionsEn" client:load />
             <h2 class="font-bold text-xl md:text-2xl">Mission and vision and more</h2>
@@ -128,7 +130,7 @@ const { data: sectionsEs } = await supabase.from("sectionsEn").select("*");
               seccion="inicio"
               client:load
             />
-            <UploadFileForm title="Subir presentacion" />
+            <UploadFileForm title={lang === "es" ? "Subir presentacion" : "Upload presentation"} />
           </section>
         ) : (
           <section class="container mx-auto grid grid-cols-1 gap-2">
