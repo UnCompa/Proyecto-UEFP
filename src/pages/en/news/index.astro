@@ -58,9 +58,9 @@ const lang = getLangFromUrl(Astro.url);
     <div class="h-1 bg-gradient-to-r from-red-500 to-orange-500 my-2"></div>
     {
       videos?.length ? (
-        <section class="carrusel flex snap-x snap-mandatory flex-nowrap p-2 overflow-auto">
+      <section class={`${videos?.length > 4 ? "carrusel flex flex-nowrap snap-x snap-mandatory p-2 overflow-auto max-h-max" : "carrusel grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 snap-x snap-mandatory p-2 overflow-auto max-h-max"}`}>
           {videos?.map((item: any) => (
-            <div class="bg-zinc-300 dark:bg-zinc-900 snap-center rounded-lg p-2 m-4 min-h-52 min-w-96 w-full h-max shadow-xl">
+           <div class="bg-zinc-300 dark:bg-zinc-900 snap-center rounded-lg p-2 m-4 min-h-52 min-w-96 w-full h-max max-w-max shadow-xl">
               <div>
                 <VideoPlayer thin={false} url={item.video_url} />
               </div>

@@ -17,7 +17,7 @@ import LayoutDashboardIcon from "../../icons/LayoutDashboardIcon.jsx";
 
 function NavBar({ url, pathName, children, refreshToken, accessToken }) {
   const [openMenu, setOpenMenu] = useState(false);
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(true);
   const [isUser, setIsUser] = useState(false);
   const lang = getLangFromUrl(url);
   const urlString = url.toString();
@@ -78,22 +78,19 @@ function NavBar({ url, pathName, children, refreshToken, accessToken }) {
   };
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      const darkModeMediaQuery = window.matchMedia(
-        "(prefers-color-scheme: dark)"
-      );
-      setIsDarkMode(darkModeMediaQuery.matches);
-
-      const handleDarkModeChange = (event) => {
-        setIsDarkMode(event.matches);
-      };
-
-      darkModeMediaQuery.addEventListener("change", handleDarkModeChange);
-
-      return () => {
-        darkModeMediaQuery.removeEventListener("change", handleDarkModeChange);
-      };
-    }
+    const html = document.querySelector("html");
+    setIsDarkMode(html?.classList.contains("dark"));
+    const observer = new MutationObserver((mutationsList) => {
+      mutationsList.forEach((mutation) => {
+        if (mutation.attributeName === "class") {
+          setIsDarkMode(html.classList.contains("dark"));
+        }
+      });
+    });
+    observer.observe(html, { attributes: true });
+    return () => {
+      observer.disconnect();
+    };
   }, [isDarkMode]);
 
   return (
