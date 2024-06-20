@@ -103,6 +103,24 @@ const UploadVideoNews = ({ lang = "es" }) => {
           required
           className="hidden"
         />
+        {lang === "es" ? (
+          <span className="text-xs">
+            Tamaño maximo de archivo es de <strong>50MB</strong>
+          </span>
+        ) : (
+          <span className="text-xs">
+            Maximum file size is <strong>50MB</strong>
+          </span>
+        )}
+        {lang === "es" ? (
+          <span className="text-xs font-light">
+            Se recomienda subir videos en formato horizontal
+          </span>
+        ) : (
+          <span className="text-xs font-light">
+            It is recommended to upload videos in horizontal format
+          </span>
+        )}
         <button
           type="submit"
           className="bg-emerald-400 dark:bg-emerald-600 rounded my-1 py-1"

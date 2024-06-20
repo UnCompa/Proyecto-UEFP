@@ -16,7 +16,19 @@ if (accessToken && refreshToken) {
 }
 ---
 
-<Layout title="Inicia sesion | Con tu correo">
+<Layout
+  title="Inicia secion | Con tu correo"
+  description="Image referring to logging in"
+  keywords="iniciar sesion uefp, uefp login, uefp iniciar sesion"
+  openGraph={{
+    basic: {
+      title: "Imagen referente al iniciar sesion",
+      type: "website",
+      image: "https://i.postimg.cc/766C0V1z/inicia-sesion.png",
+      url: Astro.url.href
+    }
+  }}
+>
   <Navigation />
   <main
     class="w-full h-full bg-zinc-100 dark:bg-zinc-800 px-4 py-12 grid grid-cols-1 lg:grid-cols-2"

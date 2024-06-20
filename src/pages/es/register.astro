@@ -9,7 +9,19 @@ import { Toaster } from "sonner";
 import SignGoogle from "../../components/buttons/SignGoogle";
 ---
 
-<Layout title="Registrarse | UEFP">
+<Layout
+  title="Registrarse | UEFP"
+  description="Crea una cuenta para poder ingresar al dashboard"
+  keywords="register uefp, uefp register, crear cuenta uefp"
+  openGraph={{
+    basic: {
+      title: "Imagen referente a registrarse",
+      type: "website",
+      image: "https://i.postimg.cc/pV3ZVhxC/Log-in.png",
+      url: Astro.url.href,
+    },
+  }}
+>
   <Navigation />
   <Toaster />
   <main class="w-full h-full bg-zinc-100 dark:bg-zinc-800 py-4 my-4">
@@ -85,11 +97,7 @@ import SignGoogle from "../../components/buttons/SignGoogle";
         </form>
       </div>
       <div class="flex items-center justify-center py-8">
-        <img
-          class="h-96"
-          src="/svg/undraw_online_test_re_kyfx(1).svg"
-          alt=""
-        />
+        <img class="h-96" src="/svg/undraw_online_test_re_kyfx(1).svg" alt="" />
       </div>
     </section>
   </main>
