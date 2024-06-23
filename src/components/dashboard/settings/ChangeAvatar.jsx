@@ -13,7 +13,6 @@ const ChangeAvatar = ({ user }) => {
         .from("profiles")
         .select("*")
         .eq("id", user.id);
-      console.log(data);
       setAvatarUrl(data[0].avatar_url);
     };
     loadAvatar();
@@ -33,29 +32,23 @@ const ChangeAvatar = ({ user }) => {
     const fileExt = file.name.split(".").pop();
     const fileName = `${user.id}.${fileExt}`;
     const filePath = `${fileName}`;
-    console.log(filePath);
 
     try {
       // Subir la imagen al storage de Supabase
       const { data: img, error: uploadError } = await supabase.storage
         .from("avatars")
         .upload(filePath, file, { upsert: true });
-      console.log(img);
 
       // Obtener la URL pública de la imagen subida
       const { data: dataUrl } = supabase.storage
         .from("avatars")
         .getPublicUrl(filePath);
       // Actualizar el perfil del usuario con la URL del nuevo avatar
-      console.log(dataUrl.publicUrl);
       const { data, error: updateError } = await supabase
         .from("profiles")
         .update({ avatar_url: dataUrl.publicUrl })
         .eq("id", user.id)
         .select("*");
-      console.log(user.id);
-      console.log(data);
-      console.log(updateError);
       if (updateError) {
         throw updateError;
       }

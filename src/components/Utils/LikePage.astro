@@ -34,8 +34,6 @@ const { page, text = "Esta información te fue útil?" } = Astro.props;
     const pageInput = document.getElementById("page") as HTMLInputElement;
     const page = pageInput.value;
     const likedStorage = localStorage.getItem(page);
-    console.log(likedStorage);
-    console.log(page);
     if (likedStorage === page) {
       document.getElementById("iconNoLike")?.classList.add("hidden");
       document.getElementById("iconLike")?.classList.remove("hidden");

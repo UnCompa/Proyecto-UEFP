@@ -10,7 +10,6 @@ const UploadVideoNews = ({ lang = "es" }) => {
 
   const handleUpload = async (e) => {
     e.preventDefault();
-    console.log(title, description, file);
 
     if (!file) {
       console.error("No file selected");
@@ -21,8 +20,6 @@ const UploadVideoNews = ({ lang = "es" }) => {
     const { data: uploadData, error: uploadError } = await supabase.storage
       .from("videos")
       .upload(`${file.name}`, file);
-    console.log(uploadData);
-    console.log(uploadError);
     if (uploadError) {
       setLoading(false);
       toast.error("Caracteres invalidos, renombre el archivo");

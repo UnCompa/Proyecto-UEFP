@@ -15,7 +15,7 @@ const OtherSectionChange = ({ table, lang = "es" }) => {
         .from(table)
         .select("*")
         .order("id", { ascending: true });
-      console.log(data);
+      (data);
       if (error) {
         console.error(error);
       } else {

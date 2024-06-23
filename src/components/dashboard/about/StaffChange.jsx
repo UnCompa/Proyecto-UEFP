@@ -18,7 +18,6 @@ const StaffChange = ({ table }) => {
       if (error) {
         console.error(error);
       } else {
-        console.log(data);
         setData(data);
       }
     };

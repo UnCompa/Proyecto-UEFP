@@ -30,7 +30,6 @@ const GalleryChange = ({lang = "es"}) => {
   }, []);
 
   const handleDelete = async (name) => {
-    console.log(name);
     const { error } = await supabase.storage.from("galeria").remove([name]);
 
     if (error) {

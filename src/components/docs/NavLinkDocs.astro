@@ -1,17 +1,23 @@
 ---
 import { getLangFromUrl } from "../../i18n/utils";
 import NavigateDocs from "./NavigateDocs.astro";
-const lang = getLangFromUrl(Astro.url)
+const lang = getLangFromUrl(Astro.url);
 ---
 
-<h2 class="no-underline text-xl md:text-2xl border-l-2 border-red-500 mt-2 block text-center bg-zinc-300 dark:bg-zinc-950 rounded-tr-2xl rounded-br-2xl font-bold">
+<h2
+  class="no-underline text-xl md:text-2xl border-l-2 border-red-500 mt-2 block text-center bg-zinc-300 dark:bg-zinc-950 rounded-tr-2xl rounded-br-2xl font-bold"
+>
   {lang === "es" ? "Para el usuario" : "For the user"}
 </h2>
-<h3 class="no-underline font-semibold text-xl border-b border-red-500 mt-2 my-4">
+<h3
+  class="no-underline font-semibold text-xl border-b border-red-500 mt-2 my-4"
+>
   {lang === "es" ? "Introduccion a la web" : "Introduction for web"}
 </h3>
-<NavigateDocs path="user"/>
-<h3 class="no-underline font-semibold text-xl border-b border-red-500 mt-2 my-4">
+<NavigateDocs path="user" />
+<h3
+  class="no-underline font-semibold text-xl border-b border-red-500 mt-2 my-4"
+>
   {lang === "es" ? "Como empezar" : "How started"}
 </h3>
-<NavigateDocs path="dev"/>
+<NavigateDocs path="dev" />

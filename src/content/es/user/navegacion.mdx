@@ -10,20 +10,25 @@ avatar: "https://i1.sndcdn.com/artworks-oGvaMt0dsBWPL7WZ-qgbAMA-t500x500.jpg"
 tags: ["Usuario", "Guias", "Navegacion"]
 ---
 
+import LinksContainer from "../../../components/docs/LinksContainer.astro";
+import LinkCard from "../../../components/docs/LinkCard.astro";
+
 ## Navegación
 
 Nuestra web está diseñada para ser intuitiva y fácil de navegar. Aquí te explicamos cómo puedes moverte por ella:
 
 ### Barra de Menú
 
-La barra de menú se encuentra en la parte superior de la página y contiene enlaces a las principales secciones de la web, como la página de inicio, información institucional, programas educativos, noticias y contacto. Simplemente haz clic en el enlace correspondiente para acceder a la sección que te interese.
-
-### Enlaces Internos
-
-Además de la barra de menú, también encontrarás enlaces internos dentro del contenido de las páginas. Estos enlaces te permiten navegar directamente a secciones específicas dentro de una página, facilitando la búsqueda de información relevante.
-
-### Función de Búsqueda
-
-Si estás buscando información específica y no sabes dónde encontrarla, nuestra web cuenta con una función de búsqueda que te ayudará a encontrar lo que necesitas. Simplemente ingresa tu consulta en el campo de búsqueda, ubicado generalmente en la parte superior derecha de la página, y presiona enter. Se te mostrarán los resultados relevantes, y podrás hacer clic en ellos para acceder a la información deseada.
+La barra de menú se encuentra en la parte superior de la página y contiene enlaces a las principales secciones de la web, como la página de inicio, etiquetas, etc.
 
 ¡Explora nuestra web y descubre todo lo que tenemos para ofrecerte!
+
+
+<LinksContainer>
+  <LinkCard
+  invert
+  text="Conceptos basicos"
+  content="user"
+  destiny="iniciar"
+  />
+</LinksContainer>

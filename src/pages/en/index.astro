@@ -13,12 +13,10 @@ import { supabase } from "../../lib/supabase";
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 const { data: cardInitial } = await supabase.from("card_homeEn").select("*");
-console.log(cardInitial);
 const { data: cardSections } = await supabase
   .from("sectionsEn")
   .select("*")
   .order("id");
-console.log(cardSections);
 ---
 
 <Layout

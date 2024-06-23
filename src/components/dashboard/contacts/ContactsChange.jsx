@@ -16,7 +16,6 @@ const ContactsChange = (props) => {
   useEffect(() => {
     const fetchData = async () => {
       const textoDB = await recuperarTexto(propiedad, lang, seccion);
-      console.log(textoDB);
       setTexto(textoDB);
     };
     fetchData();
@@ -25,7 +24,6 @@ const ContactsChange = (props) => {
     const newText = {
       texto: newtexto,
     };
-    console.log(newText);
     setLoading(true);
     const data = await actualizarTexto(propiedad, lang, seccion, newText);
     setLoading(false);

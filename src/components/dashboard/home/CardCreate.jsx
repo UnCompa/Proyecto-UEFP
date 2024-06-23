@@ -12,7 +12,6 @@ const HistoryCreate = ({table}) => {
     img_alt: "",
   });
   const handleCreate = async () => {
-    console.log(createdata);
     const { data, error } = await supabase
       .from(table)
       .insert({

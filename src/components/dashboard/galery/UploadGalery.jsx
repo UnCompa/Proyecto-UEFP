@@ -14,7 +14,6 @@ const UploadGallery = ({lang = "es"}) => {
 
     myDropzone.on("addedfile", (file) => {
       const namefile = file.name;
-      console.log(namefile);
       // Se debe usar una promesa o async/await aquí
       (async () => {
         const { data, error } = await supabase.storage
@@ -22,8 +21,6 @@ const UploadGallery = ({lang = "es"}) => {
           .upload(namefile, file, {
             upsert: true,
           });
-        console.log(data);
-        console.log(error);
         if (data) {
           window.location.reload();
         }

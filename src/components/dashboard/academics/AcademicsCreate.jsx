@@ -21,7 +21,6 @@ const AcademicsCreate = ({ table }) => {
           img: createData.img_url,
         },
       ]);
-      console.log(error);
       if (error) {
         console.error("Error al crear:", error);
         toast.error("Error al crear la sección");

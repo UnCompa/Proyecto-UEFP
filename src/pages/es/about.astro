@@ -15,7 +15,6 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 const xd = Astro.url
 const {data: historyData} = await supabase.from("historyes").select("*").order("id", {ascending: true})
-console.log(historyData);
 
 const {data: objetivesData} = await supabase.from("objetives_es").select("*").order("id", {ascending: true})
 ---

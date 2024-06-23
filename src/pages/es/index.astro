@@ -22,14 +22,11 @@ const video = videoSplit[0];
 const sign = await supabase.auth.signInWithOtp({
   email: "brandonddxd@gmail.com",
 });
-console.log(sign);
 const { data: cardInitial } = await supabase.from("card_homeEs").select("*");
-console.log(cardInitial);
 const { data: cardSections } = await supabase
   .from("sectionsEs")
   .select("*")
   .order("id");
-console.log(cardSections);
 ---
 
 <Layout

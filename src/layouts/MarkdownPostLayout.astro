@@ -3,10 +3,10 @@ import { Image } from "astro:assets";
 import DocsLayout from "./DocsLayout.astro";
 import { getLangFromUrl } from "../i18n/utils";
 import { Toaster } from "sonner";
-import dayjs from 'dayjs';
-import relativeTime from 'dayjs/plugin/relativeTime';
-import 'dayjs/locale/es';
-import 'dayjs/locale/en';
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
+import "dayjs/locale/es";
+import "dayjs/locale/en";
 import LikePage from "../components/Utils/LikePage.astro";
 
 dayjs.extend(relativeTime);
@@ -17,19 +17,21 @@ const lang = getLangFromUrl(Astro.url);
 const url = Astro.url.origin;
 
 // Función para formatear la fecha
-function formatearFecha(fecha: string, idioma = 'es') {
+function formatearFecha(fecha: string, idioma = "es") {
   dayjs.locale(idioma);
   const fechaObj = dayjs(fecha);
 
-  if (fechaObj.isSame(dayjs(), 'day')) {
-    return idioma === 'es' ? 'Hoy' : 'Today';
+  if (fechaObj.isSame(dayjs(), "day")) {
+    return idioma === "es" ? "Hoy" : "Today";
   }
 
-  if (fechaObj.isSame(dayjs().subtract(1, 'day'), 'day')) {
-    return idioma === 'es' ? 'Ayer' : 'Yesterday';
+  if (fechaObj.isSame(dayjs().subtract(1, "day"), "day")) {
+    return idioma === "es" ? "Ayer" : "Yesterday";
   }
 
-  return fechaObj.format(idioma === 'es' ? 'D [de] MMMM [del] YYYY' : 'MMMM D, YYYY');
+  return fechaObj.format(
+    idioma === "es" ? "D [de] MMMM [del] YYYY" : "MMMM D, YYYY"
+  );
 }
 
 const formattedDate = formatearFecha(frontmatter.pubDate, lang);
@@ -69,7 +71,10 @@ const formattedDate = formatearFecha(frontmatter.pubDate, lang);
           class="h-12 w-12 object-cover rounded-full border border-black dark:border-white p-0.5"
         />
         <p class="text-base">
-          Realizado por: <span class="text-red-600 dark:text-red-200"
+          <span>
+            {lang === "es" ? "Realizado por:" : "Made by:"}
+          </span>
+          <span class="text-red-600 dark:text-red-200"
             >{frontmatter.author}</span
           >
         </p>
@@ -102,25 +107,28 @@ const formattedDate = formatearFecha(frontmatter.pubDate, lang);
       }
     </div>
   </div>
-  <Toaster toastOptions={{
-    style: {
-      padding: "1em",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center"
-    },
-    unstyled: true,
-    classNames: {
-      toast: "bg-zinc-200 dark:bg-zinc-900",
-      title: "text-black dark:text-white",
-      description: "text-black dark:text-white",
-      actionButton: "bg-zinc-200 dark:bg-zinc-900",
-      cancelButton: "bg-zinc-200 dark:bg-zinc-900",
-      closeButton: "bg-zinc-200 dark:bg-zinc-900",
-      success: "bg-green-500 text-green-500"
-    }
-  }} client:load />
+  <Toaster
+    toastOptions={{
+      style: {
+        padding: "1em",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      },
+      unstyled: true,
+      classNames: {
+        toast: "bg-zinc-200 dark:bg-zinc-900",
+        title: "text-black dark:text-white",
+        description: "text-black dark:text-white",
+        actionButton: "bg-zinc-200 dark:bg-zinc-900",
+        cancelButton: "bg-zinc-200 dark:bg-zinc-900",
+        closeButton: "bg-zinc-200 dark:bg-zinc-900",
+        success: "bg-green-500 text-green-500",
+      },
+    }}
+    client:load
+  />
   <slot />
-  <LikePage page={`${frontmatter.title}-${frontmatter.author}`}/>
+  <LikePage page={`${frontmatter.title}-${frontmatter.author}`} />
 </DocsLayout>
 <script src="../scripts/MarkdownToast.js"></script>

@@ -19,9 +19,7 @@ export default function InputUpdateSettings({ idUser, type }) {
 
       if (error) throw error;
 
-      console.log(data);
     } catch (error) {
-      console.log(error);
       setError(error.message);
     } finally {
       setLoading(false);

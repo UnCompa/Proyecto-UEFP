@@ -14,7 +14,6 @@ const AcademicsChange = ({ table, lang = "es" }) => {
         .from(table)
         .select("*")
         .order("id", { ascending: true });
-      console.log(data);
       setData(data);
     };
     loadLevels();

@@ -38,8 +38,6 @@ export const POST: APIRoute = async ({ request, cookies, redirect }) => {
     email,
     password,
   });
-  console.log(data);
-  console.log(error);
   if (error) {
     return new Response("No pasa", {status: 203})
   }

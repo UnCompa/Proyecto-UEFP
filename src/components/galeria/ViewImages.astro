@@ -3,7 +3,6 @@ import { FaX } from "react-icons/fa6";
 import { supabase } from "../../lib/supabase";
 
 const { data } = await supabase.storage.from("galeria").list("");
-console.log(data);
 const imgsUrl = data?.map((file) => {
   const data = supabase.storage.from("galeria").getPublicUrl(file.name);
   const { publicUrl } = data.data;

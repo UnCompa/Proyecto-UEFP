@@ -11,7 +11,6 @@ const VideosList = ({ videosMetadata, lang = "es" }) => {
   useEffect(() => {
     const fetchUser = async () => {
       const user = await supabase.auth.getUser();
-      console.log(user);
       setCurrentUser(user);
     };
 
@@ -24,8 +23,6 @@ const VideosList = ({ videosMetadata, lang = "es" }) => {
       const { data, error: storageError } = await supabase.storage
         .from("videos")
         .remove([videoUrl]);
-      console.log(data);
-      console.log(storageError);
 
       if (storageError) {
         throw new Error("Error al eliminar el video del almacenamiento");
@@ -50,10 +47,6 @@ const VideosList = ({ videosMetadata, lang = "es" }) => {
         .from("comments")
         .delete()
         .eq("video_id", videoId);
-      console.log(likesData);
-      console.log(likesError);
-      console.log(commentsData);
-      console.log(commentsError);
       // Actualizar la lista de videos después de eliminar
       setVideos(videos.filter((video) => video.id !== videoId));
 

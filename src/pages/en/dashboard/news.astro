@@ -44,7 +44,6 @@ const pathname = Astro.url.pathname;
 const { data: videos_metadata } = await supabase
   .from("videos_metadata")
   .select("*");
-console.log(videos_metadata);
 ---
 
 <!-- <ThemeIcon/> -->

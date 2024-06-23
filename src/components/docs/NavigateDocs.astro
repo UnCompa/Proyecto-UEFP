@@ -3,17 +3,36 @@ import { getCollection } from "astro:content";
 import { getLangFromUrl } from "../../i18n/utils";
 const url = Astro.url;
 const lang = getLangFromUrl(url);
-const { path, hidden } = Astro.props;
+const { path } = Astro.props;
 const allPostsEs = await getCollection("es");
 const filterPostEs = allPostsEs.filter((post) => {
   const id = post.id;
   return id.includes(path);
 });
+const sortPostEs = filterPostEs.sort((a, b) => {
+  // Convertir las fechas de string a Date
+  const dateA = new Date(a.data.pubDate).getTime();
+  const dateB = new Date(b.data.pubDate).getTime();
+  
+  // Comparar las fechas
+  return dateA - dateB;
+});
+
+
 const allPostsEn = await getCollection("en");
 const filterPostEn = allPostsEn.filter((post) => {
   const id = post.id;
   return id.includes(path);
 });
+const sortPostEn = filterPostEn.sort((a, b) => {
+  // Convertir las fechas de string a Date
+  const dateA = new Date(a.data.pubDate).getTime();
+  const dateB = new Date(b.data.pubDate).getTime();
+  
+  // Comparar las fechas
+  return dateA - dateB;
+});
+
 const urlString = url.toString()
 ---
 {
@@ -21,7 +40,7 @@ const urlString = url.toString()
   <nav>
   <ul class="list-none flex flex-col border-l-2 border-red-500 dark:border-red-800 p-0">
     {
-      filterPostEs.map((post) => (
+      sortPostEs.map((post) => (
         <li class={`${urlString.includes(post.slug) ? "from-red-300 dark:from-red-800" : ""} bg-gradient-to-r to-transparent p-2 text-base`}>
           <a
             class={`w-full h-max font-Kanit text-black dark:text-white font-light no-underline hover:text-zinc-700 dark:hover:text-zinc-400 transition-colors`}
@@ -39,7 +58,7 @@ const urlString = url.toString()
   <nav>
   <ul class="list-none flex flex-col border-l-2 border-red-500 dark:border-red-800 p-0">
     {
-      filterPostEn.map((post) => (
+      sortPostEn.map((post) => (
       <li class={`${urlString.includes(post.slug) ? "from-red-300 dark:from-red-800" : ""} bg-gradient-to-r to-transparent p-2`}>
           <a
             class={`w-full h-max font-Kanit text-black dark:text-white font-light no-underline hover:text-zinc-700 dark:hover:text-zinc-400 transition-colors`}
