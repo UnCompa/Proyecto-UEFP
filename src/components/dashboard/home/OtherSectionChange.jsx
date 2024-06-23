@@ -8,6 +8,7 @@ const OtherSectionChange = ({ table, lang = "es" }) => {
   const [newTitle, setNewTitle] = useState("");
   const [newContent, setNewContent] = useState("");
   const [newto, setNewTo] = useState("");
+  const [newIconName, setIconName] = useState("");
 
   useEffect(() => {
     const loadData = async () => {
@@ -15,7 +16,7 @@ const OtherSectionChange = ({ table, lang = "es" }) => {
         .from(table)
         .select("*")
         .order("id", { ascending: true });
-      (data);
+      data;
       if (error) {
         console.error(error);
       } else {
@@ -30,13 +31,14 @@ const OtherSectionChange = ({ table, lang = "es" }) => {
     setNewTitle(data[index].title);
     setNewContent(data[index].content);
     setNewTo(data[index].to);
+    setIconName(data[index].iconName);
   };
 
   const handleSave = async (index) => {
     const item = data[index];
     const { data: updatedData, error } = await supabase
       .from(table)
-      .update({ title: newTitle, content: newContent, to: newto })
+      .update({ title: newTitle, content: newContent, to: newto, iconName: newIconName })
       .eq("id", item.id);
 
     if (error) {
@@ -48,6 +50,7 @@ const OtherSectionChange = ({ table, lang = "es" }) => {
           ...newData[index],
           title: newTitle,
           content: newContent,
+          iconName: newIconName,
         };
         return newData;
       });
@@ -89,12 +92,21 @@ const OtherSectionChange = ({ table, lang = "es" }) => {
                 onChange={(e) => setNewContent(e.target.value)}
                 className="p-1 outline-none focus:ring-2 focus:ring-red-500 rounded-lg my-1 shadow font-light"
               />
-              <label htmlFor="">{lang === "es" ? "Va hacia:" : "Redirect:"}</label>
+              <label htmlFor="">
+                {lang === "es" ? "Va hacia:" : "Redirect:"}
+              </label>
               <input
                 type="text"
                 value={newto}
                 className="p-1 outline-none focus:ring-2 focus:ring-red-500 rounded-lg my-1 shadow font-light"
                 onChange={(e) => setNewTo(e.target.value)}
+              />
+              <label htmlFor="">{lang === "es" ? "Icono:" : "Icon:"}</label>
+              <input
+                type="text"
+                value={newIconName}
+                className="p-1 outline-none focus:ring-2 focus:ring-red-500 rounded-lg my-1 shadow font-light"
+                onChange={(e) => setIconName(e.target.value)}
               />
               <div className="flex gap-2 my-2">
                 <button
@@ -136,6 +148,12 @@ const OtherSectionChange = ({ table, lang = "es" }) => {
                   {lang === "es" ? "Va hacia:" : "Redirect:"}
                 </span>{" "}
                 {`/${lang}/${item.to}`}
+                <p className="font-light">
+                  <span className="font-bold">
+                    {lang === "es" ? "Icono:" : "Icon:"}
+                  </span>{" "}
+                  {item.iconName ? item.iconName : (lang === "es") ? "No disponible" : "Not avalible"}
+                </p>
                 <h2 className="text-2xl font-bold">
                   <span className="font-extrabold">
                     {lang === "es" ? "Titulo:" : "Title:"}

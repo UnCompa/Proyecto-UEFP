@@ -18,6 +18,7 @@ const HistoryCreate = ({table}) => {
         title: createdata.title,
         content: createdata.content,
         to: createdata.to,
+        iconName: createdata.iconName,
       })
       .select("*");
     if (data) {
@@ -72,6 +73,17 @@ const HistoryCreate = ({table}) => {
                 setCreateData((prevData) => ({
                   ...prevData,
                   to: e.target.value,
+                }))
+              }
+            />
+            <label htmlFor="">Icono</label>
+            <input
+              type="text"
+              className="p-1 outline-none focus:ring-2 focus:ring-red-500 rounded-lg my-1 shadow font-light"
+              onChange={(e) =>
+                setCreateData((prevData) => ({
+                  ...prevData,
+                  iconName: e.target.value,
                 }))
               }
             />

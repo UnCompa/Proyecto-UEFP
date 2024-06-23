@@ -10,6 +10,7 @@ import { FaGraduationCap } from "react-icons/fa6";
 import { FaEnvelope, FaUser } from "react-icons/fa";
 import CardWithLink from "../../components/Cards/CardWithLink.astro";
 import { supabase } from "../../lib/supabase";
+import { iconMap, type IconName } from "../../utils/iconsData";
 const url = Astro.url;
 const lang = getLangFromUrl(url);
 const t = useTranslations(lang);
@@ -27,6 +28,13 @@ const { data: cardSections } = await supabase
   .from("sectionsEs")
   .select("*")
   .order("id");
+interface DataItem {
+  id: number;
+  title: string;
+  content: string;
+  to: string;
+  iconName: IconName;
+}
 ---
 
 <Layout
@@ -96,13 +104,18 @@ const { data: cardSections } = await supabase
       </div>
       <div class="flex flex-wrap p-4 gap-4 container mx-auto">
         {
-          cardSections?.map((item) => (
-            <CardWithLink
-              title={item.title}
-              to={item.to}
-              content={item.content}
-            />
-          ))
+          cardSections?.map((item: DataItem) => {
+            const IconComponent = iconMap[item.iconName];
+            console.log(IconComponent);              
+            return (
+              <CardWithLink
+                title={item.title}
+                to={item.to}
+                content={item.content}
+                Icon={IconComponent}
+              />
+            );
+          })
         }
       </div>
     </section>
