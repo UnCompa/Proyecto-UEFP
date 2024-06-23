@@ -10,6 +10,7 @@ image:
 tags: ["Desarrollador", "Iniciar", "Astro"]
 ---
 
+import { FaImage, FaVideo, FaPenClip, FaFolder } from "react-icons/fa6";
 import LinksContainer from "../../../components/docs/LinksContainer.astro";
 import LinkCard from "../../../components/docs/LinkCard.astro";
 
@@ -38,6 +39,16 @@ Con estos requisitos, podrás participar activamente en el desarrollo y la mejor
 ## Cómo empezar
 
 Para comenzar a contribuir, primero necesitarás clonar el repositorio del proyecto. Puedes hacerlo ejecutando el siguiente comando en la terminal (se requiere tener Git instalado):
+
+<br />
+
+**HTTPS**
+
+```bash
+git clone https://github.com/UnCompa/Proyecto-UEFP.git
+```
+
+**SSH**
 
 ```bash
 git clone git@github.com:UnCompa/Proyecto-UEFP.git
@@ -82,15 +93,15 @@ Proyecto-UEFP/
 
 Esta carpeta contiene recursos estáticos utilizados en la página web, como imágenes y videos.
 
-##### Imgs
+##### <FaImage/> Imgs
 
 Almacena imágenes principales utilizadas en la web.
 
-##### Videos
+##### <FaVideo/> Videos
 
 Carpeta que almacena videos utilizados en la web.
 
-##### Svg
+##### <FaPenClip/> Svg
 
 Se guardan imágenes de tipo SVG utilizadas en la web.
 
@@ -98,43 +109,43 @@ Se guardan imágenes de tipo SVG utilizadas en la web.
 
 Esta carpeta contiene el código fuente de la aplicación, organizado en diferentes subdirectorios:
 
-##### Components
+##### <FaFolder/> Components
 
 Contiene componentes reutilizables utilizados en diferentes partes de la página.
 
-##### i18n
+##### <FaFolder/> i18n
 
 Almacena las traducciones para español e inglés de la página.
 
-##### Icons
+##### <FaFolder/> Icons
 
 Un componente de React que exporta iconos en formato SVG para su uso en la página.
 
-##### Layouts
+##### <FaFolder/> Layouts
 
 Aquí se encuentran las plantillas que proporcionan una base reutilizable para diferentes casos de uso.
 
-##### Lib
+##### <FaFolder/> Lib
 
 Contiene bibliotecas útiles, como la biblioteca para utilizar Supabase
 
-##### Meta
+##### <FaFolder/> Meta
 
 Contiene componentes con información necesaria para la indexación de la página.
 
-##### Pages
+##### <FaFolder/> Pages
 
 La carpeta más importante, que contiene las rutas a las diferentes páginas de la web.
 
-##### Schema
+##### <FaFolder/> Schema
 
 Carpeta para definir esquemas de datos.
 
-##### Store
+##### <FaFolder/> Store
 
 Almacena archivos relacionados con el manejo del estado de la aplicación.
 
-##### Utils
+##### <FaFolder/> Utils
 
 Esta carpeta contiene utilidades varias utilizadas en el proyecto.
 
@@ -143,15 +154,10 @@ Esta carpeta contiene utilidades varias utilizadas en el proyecto.
 Esta es solo un pequeño resumen de que se requiere, en otras secciones se hablará a detalle de cada apartado
 
 <LinksContainer>
-  <LinkCard 
-  invert
-  text="Regresa al inicio"
-  destiny=""
-  content=""
-  />
-  <LinkCard 
-  text="Aprende sobre las tecnolgias requeridas"
-  destiny="las-tecnologias"
-  content="dev"
+  <LinkCard invert text="Regresa al inicio" destiny="" content="" />
+  <LinkCard
+    text="Aprende sobre las tecnolgias requeridas"
+    destiny="las-tecnologias"
+    content="dev"
   />
 </LinksContainer>

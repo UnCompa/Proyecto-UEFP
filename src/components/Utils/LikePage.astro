@@ -30,7 +30,7 @@ const { page, text = "Esta información te fue útil?" } = Astro.props;
 <script>
   import { supabase } from "../../lib/supabase";
 
-  window.addEventListener("load", () => {
+  window.addEventListener("DOMContentLoaded", () => {
     const pageInput = document.getElementById("page") as HTMLInputElement;
     const page = pageInput.value;
     const likedStorage = localStorage.getItem(page);
@@ -40,48 +40,50 @@ const { page, text = "Esta información te fue útil?" } = Astro.props;
     }
   });
 
-  document.getElementById("btnLike")?.addEventListener("click", async () => {
-    const pageInput = document.getElementById("page") as HTMLInputElement;
-    const page = pageInput.value;
-    const likedStorage = localStorage.getItem(page);
+  document.addEventListener("astro:page-load", () => {
+    document.getElementById("btnLike")?.addEventListener("click", async () => {
+      const pageInput = document.getElementById("page") as HTMLInputElement;
+      const page = pageInput.value;
+      const likedStorage = localStorage.getItem(page);
 
-    if (likedStorage === page) return; // Prevent multiple likes
-    const { data: dataLikes, error } = await supabase
-      .from("like_pages")
-      .select("likes")
-      .eq("page", page);
-
-    if (error) {
-      console.error("Error fetching likes:", error);
-      return;
-    }
-
-    const likesNow = dataLikes?.length ? dataLikes[0].likes : 0;
-
-    if (dataLikes?.length === 0) {
-      const { data, error } = await supabase
+      if (likedStorage === page) return; // Prevent multiple likes
+      const { data: dataLikes, error } = await supabase
         .from("like_pages")
-        .insert({ likes: 1, page });
-      if (error) {
-        console.error("Error inserting like:", error);
-        return;
-      }
-    } else {
-      const { data, error } = await supabase
-        .from("like_pages")
-        .update({ likes: likesNow + 1 })
+        .select("likes")
         .eq("page", page);
+
       if (error) {
-        console.error("Error updating like:", error);
+        console.error("Error fetching likes:", error);
         return;
       }
-    }
 
-    document.getElementById("iconNoLike")?.classList.add("hidden");
-    document.getElementById("iconLike")?.classList.remove("hidden");
-    document
-      .getElementById("iconLike")
-      ?.classList.add("animate-fade-in", "animate-delay-300");
-    localStorage.setItem(page, page);
+      const likesNow = dataLikes?.length ? dataLikes[0].likes : 0;
+
+      if (dataLikes?.length === 0) {
+        const { data, error } = await supabase
+          .from("like_pages")
+          .insert({ likes: 1, page });
+        if (error) {
+          console.error("Error inserting like:", error);
+          return;
+        }
+      } else {
+        const { data, error } = await supabase
+          .from("like_pages")
+          .update({ likes: likesNow + 1 })
+          .eq("page", page);
+        if (error) {
+          console.error("Error updating like:", error);
+          return;
+        }
+      }
+
+      document.getElementById("iconNoLike")?.classList.add("hidden");
+      document.getElementById("iconLike")?.classList.remove("hidden");
+      document
+        .getElementById("iconLike")
+        ?.classList.add("animate-fade-in", "animate-delay-300");
+      localStorage.setItem(page, page);
+    });
   });
 </script>

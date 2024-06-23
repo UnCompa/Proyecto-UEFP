@@ -1,0 +1,70 @@
+---
+title: "Componente Video Player"
+pubDate: "2024-06-23"
+description: "Componente para agregar videos"
+author: "Brandon Paillacho"
+image:
+    url: 'https://www.codigocorrecto.com/wp-content/uploads/2020/01/componentes-compressor.jpg'
+    alt: 'Referencia a componente'
+avatar: "https://i1.sndcdn.com/artworks-oGvaMt0dsBWPL7WZ-qgbAMA-t500x500.jpg"
+tags: ["Desarrollo", "Componente"]
+---
+
+import LinksContainer from "../../../components/docs/LinksContainer.astro";
+import LinkCard from "../../../components/docs/LinkCard.astro";
+
+Este componente se encuentra en la carpeta **Utils** de conmponents, con el nombre `VideoPlayer.astro`
+
+## Como usar
+
+Para usarlo se debe exportar, de preferencia con el nombre VideoPlayer.
+
+```astro
+---
+import VideoPlayer from "./components/VideoPlayer.astro"
+---
+```
+
+Luego se debe usar donde sea requerido
+
+```astro
+//index.astro
+---
+import VideoPlayer from "./components/VideoPlayer.astro"
+---
+
+<Layout>
+  <h1>Reproductor de video</h1>
+  <VideoPlayer/> <--- Uso del componente aqui
+</Layout>
+```
+
+### Atributos
+
+- **url**: Link del video de manera local o referncia a un link externo
+- **thin**: Por defecto es `true` sin embargo al ser `false` ocupa todo el espacio del contenedor
+- **vertical**: La disposición del video cambia a un formato 9:16 para video en vertical, por defecto esta el false
+
+| Atributos | Descripción                           | Tipo    | Valor por defecto |
+| --------- | ------------------------------------- | ------- | ----------------- |
+| url       | Link del video sea local o externo    | string  | null              |
+| thin      | Si es `true` ocupa menos espacio      | boolean | true              |
+| vertical  | Disposicion del video en formato 9:16 | boolean | false             |
+
+#### Ejemplo de uso
+
+```astro
+//index.astro
+---
+import VideoPlayer from "./components/VideoPlayer.astro"
+---
+
+<Layout>
+  <h1>Reproductor de video</h1>
+  <VideoPlayer 
+    url="/videos/test.mp4" 
+    vertical={true} 
+    thin={false}
+  />
+</Layout>
+```

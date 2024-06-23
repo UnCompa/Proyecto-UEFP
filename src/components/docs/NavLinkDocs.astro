@@ -21,3 +21,9 @@ const lang = getLangFromUrl(Astro.url);
   {lang === "es" ? "Como empezar" : "How started"}
 </h3>
 <NavigateDocs path="dev" />
+<h3
+  class="no-underline font-semibold text-xl border-b border-red-500 mt-2 my-4"
+>
+  {lang === "es" ? "Sitio web" : "Website"}
+</h3>
+<NavigateDocs path="app" />
